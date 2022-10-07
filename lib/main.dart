@@ -1,6 +1,6 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/l10n/translate_helper.dart';
-import 'package:fabrikod_quran/provider/settings_provider.dart';
+import 'package:fabrikod_quran/provider/app_settings_provider.dart';
 import 'package:fabrikod_quran/screens/home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -19,7 +19,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: providers,
-      child: Consumer<SettingsProvider>(
+      child: Consumer<AppSettingsProvider>(
         builder: (context, settingProvider, child) {
           return MaterialApp(
             title: 'Fabrikod Quran',
@@ -29,6 +29,8 @@ class MyApp extends StatelessWidget {
             supportedLocales: TranslateHelper.supportedLocales,
             localeResolutionCallback: TranslateHelper.localeResolutionCallback,
             theme: themeLight,
+            darkTheme: themeDark,
+            themeMode: settingProvider.appThemeMode,
             home: const HomeScreen(),
           );
         },
@@ -38,7 +40,7 @@ class MyApp extends StatelessWidget {
 
   List<SingleChildWidget> get providers {
     return [
-      ChangeNotifierProvider(create: (_) => SettingsProvider()),
+      ChangeNotifierProvider(create: (_) => AppSettingsProvider()),
     ];
   }
 }

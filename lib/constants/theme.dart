@@ -5,5 +5,5 @@ final ThemeData themeLight = ThemeData(
 );
 
 final ThemeData themeDark = ThemeData(
-  primarySwatch: Colors.blue,
+  primarySwatch: Colors.red,
 );
