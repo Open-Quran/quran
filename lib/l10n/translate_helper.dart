@@ -2,30 +2,26 @@ import 'package:fabrikod_quran/databases/local_db.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
+/// App Translate and Localization Helper Class
 class TranslateHelper {
   TranslateHelper._();
 
+  /// LocalizationsDelegates
   static List<LocalizationsDelegate<dynamic>> get localizationsDelegates =>
       AppLocalizations.localizationsDelegates;
 
+  /// Delegate
   static LocalizationsDelegate get delegate => AppLocalizations.delegate;
 
+  /// SupportedLocales
   static List<Locale> get supportedLocales => AppLocalizations.supportedLocales;
 
+  /// of(context)
   static AppLocalizations? of(BuildContext context) => AppLocalizations.of(context);
 
-  static Locale? get getLocale {
-    String? code = LocalDb.getLanguageCode;
-    return code == null ? null : Locale(code);
-  }
-
-  static Future<Locale?> setLocale(String languageCode) async {
-    await LocalDb.setLanguageCode(languageCode);
-    return getLocale;
-  }
-
+  /// If we support the language of the device we update the default language
   static Locale? localeResolutionCallback(Locale? deviceLocale, Iterable<Locale> supportedLocales) {
-    Locale? locale = getLocale;
+    Locale? locale = LocalDb.getLocale;
     if (locale != null) return locale;
 
     for (var locale in supportedLocales) {

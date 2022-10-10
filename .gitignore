@@ -99,6 +99,8 @@ unlinked_spec.ds
 **/ios/Flutter/flutter_export_environment.sh
 **/ios/ServiceDefinitions.json
 **/ios/Runner/GeneratedPluginRegistrant.*
+**/ios/Flutter/Debug.xcconfig
+**/ios/Flutter/Release.xcconfig
 
 # windows
 **/windows/flutter/generated_plugin_registrant.cc
@@ -121,3 +123,5 @@ app.*.symbols
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !/dev/ci/**/Gemfile.lock
 android/app/local.properties
+/ios/Podfile
+/macos/Podfile

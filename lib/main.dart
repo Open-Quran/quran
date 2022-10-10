@@ -20,17 +20,17 @@ class MyApp extends StatelessWidget {
     return MultiProvider(
       providers: providers,
       child: Consumer<AppSettingsProvider>(
-        builder: (context, settingProvider, child) {
+        builder: (context, appSettingProvider, child) {
           return MaterialApp(
             title: 'Fabrikod Quran',
             debugShowCheckedModeBanner: false,
-            locale: settingProvider.appLocale,
+            locale: appSettingProvider.appLocale,
             localizationsDelegates: TranslateHelper.localizationsDelegates,
             supportedLocales: TranslateHelper.supportedLocales,
             localeResolutionCallback: TranslateHelper.localeResolutionCallback,
             theme: themeLight,
             darkTheme: themeDark,
-            themeMode: settingProvider.appThemeMode,
+            themeMode: appSettingProvider.appThemeMode,
             home: const HomeScreen(),
           );
         },
@@ -38,6 +38,7 @@ class MyApp extends StatelessWidget {
     );
   }
 
+  /// Create App Global Providers
   List<SingleChildWidget> get providers {
     return [
       ChangeNotifierProvider(create: (_) => AppSettingsProvider()),
