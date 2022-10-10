@@ -1,5 +1,5 @@
+import 'package:fabrikod_quran/l10n/translate_helper.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -13,7 +13,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title:  Text(AppLocalizations.of(context)!.helloWorld),
+        title: Text(TranslateHelper.of(context)!.helloWorld),
       ),
     );
   }

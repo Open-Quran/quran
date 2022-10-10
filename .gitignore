@@ -123,3 +123,5 @@ app.*.symbols
 !/packages/flutter_tools/test/data/dart_dependencies_test/**/.packages
 !/dev/ci/**/Gemfile.lock
 android/app/local.properties
+/ios/Podfile
+/macos/Podfile
