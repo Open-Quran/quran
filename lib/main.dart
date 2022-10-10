@@ -1,7 +1,6 @@
-import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/l10n/translate_helper.dart';
 import 'package:fabrikod_quran/provider/app_settings_provider.dart';
-import 'package:fabrikod_quran/screens/home_screen.dart';
+import 'package:fabrikod_quran/screens/bottom_nav_bar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
@@ -28,10 +27,8 @@ class MyApp extends StatelessWidget {
             localizationsDelegates: TranslateHelper.localizationsDelegates,
             supportedLocales: TranslateHelper.supportedLocales,
             localeResolutionCallback: TranslateHelper.localeResolutionCallback,
-            theme: themeLight,
-            darkTheme: themeDark,
-            themeMode: appSettingProvider.appThemeMode,
-            home: const HomeScreen(),
+            theme: appSettingProvider.appThemeData,
+            home: const BottomNavBarScreen(),
           );
         },
       ),

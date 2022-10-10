@@ -1,3 +1,4 @@
+import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
@@ -19,17 +20,16 @@ class LocalDb {
     return getLocale;
   }
 
-  /// Get ThemeMode From Local Database
-  static ThemeMode get getThemeMode {
-    bool? value = _localDbBox.read('isDarkTheme');
-    if (value == null) return ThemeMode.system;
-    return value == true ? ThemeMode.dark : ThemeMode.light;
+  /// Get ThemeData From Local Database
+  static ThemeData get getThemeData {
+    int? value = _localDbBox.read('themeMode');
+    if (value == null) return themeLight;
+    return EThemeModes.values[value].getThemeData;
   }
 
-  /// Change ThemeMode From Local Database
-  static Future<ThemeMode> setThemeMode(ThemeMode themeMode) async {
-    bool value = themeMode == ThemeMode.dark ? true : false;
-    await _localDbBox.write('isDarkTheme', value);
-    return getThemeMode;
+  /// Change ThemeData From Local Database
+  static Future<ThemeData> setThemeMode(EThemeModes appThemeMode) async {
+    await _localDbBox.write('themeMode', appThemeMode.index);
+    return getThemeData;
   }
 }

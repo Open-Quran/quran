@@ -1,3 +1,4 @@
+import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/databases/local_db.dart';
 import 'package:flutter/material.dart';
 
@@ -6,11 +7,11 @@ class AppSettingsProvider extends ChangeNotifier {
   Locale? appLocale;
 
   /// App Theme Mode
-  ThemeMode appThemeMode = ThemeMode.system;
+  late ThemeData appThemeData;
 
   AppSettingsProvider() {
     appLocale = LocalDb.getLocale;
-    appThemeMode = LocalDb.getThemeMode;
+    appThemeData = LocalDb.getThemeData;
   }
 
   /// Change App Language
@@ -20,8 +21,8 @@ class AppSettingsProvider extends ChangeNotifier {
   }
 
   /// Change App Theme
-  Future<void> changeAppTheme(ThemeMode themeMode) async {
-    appThemeMode = await LocalDb.setThemeMode(themeMode);
+  Future<void> changeAppTheme(EThemeModes themeMode) async {
+    appThemeData = await LocalDb.setThemeMode(themeMode);
     notifyListeners();
   }
 }
