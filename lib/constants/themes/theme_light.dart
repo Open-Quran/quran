@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 /// Light Theme
 final ThemeData themeLight = ThemeData(
-  primaryColor: ColorConstants.white,
+  primaryColor: ColorConstants.purple,
   appBarTheme: AppBarTheme(
     backgroundColor: ColorConstants.white,
     titleTextStyle: TextStyle(
@@ -23,6 +23,7 @@ final ThemeData themeLight = ThemeData(
       overlayRadius: 0,
     ),
   ),
+  secondaryHeaderColor: ColorConstants.darkGrey.withOpacity(0.4),
   splashColor: Colors.transparent,
   highlightColor: Colors.transparent,
   scaffoldBackgroundColor: ColorConstants.white,

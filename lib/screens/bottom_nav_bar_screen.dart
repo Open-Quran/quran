@@ -1,10 +1,12 @@
 import 'dart:io';
 
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/provider/home_provider.dart';
 import 'package:fabrikod_quran/screens/home_screen.dart';
 import 'package:fabrikod_quran/screens/more_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class BottomNavBarScreen extends StatefulWidget {
   const BottomNavBarScreen({Key? key}) : super(key: key);
@@ -24,9 +26,14 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: buildBody,
-      bottomNavigationBar: buildBottomNavigationBar,
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => HomeProvider()),
+      ],
+      child: Scaffold(
+        body: buildBody,
+        bottomNavigationBar: buildBottomNavigationBar,
+      ),
     );
   }
 

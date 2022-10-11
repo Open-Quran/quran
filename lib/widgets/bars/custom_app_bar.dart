@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   final Size preferredSize;
-  final String? title;
+  final String title;
   final List<Widget>? actions;
   final Widget? leading;
   final PreferredSizeWidget? bottom;
@@ -34,9 +34,7 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
       centerTitle: true,
       title: Padding(
         padding: EdgeInsets.only(bottom: Platform.isIOS ? 6 : 0),
-        child: Text(
-          title!.toUpperCase(),
-        ),
+        child: Text(title),
       ),
       leading: leading,
       actions: actions,
