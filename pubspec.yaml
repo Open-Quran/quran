@@ -20,8 +20,12 @@ dependencies:
   #State Managements
   provider: ^6.0.3
 
+  # Google
+  google_fonts: ^3.0.1
+
   #Widgets
   cupertino_icons: ^1.0.2
+  flutter_svg: ^1.1.5
 
   # Local Database
   get_storage: ^2.0.3
@@ -37,11 +41,9 @@ dev_dependencies:
 flutter:
   generate: true
   uses-material-design: true
-
-  # To add assets to your application, add an assets section, like this:
-  # assets:
-  #   - images/a_dot_burr.jpeg
-  #   - images/a_dot_ham.jpeg
+  assets:
+    - assets/icons/
+    - assets/images/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

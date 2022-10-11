@@ -1,4 +1,3 @@
-import 'package:fabrikod_quran/l10n/translate_helper.dart';
 import 'package:flutter/material.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -13,7 +12,8 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: Text(TranslateHelper.of(context)!.helloWorld),
+        ///Todo After then Fixed
+        title: const Text("Home"),
       ),
     );
   }
