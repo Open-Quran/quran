@@ -6,20 +6,20 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 class TranslateHelper {
   TranslateHelper._();
 
-  /// LocalizationsDelegates
+  /// List Of Localization Delegates
   static List<LocalizationsDelegate<dynamic>> get localizationsDelegates =>
       AppLocalizations.localizationsDelegates;
 
-  /// Delegate
+  /// Localization Delegate
   static LocalizationsDelegate get delegate => AppLocalizations.delegate;
 
-  /// SupportedLocales
+  /// Supported Locales
   static List<Locale> get supportedLocales => AppLocalizations.supportedLocales;
 
-  /// of(context)
+  /// Getting Build context
   static AppLocalizations? of(BuildContext context) => AppLocalizations.of(context);
 
-  /// If we support the language of the device we update the default language
+  /// Getting local language from device (if app lang does not match local lang EN will be defaulted)
   static Locale? localeResolutionCallback(Locale? deviceLocale, Iterable<Locale> supportedLocales) {
     Locale? locale = LocalDb.getLocale;
     if (locale != null) return locale;

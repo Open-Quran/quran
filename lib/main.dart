@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       child: Consumer<AppSettingsProvider>(
         builder: (context, appSettingProvider, child) {
           return MaterialApp(
-            title: 'Fabrikod Quran',
+            title: "Fabrikod Qur'an",
             debugShowCheckedModeBanner: false,
             locale: appSettingProvider.appLocale,
             localizationsDelegates: TranslateHelper.localizationsDelegates,

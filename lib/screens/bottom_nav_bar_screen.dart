@@ -17,7 +17,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
   /// Current index of bottom navigation bar
   int currentIndex = 0;
 
-  /// Change current index of bottom navigation Bar
+  /// Changes index of bottom navigation Bar
   changeIndex(int index) {
     setState(() => currentIndex = index);
   }
