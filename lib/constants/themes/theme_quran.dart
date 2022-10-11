@@ -4,7 +4,16 @@ import 'package:flutter/material.dart';
 /// Quran Theme
 final ThemeData themeQuran = ThemeData(
   primaryColor: ColorConstants.yellow,
-  appBarTheme: const AppBarTheme(backgroundColor: ColorConstants.yellow, elevation: 0),
+  appBarTheme: AppBarTheme(
+    backgroundColor: ColorConstants.yellow,
+    titleTextStyle: TextStyle(
+      color: ColorConstants.brown,
+      fontSize: 26,
+      fontFamily: Fonts.nunitoW900,
+      fontWeight: FontWeight.w900,
+    ),
+    elevation: 0,
+  ),
   iconTheme: const IconThemeData(color: ColorConstants.brown),
   backgroundColor: ColorConstants.yellow,
   sliderTheme: const SliderThemeData(

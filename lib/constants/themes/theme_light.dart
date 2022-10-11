@@ -4,7 +4,16 @@ import 'package:flutter/material.dart';
 /// Light Theme
 final ThemeData themeLight = ThemeData(
   primaryColor: ColorConstants.white,
-  appBarTheme: const AppBarTheme(backgroundColor: ColorConstants.white, elevation: 0),
+  appBarTheme: AppBarTheme(
+    backgroundColor: ColorConstants.white,
+    titleTextStyle: TextStyle(
+      color: ColorConstants.purple,
+      fontSize: 26,
+      fontFamily: Fonts.nunitoW900,
+      fontWeight: FontWeight.w900,
+    ),
+    elevation: 0,
+  ),
   iconTheme: const IconThemeData(color: ColorConstants.purple),
   backgroundColor: ColorConstants.white,
   sliderTheme: const SliderThemeData(

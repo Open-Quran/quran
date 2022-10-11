@@ -4,7 +4,16 @@ import 'package:flutter/material.dart';
 /// Dark Theme
 final ThemeData themeDark = ThemeData(
   primaryColor: ColorConstants.darkGrey,
-  appBarTheme: const AppBarTheme(backgroundColor: ColorConstants.darkGrey, elevation: 0),
+  appBarTheme: AppBarTheme(
+    backgroundColor: ColorConstants.darkGrey,
+    titleTextStyle: TextStyle(
+      color: ColorConstants.white,
+      fontSize: 26,
+      fontFamily: Fonts.nunitoW900,
+      fontWeight: FontWeight.w900,
+    ),
+    elevation: 0,
+  ),
   iconTheme: const IconThemeData(color: ColorConstants.white),
   backgroundColor: ColorConstants.darkGrey,
   sliderTheme: const SliderThemeData(
