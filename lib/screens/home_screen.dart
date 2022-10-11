@@ -1,7 +1,6 @@
 import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/l10n/translate_helper.dart';
 import 'package:fabrikod_quran/provider/home_provider.dart';
-import 'package:fabrikod_quran/widgets/bars/custom_app_bar.dart';
+import 'package:fabrikod_quran/widgets/bars/main_app_bar.dart';
 import 'package:fabrikod_quran/widgets/bars/custom_search_bar.dart';
 import 'package:fabrikod_quran/widgets/search_tag.dart';
 import 'package:flutter/material.dart';
@@ -21,7 +20,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return InkWell(
       onTap: context.watch<HomeProvider>().searchBarFocusNodeUnFocus,
       child: Scaffold(
-        appBar: CustomAppBar(title: TranslateHelper.of(context)?.quranKerim ?? ""),
+        appBar: MainAppBar(title: context.translate.quranKerim),
         body: buildBody,
       ),
     );
@@ -38,6 +37,8 @@ class _HomeScreenState extends State<HomeScreen> {
           CustomSearchBar(focusNode: context.watch<HomeProvider>().searchBarFocusNode),
           const SizedBox(height: kPaddingDefault),
           buildSearchTags,
+          const SizedBox(height: kPaddingDefault * 2),
+          Expanded(child: buildDefaultTabController),
         ],
       ),
     );
@@ -59,6 +60,65 @@ class _HomeScreenState extends State<HomeScreen> {
           return const SizedBox(width: kPaddingDefault);
         },
       ),
+    );
+  }
+
+  Widget get buildDefaultTabController {
+    return DefaultTabController(
+      length: 3,
+      child: Column(
+        children: [
+          buildTabBar,
+          Expanded(child: buildTabBarView),
+        ],
+      ),
+    );
+  }
+
+  List<String> get getTabTitles => [
+        context.translate.surah,
+        context.translate.juz,
+        context.translate.sajda,
+      ];
+
+  Widget get buildTabBar {
+    return Stack(
+      children: [
+        Positioned.fill(
+          child: Container(
+            decoration: BoxDecoration(
+              border: Border(
+                bottom: BorderSide(
+                  color: context.theme.dividerColor,
+                  width: 2.0,
+                ),
+              ),
+            ),
+          ),
+        ),
+        TabBar(
+          tabs: [
+            ...getTabTitles.map(
+              (e) => Tab(
+                icon: Text(
+                  e,
+                  style: context.theme.textTheme.bodyText1?.copyWith(fontWeight: FontWeight.w700),
+                ),
+              ),
+            ),
+          ],
+        ),
+      ],
+    );
+  }
+
+  Widget get buildTabBarView {
+    return const TabBarView(
+      children: [
+        Icon(Icons.flight, size: 350),
+        Icon(Icons.directions_transit, size: 350),
+        Icon(Icons.directions_car, size: 350),
+      ],
     );
   }
 }

@@ -14,6 +14,7 @@ final ThemeData themeQuran = ThemeData(
     ),
     elevation: 0,
   ),
+  indicatorColor:  ColorConstants.brown,
   iconTheme: const IconThemeData(color: ColorConstants.brown),
   backgroundColor: ColorConstants.yellow,
   sliderTheme: const SliderThemeData(

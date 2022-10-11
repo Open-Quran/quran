@@ -1,10 +1,10 @@
-import 'package:fabrikod_quran/l10n/translate_helper.dart';
 import 'package:fabrikod_quran/provider/app_settings_provider.dart';
 import 'package:fabrikod_quran/screens/bottom_nav_bar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
+import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<void> main() async {
   await GetStorage.init('FabrikodQuran');
@@ -24,9 +24,9 @@ class MyApp extends StatelessWidget {
             title: 'Fabrikod Quran',
             debugShowCheckedModeBanner: false,
             locale: appSettingProvider.appLocale,
-            localizationsDelegates: TranslateHelper.localizationsDelegates,
-            supportedLocales: TranslateHelper.supportedLocales,
-            localeResolutionCallback: TranslateHelper.localeResolutionCallback,
+            localizationsDelegates: AppLocalizations.localizationsDelegates,
+            supportedLocales: AppLocalizations.supportedLocales,
+            localeResolutionCallback: appSettingProvider.localeResolutionCallback,
             theme: appSettingProvider.appThemeData,
             home: const BottomNavBarScreen(),
           );

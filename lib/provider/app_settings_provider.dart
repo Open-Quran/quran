@@ -25,4 +25,16 @@ class AppSettingsProvider extends ChangeNotifier {
     appThemeData = await LocalDb.setThemeMode(themeMode);
     notifyListeners();
   }
+
+  /// If we support the language of the device we update the default language
+  Locale? localeResolutionCallback(Locale? deviceLocale, Iterable<Locale> supportedLocales) {
+    if (appLocale != null) return appLocale;
+
+    for (var locale in supportedLocales) {
+      if (locale.languageCode == deviceLocale!.languageCode) {
+        return deviceLocale;
+      }
+    }
+    return const Locale('en');
+  }
 }

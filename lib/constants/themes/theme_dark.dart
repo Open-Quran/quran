@@ -14,6 +14,7 @@ final ThemeData themeDark = ThemeData(
     ),
     elevation: 0,
   ),
+  indicatorColor: ColorConstants.darkGrey,
   iconTheme: const IconThemeData(color: ColorConstants.white),
   backgroundColor: ColorConstants.darkGrey,
   sliderTheme: const SliderThemeData(

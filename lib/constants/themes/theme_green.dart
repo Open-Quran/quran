@@ -14,6 +14,7 @@ final ThemeData themeGreen = ThemeData(
     ),
     elevation: 0,
   ),
+  indicatorColor: ColorConstants.green,
   iconTheme: const IconThemeData(color: ColorConstants.green),
   backgroundColor: ColorConstants.paleYellow,
   sliderTheme: const SliderThemeData(

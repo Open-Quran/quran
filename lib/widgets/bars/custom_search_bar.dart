@@ -1,5 +1,4 @@
 import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/l10n/translate_helper.dart';
 import 'package:flutter/material.dart';
 
 class CustomSearchBar extends StatelessWidget {
@@ -34,7 +33,7 @@ class CustomSearchBar extends StatelessWidget {
           enabledBorder: getBorder,
           focusedBorder: getBorder,
           focusedErrorBorder: getBorder,
-          labelText: TranslateHelper.of(context)?.search ?? "",
+          labelText: context.translate.search,
           floatingLabelBehavior: FloatingLabelBehavior.never,
           labelStyle: Theme.of(context).textTheme.bodyText1?.copyWith(
                 color: Theme.of(context).secondaryHeaderColor,
