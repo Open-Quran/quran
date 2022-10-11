@@ -1,5 +1,5 @@
 import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/databases/local_db.dart';
+import 'package:fabrikod_quran/database/local_db.dart';
 import 'package:flutter/material.dart';
 
 class AppSettingsProvider extends ChangeNotifier {

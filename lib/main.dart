@@ -1,4 +1,4 @@
-import 'package:fabrikod_quran/provider/app_settings_provider.dart';
+import 'package:fabrikod_quran/providers/app_settings_provider.dart';
 import 'package:fabrikod_quran/screens/bottom_nav_bar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       child: Consumer<AppSettingsProvider>(
         builder: (context, appSettingProvider, child) {
           return MaterialApp(
-            title: 'Fabrikod Quran',
+            title: "Fabrikod Qur'an",
             debugShowCheckedModeBanner: false,
             locale: appSettingProvider.appLocale,
             localizationsDelegates: AppLocalizations.localizationsDelegates,

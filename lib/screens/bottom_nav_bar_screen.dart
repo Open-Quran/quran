@@ -1,7 +1,7 @@
 import 'dart:io';
 
 import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/provider/home_provider.dart';
+import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/screens/home_screen.dart';
 import 'package:fabrikod_quran/screens/more_screen.dart';
 import 'package:flutter/material.dart';
@@ -19,7 +19,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
   /// Current index of bottom navigation bar
   int currentIndex = 0;
 
-  /// Change current index of bottom navigation Bar
+  /// Changes index of bottom navigation Bar
   changeIndex(int index) {
     setState(() => currentIndex = index);
   }

@@ -1,5 +1,5 @@
 import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/provider/home_provider.dart';
+import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/widgets/bars/main_app_bar.dart';
 import 'package:fabrikod_quran/widgets/bars/custom_search_bar.dart';
 import 'package:fabrikod_quran/widgets/search_tag.dart';
