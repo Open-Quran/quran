@@ -1,5 +1,5 @@
 import 'package:fabrikod_quran/l10n/translate_helper.dart';
-import 'package:fabrikod_quran/provider/app_settings_provider.dart';
+import 'package:fabrikod_quran/providers/app_settings_provider.dart';
 import 'package:fabrikod_quran/screens/bottom_nav_bar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';

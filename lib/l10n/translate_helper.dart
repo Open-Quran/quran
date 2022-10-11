@@ -1,4 +1,4 @@
-import 'package:fabrikod_quran/databases/local_db.dart';
+import 'package:fabrikod_quran/database/local_db.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
