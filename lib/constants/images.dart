@@ -14,4 +14,5 @@ class ImageConstants {
   static const String moreInactiveIcon = "${_iconsPath}ic_more_inactive.svg";
   static const String playActiveIcon = "${_iconsPath}ic_play_active.svg";
   static const String stopActiveIcon = "${_iconsPath}ic_stop_active.svg";
+  static const String bigBasmalaIcon = "${_iconsPath}ic_big_basmala.svg";
 }

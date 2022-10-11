@@ -4,7 +4,17 @@ import 'package:flutter/material.dart';
 /// Green Theme
 final ThemeData themeGreen = ThemeData(
   primaryColor: ColorConstants.paleYellow,
-  appBarTheme: const AppBarTheme(backgroundColor: ColorConstants.paleYellow, elevation: 0),
+  appBarTheme: AppBarTheme(
+    backgroundColor: ColorConstants.paleYellow,
+    titleTextStyle: TextStyle(
+      color: ColorConstants.green,
+      fontSize: 20,
+      fontFamily: Fonts.nunitoW900,
+      fontWeight: FontWeight.w900,
+    ),
+    elevation: 0,
+  ),
+  indicatorColor: ColorConstants.green,
   iconTheme: const IconThemeData(color: ColorConstants.green),
   backgroundColor: ColorConstants.paleYellow,
   sliderTheme: const SliderThemeData(
@@ -14,6 +24,7 @@ final ThemeData themeGreen = ThemeData(
       overlayRadius: 0,
     ),
   ),
+  secondaryHeaderColor: ColorConstants.green.withOpacity(0.4),
   splashColor: Colors.transparent,
   highlightColor: Colors.transparent,
   scaffoldBackgroundColor: ColorConstants.paleYellow,

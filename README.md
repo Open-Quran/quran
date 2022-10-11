@@ -1,4 +1,4 @@
-# fabrikod_quran
+# The Holy Qur'an Mobile App
 
 A new Flutter project.
 
