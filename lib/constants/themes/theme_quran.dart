@@ -14,6 +14,8 @@ final ThemeData themeQuran = ThemeData(
       overlayRadius: 0,
     ),
   ),
+  splashColor: Colors.transparent,
+  highlightColor: Colors.transparent,
   scaffoldBackgroundColor: ColorConstants.yellow,
   cardTheme: CardTheme(color: ColorConstants.brown.withOpacity(0.1)),
   canvasColor: ColorConstants.brown,

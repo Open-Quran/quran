@@ -14,6 +14,8 @@ final ThemeData themeLight = ThemeData(
       overlayRadius: 0,
     ),
   ),
+  splashColor: Colors.transparent,
+  highlightColor: Colors.transparent,
   scaffoldBackgroundColor: ColorConstants.white,
   cardTheme: const CardTheme(color: ColorConstants.purple),
   canvasColor: ColorConstants.green,

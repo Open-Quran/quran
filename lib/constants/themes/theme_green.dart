@@ -14,6 +14,8 @@ final ThemeData themeGreen = ThemeData(
       overlayRadius: 0,
     ),
   ),
+  splashColor: Colors.transparent,
+  highlightColor: Colors.transparent,
   scaffoldBackgroundColor: ColorConstants.paleYellow,
   cardTheme: CardTheme(color: ColorConstants.green.withOpacity(0.1)),
   canvasColor: ColorConstants.green,

@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/screens/home_screen.dart';
 import 'package:fabrikod_quran/screens/more_screen.dart';
@@ -69,14 +71,21 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
     required String icon,
     required String activeIcon,
   }) {
+    double padding = Platform.isIOS ? kPaddingDefault : 0;
     return BottomNavigationBarItem(
-      icon: SvgPicture.asset(
-        icon,
-        color: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+      icon: Padding(
+        padding: EdgeInsets.only(top: padding),
+        child: SvgPicture.asset(
+          icon,
+          color: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+        ),
       ),
-      activeIcon: SvgPicture.asset(
-        activeIcon,
-        color: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+      activeIcon: Padding(
+        padding: EdgeInsets.only(top: padding),
+        child: SvgPicture.asset(
+          activeIcon,
+          color: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+        ),
       ),
       label: "",
     );

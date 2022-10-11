@@ -14,6 +14,8 @@ final ThemeData themeDark = ThemeData(
       overlayRadius: 0,
     ),
   ),
+  splashColor: Colors.transparent,
+  highlightColor: Colors.transparent,
   scaffoldBackgroundColor: ColorConstants.darkGrey,
   cardTheme: CardTheme(color: ColorConstants.darkGrey.withOpacity(0.1)),
   canvasColor: ColorConstants.white,
