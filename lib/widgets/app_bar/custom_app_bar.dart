@@ -38,11 +38,15 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
           title!.toUpperCase(),
         ),
       ),
-      shape: Border(bottom: BorderSide(color: Theme.of(context).dividerColor)),
-      elevation: 1,
       leading: leading,
       actions: actions,
-      bottom: bottom,
+      bottom: bottom ??
+          PreferredSize(
+              preferredSize: const Size.fromHeight(1),
+              child: Container(
+                color: Theme.of(context).dividerColor,
+                height: 1,
+              )),
       automaticallyImplyLeading: false,
     );
   }

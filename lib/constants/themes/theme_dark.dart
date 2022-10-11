@@ -8,7 +8,7 @@ final ThemeData themeDark = ThemeData(
     backgroundColor: ColorConstants.darkGrey,
     titleTextStyle: TextStyle(
       color: ColorConstants.white,
-      fontSize: 26,
+      fontSize: 20,
       fontFamily: Fonts.nunitoW900,
       fontWeight: FontWeight.w900,
     ),

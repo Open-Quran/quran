@@ -8,7 +8,7 @@ final ThemeData themeLight = ThemeData(
     backgroundColor: ColorConstants.white,
     titleTextStyle: TextStyle(
       color: ColorConstants.purple,
-      fontSize: 26,
+      fontSize: 20,
       fontFamily: Fonts.nunitoW900,
       fontWeight: FontWeight.w900,
     ),

@@ -8,7 +8,7 @@ final ThemeData themeQuran = ThemeData(
     backgroundColor: ColorConstants.yellow,
     titleTextStyle: TextStyle(
       color: ColorConstants.brown,
-      fontSize: 26,
+      fontSize: 20,
       fontFamily: Fonts.nunitoW900,
       fontWeight: FontWeight.w900,
     ),

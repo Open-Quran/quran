@@ -8,7 +8,7 @@ final ThemeData themeGreen = ThemeData(
     backgroundColor: ColorConstants.paleYellow,
     titleTextStyle: TextStyle(
       color: ColorConstants.green,
-      fontSize: 26,
+      fontSize: 20,
       fontFamily: Fonts.nunitoW900,
       fontWeight: FontWeight.w900,
     ),
