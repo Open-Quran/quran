@@ -38,45 +38,73 @@ final ThemeData themeGreen = ThemeData(
     selectedItemColor: ColorConstants.green,
     unselectedItemColor: ColorConstants.green,
   ),
-  textTheme: const TextTheme(
-    headline1: TextStyle(
-      fontSize: 30,
-      color: ColorConstants.green,
-    ),
-    headline2: TextStyle(
-      fontSize: 28,
-      color: ColorConstants.green,
-    ),
-    headline3: TextStyle(
-      fontSize: 26,
-      color: ColorConstants.green,
-    ),
-    headline4: TextStyle(
+  tabBarTheme: const TabBarTheme(
+    labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: ColorConstants.green),
+  ),
+  textTheme: TextTheme(
+    headlineLarge: const TextStyle(
       fontSize: 24,
+      fontWeight: FontWeight.w900,
       color: ColorConstants.green,
     ),
-    headline5: TextStyle(
-      fontSize: 22,
+    headlineMedium: const TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
       color: ColorConstants.green,
     ),
-    subtitle1: TextStyle(
-      color: ColorConstants.green,
+    headlineSmall: const TextStyle(
       fontSize: 20,
+      fontWeight: FontWeight.w900,
+      color: ColorConstants.green,
     ),
-    subtitle2: TextStyle(
+    titleLarge: const TextStyle(
       fontSize: 18,
+      fontWeight: FontWeight.w700,
       color: ColorConstants.green,
     ),
-    bodyText1: TextStyle(
-      color: ColorConstants.green,
+    titleMedium: const TextStyle(
       fontSize: 16,
-    ),
-    bodyText2: TextStyle(
+      fontWeight: FontWeight.w800,
       color: ColorConstants.green,
-      fontSize: 14,
     ),
-    caption: TextStyle(
+    titleSmall: const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      color: ColorConstants.green,
+    ),
+    subtitle1: const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: ColorConstants.green,
+    ),
+    labelLarge: const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.green,
+    ),
+    labelMedium: const TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.green,
+    ),
+    labelSmall: const TextStyle(
       fontSize: 12,
+      fontWeight: FontWeight.w800,
+      color: ColorConstants.green,
+    ),
+    bodyText1: const TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: ColorConstants.green,
+    ),
+    bodyText2: const TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: ColorConstants.green,
+    ),
+    caption: const TextStyle(
+      fontSize: 15,
+      fontWeight: FontWeight.w500,
       color: ColorConstants.green,
     ),
   ),

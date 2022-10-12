@@ -38,45 +38,73 @@ final ThemeData themeQuran = ThemeData(
     selectedItemColor: ColorConstants.brown,
     unselectedItemColor: ColorConstants.brown,
   ),
-  textTheme: const TextTheme(
-    headline1: TextStyle(
-      fontSize: 30,
-      color: ColorConstants.brown,
-    ),
-    headline2: TextStyle(
-      fontSize: 28,
-      color: ColorConstants.brown,
-    ),
-    headline3: TextStyle(
-      fontSize: 26,
-      color: ColorConstants.brown,
-    ),
-    headline4: TextStyle(
+  tabBarTheme: const TabBarTheme(
+    labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: ColorConstants.brown),
+  ),
+  textTheme: TextTheme(
+    headlineLarge: const TextStyle(
       fontSize: 24,
+      fontWeight: FontWeight.w900,
       color: ColorConstants.brown,
     ),
-    headline5: TextStyle(
-      fontSize: 22,
+    headlineMedium: const TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
       color: ColorConstants.brown,
     ),
-    subtitle1: TextStyle(
-      color: ColorConstants.brown,
+    headlineSmall: const TextStyle(
       fontSize: 20,
+      fontWeight: FontWeight.w900,
+      color: ColorConstants.brown,
     ),
-    subtitle2: TextStyle(
+    titleLarge: const TextStyle(
       fontSize: 18,
+      fontWeight: FontWeight.w700,
       color: ColorConstants.brown,
     ),
-    bodyText1: TextStyle(
-      color: ColorConstants.brown,
+    titleMedium: const TextStyle(
       fontSize: 16,
-    ),
-    bodyText2: TextStyle(
+      fontWeight: FontWeight.w800,
       color: ColorConstants.brown,
-      fontSize: 14,
     ),
-    caption: TextStyle(
+    titleSmall: const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      color: ColorConstants.brown,
+    ),
+    subtitle1: const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: ColorConstants.brown,
+    ),
+    labelLarge: const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.brown,
+    ),
+    labelMedium: const TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.brown,
+    ),
+    labelSmall: const TextStyle(
       fontSize: 12,
+      fontWeight: FontWeight.w800,
+      color: ColorConstants.brown,
+    ),
+    bodyText1: const TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: ColorConstants.brown,
+    ),
+    bodyText2: const TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: ColorConstants.brown,
+    ),
+    caption: const TextStyle(
+      fontSize: 15,
+      fontWeight: FontWeight.w500,
       color: ColorConstants.brown,
     ),
   ),

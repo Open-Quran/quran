@@ -38,46 +38,74 @@ final ThemeData themeLight = ThemeData(
     selectedItemColor: ColorConstants.purple,
     unselectedItemColor: ColorConstants.purple,
   ),
-  textTheme: const TextTheme(
-    headline1: TextStyle(
-      fontSize: 30,
-      color: ColorConstants.purple,
-    ),
-    headline2: TextStyle(
-      fontSize: 28,
-      color: ColorConstants.purple,
-    ),
-    headline3: TextStyle(
-      fontSize: 26,
-      color: ColorConstants.purple,
-    ),
-    headline4: TextStyle(
+  tabBarTheme: const TabBarTheme(
+    labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: ColorConstants.purple),
+  ),
+  textTheme: TextTheme(
+    headlineLarge: const TextStyle(
       fontSize: 24,
+      fontWeight: FontWeight.w900,
       color: ColorConstants.purple,
     ),
-    headline5: TextStyle(
-      fontSize: 22,
+    headlineMedium: const TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
       color: ColorConstants.purple,
     ),
-    subtitle1: TextStyle(
-      color: ColorConstants.purple,
+    headlineSmall: const TextStyle(
       fontSize: 20,
+      fontWeight: FontWeight.w900,
+      color: ColorConstants.purple,
     ),
-    subtitle2: TextStyle(
+    titleLarge: const TextStyle(
       fontSize: 18,
-      color: ColorConstants.purple,
+      fontWeight: FontWeight.w700,
+      color: ColorConstants.darkGrey,
     ),
-    bodyText1: TextStyle(
-      color: ColorConstants.purple,
+    titleMedium: const TextStyle(
       fontSize: 16,
-    ),
-    bodyText2: TextStyle(
+      fontWeight: FontWeight.w800,
       color: ColorConstants.purple,
+    ),
+    titleSmall: const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      color: ColorConstants.white,
+    ),
+    subtitle1: const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: ColorConstants.purple,
+    ),
+    labelLarge: const TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.darkGrey,
+    ),
+    labelMedium: const TextStyle(
       fontSize: 14,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.darkGrey,
+    ),
+    labelSmall: const TextStyle(
+      fontSize: 12,
+      fontWeight: FontWeight.w800,
+      color: ColorConstants.purple,
+    ),
+    bodyText1: const TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: ColorConstants.purple,
+    ),
+    bodyText2: const TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: ColorConstants.darkGrey,
     ),
     caption: TextStyle(
-      fontSize: 12,
-      color: ColorConstants.purple,
+      fontSize: 15,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.darkGrey.withOpacity(0.5),
     ),
   ),
 );
