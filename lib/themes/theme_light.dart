@@ -29,7 +29,7 @@ final ThemeData themeLight = ThemeData(
   highlightColor: Colors.transparent,
   scaffoldBackgroundColor: ColorConstants.white,
   cardTheme: const CardTheme(color: ColorConstants.purple),
-  canvasColor: ColorConstants.green,
+  canvasColor: ColorConstants.purple,
   dividerColor: ColorConstants.purple.withOpacity(0.2),
   fontFamily: Fonts.nunito,
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(

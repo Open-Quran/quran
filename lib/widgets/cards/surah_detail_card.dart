@@ -35,7 +35,10 @@ class SurahDetailCard extends StatelessWidget {
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [
-        SvgPicture.asset(ImageConstants.surahNumberFrame),
+        SvgPicture.asset(
+          ImageConstants.surahNumberFrame,
+          color: context.theme.appBarTheme.titleTextStyle?.color,
+        ),
         Positioned.fill(
           child: Center(
             child: Padding(
@@ -44,7 +47,8 @@ class SurahDetailCard extends StatelessWidget {
                 surahModel.id.toString(),
                 maxLines: 1,
                 textAlign: TextAlign.center,
-                style: context.theme.textTheme.titleLarge,
+                style: context.theme.textTheme.titleLarge
+                    ?.copyWith(color: context.theme.backgroundColor),
               ),
             ),
           ),
