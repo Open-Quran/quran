@@ -41,68 +41,73 @@ final ThemeData themeDark = ThemeData(
   tabBarTheme: const TabBarTheme(
     labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: ColorConstants.white),
   ),
-  textTheme: TextTheme(
-    headlineLarge: const TextStyle(
+  textTheme: const TextTheme(
+    displayLarge: TextStyle(
       fontSize: 24,
       fontWeight: FontWeight.w900,
       color: ColorConstants.white,
     ),
-    headlineMedium: const TextStyle(
+    displayMedium: TextStyle(
       fontSize: 24,
       fontWeight: FontWeight.w700,
       color: ColorConstants.white,
     ),
-    headlineSmall: const TextStyle(
+    displaySmall: TextStyle(
       fontSize: 20,
       fontWeight: FontWeight.w900,
       color: ColorConstants.white,
     ),
-    titleLarge: const TextStyle(
+    headlineLarge: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.white,
+    ),
+    headlineMedium: TextStyle(
       fontSize: 18,
       fontWeight: FontWeight.w700,
       color: ColorConstants.white,
     ),
-    titleMedium: const TextStyle(
+    headlineSmall: TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w800,
       color: ColorConstants.white,
     ),
-    titleSmall: const TextStyle(
+    titleLarge: TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w700,
       color: ColorConstants.white,
     ),
-    subtitle1: const TextStyle(
+    titleMedium: TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w600,
       color: ColorConstants.white,
     ),
-    labelLarge: const TextStyle(
+    titleSmall: TextStyle(
       fontSize: 16,
       fontWeight: FontWeight.w500,
       color: ColorConstants.white,
     ),
-    labelMedium: const TextStyle(
+    bodyLarge: TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w500,
       color: ColorConstants.white,
     ),
-    labelSmall: const TextStyle(
+    bodyMedium: TextStyle(
       fontSize: 12,
       fontWeight: FontWeight.w800,
       color: ColorConstants.white,
     ),
-    bodyText1: const TextStyle(
+    bodySmall: TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w400,
       color: ColorConstants.white,
     ),
-    bodyText2: const TextStyle(
+    labelLarge: TextStyle(
       fontSize: 14,
       fontWeight: FontWeight.w400,
       color: ColorConstants.white,
     ),
-    caption: const TextStyle(
+    labelMedium: TextStyle(
       fontSize: 15,
       fontWeight: FontWeight.w500,
       color: ColorConstants.white,
