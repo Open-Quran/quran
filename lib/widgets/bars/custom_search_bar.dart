@@ -16,14 +16,14 @@ class CustomSearchBar extends StatelessWidget {
       child: TextFormField(
         focusNode: focusNode,
         controller: textEditingController,
-        cursorColor: Theme.of(context).primaryColor,
+        cursorColor: context.theme.primaryColor,
         decoration: InputDecoration(
           prefixIcon: Icon(
             Icons.search,
             size: 25,
-            color: Theme.of(context).secondaryHeaderColor,
+            color: context.theme.secondaryHeaderColor,
           ),
-          fillColor: Theme.of(context).cardTheme.color?.withOpacity(0.1),
+          fillColor: context.theme.cardTheme.color?.withOpacity(0.1),
           filled: true,
           isDense: true,
           contentPadding: const EdgeInsets.all(kPaddingHorizontal),
@@ -35,8 +35,8 @@ class CustomSearchBar extends StatelessWidget {
           focusedErrorBorder: getBorder,
           labelText: context.translate.search,
           floatingLabelBehavior: FloatingLabelBehavior.never,
-          labelStyle: Theme.of(context).textTheme.bodyText1?.copyWith(
-                color: Theme.of(context).secondaryHeaderColor,
+          labelStyle: context.theme.textTheme.titleSmall?.copyWith(
+                color: context.theme.secondaryHeaderColor,
               ),
         ),
       ),
