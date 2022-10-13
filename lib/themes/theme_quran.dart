@@ -38,45 +38,78 @@ final ThemeData themeQuran = ThemeData(
     selectedItemColor: ColorConstants.brown,
     unselectedItemColor: ColorConstants.brown,
   ),
+  tabBarTheme: const TabBarTheme(
+    labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: ColorConstants.brown),
+  ),
   textTheme: const TextTheme(
-    headline1: TextStyle(
-      fontSize: 30,
-      color: ColorConstants.brown,
-    ),
-    headline2: TextStyle(
-      fontSize: 28,
-      color: ColorConstants.brown,
-    ),
-    headline3: TextStyle(
-      fontSize: 26,
-      color: ColorConstants.brown,
-    ),
-    headline4: TextStyle(
+    displayLarge: TextStyle(
       fontSize: 24,
+      fontWeight: FontWeight.w900,
       color: ColorConstants.brown,
     ),
-    headline5: TextStyle(
-      fontSize: 22,
+    displayMedium: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
       color: ColorConstants.brown,
     ),
-    subtitle1: TextStyle(
-      color: ColorConstants.brown,
+    displaySmall: TextStyle(
       fontSize: 20,
+      fontWeight: FontWeight.w900,
+      color: ColorConstants.brown,
     ),
-    subtitle2: TextStyle(
+    headlineLarge: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.brown,
+    ),
+    headlineMedium: TextStyle(
       fontSize: 18,
+      fontWeight: FontWeight.w700,
       color: ColorConstants.brown,
     ),
-    bodyText1: TextStyle(
-      color: ColorConstants.brown,
+    headlineSmall: TextStyle(
       fontSize: 16,
-    ),
-    bodyText2: TextStyle(
+      fontWeight: FontWeight.w800,
       color: ColorConstants.brown,
-      fontSize: 14,
     ),
-    caption: TextStyle(
+    titleLarge: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      color: ColorConstants.brown,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: ColorConstants.brown,
+    ),
+    titleSmall: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.brown,
+    ),
+    bodyLarge: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.brown,
+    ),
+    bodyMedium: TextStyle(
       fontSize: 12,
+      fontWeight: FontWeight.w800,
+      color: ColorConstants.brown,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: ColorConstants.brown,
+    ),
+    labelLarge: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: ColorConstants.brown,
+    ),
+    labelMedium: TextStyle(
+      fontSize: 15,
+      fontWeight: FontWeight.w500,
       color: ColorConstants.brown,
     ),
   ),

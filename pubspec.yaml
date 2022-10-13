@@ -26,6 +26,7 @@ dependencies:
   #Widgets
   cupertino_icons: ^1.0.2
   flutter_svg: ^1.1.5
+  auto_size_text: ^3.0.0
 
   # Local Database
   get_storage: ^2.0.3

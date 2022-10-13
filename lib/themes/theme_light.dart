@@ -29,7 +29,7 @@ final ThemeData themeLight = ThemeData(
   highlightColor: Colors.transparent,
   scaffoldBackgroundColor: ColorConstants.white,
   cardTheme: const CardTheme(color: ColorConstants.purple),
-  canvasColor: ColorConstants.green,
+  canvasColor: ColorConstants.purple,
   dividerColor: ColorConstants.purple.withOpacity(0.2),
   fontFamily: Fonts.nunito,
   bottomNavigationBarTheme: const BottomNavigationBarThemeData(
@@ -38,46 +38,79 @@ final ThemeData themeLight = ThemeData(
     selectedItemColor: ColorConstants.purple,
     unselectedItemColor: ColorConstants.purple,
   ),
+  tabBarTheme: const TabBarTheme(
+    labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: ColorConstants.purple),
+  ),
   textTheme: const TextTheme(
-    headline1: TextStyle(
-      fontSize: 30,
-      color: ColorConstants.purple,
-    ),
-    headline2: TextStyle(
-      fontSize: 28,
-      color: ColorConstants.purple,
-    ),
-    headline3: TextStyle(
-      fontSize: 26,
-      color: ColorConstants.purple,
-    ),
-    headline4: TextStyle(
+    displayLarge: TextStyle(
       fontSize: 24,
+      fontWeight: FontWeight.w900,
       color: ColorConstants.purple,
     ),
-    headline5: TextStyle(
-      fontSize: 22,
+    displayMedium: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
       color: ColorConstants.purple,
     ),
-    subtitle1: TextStyle(
-      color: ColorConstants.purple,
+    displaySmall: TextStyle(
       fontSize: 20,
+      fontWeight: FontWeight.w900,
+      color: ColorConstants.purple,
     ),
-    subtitle2: TextStyle(
+    headlineLarge: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.purple,
+    ),
+    headlineMedium: TextStyle(
       fontSize: 18,
-      color: ColorConstants.purple,
+      fontWeight: FontWeight.w700,
+      color: ColorConstants.darkGrey,
     ),
-    bodyText1: TextStyle(
-      color: ColorConstants.purple,
+    headlineSmall: TextStyle(
       fontSize: 16,
-    ),
-    bodyText2: TextStyle(
+      fontWeight: FontWeight.w800,
       color: ColorConstants.purple,
+    ),
+    titleLarge: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      color: ColorConstants.white,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: ColorConstants.purple,
+    ),
+    titleSmall: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.darkGrey,
+    ),
+    bodyLarge: TextStyle(
       fontSize: 14,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.darkGrey,
     ),
-    caption: TextStyle(
+    bodyMedium: TextStyle(
       fontSize: 12,
+      fontWeight: FontWeight.w800,
       color: ColorConstants.purple,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: ColorConstants.purple,
+    ),
+    labelLarge: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: ColorConstants.darkGrey,
+    ),
+    labelMedium: TextStyle(
+      fontSize: 15,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.darkGrey,
     ),
   ),
 );

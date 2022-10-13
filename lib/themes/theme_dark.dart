@@ -38,45 +38,78 @@ final ThemeData themeDark = ThemeData(
     selectedItemColor: ColorConstants.white,
     unselectedItemColor: ColorConstants.white,
   ),
+  tabBarTheme: const TabBarTheme(
+    labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: ColorConstants.white),
+  ),
   textTheme: const TextTheme(
-    headline1: TextStyle(
-      fontSize: 30,
-      color: ColorConstants.white,
-    ),
-    headline2: TextStyle(
-      fontSize: 28,
-      color: ColorConstants.white,
-    ),
-    headline3: TextStyle(
-      fontSize: 26,
-      color: ColorConstants.white,
-    ),
-    headline4: TextStyle(
+    displayLarge: TextStyle(
       fontSize: 24,
+      fontWeight: FontWeight.w900,
       color: ColorConstants.white,
     ),
-    headline5: TextStyle(
-      fontSize: 22,
+    displayMedium: TextStyle(
+      fontSize: 24,
+      fontWeight: FontWeight.w700,
       color: ColorConstants.white,
     ),
-    subtitle1: TextStyle(
-      color: ColorConstants.white,
+    displaySmall: TextStyle(
       fontSize: 20,
+      fontWeight: FontWeight.w900,
+      color: ColorConstants.white,
     ),
-    subtitle2: TextStyle(
+    headlineLarge: TextStyle(
+      fontSize: 20,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.white,
+    ),
+    headlineMedium: TextStyle(
       fontSize: 18,
+      fontWeight: FontWeight.w700,
       color: ColorConstants.white,
     ),
-    bodyText1: TextStyle(
-      color: ColorConstants.white,
+    headlineSmall: TextStyle(
       fontSize: 16,
-    ),
-    bodyText2: TextStyle(
+      fontWeight: FontWeight.w800,
       color: ColorConstants.white,
-      fontSize: 14,
     ),
-    caption: TextStyle(
+    titleLarge: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w700,
+      color: ColorConstants.white,
+    ),
+    titleMedium: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w600,
+      color: ColorConstants.white,
+    ),
+    titleSmall: TextStyle(
+      fontSize: 16,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.white,
+    ),
+    bodyLarge: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w500,
+      color: ColorConstants.white,
+    ),
+    bodyMedium: TextStyle(
       fontSize: 12,
+      fontWeight: FontWeight.w800,
+      color: ColorConstants.white,
+    ),
+    bodySmall: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: ColorConstants.white,
+    ),
+    labelLarge: TextStyle(
+      fontSize: 14,
+      fontWeight: FontWeight.w400,
+      color: ColorConstants.white,
+    ),
+    labelMedium: TextStyle(
+      fontSize: 15,
+      fontWeight: FontWeight.w500,
       color: ColorConstants.white,
     ),
   ),
