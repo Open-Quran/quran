@@ -20,16 +20,16 @@ class LocalDb {
     return getLocale;
   }
 
-  /// Get ThemeData From Local Database
-  static ThemeData get getThemeData {
+  /// Get ThemeMode From Local Database
+  static EThemeModes get getThemeMode {
     int? value = _localDbBox.read('themeMode');
-    if (value == null) return themeLight;
-    return EThemeModes.values[value].getThemeData;
+    if (value == null) return EThemeModes.light;
+    return EThemeModes.values[value];
   }
 
-  /// Change ThemeData From Local Database
-  static Future<ThemeData> setThemeMode(EThemeModes appThemeMode) async {
+  /// Change ThemeMode From Local Database
+  static Future<EThemeModes> setThemeMode(EThemeModes appThemeMode) async {
     await _localDbBox.write('themeMode', appThemeMode.index);
-    return getThemeData;
+    return getThemeMode;
   }
 }

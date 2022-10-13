@@ -5,5 +5,10 @@
     "juz": "Juz",
     "sajda": "Sajda",
     "ayat": "Ayat",
-    "quran": "Qur'an"
+    "quran": "Qur'an",
+    "switchTheme": "Switch Theme",
+    "lightMode": "Light Mode",
+    "darkMode": "Dark Mode",
+    "quranMode": "Qur'an Mode",
+    "greenMode": "Green Mode"
 }

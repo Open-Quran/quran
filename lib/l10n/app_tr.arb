@@ -5,5 +5,10 @@
     "juz": "Cüz",
     "sajda": "Secde",
     "ayat": "Ayet",
-    "quran": "Kur'an-ı Kerim"
+    "quran": "Kur'an-ı Kerim",
+    "switchTheme": "Temayı Degiştir",
+    "lightMode": "Aydınlık",
+    "darkMode": "Karanlık",
+    "quranMode": "Kur'an Modu",
+    "greenMode": "Yeşil Mod"
 }

@@ -7,11 +7,11 @@ class AppSettingsProvider extends ChangeNotifier {
   Locale? appLocale;
 
   /// App Theme Mode
-  late ThemeData appThemeData;
+  late EThemeModes appThemeMode;
 
   AppSettingsProvider() {
     appLocale = LocalDb.getLocale;
-    appThemeData = LocalDb.getThemeData;
+    appThemeMode = LocalDb.getThemeMode;
   }
 
   /// Change App Language
@@ -22,7 +22,7 @@ class AppSettingsProvider extends ChangeNotifier {
 
   /// Change App Theme
   Future<void> changeAppTheme(EThemeModes themeMode) async {
-    appThemeData = await LocalDb.setThemeMode(themeMode);
+    appThemeMode = await LocalDb.setThemeMode(themeMode);
     notifyListeners();
   }
 
