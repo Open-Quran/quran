@@ -4,6 +4,7 @@ import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/widgets/bars/custom_tab_bar.dart';
 import 'package:fabrikod_quran/widgets/bars/main_app_bar.dart';
 import 'package:fabrikod_quran/widgets/bars/custom_search_bar.dart';
+import 'package:fabrikod_quran/widgets/cards/juz_card.dart';
 import 'package:fabrikod_quran/widgets/cards/surah_detail_card.dart';
 import 'package:fabrikod_quran/widgets/tags/custom_tag_list.dart';
 import 'package:flutter/material.dart';
@@ -70,7 +71,7 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
       tabViews: [
         buildSurahList,
-        const Icon(Icons.directions_transit, size: 350),
+        buildJuzList,
         const Icon(Icons.directions_car, size: 350),
       ],
     );
@@ -84,6 +85,22 @@ class _HomeScreenState extends State<HomeScreen> {
         surahModel: SurahModel.getFakeData[index],
       ),
       separatorBuilder: (context, index) => const SizedBox(height: kPaddingContentSpaceBetween),
+    );
+  }
+
+  Widget get buildJuzList {
+    return GridView.builder(
+      itemCount: 30,
+      padding: const EdgeInsets.symmetric(vertical: kPaddingVertical),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        mainAxisSpacing: kPaddingDefault * 2,
+        crossAxisSpacing: kPaddingDefault * 2,
+      ),
+      itemBuilder: (context, index) => JuzCard(
+        index: index + 1,
+        onTap: (selectedJuzIndex) {},
+      ),
     );
   }
 }
