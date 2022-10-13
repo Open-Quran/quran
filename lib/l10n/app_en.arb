@@ -1,9 +1,11 @@
 {
     "more": "More",
-    "quranKerim": "Qur’an-ı Kerim",
     "search": "Search",
     "surah": "Surah",
     "juz": "Juz",
     "sajda": "Sajda",
-    "ayah": "Ayah"
+    "ayat": "Ayat",
+    "sajda": "Sajda",
+    "more": "More",
+    "quran": "Qur'an"
 }

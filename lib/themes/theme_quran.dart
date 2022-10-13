@@ -13,6 +13,9 @@ final ThemeData themeQuran = ThemeData(
       fontWeight: FontWeight.w900,
     ),
     elevation: 0,
+    iconTheme: const IconThemeData(
+      color: ColorConstants.brown,
+    ),
   ),
   indicatorColor:  ColorConstants.brown,
   iconTheme: const IconThemeData(color: ColorConstants.brown),

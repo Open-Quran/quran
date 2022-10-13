@@ -12,6 +12,9 @@ final ThemeData themeDark = ThemeData(
       fontFamily: Fonts.nunitoW900,
       fontWeight: FontWeight.w900,
     ),
+    iconTheme: const IconThemeData(
+      color: ColorConstants.white,
+    ),
     elevation: 0,
   ),
   indicatorColor: ColorConstants.darkGrey,

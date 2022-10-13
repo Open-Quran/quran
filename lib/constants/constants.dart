@@ -9,4 +9,4 @@ export '../themes/theme_green.dart';
 export '../themes/theme_quran.dart';
 export 'padding.dart';
 export 'enums.dart';
-export 'extension.dart';
+export 'extensions.dart';

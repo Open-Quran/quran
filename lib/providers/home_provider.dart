@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
 
 class HomeProvider extends ChangeNotifier {
-  /// Focus node for search bar in home screen
+  /// Focus node for search field in the home screen
   final FocusNode searchBarFocusNode = FocusNode();
 
-  ///Un Focus for search bar in home screen
+  /// Un-focus Search Field
   void searchBarFocusNodeUnFocus() {
     searchBarFocusNode.unfocus();
   }

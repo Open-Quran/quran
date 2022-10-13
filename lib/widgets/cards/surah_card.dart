@@ -4,10 +4,10 @@ import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class SurahDetailCard extends StatelessWidget {
+class SurahCard extends StatelessWidget {
   final SurahModel surahModel;
 
-  const SurahDetailCard({Key? key, required this.surahModel}) : super(key: key);
+  const SurahCard({Key? key, required this.surahModel}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -70,7 +70,7 @@ class SurahDetailCard extends StatelessWidget {
         Opacity(
           opacity: 0.5,
           child: Text(
-            "${surahModel.versesLength} ${context.translate.ayah}",
+            "${surahModel.versesLength} ${context.translate.ayat}",
             style: context.theme.textTheme.bodyLarge,
           ),
         ),

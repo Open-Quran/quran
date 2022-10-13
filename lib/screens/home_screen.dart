@@ -2,13 +2,14 @@ import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/widgets/bars/custom_tab_bar.dart';
-import 'package:fabrikod_quran/widgets/bars/main_app_bar.dart';
-import 'package:fabrikod_quran/widgets/bars/custom_search_bar.dart';
-import 'package:fabrikod_quran/widgets/cards/surah_detail_card.dart';
+import 'package:fabrikod_quran/widgets/cards/surah_card.dart';
 import 'package:fabrikod_quran/widgets/tags/custom_tag_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+
+import '../widgets/app_bars/main_app_bar.dart';
+import '../widgets/custom_search_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -23,7 +24,7 @@ class _HomeScreenState extends State<HomeScreen> {
     return InkWell(
       onTap: context.watch<HomeProvider>().searchBarFocusNodeUnFocus,
       child: Scaffold(
-        appBar: MainAppBar(title: context.translate.quranKerim),
+        appBar: MainAppBar(title: context.translate.quran),
         body: buildBody,
       ),
     );
@@ -78,10 +79,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget get buildSurahList {
     return ListView.separated(
-      itemCount: SurahModel.getFakeData.length,
+      itemCount: SurahModel.getTestData.length,
       padding: const EdgeInsets.symmetric(vertical: kPaddingVertical),
-      itemBuilder: (context, index) => SurahDetailCard(
-        surahModel: SurahModel.getFakeData[index],
+      itemBuilder: (context, index) => SurahCard(
+        surahModel: SurahModel.getTestData[index],
       ),
       separatorBuilder: (context, index) => const SizedBox(height: kPaddingContentSpaceBetween),
     );
