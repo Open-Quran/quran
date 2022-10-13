@@ -72,7 +72,7 @@ class _HomeScreenState extends State<HomeScreen> {
       tabViews: [
         buildSurahList,
         buildJuzList,
-        const Icon(Icons.directions_car, size: 350),
+        buildSajdaList,
       ],
     );
   }
@@ -101,6 +101,17 @@ class _HomeScreenState extends State<HomeScreen> {
         index: index + 1,
         onTap: (selectedJuzIndex) {},
       ),
+    );
+  }
+
+  Widget get buildSajdaList {
+    return ListView.separated(
+      itemCount: SurahModel.getFakeData.length,
+      padding: const EdgeInsets.symmetric(vertical: kPaddingVertical),
+      itemBuilder: (context, index) => SurahDetailCard(
+        surahModel: SurahModel.getFakeData[index],
+      ),
+      separatorBuilder: (context, index) => const SizedBox(height: kPaddingContentSpaceBetween),
     );
   }
 }

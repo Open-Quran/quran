@@ -9,7 +9,7 @@ class SurahModel {
 
   static List<SurahModel> get getFakeData {
     List<SurahModel> data = [];
-    for (int i = 0; i < 10; i++) {
+    for (int i = 1; i < 11; i++) {
       data.add(SurahModel(id: i, name: "Al-Fatihah", nameAr: "ٱلْفَاتِحَة"));
     }
     return data;
