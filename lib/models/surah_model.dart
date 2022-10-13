@@ -7,7 +7,7 @@ class SurahModel {
 
   SurahModel({required this.id, required this.name, required this.nameAr});
 
-  static List<SurahModel> get getFakeData {
+  static List<SurahModel> get getTestData {
     List<SurahModel> data = [];
     for (int i = 0; i < 10; i++) {
       data.add(SurahModel(id: i, name: "Al-Fatihah", nameAr: "ٱلْفَاتِحَة"));

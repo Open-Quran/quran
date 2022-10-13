@@ -1,9 +1,10 @@
 {
     "more": "Daha",
-    "quranKerim": "Kur’an-ı Kerim",
+    "quran": "Kur'an-ı Kerim",
+    "more": "Daha",
     "search": "Arama",
     "surah": "Sure",
     "juz": "Cüz",
     "sajda": "Secde",
-    "ayah": "Ayet"
+    "ayat": "Ayet"
 }

@@ -13,6 +13,9 @@ final ThemeData themeGreen = ThemeData(
       fontWeight: FontWeight.w900,
     ),
     elevation: 0,
+    iconTheme: const IconThemeData(
+      color: ColorConstants.green,
+    ),
   ),
   indicatorColor: ColorConstants.green,
   iconTheme: const IconThemeData(color: ColorConstants.green),

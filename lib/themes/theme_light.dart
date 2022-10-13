@@ -13,6 +13,9 @@ final ThemeData themeLight = ThemeData(
       fontWeight: FontWeight.w900,
     ),
     elevation: 0,
+    iconTheme: const IconThemeData(
+      color: ColorConstants.purple,
+    ),
   ),
   indicatorColor: ColorConstants.purple,
   iconTheme: const IconThemeData(color: ColorConstants.purple),
