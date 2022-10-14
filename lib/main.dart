@@ -1,4 +1,5 @@
 import 'package:fabrikod_quran/providers/app_settings_provider.dart';
+import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/screens/bottom_nav_bar_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -39,6 +40,7 @@ class MyApp extends StatelessWidget {
   List<SingleChildWidget> get providers {
     return [
       ChangeNotifierProvider(create: (_) => AppSettingsProvider()),
+      ChangeNotifierProvider(create: (_) => QuranProvider()),
     ];
   }
 }
