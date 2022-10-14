@@ -1,11 +1,15 @@
 {
     "more": "More",
+    "quran": "Qur'an",
     "search": "Search",
     "surah": "Surah",
     "juz": "Juz",
     "sajda": "Sajda",
     "ayat": "Ayat",
-    "sajda": "Sajda",
-    "more": "More",
-    "quran": "Qur'an"
+    "favorited": "Favorited",
+    "language": "Language",
+    "helpGuide": "Help Guide",
+    "introduction": "İntroduction",
+    "shareApp": "Share App",
+    "references": "References"
 }

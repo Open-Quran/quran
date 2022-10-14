@@ -42,7 +42,10 @@ final ThemeData themeLight = ThemeData(
     unselectedItemColor: ColorConstants.purple,
   ),
   tabBarTheme: const TabBarTheme(
-    labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: ColorConstants.purple),
+    labelStyle: TextStyle(
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        color: ColorConstants.purple),
   ),
   textTheme: const TextTheme(
     displayLarge: TextStyle(
