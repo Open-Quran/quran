@@ -1,6 +1,4 @@
-import 'package:fabrikod_quran/constants/extensions.dart';
 import 'package:fabrikod_quran/widgets/app_bars/custom_app_bar.dart';
-import 'package:fabrikod_quran/widgets/buttons/back_button.dart';
 import 'package:flutter/material.dart';
 
 class SurahDetailsScreen extends StatefulWidget {
