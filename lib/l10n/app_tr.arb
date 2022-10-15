@@ -1,11 +1,17 @@
 {
     "more": "Daha",
+    "quran": "Kur'an-ı Kerim",
     "search": "Arama",
     "surah": "Sure",
     "juz": "Cüz",
     "sajda": "Secde",
     "ayat": "Ayet",
-    "quran": "Kur'an-ı Kerim",
+    "favorited": "Favoriler",
+    "language": "Dil",
+    "helpGuide": "Yardım Rehberi",
+    "introduction": "Tanıtım",
+    "shareApp": "Uygulamayı Paylaş",
+    "references": "Referanslar"
     "switchTheme": "Temayı Degiştir",
     "lightMode": "Aydınlık",
     "darkMode": "Karanlık",
