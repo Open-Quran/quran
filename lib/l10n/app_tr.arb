@@ -12,4 +12,9 @@
     "introduction": "Tanıtım",
     "shareApp": "Uygulamayı Paylaş",
     "references": "Referanslar"
+    "switchTheme": "Temayı Degiştir",
+    "lightMode": "Aydınlık",
+    "darkMode": "Karanlık",
+    "quranMode": "Kur'an Modu",
+    "greenMode": "Yeşil Mod"
 }

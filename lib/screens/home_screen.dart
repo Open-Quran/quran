@@ -1,15 +1,15 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/providers/home_provider.dart';
+import 'package:fabrikod_quran/widgets/app_bars/main_app_bar.dart';
 import 'package:fabrikod_quran/widgets/bars/custom_tab_bar.dart';
+import 'package:fabrikod_quran/widgets/cards/juz_card.dart';
 import 'package:fabrikod_quran/widgets/cards/surah_card.dart';
+import 'package:fabrikod_quran/widgets/bars/custom_search_bar.dart';
 import 'package:fabrikod_quran/widgets/tags/custom_tag_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
-import '../widgets/app_bars/main_app_bar.dart';
-import '../widgets/custom_search_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -71,13 +71,40 @@ class _HomeScreenState extends State<HomeScreen> {
       ],
       tabViews: [
         buildSurahList,
-        const Icon(Icons.directions_transit, size: 350),
-        const Icon(Icons.directions_car, size: 350),
+        buildJuzList,
+        buildSajdaList,
       ],
     );
   }
 
   Widget get buildSurahList {
+    return ListView.separated(
+      itemCount: SurahModel.getTestData.length,
+      padding: const EdgeInsets.symmetric(vertical: kPaddingVertical),
+      itemBuilder: (context, index) => SurahCard(
+        surahModel: SurahModel.getTestData[index],
+      ),
+      separatorBuilder: (context, index) => const SizedBox(height: kPaddingContentSpaceBetween),
+    );
+  }
+
+  Widget get buildJuzList {
+    return GridView.builder(
+      itemCount: 30,
+      padding: const EdgeInsets.symmetric(vertical: kPaddingVertical),
+      gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+        crossAxisCount: 3,
+        mainAxisSpacing: kPaddingDefault * 2,
+        crossAxisSpacing: kPaddingDefault * 2,
+      ),
+      itemBuilder: (context, index) => JuzCard(
+        index: index + 1,
+        onTap: (selectedJuzIndex) {},
+      ),
+    );
+  }
+
+  Widget get buildSajdaList {
     return ListView.separated(
       itemCount: SurahModel.getTestData.length,
       padding: const EdgeInsets.symmetric(vertical: kPaddingVertical),

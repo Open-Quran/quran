@@ -27,6 +27,11 @@ final ThemeData themeDark = ThemeData(
       overlayRadius: 0,
     ),
   ),
+  drawerTheme: const DrawerThemeData(
+    backgroundColor: ColorConstants.darkGrey,
+    scrimColor: Colors.transparent,
+    elevation: 0
+),
   secondaryHeaderColor: ColorConstants.white.withOpacity(0.4),
   splashColor: Colors.transparent,
   highlightColor: Colors.transparent,
