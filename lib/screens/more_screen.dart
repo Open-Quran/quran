@@ -48,7 +48,7 @@ class _MoreScreenState extends State<MoreScreen> {
               child: const Text("Surah details"),
             ),
             SecondaryButton(
-              text: context.translate.favorited,
+              text: context.translate.favorites,
               onPressed: () {},
               icon: const Icon(
                 Icons.favorite_outline,
