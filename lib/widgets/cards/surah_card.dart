@@ -6,27 +6,31 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class SurahCard extends StatelessWidget {
   final SurahModel surahModel;
+  final Function()? onTap;
 
-  const SurahCard({Key? key, required this.surahModel}) : super(key: key);
+  const SurahCard({Key? key, required this.surahModel, this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 60,
-      child: Column(
-        children: [
-          Row(
-            children: [
-              buildSurahNumber(context),
-              const SizedBox(width: kPaddingContentSpaceBetween),
-              Expanded(child: buildSurahDetail(context)),
-              const SizedBox(width: kPaddingContentSpaceBetween),
-              buildSurahNameAr(context),
-            ],
-          ),
-          const SizedBox(height: kPaddingDefault),
-          const Divider(thickness: 1, height: 1)
-        ],
+    return InkWell(
+      onTap: onTap,
+      child: SizedBox(
+        height: 60,
+        child: Column(
+          children: [
+            Row(
+              children: [
+                buildSurahNumber(context),
+                const SizedBox(width: kPaddingContentSpaceBetween),
+                Expanded(child: buildSurahDetail(context)),
+                const SizedBox(width: kPaddingContentSpaceBetween),
+                buildSurahNameAr(context),
+              ],
+            ),
+            const SizedBox(height: kPaddingDefault),
+            const Divider(thickness: 1, height: 1)
+          ],
+        ),
       ),
     );
   }

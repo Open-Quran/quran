@@ -1,7 +1,7 @@
 import 'package:fabrikod_quran/constants/extensions.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/widgets/app_bars/custom_app_bar.dart';
-import 'package:fabrikod_quran/widgets/buttons/more_button.dart';
+import 'package:fabrikod_quran/widgets/drawer/custom_drawer.dart';
+import 'package:fabrikod_quran/widgets/drawer/custom_drawer_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -18,26 +18,26 @@ class SurahDetailsScreen extends StatefulWidget {
 class SurahDetailsScreenState extends State<SurahDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: CustomAppBar(
-        title: "Al-Fatiha",
-        actions: [MoreButton(onTap: () {})],
-      ),
+    return CustomDrawerScaffold(
+      appBarTitle: "Al-Fatiha",
+      drawer: const CustomDrawer(),
+      onTapMore: () {},
       body: ScrollBody(
-          body: Column(
-        mainAxisAlignment: MainAxisAlignment.start,
-        children: [
-          const SizedBox(height: 25),
-          CustomToggleButtons(
-            buttonTitles: [
-              context.translate.translation,
-              context.translate.reading,
-            ],
-            selectedIndex: context.watch<QuranProvider>().readingSettings.readingType.index,
-            onTap: context.watch<QuranProvider>().changeReadingType,
-          ),
-        ],
-      )),
+        body: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            const SizedBox(height: 25),
+            CustomToggleButtons(
+              buttonTitles: [
+                context.translate.translation,
+                context.translate.reading,
+              ],
+              selectedIndex: context.watch<QuranProvider>().readingSettings.readingType.index,
+              onTap: context.watch<QuranProvider>().changeReadingType,
+            ),
+          ],
+        ),
+      ),
     );
   }
 }

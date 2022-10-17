@@ -18,5 +18,6 @@
     "lightMode": "Aydınlık",
     "darkMode": "Karanlık",
     "quranMode": "Kur'an Modu",
-    "greenMode": "Yeşil Mod"
+    "greenMode": "Yeşil Mod",
+    "searchSurah": "Sure Arama"
 }

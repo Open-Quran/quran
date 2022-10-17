@@ -1,5 +1,4 @@
 import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/screens/surah_details_screen.dart';
 import 'package:fabrikod_quran/widgets/app_bars/main_app_bar.dart';
 import 'package:fabrikod_quran/widgets/buttons/secondary_button.dart';
 import 'package:fabrikod_quran/widgets/cards/custom_expanding_theme_card.dart';
@@ -30,74 +29,62 @@ class MoreScreen extends StatelessWidget {
               changedTheme: (newThemeMode) =>
                   context.read<AppSettingsProvider>().changeAppTheme(newThemeMode),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => const SurahDetailsScreen()));
-              },
-              child: const Text("Surah details"),
-            ),
+            const SizedBox(height: kPaddingDefault),
             SecondaryButton(
               text: context.translate.favorited,
               onPressed: () {},
-              icon: const Icon(
+              icon: Icon(
                 Icons.favorite_outline,
-                color: AppColors.purple,
+                color: context.theme.iconTheme.color,
               ),
             ),
-            const SizedBox(
-              height: kPaddingDefault,
-            ),
+            const SizedBox(height: kPaddingDefault),
             SecondaryButton(
               text: context.translate.language,
               onPressed: () {},
               icon: SvgPicture.asset(
-                  ImageConstants.languageIcon,
-                  color: context.theme.iconTheme.color,
-                )
+                ImageConstants.languageIcon,
+                color: context.theme.iconTheme.color,
+              ),
             ),
-            const SizedBox(
-              height: kPaddingDefault,
-            ),
+            const SizedBox(height: kPaddingDefault),
             SecondaryButton(
               text: context.translate.helpGuide,
               onPressed: () {},
               icon: SvgPicture.asset(
-                  ImageConstants.helpGuideIcon,
-                  color: context.theme.iconTheme.color,
-                )
+                ImageConstants.helpGuideIcon,
+                color: context.theme.iconTheme.color,
+              ),
             ),
-            const SizedBox(
-              height: kPaddingDefault,
-            ),
+            const SizedBox(height: kPaddingDefault),
             SecondaryButton(
-                text: context.translate.introduction,
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  ImageConstants.introductionIcon,
-                  color: context.theme.iconTheme.color,
-                )),
-            const SizedBox(
-              height: kPaddingDefault,
+              text: context.translate.introduction,
+              onPressed: () {},
+              icon: SvgPicture.asset(
+                ImageConstants.introductionIcon,
+                color: context.theme.iconTheme.color,
+              ),
             ),
+            const SizedBox(height: kPaddingDefault),
             SecondaryButton(
-                text: context.translate.shareApp,
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  ImageConstants.shareAppIcon,
-                  color: context.theme.iconTheme.color,
-                )),
-            const SizedBox(
-              height: kPaddingDefault,
+              text: context.translate.shareApp,
+              onPressed: () {},
+              icon: SvgPicture.asset(
+                ImageConstants.shareAppIcon,
+                color: context.theme.iconTheme.color,
+              ),
             ),
+            const SizedBox(height: kPaddingDefault),
             SecondaryButton(
-                text: context.translate.references,
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  ImageConstants.referencesIcon,
-                  color: context.theme.iconTheme.color,
-                )),
-        ],),
+              text: context.translate.references,
+              onPressed: () {},
+              icon: SvgPicture.asset(
+                ImageConstants.referencesIcon,
+                color: context.theme.iconTheme.color,
+              ),
+            ),
+          ],
+        ),
       ),
     );
   }

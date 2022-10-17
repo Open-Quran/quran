@@ -27,11 +27,13 @@ class _CustomDrawerScaffoldState extends State<CustomDrawerScaffold> {
     if (_scaffoldKey.currentState == null) return;
     ScaffoldState state = _scaffoldKey.currentState!;
     state.isDrawerOpen == false ? state.openDrawer() : state.closeDrawer();
+    setState(() {});
   }
 
   /// Function For On Pressed To Action Button
   void onPressedToActionButton() {
     _scaffoldKey.currentState?.closeDrawer();
+    setState(() {});
     if (widget.onTapMore != null) widget.onTapMore!();
   }
 
@@ -41,6 +43,7 @@ class _CustomDrawerScaffoldState extends State<CustomDrawerScaffold> {
       primary: true,
       appBar: CustomAppBar(
         title: widget.appBarTitle ?? "",
+        isDrawerOpen: _scaffoldKey.currentState?.isDrawerOpen ?? false,
         onTap: changeStateOfDrawer,
         actions: [
           IconButton(

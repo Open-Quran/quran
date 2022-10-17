@@ -1,4 +1,5 @@
-import 'package:fabrikod_quran/constants/extensions.dart';
+import 'package:auto_size_text/auto_size_text.dart';
+import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class CustomButton extends StatelessWidget {
@@ -8,6 +9,18 @@ class CustomButton extends StatelessWidget {
   /// Checking [true] or [false], by default is [true]
   final bool state;
 
+  /// Checking [true] or [false], by default is [true]
+  final bool centerTitle;
+
+  /// Button height
+  final double? height;
+
+  /// Button radius
+  final double? radius;
+
+  /// Text Opacity
+  final double? textOpacity;
+
   /// Void call back
   final Function()? onTap;
 
@@ -15,6 +28,10 @@ class CustomButton extends StatelessWidget {
     Key? key,
     required this.title,
     this.state = true,
+    this.centerTitle = true,
+    this.height,
+    this.radius,
+    this.textOpacity,
     this.onTap,
   }) : super(key: key);
 
@@ -23,18 +40,23 @@ class CustomButton extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Container(
+        height: height,
+        padding: const EdgeInsets.all(kPaddingDefault),
+        alignment: centerTitle ? Alignment.center : Alignment.centerLeft,
         decoration: BoxDecoration(
-          color: state
-              ? context.theme.toggleButtonsTheme.selectedColor
-              : Colors.transparent,
-          borderRadius: BorderRadius.circular(10),
+          color: state ? context.theme.toggleButtonsTheme.selectedColor : Colors.transparent,
+          borderRadius: BorderRadius.circular(radius ?? 10),
         ),
-        child: Center(
-          child: Text(title,
-              style: context.theme.toggleButtonsTheme.textStyle!.copyWith(
-                  color: state
-                      ? context.theme.toggleButtonsTheme.textStyle!.color
-                      : context.theme.toggleButtonsTheme.selectedColor)),
+        child: Opacity(
+          opacity: textOpacity ?? 1.0,
+          child: AutoSizeText(
+            title,
+            maxLines: 1,
+            style: context.theme.toggleButtonsTheme.textStyle!.copyWith(
+                color: state
+                    ? context.theme.toggleButtonsTheme.textStyle!.color
+                    : context.theme.toggleButtonsTheme.selectedColor),
+          ),
         ),
       ),
     );
