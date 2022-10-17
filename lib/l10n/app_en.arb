@@ -19,5 +19,7 @@
     "greenMode": "Green Mode",
     "translation": "Translation",
     "reading": "Reading",
-    "searchSurah": "Search Surah"
+    "searchSurah": "Search Surah",
+    "madeByFabrikod": "Made By Fabrikod",
+    "version": "Version"
 }

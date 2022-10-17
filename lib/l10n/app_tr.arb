@@ -19,5 +19,7 @@
     "darkMode": "Karanlık",
     "quranMode": "Kur'an Modu",
     "greenMode": "Yeşil Mod",
-    "searchSurah": "Sure Arama"
+    "searchSurah": "Sure Arama",
+    "madeByFabrikod": "Fabrikod Tarafından Yapıldı",
+    "version": "Versiyon"
 }
