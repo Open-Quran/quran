@@ -4,6 +4,8 @@ import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
+import '../buttons/back_button.dart';
+
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   final Size preferredSize;
@@ -24,9 +26,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onTap,
     this.bottomHeight,
     this.elevation,
-  })  : preferredSize = bottom != null
-            ? Size.fromHeight(Platform.isIOS ? 60.0 : 70.0 + bottomHeight!)
-            : Size.fromHeight(Platform.isIOS ? 60.0 : 70.0),
+  }) : preferredSize = bottom != null
+            ? Size.fromHeight(bottomHeight!)
+            : const Size.fromHeight(60.0),
         super(key: key);
 
   @override

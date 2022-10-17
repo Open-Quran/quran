@@ -11,10 +11,12 @@
     "helpGuide": "Help Guide",
     "introduction": "İntroduction",
     "shareApp": "Share App",
-    "references": "References"
+    "references": "References",
     "switchTheme": "Switch Theme",
     "lightMode": "Light Mode",
     "darkMode": "Dark Mode",
     "quranMode": "Qur'an Mode",
-    "greenMode": "Green Mode"
+    "greenMode": "Green Mode",
+    "translation": "Translation",
+    "reading": "Reading"
 }
