@@ -1,3 +1,4 @@
+import 'package:fabrikod_quran/constants/extensions.dart';
 import 'package:fabrikod_quran/providers/app_settings_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/screens/bottom_nav_bar_screen.dart';
@@ -28,7 +29,7 @@ class MyApp extends StatelessWidget {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             localeResolutionCallback: appSettingProvider.localeResolutionCallback,
-            theme: appSettingProvider.appThemeData,
+            theme: appSettingProvider.appThemeMode.getThemeData,
             home: const BottomNavBarScreen(),
           );
         },

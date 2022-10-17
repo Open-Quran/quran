@@ -8,6 +8,11 @@ final ThemeData themeDark = ThemeData(
   tabBarTheme: _tabBarTheme,
   sliderTheme: _sliderThemeData,
   toggleButtonsTheme: _toggleButtonsThemeData,
+  drawerTheme: const DrawerThemeData(
+      backgroundColor: AppColors.darkGrey,
+      scrimColor: Colors.transparent,
+      elevation: 0
+  ),
   indicatorColor: AppColors.darkGrey,
   iconTheme: const IconThemeData(color: AppColors.white),
   primaryColor: AppColors.darkGrey,

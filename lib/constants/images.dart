@@ -15,6 +15,14 @@ class ImageConstants {
   static const String playActiveIcon = "${_iconsPath}ic_play_active.svg";
   static const String stopActiveIcon = "${_iconsPath}ic_stop_active.svg";
   static const String bigBasmalaIcon = "${_iconsPath}ic_big_basmala.svg";
+  static const String shareAppIcon = "${_iconsPath}ic_share_app.svg";
+  static const String languageIcon = "${_iconsPath}ic_language.svg";
+  static const String introductionIcon = "${_iconsPath}ic_introduction.svg";
+  static const String referencesIcon = "${_iconsPath}ic_references.svg";
   static const String surahNumberFrame = "${_iconsPath}ic_surah_number_frame.svg";
   static const String arrowBack = "${_iconsPath}ic_arrow_back.svg";
+  static const String helpGuideIcon = "${_iconsPath}ic_help_guide.svg";
+  static const String themeIcon = "${_iconsPath}ic_theme.svg";
+  static const String checkboxActiveIcon = "${_iconsPath}ic_checkbox_active.svg";
+  static const String checkboxInactiveIcon = "${_iconsPath}ic_checkbox_inactive.svg";
 }

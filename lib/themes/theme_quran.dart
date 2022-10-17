@@ -12,6 +12,11 @@ final ThemeData themeQuran = ThemeData(
   iconTheme: const IconThemeData(color: AppColors.brown),
   primaryColor: AppColors.yellow,
   backgroundColor: AppColors.yellow,
+  drawerTheme: const DrawerThemeData(
+      backgroundColor: AppColors.yellow,
+      scrimColor: Colors.transparent,
+      elevation: 0
+  ),
   secondaryHeaderColor: AppColors.brown.withOpacity(0.4),
   splashColor: Colors.transparent,
   highlightColor: Colors.transparent,

@@ -8,6 +8,11 @@ final ThemeData themeLight = ThemeData(
   tabBarTheme: _tabBarTheme,
   sliderTheme: _sliderThemeData,
   toggleButtonsTheme: _toggleButtonsThemeData,
+  drawerTheme: const DrawerThemeData(
+      backgroundColor: AppColors.white,
+      scrimColor: Colors.transparent,
+      elevation: 0
+  ),
   indicatorColor: AppColors.purple,
   iconTheme: const IconThemeData(color: AppColors.purple),
   primaryColor: AppColors.purple,
