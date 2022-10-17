@@ -34,7 +34,8 @@ dependencies:
 
   #Helpers
   flutter_native_splash: ^2.2.10+1                        # Native Splash
-
+  package_info_plus: ^2.0.0
+  
 dev_dependencies:
   flutter_test:
     sdk: flutter

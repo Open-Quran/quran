@@ -10,6 +10,7 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 Future<void> main() async {
   await GetStorage.init('FabrikodQuran');
+  WidgetsFlutterBinding.ensureInitialized();
   runApp(const MyApp());
 }
 
@@ -28,7 +29,8 @@ class MyApp extends StatelessWidget {
             locale: appSettingProvider.appLocale,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
-            localeResolutionCallback: appSettingProvider.localeResolutionCallback,
+            localeResolutionCallback:
+                appSettingProvider.localeResolutionCallback,
             theme: appSettingProvider.appThemeMode.getThemeData,
             home: const BottomNavBarScreen(),
           );
