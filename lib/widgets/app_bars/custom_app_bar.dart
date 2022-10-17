@@ -4,14 +4,13 @@ import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../buttons/back_button.dart';
-
 class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   final Size preferredSize;
   final String title;
   final List<Widget>? actions;
   final Widget? leading;
+  final bool isDrawerOpen;
   final PreferredSizeWidget? bottom;
   final Function()? onTap;
   final double? bottomHeight;
@@ -22,13 +21,13 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     required this.title,
     this.actions,
     this.leading,
+    this.isDrawerOpen = false,
     this.bottom,
     this.onTap,
     this.bottomHeight,
     this.elevation,
-  }) : preferredSize = bottom != null
-            ? Size.fromHeight(bottomHeight!)
-            : const Size.fromHeight(60.0),
+  })  : preferredSize =
+            bottom != null ? Size.fromHeight(bottomHeight!) : const Size.fromHeight(60.0),
         super(key: key);
 
   @override
@@ -58,8 +57,8 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
               child: Row(
                 children: [
                   Text(title, style: context.theme.appBarTheme.titleTextStyle),
-                  const Icon(
-                    Icons.arrow_right,
+                  Icon(
+                    isDrawerOpen ? Icons.arrow_left : Icons.arrow_right,
                     size: 25,
                   )
                 ],
