@@ -8,7 +8,7 @@
     "ayat": "Ayet",
     "translation": "Meal",
     "reading": "Okuma",
-    "favorited": "Favoriler",
+    "favorites": "Favoriler",
     "language": "Dil",
     "helpGuide": "Yardım Rehberi",
     "introduction": "Tanıtım",
@@ -20,6 +20,6 @@
     "quranMode": "Kur'an Modu",
     "greenMode": "Yeşil Mod",
     "searchSurah": "Sure Arama",
-    "madeByFabrikod": "Fabrikod Tarafından Yapıldı",
+    "madeByFabrikod": "fabrikod tarafından yapıldı",
     "version": "Versiyon"
 }

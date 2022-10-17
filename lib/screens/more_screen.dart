@@ -35,7 +35,7 @@ class _MoreScreenState extends State<MoreScreen> {
             ),
             const SizedBox(height: kPaddingDefault),
             SecondaryButton(
-              text: context.translate.favorited,
+              text: context.translate.favorites,
               onPressed: () {},
               icon: Icon(
                 Icons.favorite_outline,
