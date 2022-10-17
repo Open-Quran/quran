@@ -18,5 +18,7 @@
     "quranMode": "Qur'an Mode",
     "greenMode": "Green Mode",
     "translation": "Translation",
-    "reading": "Reading"
+    "reading": "Reading",
+    "madeByFabrikod": "Made By Fabrikod",
+    "version": "Version"
 }
