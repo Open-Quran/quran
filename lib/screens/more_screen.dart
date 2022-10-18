@@ -30,16 +30,18 @@ class _MoreScreenState extends State<MoreScreen> {
           children: [
             const SizedBox(height: kPaddingVertical),
             CustomExpandingThemeCard(
-              defaultThemeMode: context.watch<AppSettingsProvider>().appThemeMode,
-              changedTheme: (newThemeMode) =>
-                  context.read<AppSettingsProvider>().changeAppTheme(newThemeMode),
+              defaultThemeMode:
+                  context.watch<AppSettingsProvider>().appThemeMode,
+              changedTheme: (newThemeMode) => context
+                  .read<AppSettingsProvider>()
+                  .changeAppTheme(newThemeMode),
             ),
             const SizedBox(height: kPaddingDefault),
             SecondaryButton(
               text: context.translate.favorites,
               onPressed: () {},
               icon: Icon(
-                Icons.favorite_outline,
+                Icons.favorite_border_outlined,
                 color: context.theme.iconTheme.color,
               ),
             ),
@@ -106,7 +108,8 @@ class _MoreScreenState extends State<MoreScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(context.translate.madeByFabrikod, style: context.theme.textTheme.headlineSmall),
+        Text(context.translate.madeByFabrikod,
+            style: context.theme.textTheme.headlineSmall),
         const SizedBox(height: kPaddingSmall),
         FutureBuilder<PackageInfo>(
           future: PackageInfo.fromPlatform(),

@@ -1,11 +1,11 @@
 class ImageConstants {
   ImageConstants._();
 
-  ///Base URL
+  /// Local Path
   static const String _basePath = "assets/images/";
   static const String _iconsPath = "assets/icons/";
 
-  ///Global Icons
+  /// App Icons
   static const String bookmarkActiveIcon = "${_iconsPath}ic_bookmark_active.svg";
   static const String bookmarkInactiveIcon = "${_iconsPath}ic_bookmark_inactive.svg";
   static const String homeActiveIcon = "${_iconsPath}ic_home_active.svg";
@@ -25,4 +25,5 @@ class ImageConstants {
   static const String themeIcon = "${_iconsPath}ic_theme.svg";
   static const String checkboxActiveIcon = "${_iconsPath}ic_checkbox_active.svg";
   static const String checkboxInactiveIcon = "${_iconsPath}ic_checkbox_inactive.svg";
+  static const String play = "${_iconsPath}ic_play.svg";
 }

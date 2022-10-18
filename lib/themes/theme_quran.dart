@@ -17,6 +17,7 @@ final ThemeData themeQuran = ThemeData(
       scrimColor: Colors.transparent,
       elevation: 0
   ),
+  buttonTheme: const ButtonThemeData(buttonColor: AppColors.yellow),
   secondaryHeaderColor: AppColors.brown.withOpacity(0.4),
   splashColor: Colors.transparent,
   highlightColor: Colors.transparent,
