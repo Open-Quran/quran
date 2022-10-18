@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 
 /// Light Theme
 final ThemeData themeLight = ThemeData(
-  appBarTheme:_appBarTheme,
+  appBarTheme: _appBarTheme,
   bottomNavigationBarTheme: _bottomNavigationBarThemeData,
   tabBarTheme: _tabBarTheme,
   sliderTheme: _sliderThemeData,
@@ -11,8 +11,8 @@ final ThemeData themeLight = ThemeData(
   drawerTheme: const DrawerThemeData(
       backgroundColor: AppColors.white,
       scrimColor: Colors.transparent,
-      elevation: 0
-  ),
+      elevation: 0),
+  buttonTheme: const ButtonThemeData(buttonColor: AppColors.purple),
   indicatorColor: AppColors.purple,
   iconTheme: const IconThemeData(color: AppColors.purple),
   primaryColor: AppColors.purple,

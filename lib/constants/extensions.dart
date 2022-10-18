@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 extension EThemeModesExtension on EThemeModes {
-  /// Get Theme Data for EThemeModes
+  /// Getting [EThemeModes] names
   ThemeData get getThemeData {
     switch (this) {
       case EThemeModes.light:
@@ -16,7 +16,7 @@ extension EThemeModesExtension on EThemeModes {
         return themeGreen;
     }
   }
-  /// Get Name Of EThemeModes
+  /// Getting [EThemeModes] names
   String name(BuildContext context) {
     switch (this) {
       case EThemeModes.light:
@@ -37,7 +37,7 @@ extension BuildContextExtension on BuildContext {
     return AppLocalizations.of(this)!;
   }
 
-  /// Helping function to get the theme
+  /// Helping function to get the [theme]
   ThemeData get theme {
     return Theme.of(this);
   }

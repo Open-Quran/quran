@@ -13,6 +13,7 @@ final ThemeData themeDark = ThemeData(
       scrimColor: Colors.transparent,
       elevation: 0
   ),
+  buttonTheme: const ButtonThemeData(buttonColor: AppColors.darkGrey),
   indicatorColor: AppColors.darkGrey,
   iconTheme: const IconThemeData(color: AppColors.white),
   primaryColor: AppColors.darkGrey,

@@ -13,6 +13,7 @@ final ThemeData themeGreen = ThemeData(
       scrimColor: Colors.transparent,
       elevation: 0
   ),
+  buttonTheme: const ButtonThemeData(buttonColor: AppColors.paleYellow),
   indicatorColor: AppColors.green,
   iconTheme: const IconThemeData(color: AppColors.green),
   primaryColor: AppColors.paleYellow,
