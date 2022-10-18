@@ -1,9 +1,9 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/screens/help_guide_screen.dart';
-import 'package:fabrikod_quran/screens/surah_details_screen.dart';
 import 'package:fabrikod_quran/widgets/app_bars/main_app_bar.dart';
 import 'package:fabrikod_quran/widgets/buttons/secondary_button.dart';
 import 'package:fabrikod_quran/widgets/cards/custom_expanding_theme_card.dart';
+import 'package:fabrikod_quran/widgets/scroll_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:package_info_plus/package_info_plus.dart';
@@ -25,50 +25,34 @@ class _MoreScreenState extends State<MoreScreen> {
       appBar: MainAppBar(
         title: context.translate.more,
       ),
-      body: Padding(
-        padding: const EdgeInsets.symmetric(
-          horizontal: kPaddingHorizontal,
-          vertical: kPaddingVertical,
-        ),
-        child: Column(
+      body: ScrollBody(
+        body: Column(
           children: [
+            const SizedBox(height: kPaddingVertical),
             CustomExpandingThemeCard(
-              defaultThemeMode:
-                  context.watch<AppSettingsProvider>().appThemeMode,
-              changedTheme: (newThemeMode) => context
-                  .read<AppSettingsProvider>()
-                  .changeAppTheme(newThemeMode),
+              defaultThemeMode: context.watch<AppSettingsProvider>().appThemeMode,
+              changedTheme: (newThemeMode) =>
+                  context.read<AppSettingsProvider>().changeAppTheme(newThemeMode),
             ),
-            ElevatedButton(
-              onPressed: () {
-                Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) => const SurahDetailsScreen()));
-              },
-              child: const Text("Surah details"),
-            ),
+            const SizedBox(height: kPaddingDefault),
             SecondaryButton(
-              text: context.translate.favorited,
+              text: context.translate.favorites,
               onPressed: () {},
-              icon: const Icon(
+              icon: Icon(
                 Icons.favorite_outline,
-                color: AppColors.purple,
+                color: context.theme.iconTheme.color,
               ),
             ),
-            const SizedBox(
-              height: kPaddingDefault,
-            ),
+            const SizedBox(height: kPaddingDefault),
             SecondaryButton(
-                text: context.translate.language,
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  ImageConstants.languageIcon,
-                  color: context.theme.iconTheme.color,
-                )),
-            const SizedBox(
-              height: kPaddingDefault,
+              text: context.translate.language,
+              onPressed: () {},
+              icon: SvgPicture.asset(
+                ImageConstants.languageIcon,
+                color: context.theme.iconTheme.color,
+              ),
             ),
+            const SizedBox(height: kPaddingDefault),
             SecondaryButton(
                 text: context.translate.helpGuide,
                 onPressed: () {
@@ -86,25 +70,23 @@ class _MoreScreenState extends State<MoreScreen> {
               height: kPaddingDefault,
             ),
             SecondaryButton(
-                text: context.translate.introduction,
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  ImageConstants.introductionIcon,
-                  color: context.theme.iconTheme.color,
-                )),
-            const SizedBox(
-              height: kPaddingDefault,
+              text: context.translate.introduction,
+              onPressed: () {},
+              icon: SvgPicture.asset(
+                ImageConstants.introductionIcon,
+                color: context.theme.iconTheme.color,
+              ),
             ),
+            const SizedBox(height: kPaddingDefault),
             SecondaryButton(
-                text: context.translate.shareApp,
-                onPressed: () {},
-                icon: SvgPicture.asset(
-                  ImageConstants.shareAppIcon,
-                  color: context.theme.iconTheme.color,
-                )),
-            const SizedBox(
-              height: kPaddingDefault,
+              text: context.translate.shareApp,
+              onPressed: () {},
+              icon: SvgPicture.asset(
+                ImageConstants.shareAppIcon,
+                color: context.theme.iconTheme.color,
+              ),
             ),
+            const SizedBox(height: kPaddingDefault),
             SecondaryButton(
                 text: context.translate.references,
                 onPressed: () {},
@@ -112,7 +94,7 @@ class _MoreScreenState extends State<MoreScreen> {
                   ImageConstants.referencesIcon,
                   color: context.theme.iconTheme.color,
                 )),
-            const Spacer(),
+            const SizedBox(height: kPaddingTitleSpaceBetween),
             buildAppInfo,
           ],
         ),
@@ -124,8 +106,7 @@ class _MoreScreenState extends State<MoreScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(context.translate.madeByFabrikod,
-            style: context.theme.textTheme.headlineSmall),
+        Text(context.translate.madeByFabrikod, style: context.theme.textTheme.headlineSmall),
         const SizedBox(height: kPaddingSmall),
         FutureBuilder<PackageInfo>(
           future: PackageInfo.fromPlatform(),

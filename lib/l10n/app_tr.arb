@@ -8,7 +8,7 @@
     "ayat": "Ayet",
     "translation": "Meal",
     "reading": "Okuma",
-    "favorited": "Favoriler",
+    "favorites": "Favoriler",
     "language": "Dil",
     "helpGuide": "Yardım Rehberi",
     "introduction": "Tanıtım",
@@ -19,7 +19,8 @@
     "darkMode": "Karanlık",
     "quranMode": "Kur'an Modu",
     "greenMode": "Yeşil Mod",
-    "madeByFabrikod": "Fabrikod Tarafından Yapıldı",
+    "searchSurah": "Sure Arama",
+    "madeByFabrikod": "fabrikod tarafından yapıldı",
     "version": "Versiyon",
     "helpGuideTitle1": "Kuran-ı Kerim Nedir?",
     "helpGuideDescription1": "Lorem ipsum lorem ipsum lorem ipsum Lorem ipsum lorem ipsum lorem ipsum Lorem ipsum lorem ipsum lorem ipsum "

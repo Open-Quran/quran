@@ -1,6 +1,7 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/providers/home_provider.dart';
+import 'package:fabrikod_quran/screens/surah_details_screen.dart';
 import 'package:fabrikod_quran/widgets/app_bars/main_app_bar.dart';
 import 'package:fabrikod_quran/widgets/bars/custom_tab_bar.dart';
 import 'package:fabrikod_quran/widgets/cards/juz_card.dart';
@@ -83,6 +84,10 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.symmetric(vertical: kPaddingVertical),
       itemBuilder: (context, index) => SurahCard(
         surahModel: SurahModel.getTestData[index],
+        onTap: () {
+          Navigator.push(
+              context, MaterialPageRoute(builder: (context) => const SurahDetailsScreen()));
+        },
       ),
       separatorBuilder: (context, index) => const SizedBox(height: kPaddingContentSpaceBetween),
     );
