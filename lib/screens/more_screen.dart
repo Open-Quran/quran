@@ -1,4 +1,5 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/screens/help_guide_screen.dart';
 import 'package:fabrikod_quran/screens/surah_details_screen.dart';
 import 'package:fabrikod_quran/widgets/app_bars/main_app_bar.dart';
 import 'package:fabrikod_quran/widgets/buttons/secondary_button.dart';
@@ -70,7 +71,13 @@ class _MoreScreenState extends State<MoreScreen> {
             ),
             SecondaryButton(
                 text: context.translate.helpGuide,
-                onPressed: () {},
+                onPressed: () {
+                  Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HelpGuideScreen(),
+                      ));
+                },
                 icon: SvgPicture.asset(
                   ImageConstants.helpGuideIcon,
                   color: context.theme.iconTheme.color,
