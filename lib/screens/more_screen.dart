@@ -104,6 +104,7 @@ class _MoreScreenState extends State<MoreScreen> {
     );
   }
 
+  /// Application [version]
   Widget get buildAppInfo {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

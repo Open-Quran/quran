@@ -3,16 +3,18 @@ import 'package:fabrikod_quran/database/local_db.dart';
 import 'package:flutter/material.dart';
 
 class AppSettingsProvider extends ChangeNotifier {
+
+  /// Class constructor
+  AppSettingsProvider() {
+    appLocale = LocalDb.getLocale;
+    appThemeMode = LocalDb.getThemeMode;
+  }
+
   /// App Locale
   Locale? appLocale;
 
   /// App Theme Mode
   late EThemeModes appThemeMode;
-
-  AppSettingsProvider() {
-    appLocale = LocalDb.getLocale;
-    appThemeMode = LocalDb.getThemeMode;
-  }
 
   /// Change App Language
   Future<void> changeAppLanguage(String languageCode) async {
@@ -26,7 +28,7 @@ class AppSettingsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// If we support the language of the device we update the default language
+  /// Get language from device if [null] default to [en]
   Locale? localeResolutionCallback(Locale? deviceLocale, Iterable<Locale> supportedLocales) {
     if (appLocale != null) return appLocale;
 

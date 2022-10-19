@@ -8,10 +8,7 @@ final ThemeData themeLight = ThemeData(
   tabBarTheme: _tabBarTheme,
   sliderTheme: _sliderThemeData,
   toggleButtonsTheme: _toggleButtonsThemeData,
-  drawerTheme: const DrawerThemeData(
-      backgroundColor: AppColors.white,
-      scrimColor: Colors.transparent,
-      elevation: 0),
+  drawerTheme: _drawerThemeData,
   buttonTheme: const ButtonThemeData(buttonColor: AppColors.purple),
   indicatorColor: AppColors.purple,
   iconTheme: const IconThemeData(color: AppColors.purple),
@@ -158,4 +155,12 @@ TabBarTheme get _tabBarTheme {
     labelStyle: TextStyle(
         fontSize: 16, fontWeight: FontWeight.w700, color: AppColors.purple),
   );
+}
+
+/// [DrawerThemeData] Tab Bar Theme Data
+DrawerThemeData get _drawerThemeData {
+  return const DrawerThemeData(
+      backgroundColor: AppColors.white,
+      scrimColor: Colors.transparent,
+      elevation: 0);
 }

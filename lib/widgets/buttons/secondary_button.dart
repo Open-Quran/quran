@@ -2,9 +2,16 @@ import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class SecondaryButton extends StatelessWidget {
+
+  /// Button label [String]
   final String text;
+
+  /// Button [onPressed] function
   final Function()? onPressed;
+
+  /// Button [icon]
   final Widget icon;
+
   const SecondaryButton(
       {super.key, required this.text, this.onPressed, required this.icon});
 

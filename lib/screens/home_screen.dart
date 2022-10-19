@@ -50,9 +50,11 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  /// Returns Basmala as a picture
   Widget get buildBasmala => SvgPicture.asset(ImageConstants.bigBasmalaIcon,
       color: Theme.of(context).iconTheme.color);
 
+  /// Search bar => [FocusNode]
   Widget get buildSearchBar => CustomSearchBar(
       focusNode: context.watch<HomeProvider>().searchBarFocusNode);
 
@@ -106,6 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  /// The grid of the Juz list
   Widget get buildJuzList {
     return GridView.builder(
       itemCount: 30,
@@ -122,6 +125,8 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+
+ /// List of the Sajda ayats
   Widget get buildSajdaList {
     return ListView.separated(
       itemCount: SurahModel.getTestData.length,

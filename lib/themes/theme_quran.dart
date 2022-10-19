@@ -12,11 +12,7 @@ final ThemeData themeQuran = ThemeData(
   iconTheme: const IconThemeData(color: AppColors.brown),
   primaryColor: AppColors.yellow,
   backgroundColor: AppColors.yellow,
-  drawerTheme: const DrawerThemeData(
-      backgroundColor: AppColors.yellow,
-      scrimColor: Colors.transparent,
-      elevation: 0
-  ),
+  drawerTheme: _drawerThemeData,
   buttonTheme: const ButtonThemeData(buttonColor: AppColors.yellow),
   secondaryHeaderColor: AppColors.brown.withOpacity(0.4),
   splashColor: Colors.transparent,
@@ -157,5 +153,14 @@ BottomNavigationBarThemeData get _bottomNavigationBarThemeData {
 TabBarTheme get _tabBarTheme {
   return const TabBarTheme(
     labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: AppColors.brown),
+  );
+}
+
+/// [DrawerThemeData] Tab Bar Theme Data
+DrawerThemeData get _drawerThemeData {
+  return const DrawerThemeData(
+      backgroundColor: AppColors.yellow,
+      scrimColor: Colors.transparent,
+      elevation: 0
   );
 }

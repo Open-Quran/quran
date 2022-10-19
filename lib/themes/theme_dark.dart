@@ -8,11 +8,7 @@ final ThemeData themeDark = ThemeData(
   tabBarTheme: _tabBarTheme,
   sliderTheme: _sliderThemeData,
   toggleButtonsTheme: _toggleButtonsThemeData,
-  drawerTheme: const DrawerThemeData(
-      backgroundColor: AppColors.darkGrey,
-      scrimColor: Colors.transparent,
-      elevation: 0
-  ),
+  drawerTheme: _drawerThemeData,
   buttonTheme: const ButtonThemeData(buttonColor: AppColors.darkGrey),
   indicatorColor: AppColors.darkGrey,
   iconTheme: const IconThemeData(color: AppColors.white),
@@ -132,11 +128,11 @@ SliderThemeData get _sliderThemeData {
 ToggleButtonsThemeData get _toggleButtonsThemeData {
   return ToggleButtonsThemeData(
       textStyle: TextStyle(
-          color: AppColors.darkGrey,
-          fontSize: 16,
-          fontWeight: FontWeight.w700,
-          fontStyle: FontStyle.normal,
-          fontFamily: Fonts.nunito,
+        color: AppColors.darkGrey,
+        fontSize: 16,
+        fontWeight: FontWeight.w700,
+        fontStyle: FontStyle.normal,
+        fontFamily: Fonts.nunito,
       ),
       color: AppColors.lightGrey,
       selectedColor: AppColors.white,
@@ -159,4 +155,12 @@ TabBarTheme get _tabBarTheme {
     labelStyle: TextStyle(
         fontSize: 16, fontWeight: FontWeight.w700, color: AppColors.white),
   );
+}
+
+/// [DrawerThemeData] Tab Bar Theme Data
+DrawerThemeData get _drawerThemeData {
+  return const DrawerThemeData(
+      backgroundColor: AppColors.darkGrey,
+      scrimColor: Colors.transparent,
+      elevation: 0);
 }

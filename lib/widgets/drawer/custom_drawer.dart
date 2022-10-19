@@ -12,10 +12,12 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-  int currentState = 0;
+  /// Page [index] => initially defaulted to the [0]
+  int pageIndex = 0;
 
+  /// Changing the [pageIndex]
   changeCurrentState(int index) {
-    setState(() => currentState = index);
+    setState(() => pageIndex = index);
   }
 
   @override
@@ -49,14 +51,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
         context.translate.juz,
         context.translate.sajda,
       ],
-      selectedIndex: currentState,
+      selectedIndex: pageIndex,
       onTap: changeCurrentState,
     );
   }
 
   Widget get body {
     return IndexedStack(
-      index: currentState,
+      index: pageIndex,
       children: [
         buildSurah,
         buildJuz,

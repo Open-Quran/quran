@@ -8,11 +8,7 @@ final ThemeData themeGreen = ThemeData(
   tabBarTheme: _tabBarTheme,
   sliderTheme: _sliderThemeData,
   toggleButtonsTheme: _toggleButtonsThemeData,
-  drawerTheme: const DrawerThemeData(
-      backgroundColor: AppColors.paleYellow,
-      scrimColor: Colors.transparent,
-      elevation: 0
-  ),
+  drawerTheme: _drawerThemeData,
   buttonTheme: const ButtonThemeData(buttonColor: AppColors.paleYellow),
   indicatorColor: AppColors.green,
   iconTheme: const IconThemeData(color: AppColors.green),
@@ -157,5 +153,14 @@ BottomNavigationBarThemeData get _bottomNavigationBarThemeData {
 TabBarTheme get _tabBarTheme {
   return const TabBarTheme(
       labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: AppColors.green),
+  );
+}
+
+/// [DrawerThemeData] Tab Bar Theme Data
+DrawerThemeData get _drawerThemeData {
+  return const DrawerThemeData(
+      backgroundColor: AppColors.paleYellow,
+      scrimColor: Colors.transparent,
+      elevation: 0
   );
 }

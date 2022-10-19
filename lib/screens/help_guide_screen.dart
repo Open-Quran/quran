@@ -60,6 +60,7 @@ class _HelpGuideScreenState extends State<HelpGuideScreen> {
     );
   }
 
+  /// App Version
   Widget get buildAppInfoHelpGuide {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,

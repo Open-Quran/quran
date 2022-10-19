@@ -37,6 +37,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
     );
   }
 
+  /// Stack pages of the [BottomNavigationBar]
   Widget get buildBody {
     return IndexedStack(
       index: currentIndex,
