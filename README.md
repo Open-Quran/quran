@@ -4,7 +4,7 @@
 <img width="215" src="https://user-images.githubusercontent.com/736973/187334195-9821c031-a566-4f8e-b4e3-3158f733c6e5.png#gh-light-mode-only">
 </p>
 <br />
-<p align="center"><img src="https://flutter.gskinner.com/folio/assets/images/git_promoimage.png?" width="800px"></p>
+
 
 # The Holy Qu'ran App
 
