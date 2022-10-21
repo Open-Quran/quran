@@ -1,6 +1,6 @@
 import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/providers/home_provider.dart';
+import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
 import 'package:fabrikod_quran/widgets/app_bars/main_app_bar.dart';
 import 'package:fabrikod_quran/widgets/bars/custom_tab_bar.dart';
@@ -11,7 +11,6 @@ import 'package:fabrikod_quran/widgets/tags/custom_tag_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -51,24 +50,17 @@ class _HomeScreenState extends State<HomeScreen> {
   }
 
   /// Returns Basmala as a picture
-  Widget get buildBasmala => SvgPicture.asset(ImageConstants.bigBasmalaIcon,
-      color: Theme.of(context).iconTheme.color);
+  Widget get buildBasmala =>
+      SvgPicture.asset(ImageConstants.bigBasmalaIcon, color: Theme.of(context).iconTheme.color);
 
   /// Search bar => [FocusNode]
-  Widget get buildSearchBar => CustomSearchBar(
-      focusNode: context.watch<HomeProvider>().searchBarFocusNode);
+  Widget get buildSearchBar =>
+      CustomSearchBar(focusNode: context.watch<HomeProvider>().searchBarFocusNode);
 
   Widget get buildSearchTags {
     return CustomTagList(
       ///Todo After then Fixed
-      tags: const [
-        "Surah",
-        "Juz",
-        "Sajda",
-        "Al-Fatiha",
-        "Al-Fatiha",
-        "Al-Fatiha"
-      ],
+      tags: const ["Surah", "Juz", "Sajda", "Al-Fatiha", "Al-Fatiha", "Al-Fatiha"],
       selectedTag: (selectedTag) {},
     );
   }
@@ -90,10 +82,10 @@ class _HomeScreenState extends State<HomeScreen> {
 
   Widget get buildSurahList {
     return ListView.separated(
-      itemCount: SurahModel.getTestData.length,
+      itemCount: context.watch<QuranProvider>().surahs.length,
       padding: const EdgeInsets.symmetric(vertical: kPaddingVertical),
       itemBuilder: (context, index) => SurahCard(
-        surahModel: SurahModel.getTestData[index],
+        surahModel: context.watch<QuranProvider>().surahs[index],
         onTap: () {
           Navigator.push(
             context,
@@ -103,8 +95,7 @@ class _HomeScreenState extends State<HomeScreen> {
           );
         },
       ),
-      separatorBuilder: (context, index) =>
-          const SizedBox(height: kPaddingContentSpaceBetween),
+      separatorBuilder: (context, index) => const SizedBox(height: kPaddingContentSpaceBetween),
     );
   }
 
@@ -125,17 +116,15 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-
- /// List of the Sajda ayats
+  /// List of the Sajda ayats
   Widget get buildSajdaList {
     return ListView.separated(
-      itemCount: SurahModel.getTestData.length,
+      itemCount: context.watch<QuranProvider>().surahs.length,
       padding: const EdgeInsets.symmetric(vertical: kPaddingVertical),
       itemBuilder: (context, index) => SurahCard(
-        surahModel: SurahModel.getTestData[index],
+        surahModel: context.watch<QuranProvider>().surahs[index],
       ),
-      separatorBuilder: (context, index) =>
-          const SizedBox(height: kPaddingContentSpaceBetween),
+      separatorBuilder: (context, index) => const SizedBox(height: kPaddingContentSpaceBetween),
     );
   }
 }

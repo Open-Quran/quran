@@ -67,14 +67,14 @@ class SurahCard extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Text(
-          surahModel.name,
+          surahModel.nameTranslated ?? "",
           overflow: TextOverflow.ellipsis,
           style: context.theme.textTheme.headlineMedium,
         ),
         Opacity(
           opacity: 0.5,
           child: Text(
-            "${surahModel.versesLength} ${context.translate.ayat}",
+            "${surahModel.verses.length} ${context.translate.ayat}",
             style: context.theme.textTheme.bodyLarge,
           ),
         ),
@@ -84,7 +84,7 @@ class SurahCard extends StatelessWidget {
 
   Widget buildSurahNameAr(BuildContext context) {
     return Text(
-      surahModel.nameAr,
+      surahModel.nameArabic ?? "",
       style: context.theme.textTheme.headlineLarge,
     );
   }

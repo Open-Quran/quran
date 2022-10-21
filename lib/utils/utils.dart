@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:html/parser.dart' show parse;
 
 class Utils {
   Utils._();
@@ -9,9 +10,16 @@ class Utils {
     return DateTime.parse(date);
   }
 
-  static bool isPlatformBrightnessDark (BuildContext context){
+  static bool isPlatformBrightnessDark(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
     return isDarkMode;
+  }
+
+  /// Cleans the html code in the String
+  static String skipHtml(String htmlString) {
+    var document = parse(htmlString);
+    String parsedString = parse(document.body!.text).documentElement!.text;
+    return parsedString;
   }
 }

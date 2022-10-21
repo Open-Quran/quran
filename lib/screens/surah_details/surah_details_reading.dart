@@ -1,14 +1,12 @@
 import 'package:fabrikod_quran/constants/extensions.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/widgets/buttons/custom_active_button.dart';
-import 'package:fabrikod_quran/widgets/buttons/custom_button.dart';
 import 'package:fabrikod_quran/widgets/drawer/custom_drawer.dart';
 import 'package:fabrikod_quran/widgets/drawer/custom_drawer_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/padding.dart';
-import '../../models/ayat_model.dart';
 import '../../widgets/action_card.dart';
 import '../../widgets/basmala_title.dart';
 import '../../widgets/buttons/custom_disabled_button.dart';
@@ -90,7 +88,7 @@ class SurahDetailsReadingScreenState extends State<SurahDetailsReadingScreen> {
         children: [
           const SizedBox(height: 20),
           Text(
-            AyatModel.getTestData[0].ayat,
+            "Test Data",
             style: context.theme.textTheme.displayLarge,
           ),
         ],

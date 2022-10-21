@@ -1,17 +1,15 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/widgets/action_card.dart';
 import 'package:flutter/material.dart';
 
-import '../../models/ayat_model.dart';
+class VerseCard extends StatelessWidget {
+  const VerseCard({Key? key, required this.index, this.verseModel}) : super(key: key);
 
-class AyatCard extends StatelessWidget {
-  const AyatCard({Key? key, required this.index, this.ayatModel})
-      : super(key: key);
+  /// Getting verse information
+  final VerseModel? verseModel;
 
-  /// Getting ayat information
-  final AyatModel? ayatModel;
-
-  /// Ayat [index]
+  /// Verse [index]
   final int index;
 
   @override
@@ -33,7 +31,6 @@ class AyatCard extends StatelessWidget {
         bookmarkButtonOnTap: () {},
         settingsButtonOnTap: () {});
   }
-
 
   Widget buildAyat(BuildContext context, int index) {
     return Column(
@@ -60,7 +57,7 @@ class AyatCard extends StatelessWidget {
       children: [
         Flexible(
           child: Text(
-            AyatModel.getTestData[index].ayat,
+            "Test Data",
             textDirection: TextDirection.rtl,
             style: context.theme.textTheme.headlineLarge,
           ),
@@ -76,7 +73,7 @@ class AyatCard extends StatelessWidget {
       children: [
         Flexible(
           child: Text(
-            AyatModel.getTestData[index].ayatTranslation,
+            "Test Data",
             style: context.theme.textTheme.titleSmall,
           ),
         ),
