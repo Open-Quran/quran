@@ -20,6 +20,10 @@ dependencies:
   #State Managements
   provider: ^6.0.3                                        # Provide state management
 
+  #Network
+  http: ^0.13.5
+  html: ^0.15.1
+
   # Google
   google_fonts: ^3.0.1                                    # Text fonts
 
@@ -35,6 +39,7 @@ dependencies:
   #Helpers
   flutter_native_splash: ^2.2.10+1                        # Native Splash
   package_info_plus: ^2.0.0
+  path_provider: ^2.0.11
   
 dev_dependencies:
   flutter_test:
@@ -47,6 +52,7 @@ flutter:
   assets:
     - assets/icons/
     - assets/images/
+    - assets/json/
 
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware

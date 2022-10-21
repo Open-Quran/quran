@@ -10,3 +10,4 @@ export '../themes/theme_quran.dart';
 export 'padding.dart';
 export 'enums.dart';
 export 'extensions.dart';
+export '../utils/utils.dart';

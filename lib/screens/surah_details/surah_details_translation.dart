@@ -7,7 +7,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../constants/padding.dart';
-import '../../models/ayat_model.dart';
 import '../../widgets/basmala_title.dart';
 import '../../widgets/buttons/custom_toggle_buttons.dart';
 
@@ -41,7 +40,6 @@ class SurahDetailsTranslationScreenState extends State<SurahDetailsTranslationSc
     );
   }
 
-
   /// Switch [translation] or [reading]
   Widget buildCustomToggleButtons(BuildContext context) {
     return CustomToggleButtons(
@@ -49,8 +47,7 @@ class SurahDetailsTranslationScreenState extends State<SurahDetailsTranslationSc
         context.translate.translation,
         context.translate.reading,
       ],
-      selectedIndex:
-      context.watch<QuranProvider>().readingSettings.readingType.index,
+      selectedIndex: context.watch<QuranProvider>().readingSettings.readingType.index,
       onTap: context.watch<QuranProvider>().changeReadingType,
     );
   }
@@ -58,13 +55,12 @@ class SurahDetailsTranslationScreenState extends State<SurahDetailsTranslationSc
   /// Listing ayats
   Widget get buildAyatList {
     return ListView.separated(
-      itemCount: AyatModel.getTestData.length,
+      itemCount: 10,
       shrinkWrap: true,
       primary: false,
       padding: const EdgeInsets.symmetric(vertical: kPaddingVertical),
-      itemBuilder: (context, index) => AyatCard(index: index),
-      separatorBuilder: (context, index) =>
-      const SizedBox(height: kPaddingContentSpaceBetween),
+      itemBuilder: (context, index) => VerseCard(index: index),
+      separatorBuilder: (context, index) => const SizedBox(height: kPaddingContentSpaceBetween),
     );
   }
 }
