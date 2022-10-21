@@ -5,5 +5,5 @@ class JsonPathConstants {
   static const String _baseUrl = 'assets/json/';
 
   /// QURAN CONSTANTS
-  static const String quran = '$_baseUrl/quran.json';
+  static const String quran = '${_baseUrl}quran.json';
 }
