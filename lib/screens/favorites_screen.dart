@@ -24,11 +24,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
           icon: SvgPicture.asset(ImageConstants.arrowBack),
         ),
       ),
-      body: ayatList,
+      body: verseList,
     );
   }
 
-  Widget get ayatList {
+  Widget get verseList {
     return ListView.separated(
       itemCount: 10,
       shrinkWrap: true,

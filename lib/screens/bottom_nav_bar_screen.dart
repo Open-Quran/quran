@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/home_provider.dart';
+import 'package:fabrikod_quran/screens/bookmark_screen.dart';
 import 'package:fabrikod_quran/screens/home_screen.dart';
 import 'package:fabrikod_quran/screens/more_screen.dart';
 import 'package:flutter/material.dart';
@@ -43,6 +44,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
       index: currentIndex,
       children: const [
         HomeScreen(),
+        BookmarkScreen(),
         MoreScreen(),
       ],
     );
@@ -67,9 +69,13 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
             activeIcon: ImageConstants.homeActiveIcon,
           ),
           buildBottomNavigationBarItem(
+            icon: ImageConstants.bookmarkInactiveIcon,
+            activeIcon: ImageConstants.bookmarkActiveIcon,
+          ),
+          buildBottomNavigationBarItem(
             icon: ImageConstants.moreInactiveIcon,
             activeIcon: ImageConstants.moreActiveIcon,
-          ),
+          )
         ],
       ),
     );
