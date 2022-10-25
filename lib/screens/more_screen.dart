@@ -1,4 +1,5 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/screens/favorites_screen.dart';
 import 'package:fabrikod_quran/screens/help_guide_screen.dart';
 import 'package:fabrikod_quran/widgets/app_bars/main_app_bar.dart';
 import 'package:fabrikod_quran/widgets/buttons/secondary_button.dart';
@@ -39,9 +40,16 @@ class _MoreScreenState extends State<MoreScreen> {
             const SizedBox(height: kPaddingDefault),
             SecondaryButton(
               text: context.translate.favorites,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                  context,
+                  MaterialPageRoute(
+                    builder: ((context) => const FavoritesScreen()),
+                  ),
+                );
+              },
               icon: Icon(
-                Icons.favorite_border_outlined,
+                Icons.favorite_outline,
                 color: context.theme.iconTheme.color,
               ),
             ),
@@ -104,7 +112,6 @@ class _MoreScreenState extends State<MoreScreen> {
     );
   }
 
-  /// Application [version]
   Widget get buildAppInfo {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
