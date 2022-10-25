@@ -3,6 +3,7 @@ import 'package:fabrikod_quran/screens/help_guide_screen.dart';
 import 'package:fabrikod_quran/widgets/app_bars/main_app_bar.dart';
 import 'package:fabrikod_quran/widgets/buttons/secondary_button.dart';
 import 'package:fabrikod_quran/widgets/cards/custom_expanding_theme_card.dart';
+import 'package:fabrikod_quran/widgets/cards/custom_language_card.dart';
 import 'package:fabrikod_quran/widgets/scroll_body.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
@@ -37,20 +38,16 @@ class _MoreScreenState extends State<MoreScreen> {
                   .changeAppTheme(newThemeMode),
             ),
             const SizedBox(height: kPaddingDefault),
+             CustomLanguageCard(
+              defaultLocale: context.watch<AppSettingsProvider>().appLocale,
+              changedLocale: context.read<AppSettingsProvider>().changeAppLanguage,
+            ),
+            const SizedBox(height: kPaddingDefault),
             SecondaryButton(
               text: context.translate.favorites,
               onPressed: () {},
               icon: Icon(
                 Icons.favorite_border_outlined,
-                color: context.theme.iconTheme.color,
-              ),
-            ),
-            const SizedBox(height: kPaddingDefault),
-            SecondaryButton(
-              text: context.translate.language,
-              onPressed: () {},
-              icon: SvgPicture.asset(
-                ImageConstants.languageIcon,
                 color: context.theme.iconTheme.color,
               ),
             ),
