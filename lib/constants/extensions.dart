@@ -31,6 +31,18 @@ extension EThemeModesExtension on EThemeModes {
   }
 }
 
+extension ESupportedLanguageExtension on ESupportedLanguage {
+  /// Getting [ESupportedLanguage] titles
+  String title(BuildContext context) {
+    switch (this) {
+      case ESupportedLanguage.en:
+        return "English";
+      case ESupportedLanguage.tr:
+        return "Turkish";
+    }
+  }
+}
+
 extension BuildContextExtension on BuildContext {
   /// Helping function to translate the text
   AppLocalizations get translate {
