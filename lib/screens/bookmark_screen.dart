@@ -14,14 +14,12 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppBar(
-        title: context.translate.bookmark,
-      ),
-      body: ayatList,
+      appBar: MainAppBar(title: context.translate.bookmark),
+      body: verseList,
     );
   }
 
-  Widget get ayatList {
+  Widget get verseList {
     return ListView.separated(
         itemCount: 10,
         shrinkWrap: true,
