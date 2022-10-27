@@ -6,9 +6,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 
 class SurahCard extends StatelessWidget {
   final SurahModel surahModel;
-  final Function()? onTap;
+  final Function() onTap;
 
-  const SurahCard({Key? key, required this.surahModel, this.onTap}) : super(key: key);
+  const SurahCard({Key? key, required this.surahModel, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -67,7 +67,7 @@ class SurahCard extends StatelessWidget {
       mainAxisAlignment: MainAxisAlignment.end,
       children: [
         Text(
-          surahModel.nameTranslated ?? "",
+          surahModel.nameSimple ?? "",
           overflow: TextOverflow.ellipsis,
           style: context.theme.textTheme.headlineMedium,
         ),

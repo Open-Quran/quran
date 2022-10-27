@@ -1,3 +1,5 @@
+import 'dart:convert';
+
 import 'package:fabrikod_quran/models/verse_model.dart';
 
 class SurahModel {
@@ -24,6 +26,46 @@ class SurahModel {
   @override
   String toString() {
     return 'Surah{id: $id, revelationPlace: $revelationPlace, nameSimple: $nameSimple, nameComplex: $nameComplex, nameArabic: $nameArabic, nameTranslated: $nameTranslated, startPage: $startPage, endPage: $endPage}';
+  }
+
+  ///Is there a verse of sajda in the surah ?
+  bool get isSajdaVerse {
+    int value = verses.indexWhere((element) => element.sajdahNumber != null);
+    return value == -1 ? false : true;
+  }
+
+  /// Get the sajda verses in the surah
+  List<VerseModel> get sajdaVerses {
+    List<VerseModel> list = [];
+    for (var element in verses) {
+      if (element.sajdahNumber != null) list.add(element);
+    }
+    return list;
+  }
+
+  /// Filters and returns juz verses
+  List<VerseModel> juzVerses(int juzIndex) {
+    List<VerseModel> list = [];
+    for (var element in verses) {
+      if (element.juzNumber == juzIndex + 1) list.add(element);
+    }
+    return list;
+  }
+
+  /// Get the surahs of the selected mushaf page
+  SurahModel? surahOfMushafPage(int mushafPageNo) {
+    var newVerses = verses.where((element) => element.pageNumber == mushafPageNo).toList();
+    if (newVerses.isEmpty) return null;
+    var newSurah = clone;
+    newSurah.verses = newVerses;
+    return newSurah;
+  }
+
+  /// Create Model clone
+  SurahModel get clone {
+    final String jsonString = json.encode(toJson());
+    final jsonResponse = json.decode(jsonString) as Map<String, dynamic>;
+    return SurahModel.fromJson(jsonResponse);
   }
 
   SurahModel.fromJson(Map<String, dynamic> json) {

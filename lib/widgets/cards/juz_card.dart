@@ -21,7 +21,7 @@ class JuzCard extends StatelessWidget {
         ),
         child: Center(
           child: Text(
-            index.toString(),
+            (index + 1).toString(),
             textAlign: TextAlign.center,
             style: context.theme.textTheme.displayMedium,
           ),

@@ -1,8 +1,11 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/providers/quran_provider.dart';
+import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/widgets/buttons/custom_button.dart';
 import 'package:fabrikod_quran/widgets/buttons/custom_toggle_buttons.dart';
 import 'package:fabrikod_quran/widgets/cards/juz_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -12,13 +15,9 @@ class CustomDrawer extends StatefulWidget {
 }
 
 class _CustomDrawerState extends State<CustomDrawer> {
-  /// Page [index] => initially defaulted to the [0]
-  int pageIndex = 0;
+  SurahDetailsProvider get surahDetailsProvider => context.watch<SurahDetailsProvider>();
 
-  /// Changing the [pageIndex]
-  changeCurrentState(int index) {
-    setState(() => pageIndex = index);
-  }
+  QuranProvider get quranProvider => context.watch<QuranProvider>();
 
   @override
   Widget build(BuildContext context) {
@@ -51,14 +50,14 @@ class _CustomDrawerState extends State<CustomDrawer> {
         context.translate.juz,
         context.translate.sajda,
       ],
-      selectedIndex: pageIndex,
-      onTap: changeCurrentState,
+      selectedIndex: surahDetailsProvider.readingSettings.surahDetailScreenMod.index,
+      onTap: surahDetailsProvider.changeSurahDetailScreenMod,
     );
   }
 
   Widget get body {
     return IndexedStack(
-      index: pageIndex,
+      index: surahDetailsProvider.readingSettings.surahDetailScreenMod.index,
       children: [
         buildSurah,
         buildJuz,
@@ -68,6 +67,9 @@ class _CustomDrawerState extends State<CustomDrawer> {
   }
 
   Widget get buildSurah {
+    var surahs = quranProvider.surahs;
+    var versesOfSelectSurah =
+        quranProvider.surahs[surahDetailsProvider.readingSettings.surahIndex].verses;
     return Row(
       children: [
         Expanded(
@@ -83,14 +85,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
               const SizedBox(height: kPaddingDefault),
               Expanded(
                 child: ListView.builder(
-                  itemCount: 45,
+                  itemCount: surahs.length,
                   itemBuilder: (context, index) {
+                    var surah = surahs[index];
                     return CustomButton(
-                      title: "$index  Al-Fatihah",
-                      state: index == 2,
+                      title: "${surah.id}  ${surah.nameComplex}",
+                      state: surahDetailsProvider.readingSettings.surahIndex == index,
                       centerTitle: false,
                       height: 45,
-                      onTap: () {},
+                      onTap: () => context.read<SurahDetailsProvider>().changeSurahIndex(index),
                     );
                   },
                 ),
@@ -115,14 +118,16 @@ class _CustomDrawerState extends State<CustomDrawer> {
               const SizedBox(height: kPaddingDefault),
               Expanded(
                 child: ListView.builder(
-                  itemCount: 45,
+                  itemCount: versesOfSelectSurah.length,
                   itemBuilder: (context, index) {
+                    var number = versesOfSelectSurah[index].verseNumber;
                     return CustomButton(
-                      title: "$index",
-                      state: index == 5,
+                      title: "$number",
+                      state: surahDetailsProvider.readingSettings.surahVerseIndex == index,
                       centerTitle: false,
                       height: 45,
-                      onTap: () {},
+                      onTap: () =>
+                          context.read<SurahDetailsProvider>().changeSurahVerseIndex(index),
                     );
                   },
                 ),
@@ -143,8 +148,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
         crossAxisSpacing: kPaddingDefault * 2,
       ),
       itemBuilder: (context, index) => JuzCard(
-        index: index + 1,
-        onTap: (selectedJuzIndex) {},
+        index: index,
+        onTap: context.read<SurahDetailsProvider>().selectJuz,
       ),
     );
   }
@@ -165,14 +170,15 @@ class _CustomDrawerState extends State<CustomDrawer> {
               const SizedBox(height: kPaddingDefault),
               Expanded(
                 child: ListView.builder(
-                  itemCount: 10,
+                  itemCount: quranProvider.sajdaSurahs.length,
                   itemBuilder: (context, index) {
+                    var surah = quranProvider.sajdaSurahs[index];
                     return CustomButton(
-                      title: "$index  Al-Fatihah",
-                      state: index == 2,
+                      title: "${surah.id}  ${surah.nameComplex}",
+                      state: surahDetailsProvider.readingSettings.sajdaIndex == index,
                       centerTitle: false,
                       height: 45,
-                      onTap: () {},
+                      onTap: () => context.read<SurahDetailsProvider>().changeSajdaIndex(index),
                     );
                   },
                 ),
@@ -197,14 +203,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
               const SizedBox(height: kPaddingDefault),
               Expanded(
                 child: ListView.builder(
-                  itemCount: 3,
+                  itemCount: 1,
                   itemBuilder: (context, index) {
                     return CustomButton(
-                      title: "$index",
-                      state: index == 1,
+                      title: "${index + 1}",
+                      state: true,
                       centerTitle: false,
                       height: 45,
-                      onTap: () {},
                     );
                   },
                 ),
