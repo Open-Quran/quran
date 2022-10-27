@@ -1,20 +1,33 @@
 import 'package:flutter/material.dart';
 import 'package:fabrikod_quran/constants/constants.dart';
 
-class CustomTabBar extends StatelessWidget {
+class CustomTabBar extends StatefulWidget {
   final List<String> tabTitles;
   final List<Widget> tabViews;
 
   const CustomTabBar({Key? key, required this.tabTitles, required this.tabViews}) : super(key: key);
 
   @override
+  State<CustomTabBar> createState() => _CustomTabBarState();
+}
+
+class _CustomTabBarState extends State<CustomTabBar> {
+  int currentIndex = 0;
+
+  changeCurrentIndex(int index) {
+    currentIndex = index;
+    setState(() {});
+  }
+
+  @override
   Widget build(BuildContext context) {
     return DefaultTabController(
-      length: tabTitles.length,
+      length: widget.tabTitles.length,
       child: Column(
+        mainAxisSize: MainAxisSize.min,
         children: [
           buildTabBar(context),
-          Expanded(child: buildTabBarView),
+          widget.tabViews[currentIndex],
         ],
       ),
     );
@@ -37,7 +50,7 @@ class CustomTabBar extends StatelessWidget {
         ),
         TabBar(
           tabs: [
-            ...tabTitles.map(
+            ...widget.tabTitles.map(
               (e) => Tab(
                 icon: Text(
                   e,
@@ -46,14 +59,9 @@ class CustomTabBar extends StatelessWidget {
               ),
             ),
           ],
+          onTap: changeCurrentIndex,
         ),
       ],
-    );
-  }
-
-  Widget get buildTabBarView {
-    return TabBarView(
-      children: tabViews,
     );
   }
 }

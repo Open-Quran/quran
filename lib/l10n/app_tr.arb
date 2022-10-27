@@ -21,9 +21,10 @@
     "quranMode": "Kur'an Modu",
     "greenMode": "Yeşil Mod",
     "searchSurah": "Sure Arama",
-    "madeByFabrikod": "fabrikod tarafından yapıldı",
+    "madeByFabrikod": "Fabrikod tarafından geliştirilmiştir",
     "version": "Versiyon",
     "helpGuideTitle1": "Kuran-ı Kerim Nedir?",
-    "helpGuideDescription1": "Lorem ipsum lorem ipsum lorem ipsum Lorem ipsum lorem ipsum lorem ipsum Lorem ipsum lorem ipsum lorem ipsum "
-
+    "helpGuideDescription1": "Lorem ipsum lorem ipsum lorem ipsum Lorem ipsum lorem ipsum lorem ipsum Lorem ipsum lorem ipsum lorem ipsum ",
+    "nextPage": "Sonraki Sayfa",
+    "previousPage": "Önceki Sayfa"
 }

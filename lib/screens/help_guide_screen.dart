@@ -16,46 +16,57 @@ class _HelpGuideScreenState extends State<HelpGuideScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppBar(
-        title: context.translate.helpGuide,
-        leading: IconButton(
-          onPressed: () {
-            Navigator.pop(context);
-          },
-          icon: SvgPicture.asset(ImageConstants.arrowBack),
-        ),
+      appBar: buildAppBar,
+      body: buildBody,
+    );
+  }
+
+  PreferredSizeWidget get buildAppBar {
+    return MainAppBar(
+      title: context.translate.helpGuide,
+      leading: IconButton(
+        icon: SvgPicture.asset(ImageConstants.arrowBack),
+        onPressed: () => Navigator.pop(context),
       ),
-      body: SingleChildScrollView(
-        padding: const EdgeInsets.symmetric(
+    );
+  }
+
+  Widget get buildBody {
+    return SingleChildScrollView(
+      padding: const EdgeInsets.symmetric(
         horizontal: kPaddingHorizontal,
         vertical: kPaddingVertical,
       ),
-        child: Column(
-          children: [
-            HelpGuideCard(
-                text: context.translate.helpGuideTitle1,
-                description: context.translate.helpGuideDescription1),
-            const SizedBox(height: kPaddingDefault),
-            HelpGuideCard(
-                text: context.translate.helpGuideTitle1,
-                description: context.translate.helpGuideDescription1),
-            const SizedBox(height: kPaddingDefault),
-            HelpGuideCard(
-                text: context.translate.helpGuideTitle1,
-                description: context.translate.helpGuideDescription1),
-            const SizedBox(height: kPaddingDefault),
-            HelpGuideCard(
-                text: context.translate.helpGuideTitle1,
-                description: context.translate.helpGuideDescription1),
-            const SizedBox(height: kPaddingDefault),
-            HelpGuideCard(
-                text: context.translate.helpGuideTitle1,
-                description: context.translate.helpGuideDescription1),
-            const SizedBox(height: kPaddingDefault*5),
-            buildAppInfoHelpGuide,
-            const SizedBox(height: kPaddingDefault * 5) 
-          ],
-        ),
+      child: Column(
+        children: [
+          HelpGuideCard(
+            text: context.translate.helpGuideTitle1,
+            description: context.translate.helpGuideDescription1,
+          ),
+          const SizedBox(height: kPaddingDefault),
+          HelpGuideCard(
+            text: context.translate.helpGuideTitle1,
+            description: context.translate.helpGuideDescription1,
+          ),
+          const SizedBox(height: kPaddingDefault),
+          HelpGuideCard(
+            text: context.translate.helpGuideTitle1,
+            description: context.translate.helpGuideDescription1,
+          ),
+          const SizedBox(height: kPaddingDefault),
+          HelpGuideCard(
+            text: context.translate.helpGuideTitle1,
+            description: context.translate.helpGuideDescription1,
+          ),
+          const SizedBox(height: kPaddingDefault),
+          HelpGuideCard(
+            text: context.translate.helpGuideTitle1,
+            description: context.translate.helpGuideDescription1,
+          ),
+          const SizedBox(height: kPaddingDefault * 5),
+          buildAppInfoHelpGuide,
+          const SizedBox(height: kPaddingDefault * 5)
+        ],
       ),
     );
   }
@@ -65,8 +76,7 @@ class _HelpGuideScreenState extends State<HelpGuideScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(context.translate.madeByFabrikod,
-            style: context.theme.textTheme.headlineSmall),
+        Text(context.translate.madeByFabrikod, style: context.theme.textTheme.headlineSmall),
         const SizedBox(height: kPaddingSmall),
         FutureBuilder<PackageInfo>(
           future: PackageInfo.fromPlatform(),

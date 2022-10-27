@@ -2,23 +2,25 @@ import 'package:fabrikod_quran/constants/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../constants/images.dart';
+import '../../constants/images.dart';
 
 class ActionCard extends StatelessWidget {
   const ActionCard(
       {Key? key,
-      required this.playButtonOnTap,
-      required this.favoriteButtonOnTap,
-      required this.bookmarkButtonOnTap,
-      required this.settingsButtonOnTap,
-      this.ayatNo})
+      this.playButtonOnTap,
+      this.favoriteButtonOnTap,
+      this.bookmarkButtonOnTap,
+      this.shareButtonOnTap,
+      this.settingsButtonOnTap,
+      this.verseKey})
       : super(key: key);
 
-  final String? ayatNo;
-  final Function() playButtonOnTap;
-  final Function() favoriteButtonOnTap;
-  final Function() bookmarkButtonOnTap;
-  final Function() settingsButtonOnTap;
+  final String? verseKey;
+  final Function()? playButtonOnTap;
+  final Function()? favoriteButtonOnTap;
+  final Function()? bookmarkButtonOnTap;
+  final Function()? shareButtonOnTap;
+  final Function()? settingsButtonOnTap;
 
   @override
   Widget build(BuildContext context) {
@@ -39,10 +41,10 @@ class ActionCard extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               const SizedBox(width: 10),
-              ayatNo == null
+              verseKey == null
                   ? const SizedBox()
                   : Text(
-                      ayatNo!,
+                      verseKey!,
                       style: context.theme.textTheme.titleMedium,
                     ),
               const SizedBox(width: 10),
@@ -67,7 +69,7 @@ class ActionCard extends StatelessWidget {
               ),
               const SizedBox(width: 10),
               GestureDetector(
-                onTap: () {},
+                onTap: shareButtonOnTap,
                 child: SvgPicture.asset(ImageConstants.shareAppIcon,
                     color: context.theme.iconTheme.color),
               )

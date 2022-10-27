@@ -8,7 +8,10 @@ enum EThemeModes { light, dark, quran, green }
 enum ESupportedLanguage { en, tr }
 
 /// Different types of reading
-enum ReadingType { translation, reading }
+enum EReadingType { translation, reading }
 
 /// Toggle button text styles
-enum ToggleButtonTextStyle{ selected, disabled }
+enum EToggleButtonTextStyle { selected, disabled }
+
+/// Surah Detail screen Mode
+enum ESurahDetailScreenMod { surah, juz, sajda }
