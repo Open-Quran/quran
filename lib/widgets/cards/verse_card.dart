@@ -1,7 +1,9 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
+import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/widgets/cards/action_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class VerseCard extends StatelessWidget {
   const VerseCard({Key? key, required this.verseModel}) : super(key: key);
@@ -62,7 +64,13 @@ class VerseCard extends StatelessWidget {
       children: [
         Flexible(
           child: Text(
-            "Test Data",
+            context
+                    .watch<QuranProvider>()
+                    .verseTranslation
+                    ?.translations
+                    ?.elementAt(verseModel.id! - 1)
+                    .text ??
+                "",
             style: context.theme.textTheme.titleSmall,
           ),
         ),

@@ -2,13 +2,17 @@ import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/reading_settings_model.dart';
 import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
+import 'package:fabrikod_quran/providers/app_settings_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SurahDetailsProvider extends ChangeNotifier {
   /// Class Constructor
-  SurahDetailsProvider(this._context, this.readingSettings);
+  SurahDetailsProvider(this._context, this.readingSettings) {
+    if (quranProvider.verseTranslation != null) return;
+    quranProvider.getVerseTranslation(appSettingsProvider.appLocale!.languageCode);
+  }
 
   /// Detail Screen Context
   final BuildContext _context;
@@ -17,6 +21,8 @@ class SurahDetailsProvider extends ChangeNotifier {
   late ReadingSettingsModel readingSettings;
 
   QuranProvider get quranProvider => _context.read<QuranProvider>();
+
+  AppSettingsProvider get appSettingsProvider => _context.read<AppSettingsProvider>();
 
   String get appBarTitle {
     switch (readingSettings.readingType) {

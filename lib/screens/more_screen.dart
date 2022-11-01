@@ -1,4 +1,5 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/providers/more_provider.dart';
 import 'package:fabrikod_quran/screens/favorites_screen.dart';
 import 'package:fabrikod_quran/screens/help_guide_screen.dart';
 import 'package:fabrikod_quran/widgets/app_bars/main_app_bar.dart';
@@ -41,7 +42,7 @@ class _MoreScreenState extends State<MoreScreen> {
             const SizedBox(height: kPaddingDefault),
              CustomLanguageCard(
               defaultLocale: context.watch<AppSettingsProvider>().appLocale,
-              changedLocale: context.read<AppSettingsProvider>().changeAppLanguage,
+              changedLocale: context.read<MoreProvider>().changeAppLanguage,
             ),
             const SizedBox(height: kPaddingDefault),
             SecondaryButton(

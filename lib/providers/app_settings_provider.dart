@@ -3,7 +3,6 @@ import 'package:fabrikod_quran/database/local_db.dart';
 import 'package:flutter/material.dart';
 
 class AppSettingsProvider extends ChangeNotifier {
-
   /// Class constructor
   AppSettingsProvider() {
     appLocale = LocalDb.getLocale;
@@ -34,9 +33,11 @@ class AppSettingsProvider extends ChangeNotifier {
 
     for (var locale in supportedLocales) {
       if (locale.languageCode == deviceLocale!.languageCode) {
+        appLocale = deviceLocale;
         return deviceLocale;
       }
     }
-    return const Locale('en');
+    appLocale = const Locale('en');
+    return appLocale;
   }
 }
