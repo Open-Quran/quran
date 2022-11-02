@@ -1,5 +1,6 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
+import 'package:fabrikod_quran/providers/favorites_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/widgets/cards/action_card.dart';
 import 'package:flutter/material.dart';
@@ -15,15 +16,22 @@ class VerseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        buildVerseActionCart,
+        buildVerseActionCart(context),
         buildVerse(context),
       ],
     );
   }
 
   /// The header of the card
-  Widget get buildVerseActionCart {
-    return ActionCard(verseKey: verseModel.verseKey);
+  Widget buildVerseActionCart(BuildContext context) {
+    bool isFavorite = context.watch<FavoritesProvider>().isFavoriteVerse(verseModel);
+    return ActionCard(
+      verseKey: verseModel.verseKey,
+      isFavorite: isFavorite,
+      favoriteButtonOnTap: () => isFavorite
+          ? context.read<FavoritesProvider>().deleteFavoriteVerse(verseModel)
+          : context.read<FavoritesProvider>().addFavoriteVerse(verseModel),
+    );
   }
 
   Widget buildVerse(BuildContext context) {
