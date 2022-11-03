@@ -57,4 +57,28 @@ class LocalDb {
     await _localDbBox.write('favoriteVerses', value);
     return getFavoriteVerses;
   }
+
+  /// Get BookMark Verses
+  static List<VerseModel> get getBookmarkVerses {
+    var bookmarkList = (_localDbBox.read('bookmarkVerses') as List?) ?? [];
+    return bookmarkList.map((e) => VerseModel.fromJson(e)).toList().cast<VerseModel>();
+  }
+
+  /// Add Verse model in BookMark List
+  static Future<List<VerseModel>> addBookmarkVerse(VerseModel verseModel) async {
+    var bookmarkList = getBookmarkVerses;
+    bookmarkList.add(verseModel);
+    var value = bookmarkList.map((e) => e.toJson()).toList();
+    await _localDbBox.write('bookmarkVerses', value);
+    return getBookmarkVerses;
+  }
+
+  /// Delete Verse model in BookMark List
+  static Future<List<VerseModel>> deleteBookmarkVerse(VerseModel verseModel) async {
+    var bookmarkList = getBookmarkVerses;
+    bookmarkList.removeWhere((element) => element.id==verseModel.id);
+    var value = bookmarkList.map((e) => e.toJson()).toList();
+    await _localDbBox.write('bookmarkVerses', value);
+    return getBookmarkVerses;
+  }
 }
