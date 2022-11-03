@@ -24,7 +24,7 @@ class CustomToggleButtons extends StatelessWidget {
     return Container(
       height: 45,
       decoration: BoxDecoration(
-        color: context.theme.toggleButtonsTheme.color!.withOpacity(0.1),
+        color: context.theme.cardTheme.color?.withOpacity(0.1),
         borderRadius: BorderRadius.circular(10),
       ),
       child: Row(
