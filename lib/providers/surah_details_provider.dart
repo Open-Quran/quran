@@ -9,12 +9,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SurahDetailsProvider extends ChangeNotifier {
-
   /// Class Constructor
-  SurahDetailsProvider(this._context, this.readingSettings) {
-    if (quranProvider.verseTranslation != null) return;
-    quranProvider.getVerseTranslation(appSettingsProvider.appLocale!.languageCode);
-  }
+  SurahDetailsProvider(this._context, this.readingSettings);
 
   /// Detail Screen Context
   final BuildContext _context;
@@ -44,7 +40,6 @@ class SurahDetailsProvider extends ChangeNotifier {
         return surahsOfMushafPage.first.nameSimple ?? "";
     }
   }
-
 
   List<VerseModel> get versesOfReadingTypeTranslation {
     switch (readingSettings.surahDetailScreenMod) {
@@ -84,7 +79,6 @@ class SurahDetailsProvider extends ChangeNotifier {
     readingSettings.surahDetailScreenMod = ESurahDetailScreenMod.values.elementAt(index);
     notifyListeners();
   }
-
 
   void changeSurahIndex(int index) {
     readingSettings.surahIndex = index;

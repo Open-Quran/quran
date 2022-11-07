@@ -1,5 +1,6 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/reading_settings_model.dart';
+import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
 import 'package:flutter/material.dart';
@@ -10,7 +11,9 @@ class HomeProvider extends ChangeNotifier {
   final BuildContext _context;
 
   /// Class Constructor
-  HomeProvider(this._context);
+  HomeProvider(this._context) {
+    _context.read<QuranProvider>().getVerseTranslation(_context);
+  }
 
   /// Focus node for search field in the home screen
   final FocusNode searchBarFocusNode = FocusNode();

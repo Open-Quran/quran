@@ -4,7 +4,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class MoreProvider extends ChangeNotifier {
-
   /// Home Screen Context
   final BuildContext _context;
 
@@ -13,7 +12,8 @@ class MoreProvider extends ChangeNotifier {
 
   /// Change app Language and get verses translations
   Future<void> changeAppLanguage(String languageCode) async {
-    _context.read<AppSettingsProvider>().changeAppLanguage(languageCode);
-    _context.read<QuranProvider>().getVerseTranslation(languageCode);
+    _context.read<AppSettingsProvider>().changeAppLanguage(languageCode).then((_) {
+      _context.read<QuranProvider>().getVerseTranslation(_context);
+    });
   }
 }
