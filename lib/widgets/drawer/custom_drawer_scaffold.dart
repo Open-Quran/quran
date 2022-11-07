@@ -22,7 +22,7 @@ class CustomDrawerScaffold extends StatefulWidget {
 class _CustomDrawerScaffoldState extends State<CustomDrawerScaffold> {
   final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  /// Function For Change State Of Drawer
+  /// Open or close drawer
   void changeStateOfDrawer() {
     if (_scaffoldKey.currentState == null) return;
     ScaffoldState state = _scaffoldKey.currentState!;
@@ -30,7 +30,7 @@ class _CustomDrawerScaffoldState extends State<CustomDrawerScaffold> {
     setState(() {});
   }
 
-  /// Function For On Pressed To Action Button
+  /// OnPress Action button
   void onPressedToActionButton() {
     _scaffoldKey.currentState?.closeDrawer();
     setState(() {});

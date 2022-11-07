@@ -10,7 +10,7 @@ import 'package:provider/provider.dart';
 class VerseCard extends StatelessWidget {
   const VerseCard({Key? key, required this.verseModel}) : super(key: key);
 
-  /// Getting verse information
+  /// Verse model
   final VerseModel verseModel;
 
   @override
@@ -23,18 +23,18 @@ class VerseCard extends StatelessWidget {
     );
   }
 
-  /// The header of the card
+  /// The header of the action card
   Widget buildVerseActionCart(BuildContext context) {
     bool isFavorite = context.watch<FavoritesProvider>().isFavoriteVerse(verseModel);
-    bool isBookmark = context.watch<BookMarkProvider>().isBookmarkVerse(verseModel);
+    bool isBookmarked = context.watch<BookMarkProvider>().isBookmarkVerse(verseModel);
     return ActionCard(
       verseKey: verseModel.verseKey,
       isFavorite: isFavorite,
       favoriteButtonOnTap: () => isFavorite
-          ? context.read<FavoritesProvider>().deleteFavoriteVerse(verseModel)
-          : context.read<FavoritesProvider>().addFavoriteVerse(verseModel),
-      isBookmark: isBookmark,
-      bookmarkButtonOnTap: () => isBookmark
+          ? context.read<FavoritesProvider>().deleteVerseFromFavorites(verseModel)
+          : context.read<FavoritesProvider>().addVerseToFavorite(verseModel),
+      isBookmark: isBookmarked,
+      bookmarkButtonOnTap: () => isBookmarked
           ? context.read<BookMarkProvider>().deleteBookmarkVerse(verseModel)
           : context.read<BookMarkProvider>().addBookmarkVerse(verseModel),
     );
