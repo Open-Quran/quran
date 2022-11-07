@@ -31,7 +31,7 @@ class BasmalaTitle extends StatelessWidget {
                 : const SizedBox(),
             SizedBox(height: isName ? kPaddingHorizontal : null),
             Text(
-              "ِﻢﻳ۪حَّﺮﻟا ِنٰمْحَّﺮﻟا ِهّٰﻞﻟا ِمْسِب",
+              "بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ",
               textAlign: TextAlign.center,
               style: context.theme.textTheme.displayLarge,
             ),
