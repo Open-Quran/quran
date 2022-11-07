@@ -2,6 +2,7 @@ import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/screens/surah_details/mushaf_screen.dart';
 import 'package:fabrikod_quran/widgets/basmala_title.dart';
+import 'package:fabrikod_quran/widgets/bottom_sheets/quran_style_bottom_sheet.dart';
 import 'package:fabrikod_quran/widgets/buttons/custom_toggle_buttons.dart';
 import 'package:fabrikod_quran/widgets/cards/verse_card.dart';
 import 'package:fabrikod_quran/widgets/drawer/custom_drawer.dart';
@@ -22,7 +23,9 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
     return CustomDrawerScaffold(
       appBarTitle: context.watch<SurahDetailsProvider>().appBarTitle,
       drawer: const CustomDrawer(),
-      onTapMore: () {},
+      onTapMore: () {
+        QuranStyleBottomSheet.show(context);
+      },
       body: buildBody,
     );
   }
@@ -50,7 +53,11 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
         context.translate.translation,
         context.translate.reading,
       ],
-      selectedIndex: context.watch<SurahDetailsProvider>().readingSettings.readingType.index,
+      selectedIndex: context
+          .watch<SurahDetailsProvider>()
+          .readingSettings
+          .readingType
+          .index,
       onTap: context.read<SurahDetailsProvider>().changeReadingType,
     );
   }
@@ -66,7 +73,8 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
 
   /// Listing Verses
   Widget get buildVerseList {
-    var verses = context.watch<SurahDetailsProvider>().versesOfReadingTypeTranslation;
+    var verses =
+        context.watch<SurahDetailsProvider>().versesOfReadingTypeTranslation;
 
     return ListView.separated(
       itemCount: verses.length,
@@ -74,13 +82,17 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
         children: [
           BasmalaTitle(
             verseKey: verses[index].verseKey ?? "",
-            isName: context.read<SurahDetailsProvider>().readingSettings.surahDetailScreenMod ==
+            isName: context
+                    .read<SurahDetailsProvider>()
+                    .readingSettings
+                    .surahDetailScreenMod ==
                 ESurahDetailScreenMod.juz,
           ),
           VerseCard(verseModel: verses[index]),
         ],
       ),
-      separatorBuilder: (context, index) => const SizedBox(height: kPaddingContentSpaceBetween),
+      separatorBuilder: (context, index) =>
+          const SizedBox(height: kPaddingContentSpaceBetween),
     );
   }
 
