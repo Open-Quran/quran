@@ -86,7 +86,7 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
     return CustomToggleButtons(
       buttonTitles: [
         context.translate.scroll,
-        context.translate.musaf,
+        context.translate.mushaf,
       ],
       onTap: (int index) {},
       selectedIndex: 0,
