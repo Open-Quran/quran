@@ -28,7 +28,7 @@ class SurahModel {
     return 'Surah{id: $id, revelationPlace: $revelationPlace, nameSimple: $nameSimple, nameComplex: $nameComplex, nameArabic: $nameArabic, nameTranslated: $nameTranslated, startPage: $startPage, endPage: $endPage}';
   }
 
-  ///Is there a verse of sajda in the surah ?
+  /// Checking is sajda verse
   bool get isSajdaVerse {
     int value = verses.indexWhere((element) => element.sajdahNumber != null);
     return value == -1 ? false : true;
@@ -52,7 +52,7 @@ class SurahModel {
     return list;
   }
 
-  /// Get the surahs of the selected mushaf page
+  /// Get surahs of the selected mushaf page
   SurahModel? surahOfMushafPage(int mushafPageNo) {
     var newVerses = verses.where((element) => element.pageNumber == mushafPageNo).toList();
     if (newVerses.isEmpty) return null;
@@ -61,7 +61,7 @@ class SurahModel {
     return newSurah;
   }
 
-  /// Create Model clone
+  /// Cloning the model
   SurahModel get clone {
     final String jsonString = json.encode(toJson());
     final jsonResponse = json.decode(jsonString) as Map<String, dynamic>;
@@ -82,7 +82,7 @@ class SurahModel {
     }
   }
 
-  SurahModel.fromJsonForQuranApi(Map<String, dynamic> json) {
+  SurahModel.fromJsonQuranApi(Map<String, dynamic> json) {
     id = json['id'];
     revelationPlace = json['revelation_place'];
     nameSimple = json['name_simple'];

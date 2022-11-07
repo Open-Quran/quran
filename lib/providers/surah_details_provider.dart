@@ -2,13 +2,19 @@ import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/reading_settings_model.dart';
 import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
+import 'package:fabrikod_quran/providers/app_settings_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
+import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SurahDetailsProvider extends ChangeNotifier {
+
   /// Class Constructor
-  SurahDetailsProvider(this._context, this.readingSettings);
+  SurahDetailsProvider(this._context, this.readingSettings) {
+    if (quranProvider.verseTranslation != null) return;
+    quranProvider.getVerseTranslation(appSettingsProvider.appLocale!.languageCode);
+  }
 
   /// Detail Screen Context
   final BuildContext _context;
@@ -16,8 +22,13 @@ class SurahDetailsProvider extends ChangeNotifier {
   /// Reading settings model
   late ReadingSettingsModel readingSettings;
 
+  /// Get [QuranProvider]
   QuranProvider get quranProvider => _context.read<QuranProvider>();
 
+  /// Get [AppSettingsProvider]
+  AppSettingsProvider get appSettingsProvider => _context.read<AppSettingsProvider>();
+
+  /// [SurahDetailsScreen] app bar title
   String get appBarTitle {
     switch (readingSettings.readingType) {
       case EReadingType.translation:
@@ -33,6 +44,7 @@ class SurahDetailsProvider extends ChangeNotifier {
         return surahsOfMushafPage.first.nameSimple ?? "";
     }
   }
+
 
   List<VerseModel> get versesOfReadingTypeTranslation {
     switch (readingSettings.surahDetailScreenMod) {
@@ -72,6 +84,7 @@ class SurahDetailsProvider extends ChangeNotifier {
     readingSettings.surahDetailScreenMod = ESurahDetailScreenMod.values.elementAt(index);
     notifyListeners();
   }
+
 
   void changeSurahIndex(int index) {
     readingSettings.surahIndex = index;

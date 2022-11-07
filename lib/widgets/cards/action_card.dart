@@ -1,8 +1,6 @@
-import 'package:fabrikod_quran/constants/extensions.dart';
+import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-
-import '../../constants/images.dart';
 
 class ActionCard extends StatelessWidget {
   const ActionCard(
@@ -10,17 +8,23 @@ class ActionCard extends StatelessWidget {
       this.playButtonOnTap,
       this.favoriteButtonOnTap,
       this.bookmarkButtonOnTap,
+      this.copyButtonOnTap,
       this.shareButtonOnTap,
-      this.settingsButtonOnTap,
+      this.isPlaying = false,
+      this.isFavorite = false,
+      this.isBookmark = false,
       this.verseKey})
       : super(key: key);
 
   final String? verseKey;
+  final bool isPlaying;
+  final bool isFavorite;
+  final bool isBookmark;
   final Function()? playButtonOnTap;
   final Function()? favoriteButtonOnTap;
   final Function()? bookmarkButtonOnTap;
+  final Function()? copyButtonOnTap;
   final Function()? shareButtonOnTap;
-  final Function()? settingsButtonOnTap;
 
   @override
   Widget build(BuildContext context) {
@@ -50,40 +54,79 @@ class ActionCard extends StatelessWidget {
               const SizedBox(width: 10),
               GestureDetector(
                 onTap: playButtonOnTap,
-                child: SvgPicture.asset(ImageConstants.playActiveIcon,
-                    color: context.theme.iconTheme.color),
+                child: SvgPicture.asset(
+                  isPlaying ? ImageConstants.stopActiveIcon : ImageConstants.playActiveIcon,
+                  color: context.theme.iconTheme.color,
+                ),
               ),
               const SizedBox(width: 10),
               GestureDetector(
                 onTap: favoriteButtonOnTap,
                 child: Icon(
-                  Icons.favorite_border_outlined,
+                  isFavorite ? Icons.favorite_outlined : Icons.favorite_border_outlined,
                   color: context.theme.iconTheme.color,
                 ),
               ),
               const SizedBox(width: 10),
               GestureDetector(
                 onTap: bookmarkButtonOnTap,
-                child: SvgPicture.asset(ImageConstants.bookmarkActiveIcon,
-                    color: context.theme.iconTheme.color),
+                child: SvgPicture.asset(
+                  isBookmark
+                      ? ImageConstants.bookmarkActiveIcon
+                      : ImageConstants.bookmarkInactiveIcon,
+                  color: context.theme.iconTheme.color,
+                ),
               ),
-              const SizedBox(width: 10),
-              GestureDetector(
-                onTap: shareButtonOnTap,
-                child: SvgPicture.asset(ImageConstants.shareAppIcon,
-                    color: context.theme.iconTheme.color),
-              )
             ],
           ),
-          GestureDetector(
-            onTap: settingsButtonOnTap,
-            child: Padding(
-              padding: const EdgeInsets.only(right: 8.0),
-              child: Icon(
-                Icons.more_horiz_outlined,
-                color: context.theme.iconTheme.color,
-              ),
+          PopupMenuButton<String>(
+            icon: Icon(
+              Icons.more_horiz_outlined,
+              color: context.theme.iconTheme.color,
             ),
+            elevation: 0,
+            color: context.theme.toggleButtonsTheme.selectedColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(kPaddingDefault),
+            ),
+            itemBuilder: (BuildContext context) => [
+              PopupMenuItem<String>(
+                onTap: copyButtonOnTap,
+                child: Row(
+                  children: [
+                    Icon(
+                      Icons.copy_outlined,
+                      color: context.theme.toggleButtonsTheme.textStyle?.color,
+                    ),
+                    const SizedBox(width: kPaddingDefault),
+                    Text(
+                      context.translate.copy,
+                      style: context.theme.textTheme.titleLarge?.copyWith(
+                        color: context.theme.toggleButtonsTheme.textStyle?.color,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+              PopupMenuItem<String>(
+                onTap: shareButtonOnTap,
+                child: Row(
+                  children: [
+                    SvgPicture.asset(
+                      ImageConstants.shareAppIcon,
+                      color: context.theme.toggleButtonsTheme.textStyle?.color,
+                    ),
+                    const SizedBox(width: kPaddingDefault),
+                    Text(
+                      context.translate.share,
+                      style: context.theme.textTheme.titleLarge?.copyWith(
+                        color: context.theme.toggleButtonsTheme.textStyle?.color,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ],
           ),
         ],
       ),

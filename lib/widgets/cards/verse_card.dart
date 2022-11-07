@@ -1,27 +1,43 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
+import 'package:fabrikod_quran/providers/bookmark_provider.dart';
+import 'package:fabrikod_quran/providers/favorites_provider.dart';
+import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/widgets/cards/action_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 class VerseCard extends StatelessWidget {
   const VerseCard({Key? key, required this.verseModel}) : super(key: key);
 
-  /// Getting verse information
+  /// Verse model
   final VerseModel verseModel;
 
   @override
   Widget build(BuildContext context) {
     return Column(
       children: [
-        buildVerseActionCart,
+        buildVerseActionCart(context),
         buildVerse(context),
       ],
     );
   }
 
-  /// The header of the card
-  Widget get buildVerseActionCart {
-    return ActionCard(verseKey: verseModel.verseKey);
+  /// The header of the action card
+  Widget buildVerseActionCart(BuildContext context) {
+    bool isFavorite = context.watch<FavoritesProvider>().isFavoriteVerse(verseModel);
+    bool isBookmarked = context.watch<BookMarkProvider>().isBookmarkVerse(verseModel);
+    return ActionCard(
+      verseKey: verseModel.verseKey,
+      isFavorite: isFavorite,
+      favoriteButtonOnTap: () => isFavorite
+          ? context.read<FavoritesProvider>().deleteVerseFromFavorites(verseModel)
+          : context.read<FavoritesProvider>().addVerseToFavorite(verseModel),
+      isBookmark: isBookmarked,
+      bookmarkButtonOnTap: () => isBookmarked
+          ? context.read<BookMarkProvider>().deleteBookmarkVerse(verseModel)
+          : context.read<BookMarkProvider>().addBookmarkVerse(verseModel),
+    );
   }
 
   Widget buildVerse(BuildContext context) {
@@ -62,7 +78,13 @@ class VerseCard extends StatelessWidget {
       children: [
         Flexible(
           child: Text(
-            "Test Data",
+            context
+                    .watch<QuranProvider>()
+                    .verseTranslation
+                    ?.translations
+                    ?.elementAt(verseModel.id! - 1)
+                    .text ??
+                "",
             style: context.theme.textTheme.titleSmall,
           ),
         ),
