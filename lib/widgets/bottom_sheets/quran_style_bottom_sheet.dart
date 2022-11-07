@@ -1,12 +1,12 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/widgets/buttons/custom_toggle_buttons.dart';
 import 'package:fabrikod_quran/widgets/cards/font_slider_card.dart';
-import 'package:fabrikod_quran/widgets/cards/font_type_card.dart';
 import 'package:flutter/material.dart';
+
+import '../cards/font_type_card.dart';
 
 class QuranStyleBottomSheet extends StatefulWidget {
   const QuranStyleBottomSheet({super.key});
-
 
   /// Method [show] called to display the bottom sheet
   static show(BuildContext context) {
@@ -14,9 +14,9 @@ class QuranStyleBottomSheet extends StatefulWidget {
       context: context,
       builder: (_) => const QuranStyleBottomSheet(),
       backgroundColor: Colors.transparent,
-      barrierColor: context.theme.toggleButtonsTheme.disabledColor?.withOpacity(0.3),
+      barrierColor:
+          context.theme.toggleButtonsTheme.disabledColor?.withOpacity(0.3),
       elevation: 0,
-      
     );
   }
 
@@ -28,7 +28,7 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      decoration:  BoxDecoration(
+      decoration: BoxDecoration(
         color: context.theme.backgroundColor,
         borderRadius: const BorderRadius.only(
           topLeft: Radius.circular(20.0),
@@ -41,38 +41,14 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            Text(
-              context.translate.quranType,
-              style: context.theme.textTheme.headlineMedium!
-                  .copyWith(color: context.theme.toggleButtonsTheme.borderColor),
-              textAlign: TextAlign.start,
-            ),
+            buildReadingStyleLabel(context),
             const SizedBox(height: kPaddingDefault),
-            buildCustomToggleButton(context),
+            buildReadingStyleButtons(context),
             const SizedBox(height: kPaddingDefault * 2),
-            Text(
-              context.translate.readingStyle,
-              style: context.theme.textTheme.headlineMedium!
-                  .copyWith(color: context.theme.toggleButtonsTheme.borderColor),
-              textAlign: TextAlign.start,
-            ),
-            const SizedBox(height: kPaddingDefault),
-            buildSecondaryCustomToggleButton(context),
-            const SizedBox(height: kPaddingDefault * 2),
-            Text(
-              context.translate.fontSize,
-              style: context.theme.textTheme.headlineMedium!
-                  .copyWith(color: context.theme.toggleButtonsTheme.borderColor),
-              textAlign: TextAlign.start,
-            ),
+            buildFontSizeLabel(context),
             const FontSliderCard(),
             const SizedBox(height: kPaddingDefault * 2),
-            Text(
-              context.translate.fontType,
-              style: context.theme.textTheme.headlineMedium!
-                  .copyWith(color: context.theme.toggleButtonsTheme.borderColor),
-              textAlign: TextAlign.start,
-            ),
+            buildFontStyleLabel(context),
             const SizedBox(height: kPaddingDefault),
             const FontTypeCard(text: "Deneme")
           ],
@@ -81,19 +57,38 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
     );
   }
 
-  /// [CustomToggleButtons]
-  Widget buildCustomToggleButton(BuildContext context) {
-    return CustomToggleButtons(
-      buttonTitles: [
-        context.translate.scroll,
-        context.translate.mushaf,
-      ],
-      onTap: (int index) {},
-      selectedIndex: 0,
+  /// Font style label
+  Text buildFontStyleLabel(BuildContext context) {
+    return Text(
+      context.translate.fontType,
+      style: context.theme.textTheme.headlineMedium!
+          .copyWith(color: context.theme.toggleButtonsTheme.borderColor),
+      textAlign: TextAlign.start,
     );
   }
 
-  Widget buildSecondaryCustomToggleButton(BuildContext context) {
+  /// Font Size label
+  Text buildFontSizeLabel(BuildContext context) {
+    return Text(
+      context.translate.fontSize,
+      style: context.theme.textTheme.headlineMedium!
+          .copyWith(color: context.theme.toggleButtonsTheme.borderColor),
+      textAlign: TextAlign.start,
+    );
+  }
+
+  /// Reading style label
+  Text buildReadingStyleLabel(BuildContext context) {
+    return Text(
+      context.translate.readingStyle,
+      style: context.theme.textTheme.headlineMedium!
+          .copyWith(color: context.theme.toggleButtonsTheme.borderColor),
+      textAlign: TextAlign.start,
+    );
+  }
+
+  /// Reading style buttons from the [CustomToggleButtons]
+  Widget buildReadingStyleButtons(BuildContext context) {
     return CustomToggleButtons(
       buttonTitles: [
         context.translate.all,
