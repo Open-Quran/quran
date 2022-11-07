@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 class QuranStyleBottomSheet extends StatefulWidget {
   const QuranStyleBottomSheet({super.key});
 
+
+  /// Method [show] called to display the bottom sheet
   static show(BuildContext context) {
     return showModalBottomSheet(
       context: context,
@@ -55,7 +57,7 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
               textAlign: TextAlign.start,
             ),
             const SizedBox(height: kPaddingDefault),
-            buildSecondryCustomToggleButton(context),
+            buildSecondaryCustomToggleButton(context),
             const SizedBox(height: kPaddingDefault * 2),
             Text(
               context.translate.fontSize,
@@ -79,6 +81,7 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
     );
   }
 
+  /// [CustomToggleButtons]
   Widget buildCustomToggleButton(BuildContext context) {
     return CustomToggleButtons(
       buttonTitles: [
@@ -90,7 +93,7 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
     );
   }
 
-  Widget buildSecondryCustomToggleButton(BuildContext context) {
+  Widget buildSecondaryCustomToggleButton(BuildContext context) {
     return CustomToggleButtons(
       buttonTitles: [
         context.translate.all,

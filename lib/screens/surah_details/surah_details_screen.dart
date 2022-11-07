@@ -2,7 +2,7 @@ import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/screens/surah_details/mushaf_screen.dart';
 import 'package:fabrikod_quran/widgets/basmala_title.dart';
-import 'package:fabrikod_quran/widgets/bottom_sheets/quran_style_bottom_sheets.dart';
+import 'package:fabrikod_quran/widgets/bottom_sheets/quran_style_bottom_sheet.dart';
 import 'package:fabrikod_quran/widgets/buttons/custom_toggle_buttons.dart';
 import 'package:fabrikod_quran/widgets/cards/verse_card.dart';
 import 'package:fabrikod_quran/widgets/drawer/custom_drawer.dart';
