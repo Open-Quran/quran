@@ -9,6 +9,7 @@ import 'package:fabrikod_quran/widgets/drawer/custom_drawer.dart';
 import 'package:fabrikod_quran/widgets/drawer/custom_drawer_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class SurahDetailsScreen extends StatefulWidget {
   const SurahDetailsScreen({Key? key}) : super(key: key);
@@ -53,11 +54,7 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
         context.translate.translation,
         context.translate.reading,
       ],
-      selectedIndex: context
-          .watch<SurahDetailsProvider>()
-          .readingSettings
-          .readingType
-          .index,
+      selectedIndex: context.watch<SurahDetailsProvider>().readingSettings.readingType.index,
       onTap: context.read<SurahDetailsProvider>().changeReadingType,
     );
   }
@@ -73,26 +70,22 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
 
   /// Listing Verses
   Widget get buildVerseList {
-    var verses =
-        context.watch<SurahDetailsProvider>().versesOfReadingTypeTranslation;
-
-    return ListView.separated(
+    var verses = context.watch<SurahDetailsProvider>().versesOfReadingTypeTranslation;
+    return ScrollablePositionedList.separated(
       itemCount: verses.length,
+      itemScrollController: context.read<SurahDetailsProvider>().itemScrollController,
+      itemPositionsListener: context.read<SurahDetailsProvider>().itemPositionsListener,
       itemBuilder: (context, index) => Column(
         children: [
           BasmalaTitle(
             verseKey: verses[index].verseKey ?? "",
-            isName: context
-                    .read<SurahDetailsProvider>()
-                    .readingSettings
-                    .surahDetailScreenMod ==
+            isName: context.read<SurahDetailsProvider>().readingSettings.surahDetailScreenMod ==
                 ESurahDetailScreenMod.juz,
           ),
           VerseCard(verseModel: verses[index]),
         ],
       ),
-      separatorBuilder: (context, index) =>
-          const SizedBox(height: kPaddingContentSpaceBetween),
+      separatorBuilder: (context, index) => const SizedBox(height: kPaddingContentSpaceBetween),
     );
   }
 
