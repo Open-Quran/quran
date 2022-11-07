@@ -22,7 +22,9 @@ class MushafScreen extends StatelessWidget {
         return Column(
           children: [
             buildSurah(context, surahs[index]),
-            index == surahs.length - 1 ? buildButtons(context) : const SizedBox(),
+            index == surahs.length - 1
+                ? buildButtons(context)
+                : const SizedBox(),
           ],
         );
       },
@@ -61,18 +63,21 @@ class MushafScreen extends StatelessWidget {
   }
 
   Widget buildButtons(BuildContext context) {
-    int pageNumber = context.watch<SurahDetailsProvider>().readingSettings.mushafPageNumber;
+    int pageNumber =
+        context.watch<SurahDetailsProvider>().readingSettings.mushafPageNumber;
     return Row(
       children: [
         Expanded(
           child: Opacity(
-            opacity: pageNumber < 2 ? 0.2 : 1.0,
+            opacity: pageNumber > 603 ? 0.2 : 1.0,
             child: CustomButton(
-              title: context.translate.previousPage,
+              title: context.translate.nextPage,
               height: 55,
-              onTap: pageNumber < 2
+              onTap: pageNumber > 603
                   ? null
-                  : () => context.read<SurahDetailsProvider>().changeMushafPage(--pageNumber),
+                  : () => context
+                      .read<SurahDetailsProvider>()
+                      .changeMushafPage(++pageNumber),
             ),
           ),
         ),
@@ -87,21 +92,23 @@ class MushafScreen extends StatelessWidget {
           child: Center(
             child: Text(
               pageNumber.toString(),
-              style: context.theme.toggleButtonsTheme.textStyle!
-                  .copyWith(color: context.theme.toggleButtonsTheme.textStyle!.color),
+              style: context.theme.toggleButtonsTheme.textStyle!.copyWith(
+                  color: context.theme.toggleButtonsTheme.textStyle!.color),
             ),
           ),
         ),
         const SizedBox(width: kPaddingDefault),
         Expanded(
           child: Opacity(
-            opacity: pageNumber > 603 ? 0.2 : 1.0,
+            opacity: pageNumber < 2 ? 0.2 : 1.0,
             child: CustomButton(
-              title: context.translate.nextPage,
+              title: context.translate.previousPage,
               height: 55,
-              onTap: pageNumber > 603
+              onTap: pageNumber < 2
                   ? null
-                  : () => context.read<SurahDetailsProvider>().changeMushafPage(++pageNumber),
+                  : () => context
+                      .read<SurahDetailsProvider>()
+                      .changeMushafPage(--pageNumber),
             ),
           ),
         ),
