@@ -67,7 +67,7 @@ class Meta {
   Meta.fromJson(Map<String, dynamic> json) {
     translationName = json['translation_name'];
     authorName = json['author_name'];
-    resourceId = json['filters']['resource_id'];
+    resourceId = json['resource_id'];
   }
 
   Map<String, dynamic> toJson() {
