@@ -125,4 +125,9 @@ class SurahDetailsProvider extends ChangeNotifier {
     readingSettings.mushafPageNumber = index;
     notifyListeners();
   }
+
+  void changeReadingMode() {
+    readingSettings.isReadingMode = !readingSettings.isReadingMode;
+    notifyListeners();
+  }
 }

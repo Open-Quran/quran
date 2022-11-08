@@ -4,6 +4,7 @@ class ReadingSettingsModel {
   late EReadingType readingType;
 
   late ESurahDetailScreenMod surahDetailScreenMod;
+  bool isReadingMode = false;
   int surahIndex = 0;
   int surahVerseIndex = 0;
   int juzIndex = 0;
@@ -13,6 +14,7 @@ class ReadingSettingsModel {
   ReadingSettingsModel({
     this.readingType = EReadingType.translation,
     this.surahDetailScreenMod = ESurahDetailScreenMod.surah,
+    this.isReadingMode = false,
     this.surahIndex = 0,
     this.surahVerseIndex = 0,
     this.juzIndex = 0,

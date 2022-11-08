@@ -24,23 +24,17 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
     return CustomDrawerScaffold(
       appBarTitle: context.watch<SurahDetailsProvider>().appBarTitle,
       drawer: const CustomDrawer(),
-      onTapMore: () {
-        QuranStyleBottomSheet.show(context);
-      },
+      onTapMore: () => QuranStyleBottomSheet.show(context),
       body: buildBody,
     );
   }
 
   Widget get buildBody {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-        vertical: kPaddingVertical,
-        horizontal: kPaddingHorizontal,
-      ),
+      padding: const EdgeInsets.symmetric(horizontal: kPaddingHorizontal),
       child: Column(
         children: [
           buildTranslationOrReadingSwitch,
-          const SizedBox(height: kPaddingHorizontal),
           Expanded(child: buildTranslationOrReading),
         ],
       ),
@@ -49,13 +43,19 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
 
   /// Switch [translation] or [reading]
   Widget get buildTranslationOrReadingSwitch {
-    return CustomToggleButtons(
-      buttonTitles: [
-        context.translate.translation,
-        context.translate.reading,
-      ],
-      selectedIndex: context.watch<SurahDetailsProvider>().readingSettings.readingType.index,
-      onTap: context.read<SurahDetailsProvider>().changeReadingType,
+    return Visibility(
+      visible: !context.watch<SurahDetailsProvider>().readingSettings.isReadingMode,
+      child: Padding(
+        padding: const EdgeInsets.only(top: kPaddingVertical),
+        child: CustomToggleButtons(
+          buttonTitles: [
+            context.translate.translation,
+            context.translate.reading,
+          ],
+          selectedIndex: context.watch<SurahDetailsProvider>().readingSettings.readingType.index,
+          onTap: context.read<SurahDetailsProvider>().changeReadingType,
+        ),
+      ),
     );
   }
 
@@ -64,33 +64,33 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
       case EReadingType.translation:
         return buildVerseList;
       case EReadingType.reading:
-        return buildMushaf;
+        return const MushafScreen();
     }
   }
 
   /// Listing Verses
   Widget get buildVerseList {
     var verses = context.watch<SurahDetailsProvider>().versesOfReadingTypeTranslation;
-    return ScrollablePositionedList.separated(
-      itemCount: verses.length,
-      itemScrollController: context.read<SurahDetailsProvider>().itemScrollController,
-      itemPositionsListener: context.read<SurahDetailsProvider>().itemPositionsListener,
-      itemBuilder: (context, index) => Column(
-        children: [
-          BasmalaTitle(
-            verseKey: verses[index].verseKey ?? "",
-            isName: context.read<SurahDetailsProvider>().readingSettings.surahDetailScreenMod ==
-                ESurahDetailScreenMod.juz,
-          ),
-          VerseCard(verseModel: verses[index]),
-        ],
+    return InkWell(
+      onTap: context.read<SurahDetailsProvider>().changeReadingMode,
+      child: ScrollablePositionedList.separated(
+        itemCount: verses.length,
+        itemScrollController: context.read<SurahDetailsProvider>().itemScrollController,
+        itemPositionsListener: context.read<SurahDetailsProvider>().itemPositionsListener,
+        padding: const EdgeInsets.symmetric(vertical: kPaddingHorizontal),
+        physics: const ClampingScrollPhysics(),
+        itemBuilder: (context, index) => Column(
+          children: [
+            BasmalaTitle(
+              verseKey: verses[index].verseKey ?? "",
+              isName: context.read<SurahDetailsProvider>().readingSettings.surahDetailScreenMod ==
+                  ESurahDetailScreenMod.juz,
+            ),
+            VerseCard(verseModel: verses[index]),
+          ],
+        ),
+        separatorBuilder: (context, index) => const SizedBox(height: kPaddingContentSpaceBetween),
       ),
-      separatorBuilder: (context, index) => const SizedBox(height: kPaddingContentSpaceBetween),
     );
-  }
-
-  Widget get buildMushaf {
-    var surahs = context.watch<SurahDetailsProvider>().surahsOfMushafPage;
-    return MushafScreen(surahs: surahs);
   }
 }
