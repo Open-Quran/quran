@@ -80,13 +80,13 @@ class MushafScreen extends StatelessWidget {
           children: [
             Expanded(
               child: Opacity(
-                opacity: pageNumber < 2 ? 0.2 : 1.0,
+                opacity: pageNumber > 603 ? 0.2 : 1.0,
                 child: CustomButton(
-                  title: context.translate.previousPage,
+                  title: context.translate.nextPage,
                   height: 55,
-                  onTap: pageNumber < 2
+                  onTap: pageNumber > 603
                       ? null
-                      : () => context.read<SurahDetailsProvider>().changeMushafPage(--pageNumber),
+                      : () => context.read<SurahDetailsProvider>().changeMushafPage(++pageNumber),
                 ),
               ),
             ),
@@ -109,13 +109,13 @@ class MushafScreen extends StatelessWidget {
             const SizedBox(width: kPaddingDefault),
             Expanded(
               child: Opacity(
-                opacity: pageNumber > 603 ? 0.2 : 1.0,
+                opacity: pageNumber < 2 ? 0.2 : 1.0,
                 child: CustomButton(
-                  title: context.translate.nextPage,
+                  title: context.translate.previousPage,
                   height: 55,
-                  onTap: pageNumber > 603
+                  onTap: pageNumber < 2
                       ? null
-                      : () => context.read<SurahDetailsProvider>().changeMushafPage(++pageNumber),
+                      : () => context.read<SurahDetailsProvider>().changeMushafPage(--pageNumber),
                 ),
               ),
             ),
