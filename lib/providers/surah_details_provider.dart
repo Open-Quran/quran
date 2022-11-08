@@ -7,16 +7,31 @@ import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class SurahDetailsProvider extends ChangeNotifier {
   /// Class Constructor
-  SurahDetailsProvider(this._context, this.readingSettings);
+  SurahDetailsProvider(this._context, this.readingSettings) {
+    itemPositionsListener.itemPositions.addListener(scrollListener);
+  }
 
   /// Detail Screen Context
   final BuildContext _context;
 
   /// Reading settings model
   late ReadingSettingsModel readingSettings;
+
+  /// Scroll Controller for Verse List
+  final ItemScrollController itemScrollController = ItemScrollController();
+
+  /// Item position listener of Verse list
+  final ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
+
+  /// Scroll Listener
+  void scrollListener() {
+    if (readingSettings.surahDetailScreenMod != ESurahDetailScreenMod.surah) return;
+    readingSettings.surahVerseIndex = itemPositionsListener.itemPositions.value.first.index;
+  }
 
   /// Get [QuranProvider]
   QuranProvider get quranProvider => _context.read<QuranProvider>();
@@ -70,6 +85,9 @@ class SurahDetailsProvider extends ChangeNotifier {
   /// EX: [Translation] or [Reading]
   void changeReadingType(int index) {
     readingSettings.readingType = EReadingType.values.elementAt(index);
+    if (readingSettings.readingType == EReadingType.reading) {
+      readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber ?? 1;
+    }
     notifyListeners();
   }
 
@@ -83,11 +101,17 @@ class SurahDetailsProvider extends ChangeNotifier {
   void changeSurahIndex(int index) {
     readingSettings.surahIndex = index;
     readingSettings.surahVerseIndex = 0;
+    if (readingSettings.readingType == EReadingType.translation) {
+      itemScrollController.jumpTo(index: 0);
+    }
     notifyListeners();
   }
 
   void changeSurahVerseIndex(int index) {
     readingSettings.surahVerseIndex = index;
+    if (readingSettings.readingType == EReadingType.translation) {
+      itemScrollController.jumpTo(index: index);
+    }
     notifyListeners();
   }
 
@@ -104,6 +128,11 @@ class SurahDetailsProvider extends ChangeNotifier {
 
   void changeMushafPage(int index) {
     readingSettings.mushafPageNumber = index;
+    notifyListeners();
+  }
+
+  void changeReadingMode() {
+    readingSettings.isReadingMode = !readingSettings.isReadingMode;
     notifyListeners();
   }
 }
