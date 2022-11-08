@@ -87,6 +87,9 @@ class SurahDetailsProvider extends ChangeNotifier {
   /// EX: [Translation] or [Reading]
   void changeReadingType(int index) {
     readingSettings.readingType = EReadingType.values.elementAt(index);
+    if (readingSettings.readingType == EReadingType.reading) {
+      readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber ?? 1;
+    }
     notifyListeners();
   }
 
@@ -100,13 +103,17 @@ class SurahDetailsProvider extends ChangeNotifier {
   void changeSurahIndex(int index) {
     readingSettings.surahIndex = index;
     readingSettings.surahVerseIndex = 0;
-    itemScrollController.jumpTo(index: 0);
+    if (readingSettings.readingType == EReadingType.translation) {
+      itemScrollController.jumpTo(index: 0);
+    }
     notifyListeners();
   }
 
   void changeSurahVerseIndex(int index) {
     readingSettings.surahVerseIndex = index;
-    itemScrollController.jumpTo(index: index);
+    if (readingSettings.readingType == EReadingType.translation) {
+      itemScrollController.jumpTo(index: index);
+    }
     notifyListeners();
   }
 
