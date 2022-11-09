@@ -12,8 +12,6 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 class SurahDetailsProvider extends ChangeNotifier {
   /// Class Constructor
   SurahDetailsProvider(this._context, this.readingSettings) {
-    if (quranProvider.verseTranslation != null) return;
-    quranProvider.getVerseTranslation(appSettingsProvider.appLocale!.languageCode);
     itemPositionsListener.itemPositions.addListener(scrollListener);
   }
 
