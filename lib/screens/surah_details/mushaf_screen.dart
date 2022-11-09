@@ -5,6 +5,7 @@ import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/widgets/basmala_title.dart';
 import 'package:fabrikod_quran/widgets/buttons/custom_button.dart';
 import 'package:fabrikod_quran/widgets/cards/action_card.dart';
+import 'package:fabrikod_quran/widgets/number_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -22,7 +23,9 @@ class MushafScreen extends StatelessWidget {
         return Column(
           children: [
             buildSurah(context, surahs[index]),
-            index == surahs.length - 1 ? buildButtons(context) : const SizedBox(),
+            index == surahs.length - 1
+                ? buildButtons(context)
+                : const SizedBox(),
           ],
         );
       },
@@ -44,24 +47,40 @@ class MushafScreen extends StatelessWidget {
   }
 
   Widget buildVersesText(BuildContext context, List<VerseModel> verses) {
-    return RichText(
+    return Directionality(
       textDirection: TextDirection.rtl,
-      textAlign: TextAlign.justify,
-      text: TextSpan(
-        style: context.theme.textTheme.headlineLarge,
-        children: verses
-            .map(
-              (e) => TextSpan(
-                children: [TextSpan(text: e.text!)],
-              ),
-            )
-            .toList(),
+      child: RichText(
+        // textDirection: TextDirection.rtl,
+        //textAlign: TextAlign.justify,
+        text: TextSpan(
+          style: context.theme.textTheme.headlineLarge,
+          children: verses
+              .map(
+                (e) => TextSpan(
+                  children: [
+                    TextSpan(text: e.text!),
+                    WidgetSpan(
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(horizontal: 5),
+                        child: NumberIcon(
+                          number: e.verseNumber ?? 0,
+                          isArabic: false,
+                          size: 30,
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              )
+              .toList(),
+        ),
       ),
     );
   }
 
   Widget buildButtons(BuildContext context) {
-    int pageNumber = context.watch<SurahDetailsProvider>().readingSettings.mushafPageNumber;
+    int pageNumber =
+        context.watch<SurahDetailsProvider>().readingSettings.mushafPageNumber;
     return Row(
       children: [
         Expanded(
@@ -72,7 +91,9 @@ class MushafScreen extends StatelessWidget {
               height: 55,
               onTap: pageNumber < 2
                   ? null
-                  : () => context.read<SurahDetailsProvider>().changeMushafPage(--pageNumber),
+                  : () => context
+                      .read<SurahDetailsProvider>()
+                      .changeMushafPage(--pageNumber),
             ),
           ),
         ),
@@ -87,8 +108,8 @@ class MushafScreen extends StatelessWidget {
           child: Center(
             child: Text(
               pageNumber.toString(),
-              style: context.theme.toggleButtonsTheme.textStyle!
-                  .copyWith(color: context.theme.toggleButtonsTheme.textStyle!.color),
+              style: context.theme.toggleButtonsTheme.textStyle!.copyWith(
+                  color: context.theme.toggleButtonsTheme.textStyle!.color),
             ),
           ),
         ),
@@ -101,7 +122,9 @@ class MushafScreen extends StatelessWidget {
               height: 55,
               onTap: pageNumber > 603
                   ? null
-                  : () => context.read<SurahDetailsProvider>().changeMushafPage(++pageNumber),
+                  : () => context
+                      .read<SurahDetailsProvider>()
+                      .changeMushafPage(++pageNumber),
             ),
           ),
         ),

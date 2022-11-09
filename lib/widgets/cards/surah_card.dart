@@ -1,6 +1,7 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/surah_model.dart';
+import 'package:fabrikod_quran/widgets/number_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -8,7 +9,8 @@ class SurahCard extends StatelessWidget {
   final SurahModel surahModel;
   final Function() onTap;
 
-  const SurahCard({Key? key, required this.surahModel, required this.onTap}) : super(key: key);
+  const SurahCard({Key? key, required this.surahModel, required this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,7 +22,7 @@ class SurahCard extends StatelessWidget {
           children: [
             Row(
               children: [
-                buildSurahNumber(context),
+                NumberIcon(number: surahModel.id ?? 0),
                 const SizedBox(width: kPaddingContentSpaceBetween),
                 Expanded(child: buildSurahDetail(context)),
                 const SizedBox(width: kPaddingContentSpaceBetween),
@@ -32,32 +34,6 @@ class SurahCard extends StatelessWidget {
           ],
         ),
       ),
-    );
-  }
-
-  Widget buildSurahNumber(BuildContext context) {
-    return Stack(
-      alignment: AlignmentDirectional.center,
-      children: [
-        SvgPicture.asset(
-          ImageConstants.surahNumberFrame,
-          color: context.theme.appBarTheme.titleTextStyle?.color,
-        ),
-        Positioned.fill(
-          child: Center(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: kPaddingDefault),
-              child: AutoSizeText(
-                surahModel.id.toString(),
-                maxLines: 1,
-                textAlign: TextAlign.center,
-                style: context.theme.textTheme.titleLarge
-                    ?.copyWith(color: context.theme.backgroundColor),
-              ),
-            ),
-          ),
-        )
-      ],
     );
   }
 
