@@ -59,6 +59,8 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
     );
   }
 
+  /// Switch toggles
+  /// [EReadingType.translation] and [EReadingType.reading]
   Widget get buildTranslationOrReading {
     switch (context.watch<SurahDetailsProvider>().readingSettings.readingType) {
       case EReadingType.translation:
