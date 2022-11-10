@@ -33,6 +33,7 @@ dependencies:
   auto_size_text: ^3.0.0
   custom_sliding_segmented_control: ^1.7.2
   syncfusion_flutter_sliders: ^20.3.52
+  scrollable_positioned_list: ^0.3.5
 
   # Local Database
   get_storage: ^2.0.3                                     # Store data locally
