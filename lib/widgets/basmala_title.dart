@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:flutter/material.dart';
@@ -30,9 +31,10 @@ class BasmalaTitle extends StatelessWidget {
                 ? Text(surahName(context), style: context.theme.textTheme.displaySmall)
                 : const SizedBox(),
             SizedBox(height: isName ? kPaddingHorizontal : null),
-            Text(
+            AutoSizeText(
               "بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ",
               textAlign: TextAlign.center,
+              maxLines: 1,
               style: context.theme.textTheme.displayLarge,
             ),
           ],
@@ -41,12 +43,14 @@ class BasmalaTitle extends StatelessWidget {
     );
   }
 
+  /// Returning surah name
   String surahName(BuildContext context) {
     var list = verseKey.split(':');
     int index = int.parse(list.first);
     return context.read<QuranProvider>().surahs[index - 1].nameSimple ?? "";
   }
 
+  /// Remove basmala title from some surahs ex: surah Tawbah
   bool get isBasmalaVisible {
     var list = verseKey.split(':');
     if (list[1] == "1" && verseKey != "9:1" && verseKey != "1:1") return true;

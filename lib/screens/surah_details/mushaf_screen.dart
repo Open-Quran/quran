@@ -5,6 +5,7 @@ import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/widgets/basmala_title.dart';
 import 'package:fabrikod_quran/widgets/buttons/custom_button.dart';
 import 'package:fabrikod_quran/widgets/cards/action_card.dart';
+import 'package:fabrikod_quran/widgets/number_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -61,7 +62,16 @@ class MushafScreen extends StatelessWidget {
           children: verses
               .map(
                 (e) => TextSpan(
-                  children: [TextSpan(text: e.text!)],
+                  children: [TextSpan(text: e.text!), WidgetSpan(
+                    child: Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 5),
+                      child: NumberIcon(
+                        number: e.verseNumber ?? 0,
+                        isArabic: false,
+                        size: 30,
+                      ),
+                    ),
+                  ), ],
                 ),
               )
               .toList(),
