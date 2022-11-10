@@ -1,8 +1,8 @@
 import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
+import 'package:fabrikod_quran/models/bookmark_model.dart';
 import 'package:fabrikod_quran/providers/bookmark_provider.dart';
 import 'package:fabrikod_quran/widgets/app_bars/main_app_bar.dart';
-import 'package:fabrikod_quran/widgets/cards/verse_card.dart';
+import 'package:fabrikod_quran/widgets/cards/bookmark_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -23,16 +23,29 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
   }
 
   Widget get buildBody {
-    List<VerseModel> bookmarkVerses = context.watch<BookMarkProvider>().bookmarkVerses;
+    List<BookMarkModel> bookmarks = context.watch<BookMarkProvider>().bookmarks;
     return ListView.separated(
-      itemCount: bookmarkVerses.length,
+      itemCount: bookmarks.length,
       shrinkWrap: true,
       primary: false,
       padding: const EdgeInsets.symmetric(
         vertical: kPaddingVertical,
         horizontal: kPaddingHorizontal,
       ),
-      itemBuilder: (context, index) => VerseCard(verseModel: bookmarkVerses.elementAt(index)),
+      itemBuilder: (context, index) {
+        var bookmark = bookmarks[index];
+        var isBookmarked = context.read<BookMarkProvider>().isBookmark(bookmark);
+        return BookMarkCard(
+          bookMarkModel: bookmarks.elementAt(index),
+          isBookmark: isBookmarked,
+          bookmarkIconOnTap: () => context.read<BookMarkProvider>().bookmarkIconOnTap(
+                isBookmarked,
+                bookmark.verseModel,
+                bookmark.bookMarkType,
+              ),
+          onTap: () => context.read<BookMarkProvider>().bookmarkOnTap(context, bookmark),
+        );
+      },
       separatorBuilder: (context, index) => const SizedBox(height: kPaddingHorizontal),
     );
   }

@@ -1,4 +1,5 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/models/bookmark_model.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -52,33 +53,33 @@ class LocalDb {
   /// Delete verse model from the favorite list in db
   static Future<List<VerseModel>> deleteVerseFromTheFavorites(VerseModel verseModel) async {
     var favoriteList = getFavoriteVerses;
-    favoriteList.removeWhere((element) => element.id==verseModel.id);
+    favoriteList.removeWhere((element) => element.id == verseModel.id);
     var value = favoriteList.map((e) => e.toJson()).toList();
     await _localDbBox.write('favoriteVerses', value);
     return getFavoriteVerses;
   }
 
-  /// Get bookmarked verses from db
-  static List<VerseModel> get getBookmarkVerses {
-    var bookmarkList = (_localDbBox.read('bookmarkVerses') as List?) ?? [];
-    return bookmarkList.map((e) => VerseModel.fromJson(e)).toList().cast<VerseModel>();
+  /// Get bookmarks from db
+  static List<BookMarkModel> get getBookmarks {
+    var bookmarkList = (_localDbBox.read('bookmarks') as List?) ?? [];
+    return bookmarkList.map((e) => BookMarkModel.fromJson(e)).toList().cast<BookMarkModel>();
   }
 
-  /// Add verse model into bookmark list in db
-  static Future<List<VerseModel>> addBookmarkedVerse(VerseModel verseModel) async {
-    var bookmarkList = getBookmarkVerses;
-    bookmarkList.add(verseModel);
+  /// Add bookmark in db
+  static Future<List<BookMarkModel>> addBookmarked(BookMarkModel bookMark) async {
+    var bookmarkList = getBookmarks;
+    bookmarkList.add(bookMark);
     var value = bookmarkList.map((e) => e.toJson()).toList();
-    await _localDbBox.write('bookmarkVerses', value);
-    return getBookmarkVerses;
+    await _localDbBox.write('bookmarks', value);
+    return getBookmarks;
   }
 
-  /// Delete verse model from the bookmark list from db
-  static Future<List<VerseModel>> deleteBookmarkedVerse(VerseModel verseModel) async {
-    var bookmarkList = getBookmarkVerses;
-    bookmarkList.removeWhere((element) => element.id==verseModel.id);
+  /// Delete bookmark from db
+  static Future<List<BookMarkModel>> deleteBookmarked(BookMarkModel bookMark) async {
+    var bookmarkList = getBookmarks;
+    bookmarkList.removeWhere((element) => element == bookMark);
     var value = bookmarkList.map((e) => e.toJson()).toList();
-    await _localDbBox.write('bookmarkVerses', value);
-    return getBookmarkVerses;
+    await _localDbBox.write('bookmarks', value);
+    return getBookmarks;
   }
 }

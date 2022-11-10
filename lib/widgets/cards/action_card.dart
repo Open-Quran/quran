@@ -11,14 +11,14 @@ class ActionCard extends StatelessWidget {
       this.copyButtonOnTap,
       this.shareButtonOnTap,
       this.isPlaying = false,
-      this.isFavorite = false,
+      this.isFavorite,
       this.isBookmark = false,
       this.verseKey})
       : super(key: key);
 
   final String? verseKey;
   final bool isPlaying;
-  final bool isFavorite;
+  final bool? isFavorite;
   final bool isBookmark;
   final Function()? playButtonOnTap;
   final Function()? favoriteButtonOnTap;
@@ -60,13 +60,15 @@ class ActionCard extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 10),
-              GestureDetector(
-                onTap: favoriteButtonOnTap,
-                child: Icon(
-                  isFavorite ? Icons.favorite_outlined : Icons.favorite_border_outlined,
-                  color: context.theme.iconTheme.color,
-                ),
-              ),
+              isFavorite == null
+                  ? const SizedBox()
+                  : GestureDetector(
+                      onTap: favoriteButtonOnTap,
+                      child: Icon(
+                        isFavorite! ? Icons.favorite_outlined : Icons.favorite_border_outlined,
+                        color: context.theme.iconTheme.color,
+                      ),
+                    ),
               const SizedBox(width: 10),
               GestureDetector(
                 onTap: bookmarkButtonOnTap,

@@ -1,6 +1,8 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/models/bookmark_model.dart';
 import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
+import 'package:fabrikod_quran/providers/bookmark_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/widgets/basmala_title.dart';
 import 'package:fabrikod_quran/widgets/buttons/custom_button.dart';
@@ -38,7 +40,7 @@ class MushafScreen extends StatelessWidget {
     return Column(
       children: [
         BasmalaTitle(verseKey: surah.verses.first.verseKey ?? ""),
-        const ActionCard(),
+        buildActionCard(context, surah.verses.first),
         const SizedBox(height: kPaddingHorizontal),
         buildVersesText(context, surah.verses),
         const SizedBox(height: kPaddingHorizontal),
@@ -46,26 +48,33 @@ class MushafScreen extends StatelessWidget {
     );
   }
 
+  Widget buildActionCard(BuildContext context, VerseModel verseModel) {
+    bool isBookmarked = context.watch<BookMarkProvider>().isBookmark(
+          BookMarkModel(verseModel: verseModel, bookMarkType: EBookMarkType.page),
+        );
+    return ActionCard(
+      isBookmark: isBookmarked,
+      bookmarkButtonOnTap: () => context.read<BookMarkProvider>().bookmarkIconOnTap(
+            isBookmarked,
+            verseModel,
+            EBookMarkType.page,
+          ),
+    );
+  }
+
   Widget buildVersesText(BuildContext context, List<VerseModel> verses) {
-    return Container(
-      decoration: BoxDecoration(
-        color: context.theme.cardTheme.color?.withOpacity(0.1),
-        borderRadius: const BorderRadius.all(Radius.circular(10)),
-      ),
-      padding: const EdgeInsets.all(kPaddingContentSpaceBetween),
-      child: RichText(
-        textDirection: TextDirection.rtl,
-        textAlign: TextAlign.justify,
-        text: TextSpan(
-          style: context.theme.textTheme.headlineLarge,
-          children: verses
-              .map(
-                (e) => TextSpan(
-                  children: [TextSpan(text: e.text!)],
-                ),
-              )
-              .toList(),
-        ),
+    return RichText(
+      textDirection: TextDirection.rtl,
+      textAlign: TextAlign.justify,
+      text: TextSpan(
+        style: context.theme.textTheme.headlineLarge,
+        children: verses
+            .map(
+              (e) => TextSpan(
+                children: [TextSpan(text: e.text!)],
+              ),
+            )
+            .toList(),
       ),
     );
   }
