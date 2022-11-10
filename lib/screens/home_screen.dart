@@ -48,7 +48,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  /// Returns Basmala as a picture
+  /// Returns Basmala Title
   Widget get buildBasmala =>
       SvgPicture.asset(ImageConstants.bigBasmalaIcon, color: Theme.of(context).iconTheme.color);
 
@@ -56,14 +56,16 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget get buildSearchBar =>
       CustomSearchBar(focusNode: context.watch<HomeProvider>().searchBarFocusNode);
 
+  /// List of tags under the search
   Widget get buildSearchTags {
     return CustomTagList(
-      ///Todo After then Fixed
+      /// Todo: Change the tags
       tags: const ["Surah", "Juz", "Sajda", "Al-Fatiha", "Al-Fatiha", "Al-Fatiha"],
       selectedTag: (selectedTag) {},
     );
   }
 
+  /// Tab bar in [HomeScreen]
   Widget get buildTabBar {
     return CustomTabBar(
       tabTitles: [

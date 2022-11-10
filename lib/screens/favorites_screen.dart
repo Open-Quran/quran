@@ -23,6 +23,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     );
   }
 
+  /// Main AppBar
   PreferredSizeWidget get buildAppBar {
     return MainAppBar(
       title: context.translate.favorites,

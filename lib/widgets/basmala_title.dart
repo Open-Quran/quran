@@ -43,12 +43,14 @@ class BasmalaTitle extends StatelessWidget {
     );
   }
 
+  /// Returning surah name
   String surahName(BuildContext context) {
     var list = verseKey.split(':');
     int index = int.parse(list.first);
     return context.read<QuranProvider>().surahs[index - 1].nameSimple ?? "";
   }
 
+  /// Remove basmala title from some surahs ex: surah Tawbah
   bool get isBasmalaVisible {
     var list = verseKey.split(':');
     if (list[1] == "1" && verseKey != "9:1" && verseKey != "1:1") return true;
