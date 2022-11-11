@@ -27,8 +27,8 @@ class VerseCard extends StatelessWidget {
   /// The header of the action card
   Widget buildVerseActionCart(BuildContext context) {
     bool isFavorite = context.watch<FavoritesProvider>().isFavoriteVerse(verseModel);
-    bool isBookmarked = context.watch<BookMarkProvider>().isBookmark(
-          BookMarkModel(verseModel: verseModel, bookMarkType: EBookMarkType.verse),
+    bool isBookmarked = context.watch<BookmarkProvider>().isBookmark(
+          BookMarkModel(verseModel: verseModel, bookmarkType: EBookMarkType.verse),
         );
     return ActionCard(
       verseKey: verseModel.verseKey,
@@ -37,7 +37,7 @@ class VerseCard extends StatelessWidget {
           ? context.read<FavoritesProvider>().deleteVerseFromFavorites(verseModel)
           : context.read<FavoritesProvider>().addVerseToFavorite(verseModel),
       isBookmark: isBookmarked,
-      bookmarkButtonOnTap: () => context.read<BookMarkProvider>().bookmarkIconOnTap(
+      bookmarkButtonOnTap: () => context.read<BookmarkProvider>().bookmarkIconOnTap(
             isBookmarked,
             verseModel,
             EBookMarkType.verse,

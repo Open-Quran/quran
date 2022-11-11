@@ -8,9 +8,10 @@ import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class BookMarkProvider extends ChangeNotifier {
+class BookmarkProvider extends ChangeNotifier {
+
   /// Class Constructor
-  BookMarkProvider() {
+  BookmarkProvider() {
     bookmarks = LocalDb.getBookmarks;
   }
 
@@ -34,16 +35,16 @@ class BookMarkProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// onTap for bookmark icons on pages
+  /// onTap bookmark icon for pages
   void bookmarkIconOnTap(bool isBookmarked, VerseModel verse, EBookMarkType bookMarkType) {
-    var bookMark = BookMarkModel(bookMarkType: bookMarkType, verseModel: verse);
+    var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
     isBookmarked ? _deleteBookmarked(bookMark) : _addBookmarked(bookMark);
   }
 
-  ///onTap For bookmark card
+  /// onTap bookmark card
   void bookmarkOnTap(BuildContext context, BookMarkModel bookmark) {
     ReadingSettingsModel model;
-    switch (bookmark.bookMarkType) {
+    switch (bookmark.bookmarkType) {
       case EBookMarkType.verse:
         model = ReadingSettingsModel(
           surahIndex: bookmark.verseModel.surahId! - 1,

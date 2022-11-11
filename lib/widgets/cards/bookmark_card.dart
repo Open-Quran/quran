@@ -5,13 +5,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-class BookMarkCard extends StatelessWidget {
+class BookmarkCard extends StatelessWidget {
   final BookMarkModel bookMarkModel;
   final bool isBookmark;
   final Function()? bookmarkIconOnTap;
   final Function()? onTap;
 
-  const BookMarkCard(
+  const BookmarkCard(
       {Key? key,
       required this.bookMarkModel,
       this.bookmarkIconOnTap,
@@ -65,7 +65,7 @@ class BookMarkCard extends StatelessWidget {
     var surahs = context.watch<QuranProvider>().surahs;
     if (surahs.isEmpty) return "";
     var surahName = surahs[bookMarkModel.verseModel.surahId! - 1].nameSimple ?? "";
-    switch (bookMarkModel.bookMarkType) {
+    switch (bookMarkModel.bookmarkType) {
       case EBookMarkType.verse:
         return "$surahName ${bookMarkModel.verseModel.verseKey}";
       case EBookMarkType.page:

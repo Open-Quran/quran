@@ -47,7 +47,7 @@ class MyApp extends StatelessWidget {
       ChangeNotifierProvider(create: (_) => AppSettingsProvider()),
       ChangeNotifierProvider(create: (_) => QuranProvider()),
       ChangeNotifierProvider(create: (_) => FavoritesProvider()),
-      ChangeNotifierProvider(create: (_) => BookMarkProvider()),
+      ChangeNotifierProvider(create: (_) => BookmarkProvider()),
     ];
   }
 }

@@ -50,12 +50,12 @@ class MushafScreen extends StatelessWidget {
   }
 
   Widget buildActionCard(BuildContext context, VerseModel verseModel) {
-    bool isBookmarked = context.watch<BookMarkProvider>().isBookmark(
-          BookMarkModel(verseModel: verseModel, bookMarkType: EBookMarkType.page),
+    bool isBookmarked = context.watch<BookmarkProvider>().isBookmark(
+          BookMarkModel(verseModel: verseModel, bookmarkType: EBookMarkType.page),
         );
     return ActionCard(
       isBookmark: isBookmarked,
-      bookmarkButtonOnTap: () => context.read<BookMarkProvider>().bookmarkIconOnTap(
+      bookmarkButtonOnTap: () => context.read<BookmarkProvider>().bookmarkIconOnTap(
             isBookmarked,
             verseModel,
             EBookMarkType.page,

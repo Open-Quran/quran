@@ -23,7 +23,7 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
   }
 
   Widget get buildBody {
-    List<BookMarkModel> bookmarks = context.watch<BookMarkProvider>().bookmarks;
+    List<BookMarkModel> bookmarks = context.watch<BookmarkProvider>().bookmarks;
     return ListView.separated(
       itemCount: bookmarks.length,
       shrinkWrap: true,
@@ -34,16 +34,16 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
       ),
       itemBuilder: (context, index) {
         var bookmark = bookmarks[index];
-        var isBookmarked = context.read<BookMarkProvider>().isBookmark(bookmark);
-        return BookMarkCard(
+        var isBookmarked = context.read<BookmarkProvider>().isBookmark(bookmark);
+        return BookmarkCard(
           bookMarkModel: bookmarks.elementAt(index),
           isBookmark: isBookmarked,
-          bookmarkIconOnTap: () => context.read<BookMarkProvider>().bookmarkIconOnTap(
+          bookmarkIconOnTap: () => context.read<BookmarkProvider>().bookmarkIconOnTap(
                 isBookmarked,
                 bookmark.verseModel,
-                bookmark.bookMarkType,
+                bookmark.bookmarkType,
               ),
-          onTap: () => context.read<BookMarkProvider>().bookmarkOnTap(context, bookmark),
+          onTap: () => context.read<BookmarkProvider>().bookmarkOnTap(context, bookmark),
         );
       },
       separatorBuilder: (context, index) => const SizedBox(height: kPaddingHorizontal),
