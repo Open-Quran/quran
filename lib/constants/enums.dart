@@ -15,3 +15,6 @@ enum EToggleButtonTextStyle { selected, disabled }
 
 /// Surah Detail screen Mode
 enum ESurahDetailScreenMod { surah, juz, sajda }
+
+/// Different types of BookMark
+enum EBookMarkType { verse, page }

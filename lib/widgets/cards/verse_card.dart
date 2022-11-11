@@ -1,4 +1,5 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/models/bookmark_model.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/providers/bookmark_provider.dart';
 import 'package:fabrikod_quran/providers/favorites_provider.dart';
@@ -26,7 +27,9 @@ class VerseCard extends StatelessWidget {
   /// The header of the action card
   Widget buildVerseActionCart(BuildContext context) {
     bool isFavorite = context.watch<FavoritesProvider>().isFavoriteVerse(verseModel);
-    bool isBookmarked = context.watch<BookMarkProvider>().isBookmarkVerse(verseModel);
+    bool isBookmarked = context.watch<BookmarkProvider>().isBookmark(
+          BookMarkModel(verseModel: verseModel, bookmarkType: EBookMarkType.verse),
+        );
     return ActionCard(
       verseKey: verseModel.verseKey,
       isFavorite: isFavorite,
@@ -34,9 +37,11 @@ class VerseCard extends StatelessWidget {
           ? context.read<FavoritesProvider>().deleteVerseFromFavorites(verseModel)
           : context.read<FavoritesProvider>().addVerseToFavorite(verseModel),
       isBookmark: isBookmarked,
-      bookmarkButtonOnTap: () => isBookmarked
-          ? context.read<BookMarkProvider>().deleteBookmarkVerse(verseModel)
-          : context.read<BookMarkProvider>().addBookmarkVerse(verseModel),
+      bookmarkButtonOnTap: () => context.read<BookmarkProvider>().bookmarkIconOnTap(
+            isBookmarked,
+            verseModel,
+            EBookMarkType.verse,
+          ),
     );
   }
 
