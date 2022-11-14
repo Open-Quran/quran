@@ -55,7 +55,9 @@ class ActionCard extends StatelessWidget {
               GestureDetector(
                 onTap: playButtonOnTap,
                 child: SvgPicture.asset(
-                  isPlaying ? ImageConstants.stopActiveIcon : ImageConstants.playActiveIcon,
+                  isPlaying
+                      ? ImageConstants.stopActiveIcon
+                      : ImageConstants.playActiveIcon,
                   color: context.theme.iconTheme.color,
                 ),
               ),
@@ -65,7 +67,9 @@ class ActionCard extends StatelessWidget {
                   : GestureDetector(
                       onTap: favoriteButtonOnTap,
                       child: Icon(
-                        isFavorite! ? Icons.favorite_outlined : Icons.favorite_border_outlined,
+                        isFavorite!
+                            ? Icons.favorite_outlined
+                            : Icons.favorite_border_outlined,
                         color: context.theme.iconTheme.color,
                       ),
                     ),
@@ -104,7 +108,7 @@ class ActionCard extends StatelessWidget {
                     Text(
                       context.translate.copy,
                       style: context.theme.textTheme.titleLarge?.copyWith(
-                        color: context.theme.toggleButtonsTheme.textStyle?.color,
+                        color: context.theme.toggleButtonsTheme.textStyle?.color
                       ),
                     ),
                   ],
@@ -119,11 +123,9 @@ class ActionCard extends StatelessWidget {
                       color: context.theme.toggleButtonsTheme.textStyle?.color,
                     ),
                     const SizedBox(width: kPaddingDefault),
-                    Text(
-                      context.translate.share,
-                      style: context.theme.textTheme.titleLarge?.copyWith(
-                        color: context.theme.toggleButtonsTheme.textStyle?.color,
-                      ),
+                    Text(context.translate.share,
+                        style: context.theme.textTheme.titleLarge?.copyWith(
+                            color: context.theme.toggleButtonsTheme.textStyle?.color),
                     ),
                   ],
                 ),
