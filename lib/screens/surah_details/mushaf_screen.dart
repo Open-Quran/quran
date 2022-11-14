@@ -54,6 +54,9 @@ class MushafScreen extends StatelessWidget {
           BookMarkModel(verseModel: verseModel, bookmarkType: EBookMarkType.page),
         );
     return ActionCard(
+      copyButtonOnTap: () {
+        
+      },
       isBookmark: isBookmarked,
       bookmarkButtonOnTap: () => context.read<BookmarkProvider>().bookmarkIconOnTap(
             isBookmarked,
