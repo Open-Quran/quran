@@ -8,6 +8,7 @@ import 'package:fabrikod_quran/widgets/cards/action_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class VerseCard extends StatelessWidget {
   const VerseCard({Key? key, required this.verseModel}) : super(key: key);
@@ -35,6 +36,13 @@ class VerseCard extends StatelessWidget {
               verseModel: verseModel, bookmarkType: EBookMarkType.verse),
         );
     return ActionCard(
+      shareButtonOnTap: () async {
+        await Share.share("${verseModel.text}\n\n${context.read<QuranProvider>()
+                    .verseTranslation
+                    ?.translations
+                    ?.elementAt(verseModel.id! - 1)
+                    .text}");
+      },
       copyButtonOnTap: () async {
         await Clipboard.setData(ClipboardData(
                 text: "${verseModel.text}\n\n${context.read<QuranProvider>()
