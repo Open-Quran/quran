@@ -15,6 +15,7 @@ class VerseCard extends StatelessWidget {
   /// Verse model
   final VerseModel verseModel;
 
+
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -36,7 +37,11 @@ class VerseCard extends StatelessWidget {
     return ActionCard(
       copyButtonOnTap: () async {
         await Clipboard.setData(ClipboardData(
-                text: "${verseModel.text}\n\n${verseModel.text} "))
+                text: "${verseModel.text}\n\n${context.read<QuranProvider>()
+                    .verseTranslation
+                    ?.translations
+                    ?.elementAt(verseModel.id! - 1)
+                    .text} "))
             .then((_) {
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
