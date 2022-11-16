@@ -26,8 +26,9 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.onTap,
     this.bottomHeight,
     this.elevation,
-  })  : preferredSize =
-            bottom != null ? Size.fromHeight(bottomHeight!) : const Size.fromHeight(60.0),
+  })  : preferredSize = bottom != null
+            ? Size.fromHeight(bottomHeight!)
+            : const Size.fromHeight(60.0),
         super(key: key);
 
   @override
@@ -35,39 +36,24 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       toolbarHeight: Platform.isIOS ? 60 : 70,
       centerTitle: false,
+      titleSpacing: 5,
       title: Padding(
         padding: EdgeInsets.only(bottom: Platform.isIOS ? 6 : 0),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            SizedBox(
-              width: 10,
-              child: IconButton(
-                padding: EdgeInsets.zero,
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
-                icon: SvgPicture.asset(ImageConstants.arrowBack,
-                    height: 18, color: context.theme.appBarTheme.iconTheme!.color),
-              ),
-            ),
-            const SizedBox(width: 15),
-            GestureDetector(
-              onTap: onTap,
-              child: Row(
-                children: [
-                  Text(title, style: context.theme.appBarTheme.titleTextStyle),
-                  Icon(
-                    isDrawerOpen ? Icons.arrow_left : Icons.arrow_right,
-                    size: 25,
-                  )
-                ],
-              ),
-            ),
-          ],
+        child: GestureDetector(
+          onTap: onTap,
+          child: Row(
+            children: [
+              Text(title, style: context.theme.appBarTheme.titleTextStyle),
+              Icon(
+                isDrawerOpen ? Icons.arrow_left : Icons.arrow_right,
+                size: 25,
+              )
+            ],
+          ),
         ),
       ),
-      leading: leading,
+      leading: buildBackIconButton(context),
+      leadingWidth: 40,
       actions: actions,
       bottom: bottom ??
           PreferredSize(
@@ -78,6 +64,17 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
             ),
           ),
       automaticallyImplyLeading: false,
+    );
+  }
+
+  IconButton buildBackIconButton(BuildContext context) {
+    return IconButton(
+      padding: EdgeInsets.zero,
+      onPressed: () {
+        Navigator.of(context).pop();
+      },
+      icon: SvgPicture.asset(ImageConstants.arrowBack,
+          height: 18, color: context.theme.appBarTheme.iconTheme!.color),
     );
   }
 }

@@ -12,6 +12,7 @@ class SurahModel {
   int? startPage;
   int? endPage;
   List<VerseModel> verses = [];
+  List<String> searchSuggestions = [];
 
   SurahModel(
       {this.id,

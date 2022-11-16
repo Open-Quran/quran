@@ -22,7 +22,7 @@ class HomeProvider extends ChangeNotifier {
 
   /// Un-focus Search Field
   void searchBarFocusNodeUnFocus() {
-    searchBarFocusNode.unfocus();
+    WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
   }
 
   /// Navigation to details when user clicks on [SurahCard]

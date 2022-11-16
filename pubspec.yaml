@@ -27,13 +27,14 @@ dependencies:
   # Google
   google_fonts: ^3.0.1                                    # Text fonts
 
-  #Widgets
+  # Widgets
   cupertino_icons: ^1.0.2                                 # Cupertino icons
   flutter_svg: ^1.1.5                                     # Reading SVG images
   auto_size_text: ^3.0.0
   custom_sliding_segmented_control: ^1.7.2
   syncfusion_flutter_sliders: ^20.3.52
   scrollable_positioned_list: ^0.3.5
+  gap: ^2.0.0                                             # Adding gaps between widgets
 
   # Local Database
   get_storage: ^2.0.3                                     # Store data locally
