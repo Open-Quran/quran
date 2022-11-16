@@ -20,4 +20,5 @@ class AssetQuranService {
     var result = json.decode(data);
     return VerseTranslation.fromJson(result);
   }
+  
 }
