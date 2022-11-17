@@ -13,7 +13,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -23,13 +23,27 @@ class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
     return ChangeNotifierProvider(
-        create: (_) => SearchProvider(context),
-      child: InkWell(
-        onTap: context.watch<HomeProvider>().searchBarFocusNodeUnFocus,
-        child: Scaffold(
-          appBar: MainAppBar(title: context.translate.quran),
-          body: buildBody,
-        ),
+      create: (_) => SearchProvider(_),
+      child: const _MyHomeScreen(),
+    );
+  }
+}
+
+class _MyHomeScreen extends StatefulWidget {
+  const _MyHomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<_MyHomeScreen> createState() => _MyHomeScreenState();
+}
+
+class _MyHomeScreenState extends State<_MyHomeScreen> {
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: context.watch<HomeProvider>().searchBarFocusNodeUnFocus,
+      child: Scaffold(
+        appBar: MainAppBar(title: context.translate.quran),
+        body: buildBody,
       ),
     );
   }
@@ -46,17 +60,15 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(height: kPaddingDefault),
           buildSearchTags,
           const SizedBox(height: kPaddingDefault * 2),
-          context.watch<SearchProvider>().isFieldEmpty
-              ? buildTabBar
-              : buildSurahFilterList
+          context.watch<SearchProvider>().isFieldEmpty ? buildTabBar : buildSurahFilterList
         ],
       ),
     );
   }
 
   /// Returns Basmala Title
-  Widget get buildBasmala => SvgPicture.asset(ImageConstants.bigBasmalaIcon,
-      color: Theme.of(context).iconTheme.color);
+  Widget get buildBasmala =>
+      SvgPicture.asset(ImageConstants.bigBasmalaIcon, color: Theme.of(context).iconTheme.color);
 
   /// Search bar => [FocusNode]
   Widget get buildSearchBar => CustomSearchBar(
@@ -68,14 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget get buildSearchTags {
     return CustomTagList(
       /// Todo: Change the tags
-      tags: const [
-        "Surah",
-        "Juz",
-        "Sajda",
-        "Al-Fatiha",
-        "Al-Fatiha",
-        "Al-Fatiha"
-      ],
+      tags: const ["Surah", "Juz", "Sajda", "Al-Fatiha", "Al-Fatiha", "Al-Fatiha"],
       selectedTag: (selectedTag) {},
     );
   }
@@ -105,12 +110,9 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.symmetric(vertical: kPaddingVertical),
       itemBuilder: (context, index) => SurahCard(
         surahModel: searchResult[index],
-        onTap: () => context
-            .read<HomeProvider>()
-            .onTapSurahCard(searchResult[index].id! - 1),
+        onTap: () => context.read<HomeProvider>().onTapSurahCard(searchResult[index].id! - 1),
       ),
-      separatorBuilder: (context, index) =>
-          const SizedBox(height: kPaddingContentSpaceBetween),
+      separatorBuilder: (context, index) => const SizedBox(height: kPaddingContentSpaceBetween),
     );
   }
 
@@ -124,11 +126,9 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.symmetric(vertical: kPaddingVertical),
       itemBuilder: (context, index) => SurahCard(
         surahModel: surahs[index],
-        onTap: () =>
-            context.read<HomeProvider>().onTapSurahCard(surahs[index].id! - 1),
+        onTap: () => context.read<HomeProvider>().onTapSurahCard(surahs[index].id! - 1),
       ),
-      separatorBuilder: (context, index) =>
-          const SizedBox(height: kPaddingContentSpaceBetween),
+      separatorBuilder: (context, index) => const SizedBox(height: kPaddingContentSpaceBetween),
     );
   }
 
@@ -163,8 +163,7 @@ class _HomeScreenState extends State<HomeScreen> {
         surahModel: sajdas[index],
         onTap: () => context.read<HomeProvider>().onTapSajdaCard(index),
       ),
-      separatorBuilder: (context, index) =>
-          const SizedBox(height: kPaddingContentSpaceBetween),
+      separatorBuilder: (context, index) => const SizedBox(height: kPaddingContentSpaceBetween),
     );
   }
 }
