@@ -7,8 +7,11 @@ enum EThemeModes { light, dark, quran, green }
 /// Language Modes
 enum ESupportedLanguage { en, tr }
 
+/// Different types of quran
+enum EQuranType { translation, reading }
+
 /// Different types of reading
-enum EReadingType { translation, reading }
+enum EReadingType { all, arabic, translation }
 
 /// Toggle button text styles
 enum EToggleButtonTextStyle { selected, disabled }

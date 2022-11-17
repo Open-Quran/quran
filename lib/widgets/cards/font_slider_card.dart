@@ -1,6 +1,8 @@
 import 'package:fabrikod_quran/constants/extensions.dart';
 import 'package:fabrikod_quran/constants/padding.dart';
+import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
 class FontSliderCard extends StatefulWidget {
@@ -11,7 +13,6 @@ class FontSliderCard extends StatefulWidget {
 }
 
 class _FontSliderCardState extends State<FontSliderCard> {
-  double _value = 0;
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -44,14 +45,10 @@ class _FontSliderCardState extends State<FontSliderCard> {
                     inactiveColor: Theme.of(context)
                         .bottomNavigationBarTheme
                         .selectedItemColor,
-                    value: _value,
-                    min: 0,
-                    max: 100,
-                    onChanged: (value) {
-                      setState(() {
-                        _value = value;
-                      });
-                    }),
+                    value: context.watch<QuranProvider>().localSetting.textScaleFactor,
+                    min: 1.0,
+                    max: 2.0,
+                    onChanged: context.read<QuranProvider>().changeFontSize),
               ),
             ),
           )),
