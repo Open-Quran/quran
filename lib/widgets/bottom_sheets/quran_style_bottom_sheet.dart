@@ -41,6 +41,7 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
+          mainAxisSize: MainAxisSize.min,
           children: [
             buildReadingStyleLabel(),
             const SizedBox(height: kPaddingDefault),

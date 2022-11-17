@@ -46,8 +46,15 @@ class QuranProvider extends ChangeNotifier {
     surahs = await AssetQuranService.getAllOfSurahs();
     notifyListeners();
   }
+
+  /// Changing Reading Type
   changeReadingType(int index){
     localSetting.readingType = EReadingType.values[index];
+    setLocalSettingOfQuran();
+  }
+  /// Changing Font Size
+  changeFontSize(dynamic value){
+    localSetting.textScaleFactor = value;
     setLocalSettingOfQuran();
   }
 

@@ -93,6 +93,7 @@ class VerseCard extends StatelessWidget {
             child: Text(
               verseModel.text ?? "",
               textDirection: TextDirection.rtl,
+              textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
               style: context.theme.textTheme.headlineLarge,
             ),
           ),
@@ -117,6 +118,7 @@ class VerseCard extends StatelessWidget {
                       ?.elementAt(verseModel.id! - 1)
                       .text ??
                   "",
+              textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
               style: context.theme.textTheme.titleSmall,
             ),
           ),
