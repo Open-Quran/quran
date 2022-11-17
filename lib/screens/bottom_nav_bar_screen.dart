@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/providers/more_provider.dart';
+import 'package:fabrikod_quran/providers/player_provider.dart';
 import 'package:fabrikod_quran/screens/bookmark_screen.dart';
 import 'package:fabrikod_quran/screens/home_screen.dart';
 import 'package:fabrikod_quran/screens/more_screen.dart';
@@ -18,6 +19,12 @@ class BottomNavBarScreen extends StatefulWidget {
 }
 
 class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
+  @override
+  void initState() {
+    super.initState();
+    context.read<PlayerProvider>().createAudioHandler(context);
+  }
+
   /// Current index of bottom navigation bar
   int currentIndex = 0;
 

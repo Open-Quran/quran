@@ -9,5 +9,6 @@ export '../themes/theme_green.dart';
 export '../themes/theme_quran.dart';
 export 'padding.dart';
 export 'enums.dart';
+export 'restful.dart';
 export 'extensions.dart';
 export '../utils/utils.dart';

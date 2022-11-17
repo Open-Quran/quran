@@ -3,7 +3,9 @@ import 'package:fabrikod_quran/models/bookmark_model.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/providers/bookmark_provider.dart';
 import 'package:fabrikod_quran/providers/favorites_provider.dart';
+import 'package:fabrikod_quran/providers/player_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
+import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/services/copy_and_share_service.dart';
 import 'package:fabrikod_quran/widgets/cards/action_card.dart';
 import 'package:flutter/material.dart';
@@ -26,11 +28,10 @@ class VerseCard extends StatelessWidget {
 
   /// The header of the action card
   Widget buildVerseActionCart(BuildContext context) {
-    bool isFavorite =
-        context.watch<FavoritesProvider>().isFavoriteVerse(verseModel);
+    bool isPlaying = context.watch<PlayerProvider>().isPlayingVerse(verseModel.verseKey ?? "");
+    bool isFavorite = context.watch<FavoritesProvider>().isFavoriteVerse(verseModel);
     bool isBookmarked = context.watch<BookmarkProvider>().isBookmark(
-          BookMarkModel(
-              verseModel: verseModel, bookmarkType: EBookMarkType.verse),
+          BookMarkModel(verseModel: verseModel, bookmarkType: EBookMarkType.verse),
         );
     return ActionCard(
       shareButtonOnTap: () {
@@ -45,19 +46,19 @@ class VerseCard extends StatelessWidget {
         );
       },
       verseKey: verseModel.verseKey,
+      isPlaying: isPlaying,
+      playButtonOnTap: (isPlaying) =>
+          context.read<SurahDetailsProvider>().playTheVerses(isPlaying, verseModel.verseKey!),
       isFavorite: isFavorite,
       favoriteButtonOnTap: () => isFavorite
-          ? context
-              .read<FavoritesProvider>()
-              .deleteVerseFromFavorites(verseModel)
+          ? context.read<FavoritesProvider>().deleteVerseFromFavorites(verseModel)
           : context.read<FavoritesProvider>().addVerseToFavorite(verseModel),
       isBookmark: isBookmarked,
-      bookmarkButtonOnTap: () =>
-          context.read<BookmarkProvider>().bookmarkIconOnTap(
-                isBookmarked,
-                verseModel,
-                EBookMarkType.verse,
-              ),
+      bookmarkButtonOnTap: () => context.read<BookmarkProvider>().bookmarkIconOnTap(
+            isBookmarked,
+            verseModel,
+            EBookMarkType.verse,
+          ),
     );
   }
 

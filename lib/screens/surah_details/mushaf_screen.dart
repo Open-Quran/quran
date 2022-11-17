@@ -3,6 +3,7 @@ import 'package:fabrikod_quran/models/bookmark_model.dart';
 import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/providers/bookmark_provider.dart';
+import 'package:fabrikod_quran/providers/player_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/widgets/basmala_title.dart';
 import 'package:fabrikod_quran/widgets/buttons/custom_button.dart';
@@ -53,6 +54,10 @@ class MushafScreen extends StatelessWidget {
     bool isBookmarked = context.watch<BookmarkProvider>().isBookmark(
           BookMarkModel(verseModel: verseModel, bookmarkType: EBookMarkType.page),
         );
+    bool isPlaying = context.watch<PlayerProvider>().isPlayingMushaf(
+          pageNumber: verseModel.pageNumber,
+          surahId: verseModel.surahId,
+        );
     return ActionCard(
       copyButtonOnTap: () {
         
@@ -63,6 +68,9 @@ class MushafScreen extends StatelessWidget {
             verseModel,
             EBookMarkType.page,
           ),
+      isPlaying: isPlaying,
+      playButtonOnTap: (bool isPlaying) =>
+          context.read<SurahDetailsProvider>().playTheMushafPage(isPlaying,verseModel.surahId!),
     );
   }
 

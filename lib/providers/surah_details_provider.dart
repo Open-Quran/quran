@@ -3,6 +3,7 @@ import 'package:fabrikod_quran/models/reading_settings_model.dart';
 import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/providers/app_settings_provider.dart';
+import 'package:fabrikod_quran/providers/player_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
 import 'package:flutter/material.dart';
@@ -70,6 +71,21 @@ class SurahDetailsProvider extends ChangeNotifier {
         var surahs = quranProvider.sajdaSurahs[readingSettings.sajdaIndex].verses;
         return [surahs.firstWhere((element) => element.sajdahNumber != null)];
     }
+  }
+
+  /// Play The Verses
+  void playTheVerses(bool isPlaying, String verseKey) {
+    var verses = versesOfReadingTypeTranslation;
+    int index = verses.indexWhere((element) => element.verseKey == verseKey);
+    List<VerseModel> selectedVerses = index == -1 ? [] : verses.sublist(index);
+    _context.read<PlayerProvider>().onTapPlayOrPause(isPlaying, selectedVerses);
+  }
+
+  /// Play The Mushaf Page
+  void playTheMushafPage(bool isPlaying, int surahId) {
+    var index = surahsOfMushafPage.indexWhere((element) => element.id == surahId);
+    List<VerseModel> selectedVerses = index == -1 ? [] : surahsOfMushafPage[index].verses;
+    _context.read<PlayerProvider>().onTapPlayOrPause(isPlaying, selectedVerses);
   }
 
   List<SurahModel> get surahsOfMushafPage {
