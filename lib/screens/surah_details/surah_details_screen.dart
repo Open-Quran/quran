@@ -52,7 +52,7 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
             context.translate.translation,
             context.translate.reading,
           ],
-          selectedIndex: context.watch<SurahDetailsProvider>().readingSettings.readingType.index,
+          selectedIndex: context.watch<SurahDetailsProvider>().readingSettings.quranType.index,
           onTap: context.read<SurahDetailsProvider>().changeReadingType,
         ),
       ),
@@ -60,12 +60,12 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
   }
 
   /// Switch toggles
-  /// [EReadingType.translation] and [EReadingType.reading]
+  /// [EQuranType.translation] and [EQuranType.reading]
   Widget get buildTranslationOrReading {
-    switch (context.watch<SurahDetailsProvider>().readingSettings.readingType) {
-      case EReadingType.translation:
+    switch (context.watch<SurahDetailsProvider>().readingSettings.quranType) {
+      case EQuranType.translation:
         return buildVerseList;
-      case EReadingType.reading:
+      case EQuranType.reading:
         return const MushafScreen();
     }
   }

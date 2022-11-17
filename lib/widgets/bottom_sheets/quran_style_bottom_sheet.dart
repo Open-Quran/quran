@@ -1,7 +1,9 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/widgets/buttons/custom_toggle_buttons.dart';
 import 'package:fabrikod_quran/widgets/cards/font_slider_card.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../cards/font_type_card.dart';
 
@@ -14,8 +16,7 @@ class QuranStyleBottomSheet extends StatefulWidget {
       context: context,
       builder: (_) => const QuranStyleBottomSheet(),
       backgroundColor: Colors.transparent,
-      barrierColor:
-          context.theme.toggleButtonsTheme.disabledColor?.withOpacity(0.3),
+      barrierColor: context.theme.toggleButtonsTheme.disabledColor?.withOpacity(0.3),
       elevation: 0,
     );
   }
@@ -41,7 +42,7 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            buildReadingStyleLabel(context),
+            buildReadingStyleLabel(),
             const SizedBox(height: kPaddingDefault),
             buildReadingStyleButtons(context),
             const SizedBox(height: kPaddingDefault * 2),
@@ -78,7 +79,7 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
   }
 
   /// Reading style label
-  Text buildReadingStyleLabel(BuildContext context) {
+  Widget buildReadingStyleLabel() {
     return Text(
       context.translate.readingStyle,
       style: context.theme.textTheme.headlineMedium!
@@ -95,8 +96,8 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
         context.translate.arabic,
         context.translate.translation
       ],
-      onTap: (int index) {},
-      selectedIndex: 0,
+      onTap: context.read<QuranProvider>().changeReadingType,
+      selectedIndex: context.watch<QuranProvider>().localSetting.readingType.index,
     );
   }
 }

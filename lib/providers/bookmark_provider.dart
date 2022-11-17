@@ -53,7 +53,7 @@ class BookmarkProvider extends ChangeNotifier {
         break;
       case EBookMarkType.page:
         model = ReadingSettingsModel(
-          readingType: EReadingType.reading,
+          quranType: EQuranType.reading,
           mushafPageNumber: bookmark.verseModel.pageNumber!,
         );
     }

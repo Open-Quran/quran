@@ -41,8 +41,8 @@ class SurahDetailsProvider extends ChangeNotifier {
 
   /// [SurahDetailsScreen] app bar title
   String get appBarTitle {
-    switch (readingSettings.readingType) {
-      case EReadingType.translation:
+    switch (readingSettings.quranType) {
+      case EQuranType.translation:
         switch (readingSettings.surahDetailScreenMod) {
           case ESurahDetailScreenMod.surah:
             return quranProvider.surahs[readingSettings.surahIndex].nameSimple ?? "";
@@ -51,7 +51,7 @@ class SurahDetailsProvider extends ChangeNotifier {
           case ESurahDetailScreenMod.sajda:
             return quranProvider.sajdaSurahs[readingSettings.sajdaIndex].nameSimple ?? "";
         }
-      case EReadingType.reading:
+      case EQuranType.reading:
         return surahsOfMushafPage.first.nameSimple ?? "";
     }
   }
@@ -84,8 +84,8 @@ class SurahDetailsProvider extends ChangeNotifier {
   /// Changing reading style in the home page
   /// EX: [Translation] or [Reading]
   void changeReadingType(int index) {
-    readingSettings.readingType = EReadingType.values.elementAt(index);
-    if (readingSettings.readingType == EReadingType.reading) {
+    readingSettings.quranType = EQuranType.values.elementAt(index);
+    if (readingSettings.quranType == EQuranType.reading) {
       readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber ?? 1;
     }
     notifyListeners();
@@ -101,7 +101,7 @@ class SurahDetailsProvider extends ChangeNotifier {
   void changeSurahIndex(int index) {
     readingSettings.surahIndex = index;
     readingSettings.surahVerseIndex = 0;
-    if (readingSettings.readingType == EReadingType.translation) {
+    if (readingSettings.quranType == EQuranType.translation) {
       itemScrollController.jumpTo(index: 0);
     }
     notifyListeners();
@@ -109,7 +109,7 @@ class SurahDetailsProvider extends ChangeNotifier {
 
   void changeSurahVerseIndex(int index) {
     readingSettings.surahVerseIndex = index;
-    if (readingSettings.readingType == EReadingType.translation) {
+    if (readingSettings.quranType == EQuranType.translation) {
       itemScrollController.jumpTo(index: index);
     }
     notifyListeners();

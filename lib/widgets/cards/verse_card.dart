@@ -84,38 +84,44 @@ class VerseCard extends StatelessWidget {
 
   /// Verse Text
   Widget buildVerseText(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.end,
-      children: [
-        Flexible(
-          child: Text(
-            verseModel.text ?? "",
-            textDirection: TextDirection.rtl,
-            style: context.theme.textTheme.headlineLarge,
+    return Visibility(
+      visible: context.watch<QuranProvider>().localSetting.readingType != EReadingType.translation,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.end,
+        children: [
+          Flexible(
+            child: Text(
+              verseModel.text ?? "",
+              textDirection: TextDirection.rtl,
+              style: context.theme.textTheme.headlineLarge,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 
   /// Verse Translation Text
   Widget buildVerseTranslationText(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.start,
-      children: [
-        Flexible(
-          child: Text(
-            context
-                    .watch<QuranProvider>()
-                    .verseTranslation
-                    ?.translations
-                    ?.elementAt(verseModel.id! - 1)
-                    .text ??
-                "",
-            style: context.theme.textTheme.titleSmall,
+    return Visibility(
+      visible: context.watch<QuranProvider>().localSetting.readingType != EReadingType.arabic,
+      child: Row(
+        mainAxisAlignment: MainAxisAlignment.start,
+        children: [
+          Flexible(
+            child: Text(
+              context
+                      .watch<QuranProvider>()
+                      .verseTranslation
+                      ?.translations
+                      ?.elementAt(verseModel.id! - 1)
+                      .text ??
+                  "",
+              style: context.theme.textTheme.titleSmall,
+            ),
           ),
-        ),
-      ],
+        ],
+      ),
     );
   }
 }
