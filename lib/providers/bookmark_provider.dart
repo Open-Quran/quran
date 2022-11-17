@@ -3,13 +3,13 @@ import 'package:fabrikod_quran/database/local_db.dart';
 import 'package:fabrikod_quran/models/bookmark_model.dart';
 import 'package:fabrikod_quran/models/reading_settings_model.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
+import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class BookmarkProvider extends ChangeNotifier {
-
   /// Class Constructor
   BookmarkProvider() {
     bookmarks = LocalDb.getBookmarks;
@@ -52,10 +52,8 @@ class BookmarkProvider extends ChangeNotifier {
         );
         break;
       case EBookMarkType.page:
-        model = ReadingSettingsModel(
-          quranType: EQuranType.reading,
-          mushafPageNumber: bookmark.verseModel.pageNumber!,
-        );
+        context.read<QuranProvider>().changeQuranType(1);
+        model = ReadingSettingsModel(mushafPageNumber: bookmark.verseModel.pageNumber!);
     }
 
     Navigator.push(

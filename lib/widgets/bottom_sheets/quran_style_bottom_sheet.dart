@@ -50,9 +50,9 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
             buildFontSizeLabel(context),
             const FontSliderCard(),
             const SizedBox(height: kPaddingDefault * 2),
-            buildFontStyleLabel(context),
-            const SizedBox(height: kPaddingDefault),
-            const FontTypeCard(text: "Deneme")
+            // buildFontStyleLabel(context),
+            // const SizedBox(height: kPaddingDefault),
+            // const FontTypeCard(text: "Deneme")
           ],
         ),
       ),

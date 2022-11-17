@@ -41,7 +41,7 @@ class SurahDetailsProvider extends ChangeNotifier {
 
   /// [SurahDetailsScreen] app bar title
   String get appBarTitle {
-    switch (readingSettings.quranType) {
+    switch (quranProvider.localSetting.quranType) {
       case EQuranType.translation:
         switch (readingSettings.surahDetailScreenMod) {
           case ESurahDetailScreenMod.surah:
@@ -83,10 +83,13 @@ class SurahDetailsProvider extends ChangeNotifier {
 
   /// Changing reading style in the home page
   /// EX: [Translation] or [Reading]
-  void changeReadingType(int index) {
-    readingSettings.quranType = EQuranType.values.elementAt(index);
-    if (readingSettings.quranType == EQuranType.reading) {
+  void changeQuranType(int index) {
+    quranProvider.localSetting.quranType = EQuranType.values.elementAt(index);
+    if (quranProvider.localSetting.quranType == EQuranType.reading) {
       readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber ?? 1;
+    } else {
+      readingSettings.surahIndex = surahsOfMushafPage.first.verses.first.surahId! - 1;
+      readingSettings.surahVerseIndex = surahsOfMushafPage.first.verses.first.verseNumber! - 1;
     }
     notifyListeners();
   }
@@ -101,7 +104,7 @@ class SurahDetailsProvider extends ChangeNotifier {
   void changeSurahIndex(int index) {
     readingSettings.surahIndex = index;
     readingSettings.surahVerseIndex = 0;
-    if (readingSettings.quranType == EQuranType.translation) {
+    if (quranProvider.localSetting.quranType == EQuranType.translation) {
       itemScrollController.jumpTo(index: 0);
     }
     notifyListeners();
@@ -109,7 +112,7 @@ class SurahDetailsProvider extends ChangeNotifier {
 
   void changeSurahVerseIndex(int index) {
     readingSettings.surahVerseIndex = index;
-    if (readingSettings.quranType == EQuranType.translation) {
+    if (quranProvider.localSetting.quranType == EQuranType.translation) {
       itemScrollController.jumpTo(index: index);
     }
     notifyListeners();
