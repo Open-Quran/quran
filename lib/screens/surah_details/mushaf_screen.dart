@@ -9,7 +9,6 @@ import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/widgets/basmala_title.dart';
 import 'package:fabrikod_quran/widgets/buttons/custom_button.dart';
 import 'package:fabrikod_quran/widgets/cards/action_card.dart';
-import 'package:fabrikod_quran/widgets/number_icon.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -60,9 +59,7 @@ class MushafScreen extends StatelessWidget {
           surahId: verseModel.surahId,
         );
     return ActionCard(
-      copyButtonOnTap: () {
-        
-      },
+      copyButtonOnTap: () {},
       isBookmark: isBookmarked,
       bookmarkButtonOnTap: () => context.read<BookmarkProvider>().bookmarkIconOnTap(
             isBookmarked,
@@ -71,7 +68,7 @@ class MushafScreen extends StatelessWidget {
           ),
       isPlaying: isPlaying,
       playButtonOnTap: (bool isPlaying) =>
-          context.read<SurahDetailsProvider>().playTheMushafPage(isPlaying,verseModel.surahId!),
+          context.read<SurahDetailsProvider>().playTheMushafPage(isPlaying, verseModel.surahId!),
     );
   }
 
@@ -81,20 +78,18 @@ class MushafScreen extends StatelessWidget {
       textAlign: TextAlign.justify,
       textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
       text: TextSpan(
-        style: context.theme.textTheme.headlineLarge,
+        style: context.theme.textTheme.headlineLarge?.copyWith(height: 3),
         children: verses
             .map(
               (e) => TextSpan(
                 children: [
                   TextSpan(text: e.text!),
-                  WidgetSpan(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(horizontal: 5),
-                      child: NumberIcon(
-                        number: e.verseNumber ?? 0,
-                        isArabic: false,
-                        size: 30,
-                      ),
+                  TextSpan(
+                    text: Utils.getArabicVerseNo(e.verseNumber.toString()),
+                    style: context.theme.textTheme.headlineLarge?.copyWith(
+                      fontFamily: Fonts.uthmanic,
+                      fontSize: 30,
+                      height: 2
                     ),
                   ),
                 ],
