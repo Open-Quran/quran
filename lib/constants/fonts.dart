@@ -8,4 +8,5 @@ class Fonts {
 
   static final String nunito = GoogleFonts.nunito().fontFamily!;
   static final String nunitoW900 = GoogleFonts.nunito(fontWeight: FontWeight.w900).fontFamily!;
+  static const String uthmanic = "Uthmani";
 }
