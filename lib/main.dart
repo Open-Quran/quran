@@ -2,6 +2,7 @@ import 'package:fabrikod_quran/constants/extensions.dart';
 import 'package:fabrikod_quran/providers/app_settings_provider.dart';
 import 'package:fabrikod_quran/providers/bookmark_provider.dart';
 import 'package:fabrikod_quran/providers/favorites_provider.dart';
+import 'package:fabrikod_quran/providers/player_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/search_provider.dart';
 import 'package:fabrikod_quran/screens/bottom_nav_bar_screen.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
     return [
       ChangeNotifierProvider(create: (_) => AppSettingsProvider()),
       ChangeNotifierProvider(create: (_) => QuranProvider()),
+      ChangeNotifierProvider(create: (_) => PlayerProvider()),
       ChangeNotifierProvider(create: (_) => FavoritesProvider()),
       ChangeNotifierProvider(create: (_) => BookmarkProvider()),
     ];

@@ -5,21 +5,13 @@ import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 
 const List<String> searchSuggestions = [
-  "Surah",
-  "Juz",
-  "Sajda",
   "Al-Fatiha",
-  "Al-Fatiha",
-  "Al-Fatiha",
-  "Surah",
-  "Juz",
-  "Sajda",
-  "Surah",
-  "Juz",
-  "Sajda",
-  "Al-Fatiha",
-  "Al-Fatiha",
-  "Al-Fatiha"
+  "Ya-sin",
+  "الفاتحة",
+  "18",
+  "الملك",
+  "112",
+  "Maryam"
 ];
 
 class CustomSearchBar extends StatelessWidget {
@@ -33,12 +25,12 @@ class CustomSearchBar extends StatelessWidget {
       this.textEditingController,
       this.formKey,
       this.focusNode,
-      required this.onSubmit})
+      required this.onSubmit,
+      })
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    // return buildForm(context);
     return LayoutBuilder(
       builder: (ctx, constraints) => Autocomplete<String>(
         displayStringForOption: (data) => data,
@@ -133,7 +125,7 @@ class CustomSearchBar extends StatelessWidget {
 
   Iterable<String> _getSuggestions(TextEditingValue textEditingValue) {
     if (textEditingValue.text == '') {
-      return searchSuggestions.getRange(0, 10);
+      return searchSuggestions.getRange(0, 7);
     }
 
     return searchSuggestions.where((str) {

@@ -1,5 +1,6 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/bookmark_model.dart';
+import 'package:fabrikod_quran/models/local_setting_model.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
@@ -81,5 +82,18 @@ class LocalDb {
     var value = bookmarkList.map((e) => e.toJson()).toList();
     await _localDbBox.write('bookmarks', value);
     return getBookmarks;
+  }
+
+  /// Getting Local Settings Of Quran from Db
+  static LocalSettingModel get getLocalSettingOfQuran {
+    var result = _localDbBox.read('localSettingOfQuran');
+    if (result == null) return LocalSettingModel();
+    return LocalSettingModel.fromJson(result);
+  }
+
+  /// Adding Local Settings Of Quran to Db
+  static Future<LocalSettingModel> setLocalSettingOfQuran(LocalSettingModel localSetting) async {
+    await _localDbBox.write('localSettingOfQuran', localSetting.toJson());
+    return getLocalSettingOfQuran;
   }
 }

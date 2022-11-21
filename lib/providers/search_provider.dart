@@ -10,6 +10,8 @@ import 'package:provider/provider.dart';
 class SearchProvider extends ChangeNotifier {
   SearchProvider(this._context);
 
+  TextEditingController textEditingController = TextEditingController(text: "asdasd4");
+
   final BuildContext _context;
 
   String query = '';
@@ -21,7 +23,12 @@ class SearchProvider extends ChangeNotifier {
     onSearchFieldChanged();
   }
 
-  void onSearchFieldChanged() {
+  passOptionValue(String value) {
+    textEditingController.text = value;
+    notifyListeners();
+  }
+
+  onSearchFieldChanged() {
     if (query != "") {
       isFieldEmpty = false;
       filterSearchResults(query);
@@ -40,26 +47,15 @@ class SearchProvider extends ChangeNotifier {
     queryText = queryText.toLowerCase();
     List<SurahModel> searchList = _context.read<QuranProvider>().surahs;
     List<SurahModel> searchResult = [];
-    List<VerseModel> filteredVerseList = [];
     notifyListeners();
 
     for (var surah in searchList) {
-      var verseList = surah.verses;
       if (surah.nameTranslated!.toLowerCase().contains(queryText) ||
           surah.nameSimple!.toLowerCase().contains(queryText) ||
           surah.nameArabic!.toLowerCase().contains(queryText) ||
           surah.nameComplex!.toLowerCase().contains(queryText) ||
           surah.id.toString().contains(queryText)) {
-
-        for (var verse in verseList) {
-            if (verse.pageNumber.toString().contains(queryText) ||
-                verse.text!.contains(queryText) ||
-                verse.verseNumber.toString().contains(queryText)) {
-              filteredVerseList.add(verse);
-
-        }
         searchResult.add(surah);
-      }
     }}
 
     filteredSearch.clear();

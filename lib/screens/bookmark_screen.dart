@@ -3,6 +3,7 @@ import 'package:fabrikod_quran/models/bookmark_model.dart';
 import 'package:fabrikod_quran/providers/bookmark_provider.dart';
 import 'package:fabrikod_quran/widgets/app_bars/main_app_bar.dart';
 import 'package:fabrikod_quran/widgets/cards/bookmark_card.dart';
+import 'package:fabrikod_quran/widgets/no_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -24,7 +25,14 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
 
   Widget get buildBody {
     List<BookMarkModel> bookmarks = context.watch<BookmarkProvider>().bookmarks;
-    return ListView.separated(
+    return
+      bookmarks.isEmpty ?
+      const NoItemWidget(
+          text: "No Ayats or Surahs bookmarked",
+          icon: Icon(Icons.bookmark_remove_rounded,
+              size: 80,
+            ))
+        : ListView.separated(
       itemCount: bookmarks.length,
       shrinkWrap: true,
       primary: false,

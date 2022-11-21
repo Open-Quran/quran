@@ -1,4 +1,5 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/screens/surah_details/mushaf_screen.dart';
 import 'package:fabrikod_quran/widgets/basmala_title.dart';
@@ -52,20 +53,20 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
             context.translate.translation,
             context.translate.reading,
           ],
-          selectedIndex: context.watch<SurahDetailsProvider>().readingSettings.readingType.index,
-          onTap: context.read<SurahDetailsProvider>().changeReadingType,
+          selectedIndex: context.watch<QuranProvider>().localSetting.quranType.index,
+          onTap: context.read<SurahDetailsProvider>().changeQuranType,
         ),
       ),
     );
   }
 
   /// Switch toggles
-  /// [EReadingType.translation] and [EReadingType.reading]
+  /// [EQuranType.translation] and [EQuranType.reading]
   Widget get buildTranslationOrReading {
-    switch (context.watch<SurahDetailsProvider>().readingSettings.readingType) {
-      case EReadingType.translation:
+    switch (context.watch<QuranProvider>().localSetting.quranType) {
+      case EQuranType.translation:
         return buildVerseList;
-      case EReadingType.reading:
+      case EQuranType.reading:
         return const MushafScreen();
     }
   }

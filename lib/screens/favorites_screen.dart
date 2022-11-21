@@ -7,6 +7,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/no_item_widget.dart';
+
 class FavoritesScreen extends StatefulWidget {
   const FavoritesScreen({super.key});
 
@@ -35,17 +37,27 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   }
 
   Widget get buildBody {
-    List<VerseModel> favoriteVerses = context.watch<FavoritesProvider>().favoriteVerses;
-    return ListView.separated(
-      itemCount: favoriteVerses.length,
-      shrinkWrap: true,
-      primary: false,
-      padding: const EdgeInsets.symmetric(
-        vertical: kPaddingVertical,
-        horizontal: kPaddingHorizontal,
-      ),
-      itemBuilder: (context, index) => VerseCard(verseModel: favoriteVerses.elementAt(index)),
-      separatorBuilder: (context, index) => const SizedBox(height: kPaddingHorizontal),
-    );
+    List<VerseModel> favoriteVerses =
+        context.watch<FavoritesProvider>().favoriteVerses;
+    return favoriteVerses.isEmpty
+        ? const NoItemWidget(
+            text: "No Favorites Added",
+            icon: Icon(
+              Icons.favorite_border_outlined,
+              size: 50,
+            ))
+        : ListView.separated(
+            itemCount: favoriteVerses.length,
+            shrinkWrap: true,
+            primary: false,
+            padding: const EdgeInsets.symmetric(
+              vertical: kPaddingVertical,
+              horizontal: kPaddingHorizontal,
+            ),
+            itemBuilder: (context, index) =>
+                VerseCard(verseModel: favoriteVerses.elementAt(index)),
+            separatorBuilder: (context, index) =>
+                const SizedBox(height: kPaddingHorizontal),
+          );
   }
 }

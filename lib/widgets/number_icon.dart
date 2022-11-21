@@ -9,7 +9,7 @@ class NumberIcon extends StatelessWidget {
   final double size;
 
   const NumberIcon(
-      {Key? key, required this.number, this.size = 40, this.isArabic = false})
+      {Key? key, required this.number, this.size = 41, this.isArabic = false})
       : super(key: key);
 
   @override
@@ -27,18 +27,14 @@ class NumberIcon extends StatelessWidget {
           ),
           Positioned.fill(
             child: Center(
-              child: Padding(
-                padding:
-                    const EdgeInsets.symmetric(horizontal: kPaddingDefault),
-                child: AutoSizeText(
-                  isArabic
-                      ? Utils.getArabicVerseNo(number.toString())
-                      : number.toString(),
-                  maxLines: 1,
-                  textAlign: TextAlign.center,
-                  style: context.theme.textTheme.titleLarge?.copyWith(
-                    color: context.theme.backgroundColor,
-                  ),
+              child: AutoSizeText(
+                isArabic
+                    ? Utils.getArabicVerseNo(number.toString())
+                    : number.toString(),
+                maxLines: 1,
+                textAlign: TextAlign.center,
+                style: context.theme.textTheme.bodySmall?.copyWith(
+                  color: context.theme.backgroundColor,
                 ),
               ),
             ),
