@@ -116,7 +116,7 @@ class MushafScreen extends StatelessWidget {
                   height: 55,
                   onTap: pageNumber > 603
                       ? null
-                      : () => context.read<SurahDetailsProvider>().changeMushafPage(++pageNumber),
+                      : () => context.read<SurahDetailsProvider>().changeMushafPageNumber(++pageNumber),
                 ),
               ),
             ),
@@ -145,7 +145,7 @@ class MushafScreen extends StatelessWidget {
                   height: 55,
                   onTap: pageNumber < 2
                       ? null
-                      : () => context.read<SurahDetailsProvider>().changeMushafPage(--pageNumber),
+                      : () => context.read<SurahDetailsProvider>().changeMushafPageNumber(--pageNumber),
                 ),
               ),
             ),

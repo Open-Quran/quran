@@ -120,6 +120,7 @@ class SurahDetailsProvider extends ChangeNotifier {
   void changeSurahIndex(int index) {
     readingSettings.surahIndex = index;
     readingSettings.surahVerseIndex = 0;
+    readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber!;
     if (quranProvider.localSetting.quranType == EQuranType.translation) {
       itemScrollController.jumpTo(index: 0);
     }
@@ -128,6 +129,7 @@ class SurahDetailsProvider extends ChangeNotifier {
 
   void changeSurahVerseIndex(int index) {
     readingSettings.surahVerseIndex = index;
+    readingSettings.mushafPageNumber = versesOfReadingTypeTranslation[index].pageNumber!;
     if (quranProvider.localSetting.quranType == EQuranType.translation) {
       itemScrollController.jumpTo(index: index);
     }
@@ -136,16 +138,18 @@ class SurahDetailsProvider extends ChangeNotifier {
 
   void selectJuz(int index) {
     readingSettings.juzIndex = index;
+    readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber!;
     Navigator.pop(_context);
     notifyListeners();
   }
 
   void changeSajdaIndex(int index) {
     readingSettings.sajdaIndex = index;
+    readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber!;
     notifyListeners();
   }
 
-  void changeMushafPage(int index) {
+  void changeMushafPageNumber(int index) {
     readingSettings.mushafPageNumber = index;
     notifyListeners();
   }
