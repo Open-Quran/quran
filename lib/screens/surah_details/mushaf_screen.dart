@@ -78,7 +78,9 @@ class MushafScreen extends StatelessWidget {
       textAlign: TextAlign.justify,
       textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
       text: TextSpan(
-        style: context.theme.textTheme.headlineLarge?.copyWith(height: 3),
+        style: context.theme.textTheme.headlineLarge?.copyWith(
+          height: 2.5,
+        ),
         children: verses
             .map(
               (e) => TextSpan(
@@ -89,7 +91,7 @@ class MushafScreen extends StatelessWidget {
                     style: context.theme.textTheme.headlineLarge?.copyWith(
                       fontFamily: Fonts.uthmanic,
                       fontSize: 30,
-                      height: 2
+                      height: 0,
                     ),
                   ),
                 ],
@@ -116,7 +118,8 @@ class MushafScreen extends StatelessWidget {
                   height: 55,
                   onTap: pageNumber > 603
                       ? null
-                      : () => context.read<SurahDetailsProvider>().changeMushafPage(++pageNumber),
+                      : () =>
+                          context.read<SurahDetailsProvider>().changeMushafPageNumber(++pageNumber),
                 ),
               ),
             ),
@@ -145,7 +148,8 @@ class MushafScreen extends StatelessWidget {
                   height: 55,
                   onTap: pageNumber < 2
                       ? null
-                      : () => context.read<SurahDetailsProvider>().changeMushafPage(--pageNumber),
+                      : () =>
+                          context.read<SurahDetailsProvider>().changeMushafPageNumber(--pageNumber),
                 ),
               ),
             ),
