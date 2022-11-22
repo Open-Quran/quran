@@ -65,6 +65,24 @@ class QuranProvider extends ChangeNotifier {
     setLocalSettingOfQuran();
   }
 
+  /// Changing Arabic Font Size
+  changeFontSizeArabic(dynamic value) {
+    localSetting.textScaleFactorArabic = value;
+    setLocalSettingOfQuran();
+  }
+
+  /// Changing Font Type
+  changeFontType(String value) {
+    localSetting.fontType = value;
+    setLocalSettingOfQuran();
+  }
+
+  /// Changing Arabic Font Type
+  changeFontTypeArabic(String value) {
+    localSetting.fontTypeArabic = value;
+    setLocalSettingOfQuran();
+  }
+
   /// Get all [verseTranslation] from [AssetQuranService]
   Future<void> getVerseTranslation(BuildContext context) async {
     String languageCode = context.read<AppSettingsProvider>().appLocale!.languageCode;

@@ -76,10 +76,12 @@ class MushafScreen extends StatelessWidget {
     return RichText(
       textDirection: TextDirection.rtl,
       textAlign: TextAlign.justify,
-      textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
+      textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactorArabic,
       text: TextSpan(
         style: context.theme.textTheme.headlineLarge?.copyWith(
           height: 2.5,
+          fontFamily:
+              Fonts.getArabicFont(context.watch<QuranProvider>().localSetting.fontTypeArabic),
         ),
         children: verses
             .map(

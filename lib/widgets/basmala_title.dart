@@ -35,7 +35,10 @@ class BasmalaTitle extends StatelessWidget {
               "بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ",
               textAlign: TextAlign.center,
               maxLines: 1,
-              style: context.theme.textTheme.displayLarge,
+              style: context.theme.textTheme.displayLarge?.copyWith(
+                fontFamily:
+                    Fonts.getArabicFont(context.watch<QuranProvider>().localSetting.fontTypeArabic),
+              ),
             ),
           ],
         ),

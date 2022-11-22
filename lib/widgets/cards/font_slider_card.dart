@@ -1,18 +1,14 @@
 import 'package:fabrikod_quran/constants/extensions.dart';
 import 'package:fabrikod_quran/constants/padding.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 
-class FontSliderCard extends StatefulWidget {
-  const FontSliderCard({super.key});
+class FontSliderCard extends StatelessWidget {
+  final double value;
+  final Function(dynamic) onChange;
 
-  @override
-  State<FontSliderCard> createState() => _FontSliderCardState();
-}
+  const FontSliderCard({super.key, required this.value, required this.onChange});
 
-class _FontSliderCardState extends State<FontSliderCard> {
   @override
   Widget build(BuildContext context) {
     return ClipRRect(
@@ -25,8 +21,7 @@ class _FontSliderCardState extends State<FontSliderCard> {
               trackHeight: 40.0,
             ),
             child: Padding(
-              padding:
-                  const EdgeInsets.symmetric(horizontal: kPaddingHorizontal),
+              padding: const EdgeInsets.symmetric(horizontal: kPaddingHorizontal),
               child: SliderTheme(
                 data: SliderTheme.of(context).copyWith(
                   trackHeight: 10.0,
@@ -39,16 +34,13 @@ class _FontSliderCardState extends State<FontSliderCard> {
                   ),
                 ),
                 child: SfSlider(
-                    activeColor: Theme.of(context)
-                        .bottomNavigationBarTheme
-                        .selectedItemColor,
-                    inactiveColor: Theme.of(context)
-                        .bottomNavigationBarTheme
-                        .selectedItemColor,
-                    value: context.watch<QuranProvider>().localSetting.textScaleFactor,
-                    min: 1.0,
-                    max: 2.0,
-                    onChanged: context.read<QuranProvider>().changeFontSize),
+                  activeColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+                  inactiveColor: Theme.of(context).bottomNavigationBarTheme.selectedItemColor,
+                  value: value,
+                  min: 1.0,
+                  max: 2.0,
+                  onChanged: onChange,
+                ),
               ),
             ),
           )),

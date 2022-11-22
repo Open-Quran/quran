@@ -1,11 +1,11 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/widgets/buttons/custom_toggle_buttons.dart';
+import 'package:fabrikod_quran/widgets/cards/custom_expanding_font_card.dart';
 import 'package:fabrikod_quran/widgets/cards/font_slider_card.dart';
+import 'package:fabrikod_quran/widgets/custom_space.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-
-import '../cards/font_type_card.dart';
 
 class QuranStyleBottomSheet extends StatefulWidget {
   const QuranStyleBottomSheet({super.key});
@@ -29,68 +29,39 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
+      padding: const EdgeInsets.all(kPaddingDefault * 3),
       decoration: BoxDecoration(
         color: context.theme.backgroundColor,
-        borderRadius: const BorderRadius.only(
-          topLeft: Radius.circular(20.0),
-          topRight: Radius.circular(20.0),
-        ),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(kPaddingHorizontal)),
       ),
-      child: Padding(
-        padding: const EdgeInsets.all(kPaddingDefault * 3),
+      child: SingleChildScrollView(
+        physics: const ClampingScrollPhysics(),
         child: Column(
-          mainAxisAlignment: MainAxisAlignment.start,
-          crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisSize: MainAxisSize.min,
           children: [
-            buildReadingStyleLabel(),
-            const SizedBox(height: kPaddingDefault),
-            buildReadingStyleButtons(context),
-            const SizedBox(height: kPaddingDefault * 2),
-            buildFontSizeLabel(context),
-            const FontSliderCard(),
-            const SizedBox(height: kPaddingDefault * 2),
-            // buildFontStyleLabel(context),
-            // const SizedBox(height: kPaddingDefault),
-            // const FontTypeCard(text: "Deneme")
+            buildReadingStyle,
+            buildTranslateFontSize,
+            buildTranslationFontType,
+            buildArabicFontSize,
+            buildArabicFontType,
           ],
         ),
       ),
     );
   }
 
-  /// Font style label
-  Text buildFontStyleLabel(BuildContext context) {
+  /// Bars' Title
+  Widget buildTitle(String text) {
     return Text(
-      context.translate.fontType,
-      style: context.theme.textTheme.headlineMedium!
-          .copyWith(color: context.theme.toggleButtonsTheme.borderColor),
-      textAlign: TextAlign.start,
-    );
-  }
-
-  /// Font Size label
-  Text buildFontSizeLabel(BuildContext context) {
-    return Text(
-      context.translate.fontSize,
-      style: context.theme.textTheme.headlineMedium!
-          .copyWith(color: context.theme.toggleButtonsTheme.borderColor),
-      textAlign: TextAlign.start,
-    );
-  }
-
-  /// Reading style label
-  Widget buildReadingStyleLabel() {
-    return Text(
-      context.translate.readingStyle,
-      style: context.theme.textTheme.headlineMedium!
-          .copyWith(color: context.theme.toggleButtonsTheme.borderColor),
+      text,
+      style: context.theme.textTheme.headlineMedium!.copyWith(
+        color: context.theme.toggleButtonsTheme.borderColor,
+      ),
       textAlign: TextAlign.start,
     );
   }
 
   /// Reading style buttons from the [CustomToggleButtons]
-  Widget buildReadingStyleButtons(BuildContext context) {
+  Widget get buildReadingStyleButtons {
     return CustomToggleButtons(
       buttonTitles: [
         context.translate.all,
@@ -99,6 +70,86 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
       ],
       onTap: context.read<QuranProvider>().changeReadingType,
       selectedIndex: context.watch<QuranProvider>().localSetting.readingType.index,
+    );
+  }
+
+  /// Getting Reading Style Bar
+  Widget get buildReadingStyle {
+    return Visibility(
+      visible: context.watch<QuranProvider>().localSetting.quranType == EQuranType.reading,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          buildTitle(context.translate.readingStyle),
+          CustomSpace.normal(),
+          buildReadingStyleButtons,
+          CustomSpace.big(),
+        ],
+      ),
+    );
+  }
+
+  /// Getting Translate Font Size Bar
+  Widget get buildTranslateFontSize {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        buildTitle("${context.translate.fontSize} (${context.translate.translation})"),
+        CustomSpace.normal(),
+        FontSliderCard(
+          value: context.watch<QuranProvider>().localSetting.textScaleFactor,
+          onChange: context.read<QuranProvider>().changeFontSize,
+        ),
+        CustomSpace.big(),
+      ],
+    );
+  }
+
+  /// Getting Arabic Font Size Bar
+  Widget get buildArabicFontSize {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        buildTitle("${context.translate.fontSize} (${context.translate.arabic})"),
+        const SizedBox(height: kPaddingDefault),
+        FontSliderCard(
+          value: context.watch<QuranProvider>().localSetting.textScaleFactorArabic,
+          onChange: context.read<QuranProvider>().changeFontSizeArabic,
+        ),
+        CustomSpace.big(),
+      ],
+    );
+  }
+
+  /// Getting Translation Font Type Bar
+  Widget get buildTranslationFontType {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CustomExpandingFontCard(
+          title: "${context.translate.fontType} (${context.translate.translation})",
+          defaultFont: context.watch<QuranProvider>().localSetting.fontType,
+          changedFont: context.read<QuranProvider>().changeFontType,
+          fonts: Fonts.translationFontNames,
+        ),
+        CustomSpace.big(),
+      ],
+    );
+  }
+
+  /// Getting Arabic Font Type Bar
+  Widget get buildArabicFontType {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        CustomExpandingFontCard(
+          title: "${context.translate.fontType} (${context.translate.arabic})",
+          defaultFont: context.watch<QuranProvider>().localSetting.fontTypeArabic,
+          changedFont: context.read<QuranProvider>().changeFontTypeArabic,
+          fonts: Fonts.arabicFontNames,
+        ),
+        CustomSpace.big(),
+      ],
     );
   }
 }
