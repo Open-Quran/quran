@@ -14,7 +14,9 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 Future<void> main() async {
   await GetStorage.init('FabrikodQuran');
   WidgetsFlutterBinding.ensureInitialized();
-  runApp(const MyApp());
+  //debugRepaintRainbowEnabled = false;
+  runApp(const MyApp(
+  ));
 }
 
 class MyApp extends StatelessWidget {

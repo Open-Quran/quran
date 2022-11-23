@@ -17,14 +17,6 @@ class HomeProvider extends ChangeNotifier {
     _context.read<QuranProvider>().getVerseTranslation(_context);
   }
 
-  /// Focus node for search field in the home screen
-  final FocusNode searchBarFocusNode = FocusNode();
-
-  /// Un-focus Search Field
-  void searchBarFocusNodeUnFocus() {
-    searchBarFocusNode.unfocus();
-  }
-
   /// Navigation to details when user clicks on [SurahCard]
   void onTapSurahCard(int surahId) {
     goToSurahDetailScreen(

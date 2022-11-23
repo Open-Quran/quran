@@ -10,6 +10,7 @@ class Utils {
     return DateTime.parse(date);
   }
 
+  /// Checking if platform has dark mode
   static bool isPlatformBrightnessDark(BuildContext context) {
     var brightness = MediaQuery.of(context).platformBrightness;
     bool isDarkMode = brightness == Brightness.dark;
@@ -23,6 +24,7 @@ class Utils {
     return parsedString;
   }
 
+  /// Changing numbers to arabic
   static String getArabicVerseNo(String input) {
     const english = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9'];
     const farsi = ['٠', '١', '٢', '٣', '٤', '٥', '٦', '٧', '٨', '٩'];
@@ -30,5 +32,13 @@ class Utils {
       input = input.replaceAll(english[i], farsi[i]);
     }
     return " $input ";
+  }
+
+  /// Returning true if string has number
+  static bool isNumeric(String s) {
+    if (s == null) {
+      return false;
+    }
+    return int.tryParse(s) != null;
   }
 }

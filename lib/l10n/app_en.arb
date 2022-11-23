@@ -38,5 +38,9 @@
     "helpGuideDescription1": "Lorem ipsum lorem ipsum lorem ipsum Lorem ipsum lorem ipsum lorem ipsum Lorem ipsum lorem ipsum lorem ipsum ",
     "nextPage": "Next Page",
     "page": "Page",
-    "previousPage": "Previous Page"
+    "previousPage": "Previous Page",
+    "surahs": "Surahs",
+    "noResultsFound": "No results found\\nTry searching for a different keyword.",
+    "suggestions": "Suggestions",
+    "noBookMarkedSurahOrAyat": "No bookmarked surah or ayat"
 }

@@ -1,18 +1,24 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
+import 'package:fabrikod_quran/providers/search_provider.dart';
 import 'package:fabrikod_quran/widgets/app_bars/main_app_bar.dart';
 import 'package:fabrikod_quran/widgets/bars/custom_tab_bar.dart';
 import 'package:fabrikod_quran/widgets/cards/juz_card.dart';
 import 'package:fabrikod_quran/widgets/cards/surah_card.dart';
 import 'package:fabrikod_quran/widgets/bars/custom_search_bar.dart';
+import 'package:fabrikod_quran/widgets/no_item_widget.dart';
 import 'package:fabrikod_quran/widgets/tags/custom_tag_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/cards/search_card.dart';
+import '../widgets/cards/search_surah_card.dart';
+
 class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+  const HomeScreen({Key? key}) : super(key: key);
 
   @override
   State<HomeScreen> createState() => _HomeScreenState();
@@ -21,8 +27,25 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
+    return ChangeNotifierProvider(
+      create: (_) => SearchProvider(_),
+      child: const _MyHomeScreen(),
+    );
+  }
+}
+
+class _MyHomeScreen extends StatefulWidget {
+  const _MyHomeScreen({Key? key}) : super(key: key);
+
+  @override
+  State<_MyHomeScreen> createState() => _MyHomeScreenState();
+}
+
+class _MyHomeScreenState extends State<_MyHomeScreen> {
+  @override
+  Widget build(BuildContext context) {
     return InkWell(
-      onTap: context.watch<HomeProvider>().searchBarFocusNodeUnFocus,
+      onTap: context.read<SearchProvider>().searchBarFocusNodeUnFocus,
       child: Scaffold(
         appBar: MainAppBar(title: context.translate.quran),
         body: buildBody,
@@ -42,26 +65,39 @@ class _HomeScreenState extends State<HomeScreen> {
           const SizedBox(height: kPaddingDefault),
           buildSearchTags,
           const SizedBox(height: kPaddingDefault * 2),
-          buildTabBar,
+          RepaintBoundary(
+            child: context.watch<SearchProvider>().isFieldEmpty
+                ? buildTabBar
+                : buildSurahFilterList,
+          ),
         ],
       ),
     );
   }
 
   /// Returns Basmala Title
-  Widget get buildBasmala =>
-      SvgPicture.asset(ImageConstants.bigBasmalaIcon, color: Theme.of(context).iconTheme.color);
+  Widget get buildBasmala => SvgPicture.asset(ImageConstants.bigBasmalaIcon,
+      color: Theme.of(context).iconTheme.color);
 
   /// Search bar => [FocusNode]
-  Widget get buildSearchBar =>
-      CustomSearchBar(focusNode: context.watch<HomeProvider>().searchBarFocusNode);
+  Widget get buildSearchBar => CustomSearchBar(
+        textEditingController:
+            context.read<SearchProvider>().textEditingController,
+        focusNode: context.read<SearchProvider>().searchBarFocusNode,
+        onSubmit: context.read<SearchProvider>().handleSearchSubmitted,
+      );
 
   /// List of tags under the search
   Widget get buildSearchTags {
     return CustomTagList(
-      /// Todo: Change the tags
-      tags: const ["Surah", "Juz", "Sajda", "Al-Fatiha", "Al-Fatiha", "Al-Fatiha"],
-      selectedTag: (selectedTag) {},
+      tags: const [
+        "Al-Fatiha",
+        "Al-Mulk",
+        "Ya-sin",
+        "Al-Kahf",
+        "Maryam",
+      ],
+      selectedTag: context.read<SearchProvider>().selectedTag,
     );
   }
 
@@ -81,6 +117,101 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  Widget get buildSurahFilterList {
+    /// Getting list of surahs
+    var searchSurahResult = context.watch<SearchProvider>().filteredSurahSearch;
+
+    /// Getting page number
+    var pageNumber = context.watch<SearchProvider>().filterPageNumber;
+
+    /// Getting juz number
+    var juzNumber = context.watch<SearchProvider>().filterJuzNumber;
+
+    return searchSurahResult.isEmpty && pageNumber == null
+        ? NoItemWidget(
+            text: context.translate.noResultsFound,
+            icon: const Icon(
+              Icons.search_off,
+              size: 30,
+            ))
+        : Column(
+            children: [
+              Visibility(
+                visible: searchSurahResult.isNotEmpty,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: kPaddingDefault, bottom: kPaddingDefault),
+                      child: buildSurahLabel(),
+                    ),
+                    buildSurahSearchResult(searchSurahResult),
+                  ],
+                ),
+              ),
+              buildJuzAndPageSearchResult(pageNumber, juzNumber),
+            ],
+          );
+  }
+
+  /// Surah label
+  Text buildSurahLabel() {
+    return Text(
+      context.translate.surahs,
+      overflow: TextOverflow.ellipsis,
+      style: context.theme.textTheme.headlineSmall,
+    );
+  }
+
+  /// [Surah] search results
+  ListView buildSurahSearchResult(List<SurahModel> searchSurahResult) {
+    return ListView.separated(
+      itemCount: searchSurahResult.length,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.symmetric(vertical: 0),
+      itemBuilder: (context, index) => SearchSurahCard(
+        surahModel: searchSurahResult[index],
+        onTap: () => context
+            .read<HomeProvider>()
+            .onTapSurahCard(searchSurahResult[index].id! - 1),
+      ),
+      separatorBuilder: (context, index) =>
+          const SizedBox(height: kPaddingContentSpaceBetween),
+    );
+  }
+
+  /// [Juz] and [Page] search results
+  ListView buildJuzAndPageSearchResult(int? pageNumber, int? juzNumber) {
+    return ListView(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      children: [
+        Visibility(
+          visible: juzNumber != null,
+          child: SearchCard(
+            title: context.translate.juz,
+            titleNumber: "${context.translate.juz} - $pageNumber",
+            onTap: () {
+              context.read<HomeProvider>().onTapJuzCard(juzNumber! - 1);
+            },
+          ),
+        ),
+        Visibility(
+          visible: pageNumber != null,
+          child: SearchCard(
+            title: context.translate.page,
+            titleNumber: "${context.translate.page} - $pageNumber",
+            onTap: () {
+              context.read<SearchProvider>().onTapSearchPageCard(pageNumber!);
+            },
+          ),
+        ),
+      ],
+    );
+  }
+
   /// List of the Surah Verses
   Widget get buildSurahList {
     var surahs = context.watch<QuranProvider>().surahs;
@@ -91,9 +222,11 @@ class _HomeScreenState extends State<HomeScreen> {
       padding: const EdgeInsets.symmetric(vertical: kPaddingVertical),
       itemBuilder: (context, index) => SurahCard(
         surahModel: surahs[index],
-        onTap: () => context.read<HomeProvider>().onTapSurahCard(index),
+        onTap: () =>
+            context.read<HomeProvider>().onTapSurahCard(surahs[index].id! - 1),
       ),
-      separatorBuilder: (context, index) => const SizedBox(height: kPaddingContentSpaceBetween),
+      separatorBuilder: (context, index) =>
+          const SizedBox(height: kPaddingContentSpaceBetween),
     );
   }
 
@@ -128,7 +261,8 @@ class _HomeScreenState extends State<HomeScreen> {
         surahModel: sajdas[index],
         onTap: () => context.read<HomeProvider>().onTapSajdaCard(index),
       ),
-      separatorBuilder: (context, index) => const SizedBox(height: kPaddingContentSpaceBetween),
+      separatorBuilder: (context, index) =>
+          const SizedBox(height: kPaddingContentSpaceBetween),
     );
   }
 }
