@@ -12,29 +12,34 @@ import 'package:fabrikod_quran/widgets/cards/action_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-class MushafScreen extends StatelessWidget {
-  const MushafScreen({Key? key}) : super(key: key);
+class MushafPage extends StatelessWidget {
+  final int pageNo;
+
+  const MushafPage({Key? key, required this.pageNo}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    var surahs = context.watch<SurahDetailsProvider>().surahsOfMushafPage;
-    return Column(
-      children: [
-        Expanded(
-          child: InkWell(
-            onTap: context.read<SurahDetailsProvider>().changeReadingMode,
-            child: ListView.builder(
-              itemCount: surahs.length,
-              physics: const ClampingScrollPhysics(),
-              padding: const EdgeInsets.symmetric(vertical: kPaddingHorizontal),
-              itemBuilder: (context, index) {
-                return buildSurah(context, surahs[index]);
-              },
+    var surahs = context.read<SurahDetailsProvider>().getSurahOfMushafPage(pageNo);
+    return Padding(
+      padding: const EdgeInsets.symmetric(horizontal: kPaddingHorizontal),
+      child: Column(
+        children: [
+          Expanded(
+            child: InkWell(
+              onTap: context.read<SurahDetailsProvider>().changeReadingMode,
+              child: ListView.builder(
+                itemCount: surahs.length,
+                physics: const ClampingScrollPhysics(),
+                padding: const EdgeInsets.only(bottom: kPaddingHorizontal),
+                itemBuilder: (context, index) {
+                  return buildSurah(context, surahs[index]);
+                },
+              ),
             ),
           ),
-        ),
-        buildButtons(context)
-      ],
+          buildButtons(context)
+        ],
+      ),
     );
   }
 
@@ -105,7 +110,7 @@ class MushafScreen extends StatelessWidget {
   }
 
   Widget buildButtons(BuildContext context) {
-    int pageNumber = context.watch<SurahDetailsProvider>().readingSettings.mushafPageNumber;
+    //int pageNumber = context.watch<SurahDetailsProvider>().readingSettings.mushafPageNumber;
     return Visibility(
       visible: !context.watch<SurahDetailsProvider>().readingSettings.isReadingMode,
       child: Padding(
@@ -114,14 +119,18 @@ class MushafScreen extends StatelessWidget {
           children: [
             Expanded(
               child: Opacity(
-                opacity: pageNumber > 603 ? 0.2 : 1.0,
+                opacity: pageNo > 603 ? 0.2 : 1.0,
                 child: CustomButton(
                   title: context.translate.nextPage,
                   height: 55,
-                  onTap: pageNumber > 603
+                  onTap: pageNo > 603
                       ? null
-                      : () =>
-                          context.read<SurahDetailsProvider>().changeMushafPageNumber(++pageNumber),
+                      : () {
+                          int newPageNo = pageNo + 1;
+                          context
+                              .read<SurahDetailsProvider>()
+                              .changeMushafPageNumberForButton(newPageNo);
+                        },
                 ),
               ),
             ),
@@ -135,7 +144,7 @@ class MushafScreen extends StatelessWidget {
               ),
               child: Center(
                 child: Text(
-                  pageNumber.toString(),
+                  pageNo.toString(),
                   style: context.theme.toggleButtonsTheme.textStyle!
                       .copyWith(color: context.theme.toggleButtonsTheme.textStyle!.color),
                 ),
@@ -144,14 +153,18 @@ class MushafScreen extends StatelessWidget {
             const SizedBox(width: kPaddingDefault),
             Expanded(
               child: Opacity(
-                opacity: pageNumber < 2 ? 0.2 : 1.0,
+                opacity: pageNo < 2 ? 0.2 : 1.0,
                 child: CustomButton(
                   title: context.translate.previousPage,
                   height: 55,
-                  onTap: pageNumber < 2
+                  onTap: pageNo < 2
                       ? null
-                      : () =>
-                          context.read<SurahDetailsProvider>().changeMushafPageNumber(--pageNumber),
+                      : () {
+                    int newPageNo = pageNo - 1;
+                    context
+                        .read<SurahDetailsProvider>()
+                        .changeMushafPageNumberForButton(newPageNo);
+                  },
                 ),
               ),
             ),
