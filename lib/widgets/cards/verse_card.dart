@@ -10,6 +10,7 @@ import 'package:fabrikod_quran/services/copy_and_share_service.dart';
 import 'package:fabrikod_quran/widgets/cards/action_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 class VerseCard extends StatelessWidget {
   const VerseCard({Key? key, required this.verseModel}) : super(key: key);
 
@@ -88,8 +89,11 @@ class VerseCard extends StatelessWidget {
             child: Text(
               verseModel.text ?? "",
               textDirection: TextDirection.rtl,
-              textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
-              style: context.theme.textTheme.headlineLarge,
+              textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactorArabic,
+              style: context.theme.textTheme.headlineLarge?.copyWith(
+                fontFamily:
+                    Fonts.getArabicFont(context.watch<QuranProvider>().localSetting.fontTypeArabic),
+              ),
             ),
           ),
         ],
@@ -114,7 +118,10 @@ class VerseCard extends StatelessWidget {
                       .text ??
                   "",
               textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
-              style: context.theme.textTheme.titleSmall,
+              style: context.theme.textTheme.titleSmall?.copyWith(
+                fontFamily:
+                    Fonts.getTranslationFont(context.watch<QuranProvider>().localSetting.fontType),
+              ),
             ),
           ),
         ],
