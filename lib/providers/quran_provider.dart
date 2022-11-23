@@ -34,10 +34,7 @@ class QuranProvider extends ChangeNotifier {
   List<VerseModel> get getAllVerses {
     List<VerseModel> verseList = [];
     for (var verse in surahs) {
-      var verses = verse.verses;
-      for (var verse in verses) {
-        verseList.add(verse);
-      }
+      verseList.addAll(verse.verses);
     }
     return verseList;
   }

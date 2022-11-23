@@ -14,7 +14,6 @@ import '../screens/surah_details/surah_details_screen.dart';
 import '../utils/utils.dart';
 
 class SearchProvider extends ChangeNotifier {
-
   /// Class constructor
   SearchProvider(this._context);
 
@@ -113,5 +112,10 @@ class SearchProvider extends ChangeNotifier {
         ),
       ),
     );
+  }
+
+  selectedTag(String selectedTag) {
+    textEditingController.text = selectedTag;
+    searchBarFocusNode.requestFocus();
   }
 }

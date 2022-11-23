@@ -90,7 +90,6 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
   /// List of tags under the search
   Widget get buildSearchTags {
     return CustomTagList(
-      /// Todo: Change the tags
       tags: const [
         "Al-Fatiha",
         "Al-Mulk",
@@ -98,10 +97,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
         "Al-Kahf",
         "Maryam",
       ],
-      selectedTag: (selectedTag) {
-        context.read<SearchProvider>().textEditingController.text = selectedTag;
-        context.read<SearchProvider>().searchBarFocusNode.requestFocus();
-      },
+      selectedTag: context.read<SearchProvider>().selectedTag,
     );
   }
 
