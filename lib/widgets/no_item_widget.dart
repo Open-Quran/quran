@@ -6,7 +6,10 @@ class NoItemWidget extends StatelessWidget {
   const NoItemWidget({Key? key, required this.text, required this.icon})
       : super(key: key);
 
+  /// Empty Search Icon
   final Widget icon;
+
+  /// Empty Search Label
   final String text;
 
   @override

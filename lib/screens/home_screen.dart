@@ -1,4 +1,5 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/search_provider.dart';
@@ -12,6 +13,9 @@ import 'package:fabrikod_quran/widgets/tags/custom_tag_list.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+
+import '../widgets/cards/search_card.dart';
+import '../widgets/cards/search_surah_card.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -41,7 +45,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: context.watch<HomeProvider>().searchBarFocusNodeUnFocus,
+      onTap: context.read<SearchProvider>().searchBarFocusNodeUnFocus,
       child: Scaffold(
         appBar: MainAppBar(title: context.translate.quran),
         body: buildBody,
@@ -59,11 +63,13 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
           const SizedBox(height: kPaddingDefault * 2),
           buildSearchBar,
           const SizedBox(height: kPaddingDefault),
-          // buildSearchTags,
+          buildSearchTags,
           const SizedBox(height: kPaddingDefault * 2),
-          context.watch<SearchProvider>().isFieldEmpty
-              ? buildTabBar
-              : buildSurahFilterList
+          RepaintBoundary(
+            child: context.watch<SearchProvider>().isFieldEmpty
+                ? buildTabBar
+                : buildSurahFilterList,
+          ),
         ],
       ),
     );
@@ -75,8 +81,10 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
 
   /// Search bar => [FocusNode]
   Widget get buildSearchBar => CustomSearchBar(
-        focusNode: context.watch<HomeProvider>().searchBarFocusNode,
-        onSubmit: context.watch<SearchProvider>().handleSearchSubmitted,
+        textEditingController:
+            context.read<SearchProvider>().textEditingController,
+        focusNode: context.read<SearchProvider>().searchBarFocusNode,
+        onSubmit: context.read<SearchProvider>().handleSearchSubmitted,
       );
 
   /// List of tags under the search
@@ -85,16 +93,14 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
       /// Todo: Change the tags
       tags: const [
         "Al-Fatiha",
+        "Al-Mulk",
         "Ya-sin",
-        "الفاتحة",
-        "18",
-        "الملك",
-        "112",
+        "Al-Kahf",
         "Maryam",
       ],
       selectedTag: (selectedTag) {
-        context.read<SearchProvider>().passOptionValue(selectedTag);
-        setState(() {});
+        context.read<SearchProvider>().textEditingController.text = selectedTag;
+        context.read<SearchProvider>().searchBarFocusNode.requestFocus();
       },
     );
   }
@@ -116,28 +122,98 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
   }
 
   Widget get buildSurahFilterList {
-    var searchResult = context.watch<SearchProvider>().filteredSearch;
-    return searchResult.isEmpty
-        ? const NoItemWidget(
-            text: "No results found\nTry searching for a different keyword.",
-            icon: Icon(
+    /// Getting list of surahs
+    var searchSurahResult = context.watch<SearchProvider>().filteredSurahSearch;
+
+    /// Getting page number
+    var pageNumber = context.watch<SearchProvider>().filterPageNumber;
+
+    /// Getting juz number
+    var juzNumber = context.watch<SearchProvider>().filterJuzNumber;
+
+    return searchSurahResult.isEmpty && pageNumber == null
+        ? NoItemWidget(
+            text: context.translate.noResultsFound,
+            icon: const Icon(
               Icons.search_off,
               size: 30,
             ))
-        : ListView.separated(
-            itemCount: searchResult.length,
-            shrinkWrap: true,
-            physics: const NeverScrollableScrollPhysics(),
-            padding: const EdgeInsets.symmetric(vertical: kPaddingVertical),
-            itemBuilder: (context, index) => SurahCard(
-              surahModel: searchResult[index],
-              onTap: () => context
-                  .read<HomeProvider>()
-                  .onTapSurahCard(searchResult[index].id! - 1),
-            ),
-            separatorBuilder: (context, index) =>
-                const SizedBox(height: kPaddingContentSpaceBetween),
+        : Column(
+            children: [
+              Visibility(
+                visible: searchSurahResult.isNotEmpty,
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Padding(
+                      padding: const EdgeInsets.only(
+                          left: kPaddingDefault, bottom: kPaddingDefault),
+                      child: buildSurahLabel(),
+                    ),
+                    buildSurahSearchResult(searchSurahResult),
+                  ],
+                ),
+              ),
+              buildJuzAndPageSearchResult(pageNumber, juzNumber),
+            ],
           );
+  }
+
+  /// Surah label
+  Text buildSurahLabel() {
+    return Text(
+      context.translate.surahs,
+      overflow: TextOverflow.ellipsis,
+      style: context.theme.textTheme.headlineSmall,
+    );
+  }
+
+  /// [Surah] search results
+  ListView buildSurahSearchResult(List<SurahModel> searchSurahResult) {
+    return ListView.separated(
+      itemCount: searchSurahResult.length,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.symmetric(vertical: 0),
+      itemBuilder: (context, index) => SearchSurahCard(
+        surahModel: searchSurahResult[index],
+        onTap: () => context
+            .read<HomeProvider>()
+            .onTapSurahCard(searchSurahResult[index].id! - 1),
+      ),
+      separatorBuilder: (context, index) =>
+          const SizedBox(height: kPaddingContentSpaceBetween),
+    );
+  }
+
+  /// [Juz] and [Page] search results
+  ListView buildJuzAndPageSearchResult(int? pageNumber, int? juzNumber) {
+    return ListView(
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      children: [
+        Visibility(
+          visible: juzNumber != null,
+          child: SearchCard(
+            title: context.translate.juz,
+            titleNumber: "${context.translate.juz} - $pageNumber",
+            onTap: () {
+              context.read<HomeProvider>().onTapJuzCard(juzNumber! - 1);
+            },
+          ),
+        ),
+        Visibility(
+          visible: pageNumber != null,
+          child: SearchCard(
+            title: context.translate.page,
+            titleNumber: "${context.translate.page} - $pageNumber",
+            onTap: () {
+              context.read<SearchProvider>().onTapSearchPageCard(pageNumber!);
+            },
+          ),
+        ),
+      ],
+    );
   }
 
   /// List of the Surah Verses

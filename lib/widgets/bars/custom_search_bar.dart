@@ -4,11 +4,12 @@ import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
 
+/// Search suggestions
 const List<String> searchSuggestions = [
-  "Al-Fatiha",
+  "18",
   "Ya-sin",
   "الفاتحة",
-  "18",
+  "Madinah",
   "الملك",
   "112",
   "Maryam"
@@ -43,6 +44,7 @@ class CustomSearchBar extends StatelessWidget {
     );
   }
 
+  /// Suggestion title
   Widget _buildSuggestionTitle(BuildContext context) {
     return Container(
       padding: const EdgeInsets.all(8).copyWith(top: 0),
@@ -53,7 +55,7 @@ class CustomSearchBar extends StatelessWidget {
       child: Align(
         alignment: Alignment.centerLeft,
         child: Text(
-          "Try navigating to",
+          context.translate.suggestions,
           overflow: TextOverflow.ellipsis,
           textHeightBehavior:
               const TextHeightBehavior(applyHeightToFirstAscent: false),
@@ -83,6 +85,7 @@ class CustomSearchBar extends StatelessWidget {
     );
   }
 
+  /// Suggestions view
   Widget _buildSuggestionsView(BuildContext context, onSelected,
       Iterable<String> results, BoxConstraints constraints) {
     List<Widget> items = results
@@ -100,7 +103,7 @@ class CustomSearchBar extends StatelessWidget {
             BoxShadow(
               color: context.theme.dividerColor,
               blurRadius: 4,
-              offset: const Offset(0, 4),
+              offset: const Offset(0, 7),
             ),
           ],
         ),
@@ -123,9 +126,10 @@ class CustomSearchBar extends StatelessWidget {
     );
   }
 
+  /// All search suggestions
   Iterable<String> _getSuggestions(TextEditingValue textEditingValue) {
     if (textEditingValue.text == '') {
-      return searchSuggestions.getRange(0, 7);
+      return searchSuggestions.getRange(0, 5);
     }
 
     return searchSuggestions.where((str) {
@@ -136,6 +140,10 @@ class CustomSearchBar extends StatelessWidget {
 
   Widget _buildInput(BuildContext context, TextEditingController textController,
       FocusNode focusNode, _) {
+
+    context.read<SearchProvider>().textEditingController = textController;
+    context.read<SearchProvider>().searchBarFocusNode = focusNode;
+
     return Container(
       height: 60,
       decoration: BoxDecoration(
@@ -187,6 +195,7 @@ class CustomSearchBar extends StatelessWidget {
     );
   }
 
+  /// Search form
   Form buildForm(BuildContext context) {
     return Form(
       key: formKey,
@@ -220,6 +229,7 @@ class CustomSearchBar extends StatelessWidget {
     );
   }
 
+  /// Border
   OutlineInputBorder get getBorder {
     return const OutlineInputBorder(
       borderRadius: BorderRadius.all(Radius.circular(kPaddingDefault)),

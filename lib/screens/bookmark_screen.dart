@@ -25,36 +25,42 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
 
   Widget get buildBody {
     List<BookMarkModel> bookmarks = context.watch<BookmarkProvider>().bookmarks;
-    return
-      bookmarks.isEmpty ?
-      const NoItemWidget(
-          text: "No Ayats or Surahs bookmarked",
-          icon: Icon(Icons.bookmark_remove_rounded,
+    return bookmarks.isEmpty
+        ? NoItemWidget(
+            text: context.translate.noBookMarkedSurahOrAyat,
+            icon: const Icon(
+              Icons.bookmark_remove_rounded,
               size: 80,
-            ))
+            ),
+          )
         : ListView.separated(
-      itemCount: bookmarks.length,
-      shrinkWrap: true,
-      primary: false,
-      padding: const EdgeInsets.symmetric(
-        vertical: kPaddingVertical,
-        horizontal: kPaddingHorizontal,
-      ),
-      itemBuilder: (context, index) {
-        var bookmark = bookmarks[index];
-        var isBookmarked = context.read<BookmarkProvider>().isBookmark(bookmark);
-        return BookmarkCard(
-          bookMarkModel: bookmarks.elementAt(index),
-          isBookmark: isBookmarked,
-          bookmarkIconOnTap: () => context.read<BookmarkProvider>().bookmarkIconOnTap(
-                isBookmarked,
-                bookmark.verseModel,
-                bookmark.bookmarkType,
-              ),
-          onTap: () => context.read<BookmarkProvider>().bookmarkOnTap(context, bookmark),
-        );
-      },
-      separatorBuilder: (context, index) => const SizedBox(height: kPaddingHorizontal),
-    );
+            itemCount: bookmarks.length,
+            shrinkWrap: true,
+            primary: false,
+            padding: const EdgeInsets.symmetric(
+              vertical: kPaddingVertical,
+              horizontal: kPaddingHorizontal,
+            ),
+            itemBuilder: (context, index) {
+              var bookmark = bookmarks[index];
+              var isBookmarked =
+                  context.read<BookmarkProvider>().isBookmark(bookmark);
+              return BookmarkCard(
+                bookMarkModel: bookmarks.elementAt(index),
+                isBookmark: isBookmarked,
+                bookmarkIconOnTap: () =>
+                    context.read<BookmarkProvider>().bookmarkIconOnTap(
+                          isBookmarked,
+                          bookmark.verseModel,
+                          bookmark.bookmarkType,
+                        ),
+                onTap: () => context
+                    .read<BookmarkProvider>()
+                    .bookmarkOnTap(context, bookmark),
+              );
+            },
+            separatorBuilder: (context, index) =>
+                const SizedBox(height: kPaddingHorizontal),
+          );
   }
 }

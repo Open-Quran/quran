@@ -2,6 +2,7 @@ import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/database/local_db.dart';
 import 'package:fabrikod_quran/models/local_setting_model.dart';
 import 'package:fabrikod_quran/models/surah_model.dart';
+import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/models/verse_translation.dart';
 import 'package:fabrikod_quran/providers/app_settings_provider.dart';
 import 'package:fabrikod_quran/services/asset_quran_service.dart';
@@ -27,6 +28,18 @@ class QuranProvider extends ChangeNotifier {
   /// Get surah which has sajda verses
   List<SurahModel> get sajdaSurahs {
     return surahs.where((element) => element.isSajdaVerse).toList();
+  }
+
+  /// Get all surah verses
+  List<VerseModel> get getAllVerses {
+    List<VerseModel> verseList = [];
+    for (var verse in surahs) {
+      var verses = verse.verses;
+      for (var verse in verses) {
+        verseList.add(verse);
+      }
+    }
+    return verseList;
   }
 
   /// Getting Local Setting Of quran From DB
@@ -67,8 +80,10 @@ class QuranProvider extends ChangeNotifier {
 
   /// Get all [verseTranslation] from [AssetQuranService]
   Future<void> getVerseTranslation(BuildContext context) async {
-    String languageCode = context.read<AppSettingsProvider>().appLocale!.languageCode;
-    verseTranslation = await AssetQuranService.getVerseTranslation(languageCode);
+    String languageCode =
+        context.read<AppSettingsProvider>().appLocale!.languageCode;
+    verseTranslation =
+        await AssetQuranService.getVerseTranslation(languageCode);
     notifyListeners();
   }
 }
