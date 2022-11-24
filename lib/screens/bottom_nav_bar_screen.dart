@@ -39,7 +39,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => HomeProvider(context)),
+        ChangeNotifierProvider(create: (_) => HomeProvider(context),lazy: false),
         ChangeNotifierProvider(create: (_) => MoreProvider(context)),
       ],
       child: Scaffold(
