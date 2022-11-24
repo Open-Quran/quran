@@ -112,6 +112,11 @@ class SurahDetailsProvider extends ChangeNotifier {
     return list;
   }
 
+  /// Getting Verses Of selected Surah
+  List<VerseModel> get versesOfSelectedSurah {
+    return quranProvider.surahs[readingSettings.surahIndex].verses;
+  }
+
   /// Changing reading style in the home page
   /// EX: [Translation] or [Reading]
   void changeQuranType(int index) {

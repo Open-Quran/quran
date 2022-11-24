@@ -13,6 +13,7 @@ class ActionCard extends StatelessWidget {
       this.isPlaying = false,
       this.isFavorite,
       this.isBookmark = false,
+      this.isShowMoreButton = true,
       this.verseKey})
       : super(key: key);
 
@@ -20,6 +21,7 @@ class ActionCard extends StatelessWidget {
   final bool isPlaying;
   final bool? isFavorite;
   final bool isBookmark;
+  final bool isShowMoreButton;
   final Function(bool isPlaying) playButtonOnTap;
   final Function()? favoriteButtonOnTap;
   final Function()? bookmarkButtonOnTap;
@@ -85,52 +87,55 @@ class ActionCard extends StatelessWidget {
               ),
             ],
           ),
-          PopupMenuButton<String>(
-            icon: Icon(
-              Icons.more_horiz_outlined,
-              color: context.theme.iconTheme.color,
-            ),
-            elevation: 0,
-            color: context.theme.toggleButtonsTheme.selectedColor,
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(kPaddingDefault),
-            ),
-            itemBuilder: (BuildContext context) => [
-              PopupMenuItem<String>(
-                onTap: copyButtonOnTap,
-                child: Row(
-                  children: [
-                    Icon(
-                      Icons.copy_outlined,
-                      color: context.theme.toggleButtonsTheme.textStyle?.color,
-                    ),
-                    const SizedBox(width: kPaddingDefault),
-                    Text(
-                      context.translate.copy,
-                      style: context.theme.textTheme.titleLarge?.copyWith(
-                        color: context.theme.toggleButtonsTheme.textStyle?.color
+          Visibility(
+            visible: isShowMoreButton,
+            child: PopupMenuButton<String>(
+              icon: Icon(
+                Icons.more_horiz_outlined,
+                color: context.theme.iconTheme.color,
+              ),
+              elevation: 0,
+              color: context.theme.toggleButtonsTheme.selectedColor,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(kPaddingDefault),
+              ),
+              itemBuilder: (BuildContext context) => [
+                PopupMenuItem<String>(
+                  onTap: copyButtonOnTap,
+                  child: Row(
+                    children: [
+                      Icon(
+                        Icons.copy_outlined,
+                        color: context.theme.toggleButtonsTheme.textStyle?.color,
                       ),
-                    ),
-                  ],
-                ),
-              ),
-              PopupMenuItem<String>(
-                onTap: shareButtonOnTap,
-                child: Row(
-                  children: [
-                    SvgPicture.asset(
-                      ImageConstants.shareAppIcon,
-                      color: context.theme.toggleButtonsTheme.textStyle?.color,
-                    ),
-                    const SizedBox(width: kPaddingDefault),
-                    Text(context.translate.share,
+                      const SizedBox(width: kPaddingDefault),
+                      Text(
+                        context.translate.copy,
                         style: context.theme.textTheme.titleLarge?.copyWith(
-                            color: context.theme.toggleButtonsTheme.textStyle?.color),
-                    ),
-                  ],
+                          color: context.theme.toggleButtonsTheme.textStyle?.color
+                        ),
+                      ),
+                    ],
+                  ),
                 ),
-              ),
-            ],
+                PopupMenuItem<String>(
+                  onTap: shareButtonOnTap,
+                  child: Row(
+                    children: [
+                      SvgPicture.asset(
+                        ImageConstants.shareAppIcon,
+                        color: context.theme.toggleButtonsTheme.textStyle?.color,
+                      ),
+                      const SizedBox(width: kPaddingDefault),
+                      Text(context.translate.share,
+                          style: context.theme.textTheme.titleLarge?.copyWith(
+                              color: context.theme.toggleButtonsTheme.textStyle?.color),
+                      ),
+                    ],
+                  ),
+                ),
+              ],
+            ),
           ),
         ],
       ),

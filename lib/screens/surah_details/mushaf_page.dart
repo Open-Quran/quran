@@ -64,7 +64,7 @@ class MushafPage extends StatelessWidget {
           surahId: verseModel.surahId,
         );
     return ActionCard(
-      copyButtonOnTap: () {},
+      isShowMoreButton: false,
       isBookmark: isBookmarked,
       bookmarkButtonOnTap: () => context.read<BookmarkProvider>().bookmarkIconOnTap(
             isBookmarked,
