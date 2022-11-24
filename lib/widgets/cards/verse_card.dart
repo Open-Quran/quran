@@ -12,10 +12,11 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class VerseCard extends StatelessWidget {
-  const VerseCard({Key? key, required this.verseModel}) : super(key: key);
+  const VerseCard({Key? key, required this.verseModel, this.isFavorite = false}) : super(key: key);
 
   /// Verse model
   final VerseModel verseModel;
+  final bool isFavorite;
 
   @override
   Widget build(BuildContext context) {
@@ -81,7 +82,8 @@ class VerseCard extends StatelessWidget {
   /// Verse Text
   Widget buildVerseText(BuildContext context) {
     return Visibility(
-      visible: context.watch<QuranProvider>().localSetting.readingType != EReadingType.translation,
+      visible: isFavorite ||
+          context.watch<QuranProvider>().localSetting.readingType != EReadingType.translation,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -104,7 +106,8 @@ class VerseCard extends StatelessWidget {
   /// Verse Translation Text
   Widget buildVerseTranslationText(BuildContext context) {
     return Visibility(
-      visible: context.watch<QuranProvider>().localSetting.readingType != EReadingType.arabic,
+      visible: isFavorite ||
+          context.watch<QuranProvider>().localSetting.readingType != EReadingType.arabic,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
