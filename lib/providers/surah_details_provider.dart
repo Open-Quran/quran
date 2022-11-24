@@ -39,6 +39,12 @@ class SurahDetailsProvider extends ChangeNotifier {
     readingSettings.surahVerseIndex = itemPositionsListener.itemPositions.value.first.index;
   }
 
+  void initAfterScreen() {
+    if (readingSettings.surahDetailScreenMod == ESurahDetailScreenMod.surah) {
+      itemScrollController.jumpTo(index: readingSettings.surahVerseIndex);
+    }
+  }
+
   /// Get [QuranProvider]
   QuranProvider get quranProvider => _context.read<QuranProvider>();
 
