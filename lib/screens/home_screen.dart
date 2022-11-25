@@ -45,7 +45,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: context.read<SearchProvider>().searchBarFocusNodeUnFocus,
+      onTap: Utils.unFocus,
       child: Scaffold(
         appBar: MainAppBar(title: context.translate.quran),
         body: buildBody,

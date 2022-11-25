@@ -19,7 +19,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => Utils.unFocus(context),
+      onTap: Utils.unFocus,
       child: Drawer(
         child: Container(
           padding: const EdgeInsets.symmetric(
@@ -54,7 +54,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           context.watch<SurahDetailsProvider>().readingSettings.surahDetailScreenMod.index,
       onTap: (index) {
         context.read<SurahDetailsProvider>().changeSurahDetailScreenMod(index);
-        Utils.unFocus(context);
+        Utils.unFocus();
       },
     );
   }
@@ -103,8 +103,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
               var surah = context.watch<QuranProvider>().sajdaSurahs[index];
               return CustomButton(
                 title: "${surah.id}  ${surah.nameComplex}",
-                state:
-                    context.watch<SurahDetailsProvider>().readingSettings.sajdaIndex == index,
+                state: context.watch<SurahDetailsProvider>().readingSettings.sajdaIndex == index,
                 centerTitle: false,
                 height: 45,
                 onTap: () => context.read<SurahDetailsProvider>().changeSajdaIndex(index),
