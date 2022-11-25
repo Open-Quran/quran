@@ -41,4 +41,8 @@ class Utils {
     }
     return int.tryParse(s) != null;
   }
+
+  static unFocus() {
+    WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
+  }
 }

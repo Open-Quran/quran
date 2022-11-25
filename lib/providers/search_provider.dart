@@ -94,11 +94,6 @@ class SearchProvider extends ChangeNotifier {
     }
   }
 
-  /// Un-focus Search Field
-  void searchBarFocusNodeUnFocus() {
-    WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
-  }
-
   /// Navigation to the specific page
   void onTapSearchPageCard(int pageIndex) {
     _context.read<QuranProvider>().changeQuranType(1);

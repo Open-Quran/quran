@@ -76,7 +76,7 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
   /// Getting Reading Style Bar
   Widget get buildReadingStyle {
     return Visibility(
-      visible: context.watch<QuranProvider>().localSetting.quranType == EQuranType.reading,
+      visible: context.watch<QuranProvider>().localSetting.quranType == EQuranType.translation,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

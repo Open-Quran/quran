@@ -19,6 +19,14 @@ class SurahDetailsScreen extends StatefulWidget {
 
 class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
   @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      context.read<SurahDetailsProvider>().initAfterScreen();
+    });
+  }
+
+  @override
   Widget build(BuildContext context) {
     return CustomDrawerScaffold(
       appBarTitle: context.watch<SurahDetailsProvider>().appBarTitle,

@@ -37,8 +37,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   }
 
   Widget get buildBody {
-    List<VerseModel> favoriteVerses =
-        context.watch<FavoritesProvider>().favoriteVerses;
+    List<VerseModel> favoriteVerses = context.watch<FavoritesProvider>().favoriteVerses;
     return favoriteVerses.isEmpty
         ? const NoItemWidget(
             text: "No Favorites Added",
@@ -54,10 +53,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
               vertical: kPaddingVertical,
               horizontal: kPaddingHorizontal,
             ),
-            itemBuilder: (context, index) =>
-                VerseCard(verseModel: favoriteVerses.elementAt(index)),
-            separatorBuilder: (context, index) =>
-                const SizedBox(height: kPaddingHorizontal),
+            itemBuilder: (context, index) => VerseCard(
+              verseModel: favoriteVerses.elementAt(index),
+              isFavorite: true,
+            ),
+            separatorBuilder: (context, index) => const SizedBox(height: kPaddingHorizontal),
           );
   }
 }

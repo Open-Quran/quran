@@ -39,6 +39,12 @@ class SurahDetailsProvider extends ChangeNotifier {
     readingSettings.surahVerseIndex = itemPositionsListener.itemPositions.value.first.index;
   }
 
+  void initAfterScreen() {
+    if (readingSettings.surahDetailScreenMod == ESurahDetailScreenMod.surah) {
+      itemScrollController.jumpTo(index: readingSettings.surahVerseIndex);
+    }
+  }
+
   /// Get [QuranProvider]
   QuranProvider get quranProvider => _context.read<QuranProvider>();
 
@@ -110,6 +116,11 @@ class SurahDetailsProvider extends ChangeNotifier {
       if (newSurah != null) list.add(newSurah);
     }
     return list;
+  }
+
+  /// Getting Verses Of selected Surah
+  List<VerseModel> get versesOfSelectedSurah {
+    return quranProvider.surahs[readingSettings.surahIndex].verses;
   }
 
   /// Changing reading style in the home page
