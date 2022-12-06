@@ -84,7 +84,7 @@ class MushafPage extends StatelessWidget {
       textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactorArabic,
       text: TextSpan(
         style: context.theme.textTheme.headlineLarge?.copyWith(
-          height: 2.5,
+          height: 2.4,
           fontFamily:
               Fonts.getArabicFont(context.watch<QuranProvider>().localSetting.fontTypeArabic),
         ),
@@ -97,7 +97,7 @@ class MushafPage extends StatelessWidget {
                     text: Utils.getArabicVerseNo(e.verseNumber.toString()),
                     style: context.theme.textTheme.headlineLarge?.copyWith(
                       fontFamily: Fonts.uthmanic,
-                      fontSize: 30,
+                      fontSize: 27,
                       height: 0,
                     ),
                   ),

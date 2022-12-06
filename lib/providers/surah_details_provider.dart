@@ -14,8 +14,8 @@ class SurahDetailsProvider extends ChangeNotifier {
   /// Class Constructor
   SurahDetailsProvider(this._context, this.readingSettings) {
     itemPositionsListener.itemPositions.addListener(scrollListener);
-    pageController =
-        PageController(initialPage: versesOfReadingTypeTranslation.first.pageNumber! - 1);
+    readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber ?? 1;
+    pageController = PageController(initialPage: readingSettings.mushafPageNumber - 1);
   }
 
   /// Detail Screen Context

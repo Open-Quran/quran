@@ -1,4 +1,5 @@
 import 'package:fabrikod_quran/constants/extensions.dart';
+import 'package:fabrikod_quran/main_builder.dart';
 import 'package:fabrikod_quran/providers/app_settings_provider.dart';
 import 'package:fabrikod_quran/providers/bookmark_provider.dart';
 import 'package:fabrikod_quran/providers/favorites_provider.dart';
@@ -15,8 +16,7 @@ Future<void> main() async {
   await GetStorage.init('FabrikodQuran');
   WidgetsFlutterBinding.ensureInitialized();
   //debugRepaintRainbowEnabled = false;
-  runApp(const MyApp(
-  ));
+  runApp(const MyApp());
 }
 
 class MyApp extends StatelessWidget {
@@ -34,8 +34,8 @@ class MyApp extends StatelessWidget {
             locale: appSettingProvider.appLocale,
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
-            localeResolutionCallback:
-                appSettingProvider.localeResolutionCallback,
+            builder: MainBuilder.builder,
+            localeResolutionCallback: appSettingProvider.localeResolutionCallback,
             theme: appSettingProvider.appThemeMode.getThemeData,
             home: const BottomNavBarScreen(),
           );

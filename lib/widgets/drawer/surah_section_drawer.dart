@@ -20,48 +20,44 @@ class SurahSectionDrawer extends StatefulWidget {
 }
 
 class _SurahSectionDrawerState extends State<SurahSectionDrawer> {
-  late List<SurahModel> surahs;
-  late List<VerseModel> versesOfSelectedSurah;
+  String surahFilter = "";
+  String verseFilter = "";
 
-  @override
-  void initState() {
-    super.initState();
-    surahs = widget.surahs;
-    versesOfSelectedSurah = widget.versesOfSelectedSurah;
-  }
-
-  void onChangedSurah(String value) {
-    if (value.isEmpty) {
-      surahs = widget.surahs;
-    } else {
-      List<SurahModel> newSurahs = [];
-      for (var element in widget.surahs) {
-        if (element.id.toString().contains(value) ||
-            element.nameSimple!.contains(value) ||
-            element.nameComplex!.contains(value) ||
-            element.nameArabic!.contains(value) ||
-            element.nameTranslated!.contains(value)) {
-          newSurahs.add(element);
-        }
-      }
-      surahs = newSurahs;
-    }
+  void changeSurahFilter(String value) {
+    surahFilter = value;
     setState(() {});
   }
 
-  void onChangedVerse(String value) {
-    if (value.isEmpty) {
-      versesOfSelectedSurah = widget.versesOfSelectedSurah;
-    } else {
-      List<VerseModel> newVerses = [];
-      for (var element in widget.versesOfSelectedSurah) {
-        if (element.verseNumber.toString().contains(value)) {
-          newVerses.add(element);
-        }
+  List<SurahModel> get surahs {
+    if (surahFilter.isEmpty) return widget.surahs;
+
+    List<SurahModel> newSurahs = [];
+    for (var element in widget.surahs) {
+      if (element.id.toString().contains(surahFilter) ||
+          element.nameSimple!.contains(surahFilter) ||
+          element.nameComplex!.contains(surahFilter) ||
+          element.nameArabic!.contains(surahFilter) ||
+          element.nameTranslated!.contains(surahFilter)) {
+        newSurahs.add(element);
       }
-      versesOfSelectedSurah = newVerses;
     }
+    return newSurahs;
+  }
+
+  void changeVerseFilter(String value) {
+    verseFilter = value;
     setState(() {});
+  }
+
+  List<VerseModel> get verses {
+    if (verseFilter.isEmpty) return widget.versesOfSelectedSurah;
+    List<VerseModel> newVerses = [];
+    for (var element in widget.versesOfSelectedSurah) {
+      if (element.verseNumber.toString().contains(verseFilter)) {
+        newVerses.add(element);
+      }
+    }
+    return newVerses;
   }
 
   @override
@@ -88,7 +84,7 @@ class _SurahSectionDrawerState extends State<SurahSectionDrawer> {
   Widget get buildSurahSearch {
     return SearchSectionDrawer(
       hintText: context.translate.searchSurah,
-      onChanged: onChangedSurah,
+      onChanged: changeSurahFilter,
     );
   }
 
@@ -131,9 +127,9 @@ class _SurahSectionDrawerState extends State<SurahSectionDrawer> {
 
   Widget get buildVerseList {
     return ListView.builder(
-      itemCount: versesOfSelectedSurah.length,
+      itemCount: verses.length,
       itemBuilder: (context, index) {
-        var number = versesOfSelectedSurah[index].verseNumber;
+        var number = verses[index].verseNumber;
         return CustomButton(
           title: "$number",
           state: context.watch<SurahDetailsProvider>().readingSettings.surahVerseIndex == index,
@@ -151,7 +147,7 @@ class _SurahSectionDrawerState extends State<SurahSectionDrawer> {
   Widget get buildVerseSearch {
     return SearchSectionDrawer(
       hintText: context.translate.ayat,
-      onChanged: onChangedVerse,
+      onChanged: changeVerseFilter,
     );
   }
 }
