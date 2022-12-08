@@ -1,0 +1,122 @@
+[
+  {
+    "name": "English",
+    "translations": [
+      {
+        "translation_name": "Abdul Haleem",
+        "author_name": "Abdul Haleem",
+        "resource_id": 85
+      },
+      {
+        "translation_name": "Abdullah Yusuf Ali",
+        "author_name": "Abdullah Yusuf Ali",
+        "resource_id": 22
+      },
+      {
+        "translation_name": "Dr. Ghali",
+        "author_name": "Dr. Ghali",
+        "resource_id": 17
+      },
+      {
+        "translation_name": "Dr. Mustafa Khattab, the Clear Quran",
+        "author_name": "Dr. Mustafa Khattab",
+        "resource_id": 131
+      },
+      {
+        "translation_name": "Dr. T. B. Irving",
+        "author_name": "Dr. T. B. Irving",
+        "resource_id": 207
+      },
+      {
+        "translation_name": "Fadel Soliman, Bridges’ translation",
+        "author_name": "Fadel Soliman",
+        "resource_id": 149
+      },
+      {
+        "translation_name": "Maulana Wahiduddin Khan",
+        "author_name": "Maulana Wahiduddin Khan",
+        "resource_id": 823
+      },
+      {
+        "translation_name": "English Translation (Pickthall)",
+        "author_name": "Mohammed Marmaduke William Pickthall",
+        "resource_id": 19
+      },
+      {
+        "translation_name": "Maarif-ul-Quran",
+        "author_name": "Mufti Muhammad Shafi",
+        "resource_id": 167
+      },
+      {
+        "translation_name": "Mufti Taqi Usmani",
+        "author_name": "Mufti Taqi Usmani",
+        "resource_id": 84
+      },
+      {
+        "translation_name": "Muhammad Taqi-ud-Din al-Hilali & Muhammad Muhsin Khan",
+        "author_name": "Muhammad Taqi-ud-Din al-Hilali & Muhammad Muhsin Khan",
+        "resource_id": 203
+      },
+      {
+        "translation_name": "Ruwwad Center",
+        "author_name": "Ruwwad Center",
+        "resource_id": 206
+      },
+      {
+        "translation_name": "Saheeh International",
+        "author_name": "Saheeh International",
+        "resource_id": 20
+      },
+      {
+        "translation_name": "Tafheem-ul-Quran - Abul Ala Maududi",
+        "author_name": "Sayyid Abul Ala Maududi",
+        "resource_id": 95
+      },
+      {
+        "translation_name": "Abridged Explanation of the Quran",
+        "author_name": "Tafsir Center of Quranic Studies",
+        "resource_id": 171
+      },
+      {
+        "translation_name": "Transliteration",
+        "author_name": "Transliteration",
+        "resource_id": 57
+      }
+    ]
+  },
+  {
+    "name": "Turkish",
+    "translations": [
+      {
+        "translation_name": "Turkish Mokhtasar",
+        "author_name": "Al-Mukhtasar",
+        "resource_id": 172
+      },
+      {
+        "translation_name": "Dar Al-Salam Center",
+        "author_name": "Dar Al-Salam Center",
+        "resource_id": 210
+      },
+      {
+        "translation_name": "Turkish Translation(Diyanet)",
+        "author_name": "Diyanet Isleri",
+        "resource_id": 77
+      },
+      {
+        "translation_name": "Elmalili Hamdi Yazir",
+        "author_name": "Elmalili Hamdi Yazir\t",
+        "resource_id": 52
+      },
+      {
+        "translation_name": "Muslim Shahin",
+        "author_name": "Muslim Shahin",
+        "resource_id": 124
+      },
+      {
+        "translation_name": "Shaban Britch",
+        "author_name": "Shaban Britch",
+        "resource_id": 112
+      }
+    ]
+  }
+]

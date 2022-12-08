@@ -1,5 +1,4 @@
 import 'package:fabrikod_quran/providers/app_settings_provider.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -12,8 +11,6 @@ class MoreProvider extends ChangeNotifier {
 
   /// Change app Language and get verses translations
   Future<void> changeAppLanguage(String languageCode) async {
-    _context.read<AppSettingsProvider>().changeAppLanguage(languageCode).then((_) {
-      _context.read<QuranProvider>().getVerseTranslation(_context);
-    });
+    _context.read<AppSettingsProvider>().changeAppLanguage(languageCode);
   }
 }

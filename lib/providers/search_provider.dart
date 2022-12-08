@@ -1,11 +1,6 @@
 import 'package:fabrikod_quran/models/surah_model.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/models/verse_translation.dart';
-import 'package:fabrikod_quran/providers/app_settings_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
-import 'package:fabrikod_quran/services/asset_quran_service.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 

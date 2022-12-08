@@ -9,5 +9,8 @@ class JsonPathConstants {
 
   /// Path to file [verses.json]
   static String verseTranslations(String languageCode) =>
-      '${_baseUrl}translations/${languageCode}_verses.json';
+      '${_baseUrl}translations/${languageCode}_default.json';
+
+  /// Path to file [translations.json]
+  static const String translations = '${_baseUrl}translations/translations.json';
 }
