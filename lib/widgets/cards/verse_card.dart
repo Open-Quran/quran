@@ -1,5 +1,6 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/bookmark_model.dart';
+import 'package:fabrikod_quran/models/translation.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/providers/bookmark_provider.dart';
 import 'package:fabrikod_quran/providers/favorites_provider.dart';
@@ -8,6 +9,7 @@ import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/services/copy_and_share_service.dart';
 import 'package:fabrikod_quran/widgets/cards/action_card.dart';
+import 'package:fabrikod_quran/widgets/custom_space.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -38,13 +40,13 @@ class VerseCard extends StatelessWidget {
     return ActionCard(
       shareButtonOnTap: () {
         CopyAndShareService.share(
-          "${verseModel.text}\n\n${context.read<QuranProvider>().verseTranslation?.translations?.elementAt(verseModel.id! - 1).text}",
+          "${verseModel.text}\n\n${context.read<QuranProvider>().translationService.translationsOfVerse(verseModel.id!).first.text}",
         );
       },
       copyButtonOnTap: () {
         CopyAndShareService.copy(
           context,
-          "${verseModel.text}\n\n${context.read<QuranProvider>().verseTranslation?.translations?.elementAt(verseModel.id! - 1).text} ",
+          "${verseModel.text}\n\n${context.read<QuranProvider>().translationService.translationsOfVerse(verseModel.id!).first.text} ",
         );
       },
       verseKey: verseModel.verseKey,
@@ -71,7 +73,6 @@ class VerseCard extends StatelessWidget {
         buildVerseText(context),
         const SizedBox(height: kPaddingHorizontal),
         buildVerseTranslationText(context),
-        const SizedBox(height: kPaddingContentSpaceBetween),
         Divider(thickness: 1, color: context.theme.dividerColor)
       ],
     );
@@ -104,6 +105,8 @@ class VerseCard extends StatelessWidget {
 
   /// Verse Translation Text
   Widget buildVerseTranslationText(BuildContext context) {
+    List<VerseTranslation> translationList =
+        context.watch<QuranProvider>().translationService.translationsOfVerse(verseModel.id!);
     return Visibility(
       visible: isFavorite ||
           context.watch<QuranProvider>().localSetting.readingType != EReadingType.arabic,
@@ -111,19 +114,39 @@ class VerseCard extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
           Flexible(
-            child: Text(
-              context
-                      .watch<QuranProvider>()
-                      .verseTranslation
-                      ?.translations
-                      ?.elementAt(verseModel.id! - 1)
-                      .text ??
-                  "",
-              textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
-              style: context.theme.textTheme.titleSmall?.copyWith(
-                fontFamily:
-                    Fonts.getTranslationFont(context.watch<QuranProvider>().localSetting.fontType),
-              ),
+            child: Column(
+              children: [
+                ...translationList.map(
+                  (e) {
+                    return Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          e.text ?? "",
+                          textScaleFactor:
+                              context.watch<QuranProvider>().localSetting.textScaleFactor,
+                          style: context.theme.textTheme.titleSmall?.copyWith(
+                            fontFamily: Fonts.getTranslationFont(
+                                context.watch<QuranProvider>().localSetting.fontType),
+                          ),
+                        ),
+                        CustomSpace.normal(),
+                        Text(
+                          "- ${context.read<QuranProvider>().translationService.translationsName(e.resourceId!)}",
+                          textScaleFactor:
+                              context.watch<QuranProvider>().localSetting.textScaleFactor,
+                          style: context.theme.textTheme.headlineLarge?.copyWith(
+                            fontFamily: Fonts.getTranslationFont(
+                                context.watch<QuranProvider>().localSetting.fontType),
+                            fontSize: 12,
+                          ),
+                        ),
+                        CustomSpace.big(),
+                      ],
+                    );
+                  },
+                ),
+              ],
             ),
           ),
         ],

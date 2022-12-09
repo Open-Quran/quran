@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:html/parser.dart' show parse;
+import 'package:html_character_entities/html_character_entities.dart';
 
 class Utils {
   Utils._();
@@ -44,5 +45,12 @@ class Utils {
 
   static unFocus() {
     WidgetsBinding.instance.focusManager.primaryFocus?.unfocus();
+  }
+
+  /// Parse Html Quran Translation
+  static String parseHtmlQuranTranslation(String value) {
+    var result = HtmlCharacterEntities.decode(value);
+    RegExp exp = RegExp(r"<[^>]+>.*?</sup>", multiLine: true, caseSensitive: true);
+    return result.replaceAll(exp, '');
   }
 }

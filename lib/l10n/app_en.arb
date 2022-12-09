@@ -19,6 +19,7 @@
     "quranMode": "Qur'an Mode",
     "greenMode": "Green Mode",
     "translation": "Translation",
+    "selectedTranslation": "Selected Translations",
     "reading": "Reading",
     "searchSurah": "Search Surah",
     "madeByFabrikod": "made by fabrikod",
@@ -42,5 +43,6 @@
     "surahs": "Surahs",
     "noResultsFound": "No results found\\nTry searching for a different keyword.",
     "suggestions": "Suggestions",
-    "noBookMarkedSurahOrAyat": "No bookmarked surah or ayat"
+    "noBookMarkedSurahOrAyat": "No bookmarked surah or ayat",
+    "and": "And"
 }

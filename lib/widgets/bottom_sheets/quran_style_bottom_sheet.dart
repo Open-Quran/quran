@@ -3,6 +3,8 @@ import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/widgets/buttons/custom_toggle_buttons.dart';
 import 'package:fabrikod_quran/widgets/cards/custom_expanding_font_card.dart';
 import 'package:fabrikod_quran/widgets/cards/font_slider_card.dart';
+import 'package:fabrikod_quran/widgets/cards/selected_tranlations_card.dart';
+import 'package:fabrikod_quran/widgets/cards/translations_card.dart';
 import 'package:fabrikod_quran/widgets/custom_space.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -26,6 +28,14 @@ class QuranStyleBottomSheet extends StatefulWidget {
 }
 
 class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
+  bool isOpenTranslations = false;
+
+  changedOpenTranslations() {
+    setState(() {
+      isOpenTranslations = !isOpenTranslations;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -36,15 +46,18 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
       ),
       child: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
-        child: Column(
-          children: [
-            buildReadingStyle,
-            buildTranslateFontSize,
-            buildTranslationFontType,
-            buildArabicFontSize,
-            buildArabicFontType,
-          ],
-        ),
+        child: isOpenTranslations
+            ? TranslationsCard(onBack: changedOpenTranslations)
+            : Column(
+                children: [
+                  buildSelectedTranslations,
+                  buildReadingStyle,
+                  buildTranslateFontSize,
+                  buildTranslationFontType,
+                  buildArabicFontSize,
+                  buildArabicFontType,
+                ],
+              ),
       ),
     );
   }
@@ -57,6 +70,26 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
         color: context.theme.toggleButtonsTheme.borderColor,
       ),
       textAlign: TextAlign.start,
+    );
+  }
+
+  /// Translations
+  Widget get buildSelectedTranslations {
+    return Visibility(
+      visible: context.watch<QuranProvider>().localSetting.quranType == EQuranType.translation,
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          buildTitle(context.translate.selectedTranslation),
+          CustomSpace.normal(),
+          SelectedTranslationsCard(
+            onTap: changedOpenTranslations,
+            activeTranslations:
+                context.watch<QuranProvider>().translationService.activeTranslations,
+          ),
+          CustomSpace.big(),
+        ],
+      ),
     );
   }
 
