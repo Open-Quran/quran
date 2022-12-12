@@ -53,9 +53,9 @@ lib/                     # Root Package
 ├─ handlers/             # Audio Handler
 ├─ l10n/                 # Localization
 ├─ models/               # Models for handling data    
-├─ providers/            # manages app state
-├─ screens/              # app screens
-│  ├─ surah_details/     # views for different components
+├─ providers/            # Manages app state
+├─ screens/              # App screens
+│  ├─ surah_details/     # Views for different components
 |
 ├─ services/             # Services 
 ├─ themes/               # App themes 
