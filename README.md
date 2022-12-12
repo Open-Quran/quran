@@ -5,7 +5,7 @@
 <br />
 
 
-# The Holy Qur'an App
+# The Open Qur'an - Mobile App
 
 A demonstration app for Flutter that targets iOS, Android, MacOS, Windows, Linux, and the web and shows how it can give a fantastic cross-platform experience.
 The Holy Qur'an App was carefully built by [fabrikod](https://fabrikod.com) to take into account user expectations, input methods, and idioms for each platform, guaranteeing it is comfortable on all of them. 
