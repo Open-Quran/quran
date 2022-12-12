@@ -44,6 +44,41 @@ Once you're on `dev` and desktop is enabled, you're ready to run the app:
 
 If you re-start your IDE, you should also see a new launch option for your current desktop platform.
 
+
+
+### File Structure
+
+A High-level overview of the project structure:
+```
+
+lib/                     # Root Package
+|
+├─ constants/            # All app constants
+├─ database/             # Local app database (shared pref) 
+├─ handlers/             # Audio Handler
+├─ l10n/                 # Localization
+├─ models/               # Models for handling data    
+├─ providers/            # manages app state
+├─ screens/              # app screens
+│  ├─ surah_details/     # views for different components
+|
+├─ services/             # Services 
+├─ themes/               # App themes 
+├─ utils/                # Utils for components 
+│
+├─ widgets/              # App widgets
+│  ├─ app_bars/          # Different style of app bars
+   ├─ bars/              # Different bar styles
+   ├─ bottom_sheets/     # Different style of bottom sheets
+   ├─ buttons/           # Different style of buttons
+   ├─ cards/             # Cards
+   ├─ drawer/            # Drawer
+   ├─ tags/              # Tags
+
+```
+
+
+
 ### License
 
 This application is released under the [MIT license](LICENSE.md). You can use the code for any purpose, including commercial projects.
