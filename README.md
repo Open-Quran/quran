@@ -10,7 +10,7 @@
 A demonstration app for Flutter that targets iOS, Android, MacOS, Windows, Linux, and the web and shows how it can give a fantastic cross-platform experience.
 The Holy Qur'an App was carefully built by [fabrikod](https://fabrikod.com) to take into account user expectations, input methods, and idioms for each platform, guaranteeing it is comfortable on all of them. 
 
-In addition to forking and reviewing the [MIT licensed](LICENSE.md) code available here, you can check out more information on the [Fabrikod Website](https://flutter.fabrikod.com).
+In addition to forking and reviewing the [MIT licensed](LICENSE.md) code available here, you can check out more information on the [Fabrikod Website](https://fabrikod.com).
 
 ### About Fabrikod
 We are a company that creates cutting-edge digital experiences for savvy customers, and we like how simple Flutter simplifies that process.
