@@ -10,7 +10,6 @@
 A demonstration app for Flutter that targets iOS, Android, MacOS, Windows, Linux, and the web and shows how it can give a fantastic cross-platform experience.
 The Holy Qur'an App was carefully built by [fabrikod](https://fabrikod.com) to take into account user expectations, input methods, and idioms for each platform, guaranteeing it is comfortable on all of them. 
 
-
 ### About Fabrikod
 We are a company that creates cutting-edge digital experiences for savvy customers, and we like how simple Flutter simplifies that process.
 Please [visit our website](https://fabrikod.com) to discover more about what we do.
@@ -18,13 +17,11 @@ Please get in touch with us!
 
 <p align="center"><img src="https://flutter.gskinner.com/folio/assets/images/git_dashes.png?" width="800px"></p>
 
-
 ### App Downloads
 
 To try the app you can download it from your favorite app store:
 * [Google Play](https://play.google.com)
 * [Apple App Store](https://appstore.com)
-
 
 ### Installation
 
@@ -43,8 +40,6 @@ Once you're on `dev` and desktop is enabled, you're ready to run the app:
 * `flutter run -d web`
 
 If you re-start your IDE, you should also see a new launch option for your current desktop platform.
-
-
 
 ### File Structure
 
@@ -76,9 +71,6 @@ lib/                     # Root Package
    ├─ tags/              # Tags
 
 ```
-
-
-
 ### License
 
 This application is released under the [MIT license](LICENSE.md). You can use the code for any purpose, including commercial projects.
