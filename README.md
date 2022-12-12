@@ -18,7 +18,8 @@ Please get in touch with us!
 
 <p align="center"><img src="https://flutter.gskinner.com/folio/assets/images/git_dashes.png?" width="800px"></p>
 
-# App Downloads
+
+### App Downloads
 
 To try the app you can download it from your favorite app store:
 * [Google Play](https://play.google.com)
