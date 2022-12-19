@@ -29,7 +29,7 @@ class CustomActiveButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 55,
-        padding: const EdgeInsets.all(kPaddingDefault),
+        padding: const EdgeInsets.all(kPaddingM),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: context.theme.primaryColor,

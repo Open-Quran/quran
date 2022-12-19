@@ -26,7 +26,7 @@ class _CustomExpandingThemeCardState extends State<CustomExpandingThemeCard> {
     return Theme(
       data: context.theme.copyWith(dividerColor: Colors.transparent),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(kPaddingDefault),
+        borderRadius: BorderRadius.circular(kPaddingM),
         child: ExpansionTile(
           title: Row(
             children: [
@@ -36,7 +36,7 @@ class _CustomExpandingThemeCardState extends State<CustomExpandingThemeCard> {
                 width: 25,
                 color: context.theme.iconTheme.color,
               ),
-              const SizedBox(width: kPaddingContentSpaceBetween),
+              const SizedBox(width: kPaddingL),
               Text(
                 context.translate.switchTheme,
                 style: context.theme.textTheme.headlineSmall,
@@ -51,13 +51,13 @@ class _CustomExpandingThemeCardState extends State<CustomExpandingThemeCard> {
           onExpansionChanged: changeExpanded,
           backgroundColor: context.theme.cardTheme.color?.withOpacity(0.1),
           collapsedBackgroundColor: context.theme.cardTheme.color?.withOpacity(0.1),
-          childrenPadding: const EdgeInsets.only(bottom: kPaddingDefault),
+          childrenPadding: const EdgeInsets.only(bottom: kPaddingM),
           children: <Widget>[
             ...EThemeModes.values.map(
               (e) => ListTile(
                 onTap: () => widget.changedTheme(e),
                 visualDensity: const VisualDensity(vertical: -2),
-                contentPadding: const EdgeInsets.symmetric(horizontal: kPaddingDefault * 3),
+                contentPadding: const EdgeInsets.symmetric(horizontal: kPaddingM * 3),
                 dense: true,
                 title: Row(
                   children: [
@@ -69,7 +69,7 @@ class _CustomExpandingThemeCardState extends State<CustomExpandingThemeCard> {
                       width: 25,
                       color: context.theme.iconTheme.color,
                     ),
-                    const SizedBox(width: kPaddingContentSpaceBetween),
+                    const SizedBox(width: kPaddingL),
                     Text(
                       e.name(context),
                       style: context.theme.textTheme.titleMedium,

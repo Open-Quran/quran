@@ -31,7 +31,7 @@ class _MoreScreenState extends State<MoreScreen> {
       body: ScrollBody(
         body: Column(
           children: [
-            const SizedBox(height: kPaddingVertical),
+            const SizedBox(height: kPaddingXXL),
             CustomExpandingThemeCard(
               defaultThemeMode:
                   context.watch<AppSettingsProvider>().appThemeMode,
@@ -39,12 +39,12 @@ class _MoreScreenState extends State<MoreScreen> {
                   .read<AppSettingsProvider>()
                   .changeAppTheme(newThemeMode),
             ),
-            const SizedBox(height: kPaddingDefault),
+            const SizedBox(height: kPaddingM),
              CustomLanguageCard(
               defaultLocale: context.watch<AppSettingsProvider>().appLocale,
               changedLocale: context.read<MoreProvider>().changeAppLanguage,
             ),
-            const SizedBox(height: kPaddingDefault),
+            const SizedBox(height: kPaddingM),
             SecondaryButton(
               text: context.translate.favorites,
               onPressed: () {
@@ -60,7 +60,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 color: context.theme.iconTheme.color,
               ),
             ),
-            const SizedBox(height: kPaddingDefault),
+            const SizedBox(height: kPaddingM),
             SecondaryButton(
                 text: context.translate.helpGuide,
                 onPressed: () {
@@ -75,7 +75,7 @@ class _MoreScreenState extends State<MoreScreen> {
                   color: context.theme.iconTheme.color,
                 )),
             const SizedBox(
-              height: kPaddingDefault,
+              height: kPaddingM,
             ),
             SecondaryButton(
               text: context.translate.introduction,
@@ -85,7 +85,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 color: context.theme.iconTheme.color,
               ),
             ),
-            const SizedBox(height: kPaddingDefault),
+            const SizedBox(height: kPaddingM),
             SecondaryButton(
               text: context.translate.shareApp,
               onPressed: () {},
@@ -94,7 +94,7 @@ class _MoreScreenState extends State<MoreScreen> {
                 color: context.theme.iconTheme.color,
               ),
             ),
-            const SizedBox(height: kPaddingDefault),
+            const SizedBox(height: kPaddingM),
             SecondaryButton(
                 text: context.translate.references,
                 onPressed: () {},
@@ -102,7 +102,7 @@ class _MoreScreenState extends State<MoreScreen> {
                   ImageConstants.referencesIcon,
                   color: context.theme.iconTheme.color,
                 )),
-            const SizedBox(height: kPaddingTitleSpaceBetween),
+            const SizedBox(height: kPadding3XL),
             buildAppInfo,
           ],
         ),
@@ -116,7 +116,7 @@ class _MoreScreenState extends State<MoreScreen> {
       children: [
         Text(context.translate.madeByFabrikod,
             style: context.theme.textTheme.headlineSmall),
-        const SizedBox(height: kPaddingSmall),
+        const SizedBox(height: kPaddingS),
         FutureBuilder<PackageInfo>(
           future: PackageInfo.fromPlatform(),
           builder: (context, snapshot) {

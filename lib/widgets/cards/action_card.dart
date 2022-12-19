@@ -97,7 +97,7 @@ class ActionCard extends StatelessWidget {
               elevation: 0,
               color: context.theme.toggleButtonsTheme.selectedColor,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(kPaddingDefault),
+                borderRadius: BorderRadius.circular(kPaddingM),
               ),
               itemBuilder: (BuildContext context) => [
                 PopupMenuItem<String>(
@@ -108,7 +108,7 @@ class ActionCard extends StatelessWidget {
                         Icons.copy_outlined,
                         color: context.theme.toggleButtonsTheme.textStyle?.color,
                       ),
-                      const SizedBox(width: kPaddingDefault),
+                      const SizedBox(width: kPaddingM),
                       Text(
                         context.translate.copy,
                         style: context.theme.textTheme.titleLarge?.copyWith(
@@ -126,7 +126,7 @@ class ActionCard extends StatelessWidget {
                         ImageConstants.shareAppIcon,
                         color: context.theme.toggleButtonsTheme.textStyle?.color,
                       ),
-                      const SizedBox(width: kPaddingDefault),
+                      const SizedBox(width: kPaddingM),
                       Text(context.translate.share,
                           style: context.theme.textTheme.titleLarge?.copyWith(
                               color: context.theme.toggleButtonsTheme.textStyle?.color),

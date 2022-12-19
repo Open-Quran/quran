@@ -15,7 +15,7 @@ class SearchSectionDrawer extends StatelessWidget {
       height: 45,
       decoration: BoxDecoration(
         color: context.theme.toggleButtonsTheme.selectedColor,
-        borderRadius: BorderRadius.circular(kPaddingDefault),
+        borderRadius: BorderRadius.circular(kPaddingM),
       ),
       child: Opacity(
         opacity: 0.5,

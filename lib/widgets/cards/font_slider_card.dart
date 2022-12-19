@@ -21,7 +21,7 @@ class FontSliderCard extends StatelessWidget {
               trackHeight: 40.0,
             ),
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: kPaddingHorizontal),
+              padding: const EdgeInsets.symmetric(horizontal: kPaddingXL),
               child: SliderTheme(
                 data: SliderTheme.of(context).copyWith(
                   trackHeight: 10.0,

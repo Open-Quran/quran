@@ -38,8 +38,8 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
             shrinkWrap: true,
             primary: false,
             padding: const EdgeInsets.symmetric(
-              vertical: kPaddingVertical,
-              horizontal: kPaddingHorizontal,
+              vertical: kPaddingXXL,
+              horizontal: kPaddingXL,
             ),
             itemBuilder: (context, index) {
               var bookmark = bookmarks[index];
@@ -60,7 +60,7 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
               );
             },
             separatorBuilder: (context, index) =>
-                const SizedBox(height: kPaddingHorizontal),
+                const SizedBox(height: kPaddingXL),
           );
   }
 }

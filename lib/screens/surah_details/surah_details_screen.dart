@@ -51,7 +51,7 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
       visible: !context.watch<SurahDetailsProvider>().readingSettings.isReadingMode,
       child: Padding(
         padding:
-            const EdgeInsets.symmetric(vertical: kPaddingVertical, horizontal: kPaddingHorizontal),
+            const EdgeInsets.symmetric(vertical: kPaddingXXL, horizontal: kPaddingXL),
         child: CustomToggleButtons(
           buttonTitles: [
             context.translate.translation,

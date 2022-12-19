@@ -23,8 +23,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
       child: Drawer(
         child: Container(
           padding: const EdgeInsets.symmetric(
-            vertical: kPaddingVertical,
-            horizontal: kPaddingHorizontal,
+            vertical: kPaddingXXL,
+            horizontal: kPaddingXL,
           ),
           decoration: BoxDecoration(
             border: Border(
@@ -34,7 +34,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           child: Column(
             children: [
               buildToggleButton,
-              const SizedBox(height: kPaddingHorizontal),
+              const SizedBox(height: kPaddingXL),
               Expanded(child: body)
             ],
           ),
@@ -82,8 +82,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
       itemCount: 30,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        mainAxisSpacing: kPaddingDefault * 2,
-        crossAxisSpacing: kPaddingDefault * 2,
+        mainAxisSpacing: kPaddingM * 2,
+        crossAxisSpacing: kPaddingM * 2,
       ),
       itemBuilder: (context, index) => JuzCard(
         index: index,
@@ -113,7 +113,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
         ),
         VerticalDivider(
           color: context.theme.dividerColor,
-          width: kPaddingHorizontal * 2,
+          width: kPaddingXL * 2,
           thickness: 2,
         ),
         Expanded(

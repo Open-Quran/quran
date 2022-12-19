@@ -1,4 +1,3 @@
-import 'package:fabrikod_quran/constants/extensions.dart';
 import 'package:fabrikod_quran/main_builder.dart';
 import 'package:fabrikod_quran/providers/app_settings_provider.dart';
 import 'package:fabrikod_quran/providers/bookmark_provider.dart';
@@ -6,6 +5,7 @@ import 'package:fabrikod_quran/providers/favorites_provider.dart';
 import 'package:fabrikod_quran/providers/player_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/screens/bottom_nav_bar_screen.dart';
+import 'package:fabrikod_quran/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
             supportedLocales: AppLocalizations.supportedLocales,
             builder: MainBuilder.builder,
             localeResolutionCallback: appSettingProvider.localeResolutionCallback,
-            theme: appSettingProvider.appThemeMode.getThemeData,
+            theme: theme,
             home: const BottomNavBarScreen(),
           );
         },

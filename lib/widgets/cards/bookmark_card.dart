@@ -23,14 +23,14 @@ class BookmarkCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: const BorderRadius.all(Radius.circular(kPaddingDefault)),
+      borderRadius: const BorderRadius.all(Radius.circular(kPaddingM)),
       child: Container(
         height: 50,
         decoration: BoxDecoration(
           color: context.theme.cardTheme.color?.withOpacity(0.1),
-          borderRadius: const BorderRadius.all(Radius.circular(kPaddingDefault)),
+          borderRadius: const BorderRadius.all(Radius.circular(kPaddingM)),
         ),
-        padding: const EdgeInsets.all(kPaddingDefault),
+        padding: const EdgeInsets.all(kPaddingM),
         child: Row(
           children: [
             Icon(
@@ -45,7 +45,7 @@ class BookmarkCard extends StatelessWidget {
                 maxLines: 1,
               ),
             ),
-            const SizedBox(width: kPaddingDefault),
+            const SizedBox(width: kPaddingM),
             GestureDetector(
               onTap: bookmarkIconOnTap,
               child: SvgPicture.asset(

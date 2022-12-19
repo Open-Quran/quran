@@ -19,7 +19,7 @@ class CustomTagList extends StatelessWidget {
         itemCount: tags.length,
         scrollDirection: Axis.horizontal,
         itemBuilder: (context, index) => buildButton(context, tag: tags[index]),
-        separatorBuilder: (context, index) => const SizedBox(width: kPaddingDefault),
+        separatorBuilder: (context, index) => const SizedBox(width: kPaddingM),
       ),
     );
   }
@@ -28,12 +28,12 @@ class CustomTagList extends StatelessWidget {
     return ElevatedButton(
       onPressed: () => selectedTag(tag),
       style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.all(kPaddingDefault),
+        padding: const EdgeInsets.all(kPaddingM),
         backgroundColor: context.theme.cardTheme.color?.withOpacity(0.1),
         foregroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kPaddingDefault / 2),
+          borderRadius: BorderRadius.circular(kPaddingM / 2),
         ),
       ),
       child: Text(

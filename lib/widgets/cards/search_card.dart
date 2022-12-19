@@ -26,7 +26,7 @@ class SearchCard extends StatelessWidget {
     return InkWell(
       onTap: onTap,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: kPaddingDefault),
+        padding: const EdgeInsets.symmetric(vertical: kPaddingM),
         child: Column(
           mainAxisAlignment: MainAxisAlignment.start,
           crossAxisAlignment: CrossAxisAlignment.start,
@@ -40,12 +40,12 @@ class SearchCard extends StatelessWidget {
                   size: 30,
                   color: context.theme.iconTheme.color,
                 ),
-                const SizedBox(width: kPaddingContentSpaceBetween),
+                const SizedBox(width: kPaddingL),
                 Visibility(child: Expanded(child: navigationTitle(context))),
-                const SizedBox(width: kPaddingContentSpaceBetween),
+                const SizedBox(width: kPaddingL),
               ],
             ),
-            const SizedBox(height: kPaddingDefault),
+            const SizedBox(height: kPaddingM),
             const Divider(thickness: 1, height: 1)
           ],
         ),
@@ -56,7 +56,7 @@ class SearchCard extends StatelessWidget {
   /// Card title
   Padding buildCardTitle(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(left: kPaddingDefault),
+      padding: const EdgeInsets.only(left: kPaddingM),
       child: Text(
         title,
         overflow: TextOverflow.ellipsis,

@@ -16,7 +16,7 @@ class JuzCard extends StatelessWidget {
         shadowColor: Colors.transparent,
         shape: const RoundedRectangleBorder(
           borderRadius: BorderRadius.all(
-            Radius.circular(kPaddingDefault),
+            Radius.circular(kPaddingM),
           ),
         ),
         child: Center(

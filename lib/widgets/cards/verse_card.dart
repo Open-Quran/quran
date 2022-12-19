@@ -69,9 +69,9 @@ class VerseCard extends StatelessWidget {
   Widget buildVerse(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: kPaddingHorizontal),
+        const SizedBox(height: kPaddingXL),
         buildVerseText(context),
-        const SizedBox(height: kPaddingHorizontal),
+        const SizedBox(height: kPaddingXL),
         buildVerseTranslationText(context),
         Divider(thickness: 1, color: context.theme.dividerColor)
       ],

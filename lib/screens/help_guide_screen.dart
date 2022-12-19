@@ -34,8 +34,8 @@ class _HelpGuideScreenState extends State<HelpGuideScreen> {
   Widget get buildBody {
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(
-        horizontal: kPaddingHorizontal,
-        vertical: kPaddingVertical,
+        horizontal: kPaddingXL,
+        vertical: kPaddingXXL,
       ),
       child: Column(
         children: [
@@ -43,29 +43,29 @@ class _HelpGuideScreenState extends State<HelpGuideScreen> {
             text: context.translate.helpGuideTitle1,
             description: context.translate.helpGuideDescription1,
           ),
-          const SizedBox(height: kPaddingDefault),
+          const SizedBox(height: kPaddingM),
           HelpGuideCard(
             text: context.translate.helpGuideTitle1,
             description: context.translate.helpGuideDescription1,
           ),
-          const SizedBox(height: kPaddingDefault),
+          const SizedBox(height: kPaddingM),
           HelpGuideCard(
             text: context.translate.helpGuideTitle1,
             description: context.translate.helpGuideDescription1,
           ),
-          const SizedBox(height: kPaddingDefault),
+          const SizedBox(height: kPaddingM),
           HelpGuideCard(
             text: context.translate.helpGuideTitle1,
             description: context.translate.helpGuideDescription1,
           ),
-          const SizedBox(height: kPaddingDefault),
+          const SizedBox(height: kPaddingM),
           HelpGuideCard(
             text: context.translate.helpGuideTitle1,
             description: context.translate.helpGuideDescription1,
           ),
-          const SizedBox(height: kPaddingDefault * 5),
+          const SizedBox(height: kPaddingM * 5),
           buildAppInfoHelpGuide,
-          const SizedBox(height: kPaddingDefault * 5)
+          const SizedBox(height: kPaddingM * 5)
         ],
       ),
     );
@@ -77,7 +77,7 @@ class _HelpGuideScreenState extends State<HelpGuideScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(context.translate.madeByFabrikod, style: context.theme.textTheme.headlineSmall),
-        const SizedBox(height: kPaddingSmall),
+        const SizedBox(height: kPaddingS),
         FutureBuilder<PackageInfo>(
           future: PackageInfo.fromPlatform(),
           builder: (context, snapshot) {
