@@ -62,7 +62,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
       child: Column(
         children: [
           VerseCard(),
-          const SizedBox(height: kPaddingDefault * 5),
+          const SizedBox(height: kPaddingM * 5),
           buildBasmala,
           const SizedBox(height: kPaddingM * 2),
           buildSearchBar,
@@ -181,8 +181,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
             .read<HomeProvider>()
             .onTapSurahCard(searchSurahResult[index].id! - 1),
       ),
-      separatorBuilder: (context, index) =>
-          const SizedBox(height: kPaddingL),
+      separatorBuilder: (context, index) => const SizedBox(height: kPaddingL),
     );
   }
 
@@ -229,8 +228,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
         onTap: () =>
             context.read<HomeProvider>().onTapSurahCard(surahs[index].id! - 1),
       ),
-      separatorBuilder: (context, index) =>
-          const SizedBox(height: kPaddingL),
+      separatorBuilder: (context, index) => const SizedBox(height: kPaddingL),
     );
   }
 
@@ -265,8 +263,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
         surahModel: sajdas[index],
         onTap: () => context.read<HomeProvider>().onTapSajdaCard(index),
       ),
-      separatorBuilder: (context, index) =>
-          const SizedBox(height: kPaddingL),
+      separatorBuilder: (context, index) => const SizedBox(height: kPaddingL),
     );
   }
 }
