@@ -1,7 +1,7 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/more_provider.dart';
 import 'package:fabrikod_quran/screens/help_guide_screen.dart';
-import 'package:fabrikod_quran/widgets/app_bars/main_app_bar.dart';
+import 'package:fabrikod_quran/widgets/app_bars/primary_app_bar.dart';
 import 'package:fabrikod_quran/widgets/buttons/secondary_button.dart';
 import 'package:fabrikod_quran/widgets/cards/custom_expanding_theme_card.dart';
 import 'package:fabrikod_quran/widgets/cards/custom_language_card.dart';
@@ -24,8 +24,8 @@ class _MoreScreenState extends State<MoreScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppBar(
-        title: context.translate.more,
+      appBar: PrimaryAppBar(
+        title: context.translate.theOpenQuran,
       ),
       body: ScrollBody(
         body: Column(

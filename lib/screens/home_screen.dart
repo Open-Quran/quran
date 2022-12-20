@@ -3,7 +3,6 @@ import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/search_provider.dart';
-import 'package:fabrikod_quran/widgets/app_bars/main_app_bar.dart';
 import 'package:fabrikod_quran/widgets/bars/custom_tab_bar.dart';
 import 'package:fabrikod_quran/widgets/cards/juz_card.dart';
 import 'package:fabrikod_quran/widgets/cards/surah_card.dart';
@@ -14,6 +13,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/app_bars/primary_app_bar.dart';
 import '../widgets/cards/search_card.dart';
 import '../widgets/cards/search_surah_card.dart';
 
@@ -47,7 +47,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
     return InkWell(
       onTap: Utils.unFocus,
       child: Scaffold(
-        appBar: MainAppBar(title: context.translate.quran),
+        appBar: PrimaryAppBar(title: context.translate.theOpenQuran),
         body: buildBody,
       ),
     );

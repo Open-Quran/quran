@@ -1,11 +1,11 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/providers/favorites_provider.dart';
-import 'package:fabrikod_quran/widgets/app_bars/main_app_bar.dart';
 import 'package:fabrikod_quran/widgets/cards/verse_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/app_bars/primary_app_bar.dart';
 import '../widgets/no_item_widget.dart';
 
 class FavoritesScreen extends StatefulWidget {
@@ -19,7 +19,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppBar(title: context.translate.favorites),
+      appBar: PrimaryAppBar(title: context.translate.theOpenQuran),
       body: buildBody,
     );
   }

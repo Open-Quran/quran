@@ -1,7 +1,7 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/bookmark_model.dart';
 import 'package:fabrikod_quran/providers/bookmark_provider.dart';
-import 'package:fabrikod_quran/widgets/app_bars/main_app_bar.dart';
+import 'package:fabrikod_quran/widgets/app_bars/primary_app_bar.dart';
 import 'package:fabrikod_quran/widgets/cards/bookmark_card.dart';
 import 'package:fabrikod_quran/widgets/no_item_widget.dart';
 import 'package:flutter/material.dart';
@@ -18,7 +18,7 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: MainAppBar(title: context.translate.bookmark),
+      appBar: PrimaryAppBar(title: context.translate.theOpenQuran),
       body: buildBody,
     );
   }
