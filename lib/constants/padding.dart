@@ -1,8 +1,7 @@
 /// App Padding Constants
-const double kPaddingSmall = 5;
-const double kPaddingDefault = 10; //Default Padding Value is 10
-const double kPaddingContentSpaceBetween = 15;
-const double kPaddingHorizontal = 20;
-const double kPaddingVertical = 25;
-const double kPaddingTitleSpaceBetween = 25;
-const double kPaddingBottom = 100;
+const double kPaddingS = 5;
+const double kPaddingM = 10;
+const double kPaddingL = 15;
+const double kPaddingXL = 20;
+const double kPaddingXXL = 25;
+const double kPadding3XL = 30;

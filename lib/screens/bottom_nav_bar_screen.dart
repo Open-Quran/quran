@@ -96,7 +96,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
     required String icon,
     required String activeIcon,
   }) {
-    double padding = Platform.isIOS ? kPaddingDefault : 0;
+    double padding = Platform.isIOS ? kPaddingM : 0;
     return BottomNavigationBarItem(
       icon: Padding(
         padding: EdgeInsets.only(top: padding),

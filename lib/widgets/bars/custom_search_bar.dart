@@ -148,7 +148,7 @@ class CustomSearchBar extends StatelessWidget {
       height: 60,
       decoration: BoxDecoration(
         color: context.theme.cardTheme.color?.withOpacity(0.1),
-        borderRadius: const BorderRadius.all(Radius.circular(kPaddingDefault)),
+        borderRadius: const BorderRadius.all(Radius.circular(kPaddingM)),
       ),
       child: Row(children: [
         const Gap(8 * 1.5),
@@ -212,7 +212,7 @@ class CustomSearchBar extends StatelessWidget {
           fillColor: context.theme.cardTheme.color?.withOpacity(0.1),
           filled: true,
           isDense: true,
-          contentPadding: const EdgeInsets.all(kPaddingHorizontal),
+          contentPadding: const EdgeInsets.all(kPaddingXL),
           border: getBorder,
           errorBorder: getBorder,
           disabledBorder: getBorder,
@@ -232,7 +232,7 @@ class CustomSearchBar extends StatelessWidget {
   /// Border
   OutlineInputBorder get getBorder {
     return const OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(kPaddingDefault)),
+      borderRadius: BorderRadius.all(Radius.circular(kPaddingM)),
       borderSide: BorderSide.none,
     );
   }

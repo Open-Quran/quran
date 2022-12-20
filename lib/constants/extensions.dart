@@ -4,19 +4,6 @@ import 'package:flutter_gen/gen_l10n/app_localizations.dart';
 
 extension EThemeModesExtension on EThemeModes {
   /// Getting [EThemeModes] names
-  ThemeData get getThemeData {
-    switch (this) {
-      case EThemeModes.light:
-        return themeLight;
-      case EThemeModes.dark:
-        return themeDark;
-      case EThemeModes.quran:
-        return themeQuran;
-      case EThemeModes.green:
-        return themeGreen;
-    }
-  }
-  /// Getting [EThemeModes] names
   String name(BuildContext context) {
     switch (this) {
       case EThemeModes.light:

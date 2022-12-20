@@ -50,14 +50,14 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             shrinkWrap: true,
             primary: false,
             padding: const EdgeInsets.symmetric(
-              vertical: kPaddingVertical,
-              horizontal: kPaddingHorizontal,
+              vertical: kPaddingXXL,
+              horizontal: kPaddingXL,
             ),
             itemBuilder: (context, index) => VerseCard(
               verseModel: favoriteVerses.elementAt(index),
               isFavorite: true,
             ),
-            separatorBuilder: (context, index) => const SizedBox(height: kPaddingHorizontal),
+            separatorBuilder: (context, index) => const SizedBox(height: kPaddingXL),
           );
   }
 }

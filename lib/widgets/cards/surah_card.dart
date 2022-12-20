@@ -23,13 +23,13 @@ class SurahCard extends StatelessWidget {
             Row(
               children: [
                 NumberIcon(number: surahModel.id ?? 0),
-                const SizedBox(width: kPaddingContentSpaceBetween),
+                const SizedBox(width: kPaddingL),
                 Expanded(child: buildSurahDetail(context)),
-                const SizedBox(width: kPaddingContentSpaceBetween),
+                const SizedBox(width: kPaddingL),
                 buildSurahNameAr(context),
               ],
             ),
-            const SizedBox(height: kPaddingDefault),
+            const SizedBox(height: kPaddingM),
             const Divider(thickness: 1, height: 1)
           ],
         ),

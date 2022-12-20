@@ -16,8 +16,8 @@ class BasmalaTitle extends StatelessWidget {
       visible: isBasmalaVisible,
       child: Container(
         width: double.infinity,
-        margin: const EdgeInsets.only(bottom: kPaddingHorizontal),
-        padding: const EdgeInsets.all(kPaddingHorizontal),
+        margin: const EdgeInsets.only(bottom: kPaddingXL),
+        padding: const EdgeInsets.all(kPaddingXL),
         decoration: BoxDecoration(
           color: context.theme.cardTheme.color?.withOpacity(0.1),
           borderRadius: const BorderRadius.all(
@@ -30,7 +30,7 @@ class BasmalaTitle extends StatelessWidget {
             isName
                 ? Text(surahName(context), style: context.theme.textTheme.displaySmall)
                 : const SizedBox(),
-            SizedBox(height: isName ? kPaddingHorizontal : null),
+            SizedBox(height: isName ? kPaddingXL : null),
             AutoSizeText(
               "بِسْمِ اللَّـهِ الرَّحْمَـٰنِ الرَّحِيمِ",
               textAlign: TextAlign.center,

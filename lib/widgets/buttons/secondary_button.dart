@@ -23,15 +23,15 @@ class SecondaryButton extends StatelessWidget {
         fixedSize: const Size(double.infinity, 60),
         backgroundColor: context.theme.cardTheme.color?.withOpacity(0.1),
         shadowColor: Colors.transparent,
-        padding: const EdgeInsets.all(kPaddingHorizontal),
+        padding: const EdgeInsets.all(kPaddingXL),
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kPaddingDefault),
+          borderRadius: BorderRadius.circular(kPaddingM),
         ),
       ),
       child: Row(
         children: [
           icon,
-          const SizedBox(width: kPaddingDefault),
+          const SizedBox(width: kPaddingM),
           Text(
             text,
             style: context.theme.tabBarTheme.labelStyle,

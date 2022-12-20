@@ -21,7 +21,7 @@ class MushafPage extends StatelessWidget {
   Widget build(BuildContext context) {
     var surahs = context.read<SurahDetailsProvider>().getSurahOfMushafPage(pageNo);
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kPaddingHorizontal),
+      padding: const EdgeInsets.symmetric(horizontal: kPaddingXL),
       child: Column(
         children: [
           Expanded(
@@ -30,7 +30,7 @@ class MushafPage extends StatelessWidget {
               child: ListView.builder(
                 itemCount: surahs.length,
                 physics: const ClampingScrollPhysics(),
-                padding: const EdgeInsets.only(bottom: kPaddingHorizontal),
+                padding: const EdgeInsets.only(bottom: kPaddingXL),
                 itemBuilder: (context, index) {
                   return buildSurah(context, surahs[index]);
                 },
@@ -48,9 +48,9 @@ class MushafPage extends StatelessWidget {
       children: [
         BasmalaTitle(verseKey: surah.verses.first.verseKey ?? ""),
         buildActionCard(context, surah.verses.first),
-        const SizedBox(height: kPaddingHorizontal),
+        const SizedBox(height: kPaddingXL),
         buildVersesText(context, surah.verses),
-        const SizedBox(height: kPaddingHorizontal),
+        const SizedBox(height: kPaddingXL),
       ],
     );
   }
@@ -114,7 +114,7 @@ class MushafPage extends StatelessWidget {
     return Visibility(
       visible: !context.watch<SurahDetailsProvider>().readingSettings.isReadingMode,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: kPaddingVertical),
+        padding: const EdgeInsets.symmetric(vertical: kPaddingXXL),
         child: Row(
           children: [
             Expanded(
@@ -134,13 +134,13 @@ class MushafPage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: kPaddingDefault),
+            const SizedBox(width: kPaddingM),
             Container(
               height: 40,
               width: 40,
               decoration: BoxDecoration(
                 color: context.theme.toggleButtonsTheme.selectedColor,
-                borderRadius: BorderRadius.circular(kPaddingDefault),
+                borderRadius: BorderRadius.circular(kPaddingM),
               ),
               child: Center(
                 child: Text(
@@ -150,7 +150,7 @@ class MushafPage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(width: kPaddingDefault),
+            const SizedBox(width: kPaddingM),
             Expanded(
               child: Opacity(
                 opacity: pageNo < 2 ? 0.2 : 1.0,

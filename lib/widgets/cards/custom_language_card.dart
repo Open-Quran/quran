@@ -26,7 +26,7 @@ class _CustomLanguageCardState extends State<CustomLanguageCard> {
     return Theme(
       data: context.theme.copyWith(dividerColor: Colors.transparent),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(kPaddingDefault),
+        borderRadius: BorderRadius.circular(kPaddingM),
         child: ExpansionTile(
           title: Row(
             children: [
@@ -36,7 +36,7 @@ class _CustomLanguageCardState extends State<CustomLanguageCard> {
                 width: 25,
                 color: context.theme.iconTheme.color,
               ),
-              const SizedBox(width: kPaddingContentSpaceBetween),
+              const SizedBox(width: kPaddingL),
               Text(
                 context.translate.language,
                 style: context.theme.textTheme.headlineSmall,
@@ -54,14 +54,14 @@ class _CustomLanguageCardState extends State<CustomLanguageCard> {
           backgroundColor: context.theme.cardTheme.color?.withOpacity(0.1),
           collapsedBackgroundColor:
               context.theme.cardTheme.color?.withOpacity(0.1),
-          childrenPadding: const EdgeInsets.only(bottom: kPaddingDefault),
+          childrenPadding: const EdgeInsets.only(bottom: kPaddingM),
           children: <Widget>[
             ...ESupportedLanguage.values.map(
               (e) => ListTile(
                 onTap: () => widget.changedLocale(e.name.toLowerCase()),
                 visualDensity: const VisualDensity(vertical: -2),
                 contentPadding:
-                    const EdgeInsets.symmetric(horizontal: kPaddingDefault * 3),
+                    const EdgeInsets.symmetric(horizontal: kPaddingM * 3),
                 dense: true,
                 title: Row(
                   children: [
@@ -73,7 +73,7 @@ class _CustomLanguageCardState extends State<CustomLanguageCard> {
                       width: 25,
                       color: context.theme.iconTheme.color,
                     ),
-                    const SizedBox(width: kPaddingContentSpaceBetween),
+                    const SizedBox(width: kPaddingL),
                     Text(
                       e.title(context),
                       style: context.theme.textTheme.titleMedium,
