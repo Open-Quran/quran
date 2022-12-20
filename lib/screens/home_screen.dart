@@ -4,10 +4,11 @@ import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/search_provider.dart';
 import 'package:fabrikod_quran/widgets/app_bars/main_app_bar.dart';
+import 'package:fabrikod_quran/widgets/bars/custom_search_bar.dart';
 import 'package:fabrikod_quran/widgets/bars/custom_tab_bar.dart';
 import 'package:fabrikod_quran/widgets/cards/juz_card.dart';
+import 'package:fabrikod_quran/widgets/cards/new_verse_card.dart';
 import 'package:fabrikod_quran/widgets/cards/surah_card.dart';
-import 'package:fabrikod_quran/widgets/bars/custom_search_bar.dart';
 import 'package:fabrikod_quran/widgets/no_item_widget.dart';
 import 'package:fabrikod_quran/widgets/tags/custom_tag_list.dart';
 import 'package:flutter/material.dart';
@@ -47,6 +48,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
     return InkWell(
       onTap: Utils.unFocus,
       child: Scaffold(
+        backgroundColor: Color(0xff111111),
         appBar: MainAppBar(title: context.translate.quran),
         body: buildBody,
       ),
@@ -59,6 +61,8 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
           const EdgeInsets.only(top: kPaddingVertical),
       child: Column(
         children: [
+          VerseCard(),
+          const SizedBox(height: kPaddingDefault * 5),
           buildBasmala,
           const SizedBox(height: kPaddingDefault * 2),
           buildSearchBar,
