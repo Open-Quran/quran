@@ -1,17 +1,17 @@
 import 'dart:io';
+import 'dart:ui';
 
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/providers/more_provider.dart';
 import 'package:fabrikod_quran/providers/player_provider.dart';
 import 'package:fabrikod_quran/screens/bookmark_screen.dart';
+import 'package:fabrikod_quran/screens/favorites_screen.dart';
 import 'package:fabrikod_quran/screens/home_screen.dart';
 import 'package:fabrikod_quran/screens/more_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-
-import '../providers/search_provider.dart';
 
 class BottomNavBarScreen extends StatefulWidget {
   const BottomNavBarScreen({Key? key}) : super(key: key);
@@ -39,7 +39,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
   Widget build(BuildContext context) {
     return MultiProvider(
       providers: [
-        ChangeNotifierProvider(create: (_) => HomeProvider(context),lazy: false),
+        ChangeNotifierProvider(create: (_) => HomeProvider(context), lazy: false),
         ChangeNotifierProvider(create: (_) => MoreProvider(context)),
       ],
       child: Scaffold(
@@ -56,16 +56,14 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
       children: const [
         HomeScreen(),
         BookmarkScreen(),
+        FavoritesScreen(),
         MoreScreen(),
       ],
     );
   }
 
   Widget get buildBottomNavigationBar {
-    return Container(
-      decoration: BoxDecoration(
-        border: Border(top: BorderSide(color: Theme.of(context).dividerColor)),
-      ),
+    return buildBottomBarBackGround(
       child: BottomNavigationBar(
         selectedFontSize: 0,
         unselectedFontSize: 0,
@@ -84,11 +82,54 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
             activeIcon: ImageConstants.bookmarkActiveIcon,
           ),
           buildBottomNavigationBarItem(
+            icon: ImageConstants.favoriteInactiveIcon,
+            activeIcon: ImageConstants.favoriteActiveIcon,
+          ),
+          buildBottomNavigationBarItem(
             icon: ImageConstants.moreInactiveIcon,
             activeIcon: ImageConstants.moreActiveIcon,
           )
         ],
       ),
+    );
+  }
+
+  Widget buildBottomBarBackGround({required Widget child}) {
+    return Column(
+      mainAxisSize: MainAxisSize.min,
+      children: [
+        Container(
+          height: 1,
+          width: double.infinity,
+          decoration: BoxDecoration(
+              gradient: LinearGradient(
+            begin: Alignment.topLeft,
+            end: Alignment.bottomRight,
+            colors: [
+              AppColors.white.withOpacity(0.07),
+              AppColors.white.withOpacity(0.12),
+            ],
+          )),
+        ),
+        ClipRRect(
+          child: BackdropFilter(
+            filter: ImageFilter.blur(sigmaX: 64.0, sigmaY: 64.0),
+            child: Container(
+              decoration: BoxDecoration(
+                color: AppColors.black4.withOpacity(0.47),
+                boxShadow: <BoxShadow>[
+                  BoxShadow(
+                    color: const Color(0xFF000000).withOpacity(0.05),
+                    offset: const Offset(0.0, 45.024),
+                    blurRadius: 72.36,
+                  ),
+                ],
+              ),
+              child: child,
+            ),
+          ),
+        ),
+      ],
     );
   }
 

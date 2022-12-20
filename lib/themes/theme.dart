@@ -137,10 +137,8 @@ ToggleButtonsThemeData get _toggleButtonsThemeData {
 /// [BottomNavigationBarThemeData] Bottom Navigation Bar Theme Data
 BottomNavigationBarThemeData get _bottomNavigationBarThemeData {
   return const BottomNavigationBarThemeData(
-    backgroundColor: AppColors.black4,
+    backgroundColor: Colors.transparent,
     elevation: 0,
-    selectedItemColor: AppColors.white,
-    unselectedItemColor: AppColors.white,
   );
 }
 
