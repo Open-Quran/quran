@@ -1,3 +1,4 @@
+import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class VerseCard extends StatelessWidget {
@@ -7,48 +8,19 @@ class VerseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Container(
       decoration: BoxDecoration(
-          color: Color(0xFF424242).withOpacity(0.26),
-          borderRadius: BorderRadius.circular(10)),
-      height: 140,
+          color: AppColors.black9.withOpacity(0.26),
+          borderRadius: BorderRadius.circular(kPaddingM)),
       child: Column(
-        children: [
-          Expanded(
-            child: VerseCardAyat(
-              numberOfAyat: '٣',
-              ayat: 'ٱلرَّحْمَـٰنِ ٱلرَّحِيمِ',
-            ),
+        children: const [
+          VerseCardArabic(
+            numberOfVerse: '٣',
+            verse:
+                'ٱلرَّحْمَـٰنِ ٱلرَّحِيمِٱلرَّحْمَـٰنِ ٱلرَّحِيمٱلرَّحْمَـٰنِ ٱلرَّحِيمٱلرَّحْمَـٰنِ ٱلرَّحِيمٱلرَّحْمَـٰنِ ٱلرَّحِيمٱلرَّحْمَـٰنِ ٱلرَّحِيمٱلرَّحْمَـٰنِ ٱلرَّحِيمٱلرَّحْمَـٰنِ ٱلرَّحِيمٱلرَّحْمَـٰنِ ٱلرَّحِيمٱلرَّحْمَـٰنِ ٱلرَّحِيمٱلرَّحْمَـٰنِ ٱلرَّحِيم',
           ),
-          Row(
-            children: [
-              Spacer(),
-              SizedBox(
-                width: 320,
-                height: 1,
-                child: Container(
-                  margin: EdgeInsets.only(right: 6),
-                  decoration: BoxDecoration(
-                      gradient: LinearGradient(
-                    colors: [
-                      Color(0xFF1D1D1D).withOpacity(0),
-                      Color(0xFF353535).withOpacity(1)
-                    ],
-                  )),
-                ),
-              ),
-            ],
-          ),
-          Expanded(
-            child: Padding(
-              padding: const EdgeInsets.all(6.0),
-              child: Text(
-                'In the Name of Allah—the Most Compassionate, Most Merciful.In the Name of Allah—the Most Compassionate, Most Merciful.',
-                style: TextStyle(
-                  color: Color(0xFFB4B4B4),
-                  fontSize: 14,
-                ),
-                textAlign: TextAlign.end,
-              ),
-            ),
+          VerseCardDividerLine(),
+          VerseCardTranslation(
+            translation:
+                'In the Name of Allah—the Most Compassionate, Most Merciful.In the Name of Allah—the Most Compassionate, Most Merciful.In the Name of Allah—the Most Compassionate, Most Merciful.In the Name of Allah—the Most Compassionate, Most Merciful.',
           )
         ],
       ),
@@ -56,43 +28,100 @@ class VerseCard extends StatelessWidget {
   }
 }
 
-class VerseCardAyat extends StatelessWidget {
-  VerseCardAyat({
+//Arabic Verse and its number
+class VerseCardArabic extends StatelessWidget {
+  const VerseCardArabic({
     Key? key,
-    required this.numberOfAyat,
-    required this.ayat,
+    required this.numberOfVerse,
+    required this.verse,
   }) : super(key: key);
 
-  String numberOfAyat;
-  String ayat;
+  final String numberOfVerse;
+  final String verse;
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(6),
+      padding: const EdgeInsets.all(kPaddingM),
       child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Text(
-            numberOfAyat,
+            numberOfVerse,
             textAlign: TextAlign.start,
-            style: TextStyle(fontSize: 20, color: Colors.white),
+            style: context.theme.textTheme.displayLarge
+                ?.copyWith(color: AppColors.grey),
           ),
-          Spacer(),
-          Container(
-            decoration: BoxDecoration(
-                gradient: LinearGradient(colors: [
-                  Color(0xFF1D1D1D).withOpacity(0),
-                  Color(0xFFE3BE92).withOpacity(0.24),
-                ]),
-                borderRadius: BorderRadius.circular(8)),
-            padding: EdgeInsets.all(8),
-            child: Text(
-              ayat,
-              textDirection: TextDirection.rtl,
-              textAlign: TextAlign.start,
-              style: TextStyle(fontSize: 20, color: Colors.white),
+          Expanded(
+            child: Container(
+              decoration: BoxDecoration(
+                  gradient: LinearGradient(colors: [
+                    AppColors.black10.withOpacity(0),
+                    AppColors.brandy.withOpacity(0.24),
+                  ]),
+                  borderRadius: BorderRadius.circular(kPaddingM)),
+              padding: const EdgeInsets.all(kPaddingM),
+              child: Text(
+                verse,
+                textDirection: TextDirection.rtl,
+                textAlign: TextAlign.start,
+                style: context.theme.textTheme.displayLarge
+                    ?.copyWith(color: AppColors.grey),
+              ),
             ),
           ),
         ],
+      ),
+    );
+  }
+}
+
+// Divider Line between arabic verse and its translation
+class VerseCardDividerLine extends StatelessWidget {
+  const VerseCardDividerLine({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Row(
+      children: [
+        const Spacer(),
+        SizedBox(
+          width: 320,
+          height: 1,
+          child: Container(
+            margin: const EdgeInsets.only(right: kPaddingM),
+            decoration: BoxDecoration(
+                gradient: LinearGradient(
+              colors: [
+                AppColors.black10.withOpacity(0),
+                AppColors.grey10.withOpacity(1),
+              ],
+            )),
+          ),
+        ),
+      ],
+    );
+  }
+}
+
+//Text of translation verse
+class VerseCardTranslation extends StatelessWidget {
+  const VerseCardTranslation({
+    Key? key,
+    required this.translation,
+  }) : super(key: key);
+
+  final String translation;
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(kPaddingM),
+      child: Text(
+        translation,
+        style: context.theme.textTheme.titleMedium
+            ?.copyWith(color: AppColors.grey2),
+        textAlign: TextAlign.end,
       ),
     );
   }

@@ -35,6 +35,7 @@ dependencies:
   syncfusion_flutter_sliders: ^20.3.52
   scrollable_positioned_list: ^0.3.5
   gap: ^2.0.0                                             # Adding gaps between widgets
+  flutter_slidable: ^2.0.0                                # Slidable list item
 
   # Local Database
   get_storage: ^2.0.3                                     # Store data locally

@@ -41,8 +41,9 @@
     "page": "Sayfa",
     "previousPage": "Önceki Sayfa",
     "surahs": "Sureler",
-    "noResultsFound": "Sonuç bulunamadı\\nFarklı bir anahtar kelime aramayı deneyin.",
+    "noResultsFound": "Sonuç bulunamadı\nFarklı bir anahtar kelime aramayı deneyin.",
     "suggestions": "Öneriler",
     "noBookMarkedSurahOrAyat": "İşaretlenmiş ayet veya sure yok",
-    "and": "Ve"
+    "and": "Ve",
+    "theOpenQuran": "The Open Quran"
 }

@@ -1,5 +1,5 @@
 import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/widgets/app_bars/main_app_bar.dart';
+import 'package:fabrikod_quran/widgets/app_bars/primary_app_bar.dart';
 import 'package:fabrikod_quran/widgets/cards/help_guide_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -22,8 +22,8 @@ class _HelpGuideScreenState extends State<HelpGuideScreen> {
   }
 
   PreferredSizeWidget get buildAppBar {
-    return MainAppBar(
-      title: context.translate.helpGuide,
+    return PrimaryAppBar(
+      title: context.translate.theOpenQuran,
       leading: IconButton(
         icon: SvgPicture.asset(ImageConstants.arrowBack),
         onPressed: () => Navigator.pop(context),
