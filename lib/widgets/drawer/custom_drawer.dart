@@ -3,7 +3,7 @@ import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/widgets/buttons/custom_button.dart';
 import 'package:fabrikod_quran/widgets/buttons/custom_toggle_buttons.dart';
-import 'package:fabrikod_quran/widgets/cards/juz_card.dart';
+import 'package:fabrikod_quran/widgets/cards/grid_card.dart';
 import 'package:fabrikod_quran/widgets/drawer/surah_section_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -85,10 +85,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
         mainAxisSpacing: kPaddingM * 2,
         crossAxisSpacing: kPaddingM * 2,
       ),
-      itemBuilder: (context, index) => JuzCard(
-        index: index,
-        onTap: context.read<SurahDetailsProvider>().selectJuz,
-      ),
+      itemBuilder: (context, index) => GridCard(
+          text: "${index + 1}",
+          onTap: () {
+            context.read<SurahDetailsProvider>().selectJuz(index);
+          }),
     );
   }
 
