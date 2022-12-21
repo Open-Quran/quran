@@ -30,4 +30,8 @@ class ImageConstants {
   static const String play = "${_iconsPath}ic_play.svg";
   static const String gridIcon = "${_iconsPath}ic_grid.svg";
   static const String listIcon = "${_iconsPath}ic_list.svg";
+  static const String menuIcon = "${_iconsPath}ic_menu.svg";
+  static const String bookmarkIcon = "${_iconsPath}ic_bookmark.svg";
+  static const String soundIcon = "${_iconsPath}ic_sound.svg";
+  static const String settingsIcon = "${_iconsPath}ic_settings.svg";
 }
