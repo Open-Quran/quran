@@ -48,9 +48,8 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
     return InkWell(
       onTap: Utils.unFocus,
       child: Scaffold(
-        appBar: SecondaryAppBar(
-          title: "Al-Fatihah",
-          subTitle: "Juz 1|Hizb 1-Page 1",
+        appBar: PrimaryAppBar(
+          title: context.translate.theOpenQuran,
         ),
         body: buildBody,
       ),
