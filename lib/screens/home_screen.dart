@@ -3,6 +3,7 @@ import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/search_provider.dart';
+import 'package:fabrikod_quran/widgets/app_bars/secondary_app_bar.dart';
 import 'package:fabrikod_quran/widgets/bars/custom_tab_bar.dart';
 import 'package:fabrikod_quran/widgets/cards/juz_card.dart';
 import 'package:fabrikod_quran/widgets/cards/surah_card.dart';
@@ -47,7 +48,10 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
     return InkWell(
       onTap: Utils.unFocus,
       child: Scaffold(
-        appBar: PrimaryAppBar(title: context.translate.theOpenQuran),
+        appBar: SecondaryAppBar(
+          title: "Al-Fatihah",
+          subTitle: "Juz 1|Hizb 1-Page 1",
+        ),
         body: buildBody,
       ),
     );
@@ -177,8 +181,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
             .read<HomeProvider>()
             .onTapSurahCard(searchSurahResult[index].id! - 1),
       ),
-      separatorBuilder: (context, index) =>
-          const SizedBox(height: kPaddingL),
+      separatorBuilder: (context, index) => const SizedBox(height: kPaddingL),
     );
   }
 
@@ -225,8 +228,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
         onTap: () =>
             context.read<HomeProvider>().onTapSurahCard(surahs[index].id! - 1),
       ),
-      separatorBuilder: (context, index) =>
-          const SizedBox(height: kPaddingL),
+      separatorBuilder: (context, index) => const SizedBox(height: kPaddingL),
     );
   }
 
@@ -261,8 +263,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
         surahModel: sajdas[index],
         onTap: () => context.read<HomeProvider>().onTapSajdaCard(index),
       ),
-      separatorBuilder: (context, index) =>
-          const SizedBox(height: kPaddingL),
+      separatorBuilder: (context, index) => const SizedBox(height: kPaddingL),
     );
   }
 }
