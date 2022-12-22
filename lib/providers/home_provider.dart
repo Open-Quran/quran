@@ -2,7 +2,6 @@ import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/reading_settings_model.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
-import 'package:fabrikod_quran/widgets/cards/juz_card.dart';
 import 'package:fabrikod_quran/widgets/cards/surah_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -10,6 +9,14 @@ import 'package:provider/provider.dart';
 class HomeProvider extends ChangeNotifier {
   /// Home Screen Context
   final BuildContext _context;
+
+  /// Juz List Type [EJuzListType]
+  EJuzListType juzListType = EJuzListType.list;
+
+  changeJuzListType(EJuzListType newListType) {
+    juzListType = newListType;
+    notifyListeners();
+  }
 
   /// Class Constructor
   HomeProvider(this._context);
@@ -21,7 +28,7 @@ class HomeProvider extends ChangeNotifier {
     );
   }
 
-  /// Navigation to details when user clicks on [JuzCard]
+  /// Navigation to details when user clicks on [GridCard]
   void onTapJuzCard(int juzIndex) {
     goToSurahDetailScreen(
       ReadingSettingsModel(surahDetailScreenMod: ESurahDetailScreenMod.juz, juzIndex: juzIndex),

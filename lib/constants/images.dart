@@ -27,6 +27,9 @@ class ImageConstants {
   static const String themeIcon = "${_iconsPath}ic_theme.svg";
   static const String checkboxActiveIcon = "${_iconsPath}ic_checkbox_active.svg";
   static const String checkboxInactiveIcon = "${_iconsPath}ic_checkbox_inactive.svg";
+  static const String play = "${_iconsPath}ic_play.svg";
+  static const String gridIcon = "${_iconsPath}ic_grid.svg";
+  static const String listIcon = "${_iconsPath}ic_list.svg";
   static const String menuIcon = "${_iconsPath}ic_menu.svg";
   static const String bookmarkIcon = "${_iconsPath}ic_bookmark.svg";
   static const String soundIcon = "${_iconsPath}ic_sound.svg";

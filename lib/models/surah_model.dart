@@ -53,6 +53,17 @@ class SurahModel {
     return list;
   }
 
+  /// Filters and return juz numbers of Surah
+  List<int> get juzNumbers {
+    List<int> juzNumbers = [];
+    for (var element in verses) {
+      if(juzNumbers.contains(element.juzNumber)) continue;
+      if(element.juzNumber == null) continue;
+      juzNumbers.add(element.juzNumber!);
+    }
+    return juzNumbers;
+  }
+
   /// Get surahs of the selected mushaf page
   SurahModel? surahOfMushafPage(int mushafPageNo) {
     var newVerses = verses.where((element) => element.pageNumber == mushafPageNo).toList();
