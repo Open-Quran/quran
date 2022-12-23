@@ -1,9 +1,12 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/action_type_listener.dart';
+import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/slidable_controller_sender.dart';
+import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/slidable_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class FavoritesCard extends StatelessWidget {
+class FavoritesCard extends StatefulWidget {
   const FavoritesCard(
       {Key? key,
       required this.surahName,
@@ -16,28 +19,56 @@ class FavoritesCard extends StatelessWidget {
   final int pageNumber;
 
   @override
+  State<FavoritesCard> createState() => _FavoritesCardState();
+}
+
+class _FavoritesCardState extends State<FavoritesCard>
+    with SingleTickerProviderStateMixin {
+  AnimationController? animationController;
+  @override
+  void initState() {
+    animationController = AnimationController(
+        vsync: this,
+        upperBound: 0.5,
+        duration: const Duration(microseconds: 2000));
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    return Slidable(
-      endActionPane: const ActionPane(
-        extentRatio: 0.30,
-        motion: ScrollMotion(),
-        children: [_buildDeleteButton()],
+    return SlidablePlayer(
+      animation: animationController,
+      child: Slidable(
+        endActionPane: const ActionPane(
+          extentRatio: 0.30,
+          motion: ScrollMotion(),
+          children: [_buildDeleteButton()],
+        ),
+        child: _buildFavoriteCard(),
       ),
-      child: Container(
-        width: double.infinity,
-        height: 72,
-        decoration: BoxDecoration(
-            color: AppColors.zeus,
-            borderRadius: BorderRadius.circular(kPaddingM)),
-        child: Row(
-          children: [
-            const FavoriteIcon(),
-            SurahNames(
-                surahName: surahName,
-                surahNameTranslation: surahNameTranslation),
-            const Spacer(),
-            PageNumber(pageNumber: pageNumber)
-          ],
+    );
+  }
+
+  _buildFavoriteCard() {
+    return SlidableControllerSender(
+      child: ActionTypeListener(
+        isFirstVerse: true,
+        child: Container(
+          width: double.infinity,
+          height: 72,
+          decoration: BoxDecoration(
+              color: AppColors.zeus,
+              borderRadius: BorderRadius.circular(kPaddingM)),
+          child: Row(
+            children: [
+              const FavoriteIcon(),
+              SurahNames(
+                  surahName: widget.surahName,
+                  surahNameTranslation: widget.surahNameTranslation),
+              const Spacer(),
+              PageNumber(pageNumber: widget.pageNumber)
+            ],
+          ),
         ),
       ),
     );
