@@ -36,33 +36,35 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
     //         ))
     //     :
     return SingleChildScrollView(
-      child: Column(
-        children: [
-          Container(
-            alignment: Alignment.topLeft,
-            padding: const EdgeInsets.fromLTRB(kPaddingXL, kPaddingL, 0, 0),
-            child: Text(
-              'Favorites',
-              style: context.theme.textTheme.displayLarge,
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+            horizontal: kPaddingXL, vertical: kPaddingL),
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.topLeft,
+              child: Text(
+                'Favorites',
+                style: context.theme.textTheme.displayLarge,
+              ),
             ),
-          ),
-          ListView.separated(
-            itemCount: 10, //favoriteVerses.length,
-            shrinkWrap: true,
-            primary: false,
-            padding: const EdgeInsets.symmetric(
-              vertical: kPaddingL,
-              horizontal: kPaddingXL,
+            ListView.separated(
+              itemCount: 10, //favoriteVerses.length,
+              shrinkWrap: true,
+              primary: false,
+              padding: const EdgeInsets.symmetric(
+                vertical: kPaddingL,
+              ),
+              itemBuilder: (context, index) => const FavoritesCard(
+                surahName: 'Al - Fatihah',
+                surahNameTranslation: 'The Opener',
+                pageNumber: 254,
+              ),
+              separatorBuilder: (context, index) =>
+                  const SizedBox(height: kPaddingXL),
             ),
-            itemBuilder: (context, index) => const FavoritesCard(
-              surahName: 'Al - Fatihah',
-              surahNameTranslation: 'The Opener',
-              pageNumber: 254,
-            ),
-            separatorBuilder: (context, index) =>
-                const SizedBox(height: kPaddingXL),
-          ),
-        ],
+          ],
+        ),
       ),
     );
   }

@@ -24,7 +24,7 @@ class BookmarkCard extends StatelessWidget {
         children: [_buildDeleteButton()],
       ),
       child: Container(
-        width: 400,
+        width: double.infinity,
         height: 72,
         decoration: BoxDecoration(
             color: AppColors.oil,
