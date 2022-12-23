@@ -1,7 +1,7 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/widgets/basmala_title.dart';
-import 'package:fabrikod_quran/widgets/cards/verse_card.dart';
+import 'package:fabrikod_quran/widgets/cards/new_verse_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
@@ -26,12 +26,8 @@ class TranslationScreen extends StatelessWidget {
         physics: const ClampingScrollPhysics(),
         itemBuilder: (context, index) => Column(
           children: [
-            BasmalaTitle(
-              verseKey: verses[index].verseKey ?? "",
-              isName: context.read<SurahDetailsProvider>().readingSettings.surahDetailScreenMod ==
-                  ESurahDetailScreenMod.juz,
-            ),
-            VerseCard(verseModel: verses[index]),
+            BasmalaTitle(verseKey: verses[index].verseKey ?? ""),
+            VerseCard(),
           ],
         ),
         separatorBuilder: (context, index) => const SizedBox(height: kPaddingL),

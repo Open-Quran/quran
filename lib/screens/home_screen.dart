@@ -78,7 +78,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
   }
 
   /// Returns Basmala Title
-  Widget get buildBasmala => SvgPicture.asset(ImageConstants.bigBasmalaIcon,
+  Widget get buildBasmala => SvgPicture.asset(ImageConstants.basmalaIcon,
       color: Theme.of(context).iconTheme.color);
 
   /// Search bar => [FocusNode]
