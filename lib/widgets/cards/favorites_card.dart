@@ -3,8 +3,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class BookmarkCard extends StatelessWidget {
-  const BookmarkCard(
+class FavoritesCard extends StatelessWidget {
+  const FavoritesCard(
       {Key? key,
       required this.surahName,
       required this.surahNameTranslation,
@@ -27,11 +27,11 @@ class BookmarkCard extends StatelessWidget {
         width: double.infinity,
         height: 72,
         decoration: BoxDecoration(
-            color: AppColors.oil,
+            color: AppColors.zeus,
             borderRadius: BorderRadius.circular(kPaddingM)),
         child: Row(
           children: [
-            const BookmarkIcon(),
+            const FavoriteIcon(),
             SurahNames(
                 surahName: surahName,
                 surahNameTranslation: surahNameTranslation),
@@ -44,8 +44,8 @@ class BookmarkCard extends StatelessWidget {
   }
 }
 
-class BookmarkIcon extends StatelessWidget {
-  const BookmarkIcon({
+class FavoriteIcon extends StatelessWidget {
+  const FavoriteIcon({
     Key? key,
   }) : super(key: key);
 
@@ -54,8 +54,7 @@ class BookmarkIcon extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(kPaddingL),
       child: SvgPicture.asset(
-        ImageConstants.bookmarkIconCard,
-        width: 20,
+        ImageConstants.favoritesIconCard,
       ),
     );
   }

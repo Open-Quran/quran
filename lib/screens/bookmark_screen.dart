@@ -1,14 +1,14 @@
 import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/bookmark_model.dart';
-import 'package:fabrikod_quran/providers/bookmark_provider.dart';
 import 'package:fabrikod_quran/widgets/app_bars/primary_app_bar.dart';
 import 'package:fabrikod_quran/widgets/cards/bookmark_card.dart';
-import 'package:fabrikod_quran/widgets/no_item_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../models/bookmark_model.dart';
+import '../providers/bookmark_provider.dart';
+
 class BookmarkScreen extends StatefulWidget {
-  const BookmarkScreen({super.key});
+  const BookmarkScreen({Key? key}) : super(key: key);
 
   @override
   State<BookmarkScreen> createState() => _BookmarkScreenState();
@@ -25,42 +25,46 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
 
   Widget get buildBody {
     List<BookMarkModel> bookmarks = context.watch<BookmarkProvider>().bookmarks;
-    return bookmarks.isEmpty
-        ? NoItemWidget(
-            text: context.translate.noBookMarkedSurahOrAyat,
-            icon: const Icon(
-              Icons.bookmark_remove_rounded,
-              size: 80,
+    // return bookmarks.isEmpty
+    //     ? NoItemWidget(
+    //         text: context.translate.noBookMarkedSurahOrAyat,
+    //         icon: const Icon(
+    //           Icons.bookmark_remove_rounded,
+    //           size: 80,
+    //         ),
+    //       )
+    //     :
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+            horizontal: kPaddingXL, vertical: kPaddingL),
+        child: Column(
+          children: [
+            Container(
+              alignment: Alignment.topLeft,
+              child: Text(
+                'Bookmarks',
+                style: context.theme.textTheme.displayLarge,
+              ),
             ),
-          )
-        : ListView.separated(
-            itemCount: bookmarks.length,
-            shrinkWrap: true,
-            primary: false,
-            padding: const EdgeInsets.symmetric(
-              vertical: kPaddingXXL,
-              horizontal: kPaddingXL,
+            ListView.separated(
+              itemCount: 10, //favoriteVerses.length,
+              shrinkWrap: true,
+              primary: false,
+              padding: const EdgeInsets.symmetric(
+                vertical: kPaddingL,
+              ),
+              itemBuilder: (context, index) => const BookmarkCard(
+                surahName: 'Al - Fatihah',
+                surahNameTranslation: 'The Opener',
+                pageNumber: 254,
+              ),
+              separatorBuilder: (context, index) =>
+                  const SizedBox(height: kPaddingXL),
             ),
-            itemBuilder: (context, index) {
-              var bookmark = bookmarks[index];
-              var isBookmarked =
-                  context.read<BookmarkProvider>().isBookmark(bookmark);
-              return BookmarkCard(
-                bookMarkModel: bookmarks.elementAt(index),
-                isBookmark: isBookmarked,
-                bookmarkIconOnTap: () =>
-                    context.read<BookmarkProvider>().bookmarkIconOnTap(
-                          isBookmarked,
-                          bookmark.verseModel,
-                          bookmark.bookmarkType,
-                        ),
-                onTap: () => context
-                    .read<BookmarkProvider>()
-                    .bookmarkOnTap(context, bookmark),
-              );
-            },
-            separatorBuilder: (context, index) =>
-                const SizedBox(height: kPaddingXL),
-          );
+          ],
+        ),
+      ),
+    );
   }
 }
