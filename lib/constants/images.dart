@@ -36,4 +36,13 @@ class ImageConstants {
       "${_iconsPath}ic_checkbox_inactive.svg";
   static const String play = "${_iconsPath}ic_play.svg";
   static const String delete = "${_iconsPath}ic_delete.svg";
+  static const String gridIcon = "${_iconsPath}ic_grid.svg";
+  static const String listIcon = "${_iconsPath}ic_list.svg";
+  static const String menuIcon = "${_iconsPath}ic_menu.svg";
+  static const String bookmarkIcon = "${_iconsPath}ic_bookmark.svg";
+  static const String soundIcon = "${_iconsPath}ic_sound.svg";
+  static const String settingsIcon = "${_iconsPath}ic_settings.svg";
+  static const String bookmarkIconCard = "${_iconsPath}ic_bookmark_cardic.svg";
+  static const String favoritesIconCard =
+      "${_iconsPath}ic_favorites_cardic.svg";
 }

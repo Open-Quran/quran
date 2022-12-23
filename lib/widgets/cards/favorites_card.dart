@@ -54,8 +54,7 @@ class FavoriteIcon extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(kPaddingL),
       child: SvgPicture.asset(
-        ImageConstants.favoriteActiveIcon,
-        color: AppColors.brandy,
+        ImageConstants.favoritesIconCard,
       ),
     );
   }
@@ -88,7 +87,7 @@ class SurahNames extends StatelessWidget {
         Text(
           surahNameTranslation,
           style: context.theme.textTheme.headlineSmall
-              ?.copyWith(color: AppColors.grey11, fontSize: 12),
+              ?.copyWith(color: AppColors.grey6, fontSize: 10),
         )
       ],
     );
@@ -110,7 +109,7 @@ class PageNumber extends StatelessWidget {
       child: Text(
         '$pageNumber',
         style: context.theme.textTheme.headlineSmall
-            ?.copyWith(color: AppColors.grey11, fontSize: 10),
+            ?.copyWith(color: AppColors.grey6, fontSize: 10),
       ),
     );
   }

@@ -1,75 +1,144 @@
 import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/bookmark_model.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 
 class BookmarkCard extends StatelessWidget {
-  final BookMarkModel bookMarkModel;
-  final bool isBookmark;
-  final Function()? bookmarkIconOnTap;
-  final Function()? onTap;
-
   const BookmarkCard(
       {Key? key,
-      required this.bookMarkModel,
-      this.bookmarkIconOnTap,
-      this.onTap,
-      this.isBookmark = false})
+      required this.surahName,
+      required this.surahNameTranslation,
+      required this.pageNumber})
       : super(key: key);
+
+  final String surahName;
+  final String surahNameTranslation;
+  final int pageNumber;
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      borderRadius: const BorderRadius.all(Radius.circular(kPaddingM)),
+    return Slidable(
+      endActionPane: const ActionPane(
+        extentRatio: 0.30,
+        motion: ScrollMotion(),
+        children: [_buildDeleteButton()],
+      ),
       child: Container(
-        height: 50,
+        width: 400,
+        height: 72,
         decoration: BoxDecoration(
-          color: context.theme.cardTheme.color?.withOpacity(0.1),
-          borderRadius: const BorderRadius.all(Radius.circular(kPaddingM)),
-        ),
-        padding: const EdgeInsets.all(kPaddingM),
+            color: AppColors.oil,
+            borderRadius: BorderRadius.circular(kPaddingM)),
         child: Row(
           children: [
-            Icon(
-              Icons.arrow_right_rounded,
-              color: context.theme.textTheme.titleSmall?.color,
-              size: 25,
-            ),
-            Expanded(
-              child: Text(
-                text(context),
-                style: context.theme.textTheme.titleSmall?.copyWith(fontWeight: FontWeight.bold),
-                maxLines: 1,
-              ),
-            ),
-            const SizedBox(width: kPaddingM),
-            GestureDetector(
-              onTap: bookmarkIconOnTap,
-              child: SvgPicture.asset(
-                isBookmark
-                    ? ImageConstants.bookmarkActiveIcon
-                    : ImageConstants.bookmarkInactiveIcon,
-                color: context.theme.iconTheme.color,
-              ),
-            )
+            const BookmarkIcon(),
+            SurahNames(
+                surahName: surahName,
+                surahNameTranslation: surahNameTranslation),
+            const Spacer(),
+            PageNumber(pageNumber: pageNumber)
           ],
         ),
       ),
     );
   }
+}
 
-  String text(BuildContext context) {
-    var surahs = context.watch<QuranProvider>().surahs;
-    if (surahs.isEmpty) return "";
-    var surahName = surahs[bookMarkModel.verseModel.surahId! - 1].nameSimple ?? "";
-    switch (bookMarkModel.bookmarkType) {
-      case EBookMarkType.verse:
-        return "$surahName ${bookMarkModel.verseModel.verseKey}";
-      case EBookMarkType.page:
-        return "$surahName ${context.translate.page}: ${bookMarkModel.verseModel.pageNumber}";
-    }
+class BookmarkIcon extends StatelessWidget {
+  const BookmarkIcon({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(kPaddingL),
+      child: SvgPicture.asset(
+        ImageConstants.bookmarkIconCard,
+        width: 20,
+      ),
+    );
+  }
+}
+
+class SurahNames extends StatelessWidget {
+  const SurahNames({
+    Key? key,
+    required this.surahName,
+    required this.surahNameTranslation,
+  }) : super(key: key);
+
+  final String surahName;
+  final String surahNameTranslation;
+
+  @override
+  Widget build(BuildContext context) {
+    return Column(
+      mainAxisAlignment: MainAxisAlignment.center,
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          surahName,
+          style: context.theme.textTheme.headlineSmall
+              ?.copyWith(color: AppColors.grey),
+        ),
+        const SizedBox(
+          height: 3,
+        ),
+        Text(
+          surahNameTranslation,
+          style: context.theme.textTheme.headlineSmall
+              ?.copyWith(color: AppColors.grey6, fontSize: 10),
+        )
+      ],
+    );
+  }
+}
+
+class PageNumber extends StatelessWidget {
+  const PageNumber({
+    Key? key,
+    required this.pageNumber,
+  }) : super(key: key);
+
+  final int pageNumber;
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: const EdgeInsets.all(kPadding3XL),
+      child: Text(
+        '$pageNumber',
+        style: context.theme.textTheme.headlineSmall
+            ?.copyWith(color: AppColors.grey6, fontSize: 10),
+      ),
+    );
+  }
+}
+
+class _buildDeleteButton extends StatelessWidget {
+  const _buildDeleteButton({
+    Key? key,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return InkWell(
+      onTap: null,
+      child: Container(
+        height: 70,
+        width: 100,
+        margin: const EdgeInsets.only(left: kPaddingM),
+        decoration: BoxDecoration(
+          borderRadius: BorderRadius.circular(kPaddingM),
+          color: AppColors.redOrange,
+        ),
+        child: Center(
+          child: SvgPicture.asset(
+            ImageConstants.delete,
+          ),
+        ),
+      ),
+    );
   }
 }

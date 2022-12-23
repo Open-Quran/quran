@@ -28,6 +28,17 @@ class QuranProvider extends ChangeNotifier {
     return surahs.where((element) => element.isSajdaVerse).toList();
   }
 
+  /// Get Juz with surahs
+  List<List<SurahModel>> get juzList {
+    List<List<SurahModel>> juz = List.generate(30, (_) => [], growable: false);
+    for (var surah in surahs) {
+      for (var element in surah.juzNumbers) {
+        juz[element - 1].add(surah);
+      }
+    }
+    return juz;
+  }
+
   /// Get all surah verses
   List<VerseModel> get getAllVerses {
     List<VerseModel> verseList = [];

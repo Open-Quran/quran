@@ -5,7 +5,7 @@ import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/search_provider.dart';
 import 'package:fabrikod_quran/widgets/bars/custom_search_bar.dart';
 import 'package:fabrikod_quran/widgets/bars/custom_tab_bar.dart';
-import 'package:fabrikod_quran/widgets/cards/juz_card.dart';
+import 'package:fabrikod_quran/widgets/cards/grid_card.dart';
 import 'package:fabrikod_quran/widgets/cards/surah_card.dart';
 import 'package:fabrikod_quran/widgets/no_item_widget.dart';
 import 'package:fabrikod_quran/widgets/tags/custom_tag_list.dart';
@@ -47,7 +47,9 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
     return InkWell(
       onTap: Utils.unFocus,
       child: Scaffold(
-        appBar: PrimaryAppBar(title: context.translate.theOpenQuran),
+        appBar: PrimaryAppBar(
+          title: context.translate.theOpenQuran,
+        ),
         body: buildBody,
       ),
     );
@@ -240,10 +242,11 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
         mainAxisSpacing: kPaddingM * 2,
         crossAxisSpacing: kPaddingM * 2,
       ),
-      itemBuilder: (context, index) => JuzCard(
-        index: index,
-        onTap: context.read<HomeProvider>().onTapJuzCard,
-      ),
+      itemBuilder: (context, index) => GridCard(
+          text: "${index + 1}",
+          onTap: () {
+            context.read<HomeProvider>().onTapJuzCard(index);
+          }),
     );
   }
 

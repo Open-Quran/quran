@@ -21,3 +21,5 @@ enum ESurahDetailScreenMod { surah, juz, sajda }
 
 /// Different types of BookMark
 enum EBookMarkType { verse, page }
+
+enum EJuzListType { list, grid }
