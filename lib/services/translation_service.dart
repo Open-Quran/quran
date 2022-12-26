@@ -47,6 +47,11 @@ class TranslationService {
     Translations? translations = _getTranslations(resourceId);
     if (translations == null) return;
     translations.verseTranslations = result;
+
+    for (var element in translations.verseTranslations) {
+      element.translationName = translations.translationName;
+    }
+
     String localCountryCode =
         LocalDb.getLocale?.countryCode ?? Platform.localeName.split("_").first;
     if (localCountryCode == countryCode) translations.isShow = true;
@@ -75,5 +80,10 @@ class TranslationService {
     if (!translations.isShow || translations.verseTranslations.isNotEmpty) return;
     translations.verseTranslations =
         await NetworkService.fetchVerseTranslationList(translations.resourceId!);
+
+    for (var element in translations.verseTranslations) {
+      element.translationName = translations.translationName;
+    }
+
   }
 }

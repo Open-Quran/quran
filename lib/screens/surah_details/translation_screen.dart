@@ -1,4 +1,5 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/widgets/basmala_title.dart';
 import 'package:fabrikod_quran/widgets/cards/new_verse_card.dart';
@@ -19,18 +20,35 @@ class TranslationScreen extends StatelessWidget {
         itemScrollController: context.read<SurahDetailsProvider>().itemScrollController,
         itemPositionsListener: context.read<SurahDetailsProvider>().itemPositionsListener,
         padding: const EdgeInsets.only(
-          left: kPaddingXL,
-          right: kPaddingXL,
+          left: kPaddingM,
+          right: kPaddingL,
           bottom: kPaddingXL,
         ),
         physics: const ClampingScrollPhysics(),
-        itemBuilder: (context, index) => Column(
-          children: [
-            BasmalaTitle(verseKey: verses[index].verseKey ?? ""),
-            VerseCard(),
-          ],
-        ),
-        separatorBuilder: (context, index) => const SizedBox(height: kPaddingL),
+        itemBuilder: (context, index) {
+          final verse = verses[index];
+          return Column(
+            children: [
+              BasmalaTitle(verseKey: verse.verseKey ?? ""),
+              VerseCard(
+                verseModel: verse,
+                isPlaying: index == 1,
+                arabicFontFamily: Fonts.uthmanic,
+                verseTranslations: context
+                    .watch<QuranProvider>()
+                    .translationService
+                    .translationsOfVerse(verse.id!),
+                textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
+                translationFontFamily:
+                    Fonts.getTranslationFont(context.watch<QuranProvider>().localSetting.fontType),
+                onLongPress: (){
+                  print("onLongPress");
+                },
+              ),
+            ],
+          );
+        },
+        separatorBuilder: (context, index) => const SizedBox(height: kPaddingM),
       ),
     );
   }
