@@ -46,5 +46,13 @@
     "noBookMarkedSurahOrAyat": "No bookmarked surah or ayat",
     "and": "And",
     "theOpenQuran": "The Open Quran",
-    "recent": "Recent"
+    "recent": "Recent",
+    "read":"Read",
+    "surahSize": "Surah Size",
+    "layout": "Layout",
+    "sound": "Sound",
+    "backgroundColor": "Background Color",
+    "surahAndTranslation": "Surah + Translation",
+    "hide": "Hide",
+    "show": "Show"
 }

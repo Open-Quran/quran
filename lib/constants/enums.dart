@@ -23,3 +23,9 @@ enum ESurahDetailScreenMod { surah, juz, sajda }
 enum EBookMarkType { verse, page }
 
 enum EJuzListType { list, grid }
+
+enum EReadOptions { surah, translation, surahAndTranslation }
+
+enum ETranslationOptions { hide, show }
+
+enum ELayoutOptions { alignRight, justify }
