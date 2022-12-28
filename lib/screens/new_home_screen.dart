@@ -80,7 +80,7 @@ class _HomeScreenState extends State<HomeScreen> {
         listType: context.watch<HomeProvider>().juzListType,
         onChangedListType: context.read<HomeProvider>().changeJuzListType,
         onTapGridCard: (int juzId) {
-          context.read<HomeProvider>().onTapJuzCard(juzId-1);
+          context.read<HomeProvider>().onTapJuzCard(juzId - 1);
           print("On Tap Juz Card : $juzId");
         },
         onTapSurahCard: (int surahId) {
