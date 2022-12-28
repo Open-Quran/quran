@@ -80,9 +80,11 @@ class _HomeScreenState extends State<HomeScreen> {
         listType: context.watch<HomeProvider>().juzListType,
         onChangedListType: context.read<HomeProvider>().changeJuzListType,
         onTapGridCard: (int juzId) {
+          context.read<HomeProvider>().onTapJuzCard(juzId-1);
           print("On Tap Juz Card : $juzId");
         },
         onTapSurahCard: (int surahId) {
+          context.read<HomeProvider>().onTapSurahCard(surahId - 1);
           print("On Tap Surah Card : $surahId");
         },
       ),
@@ -103,6 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
           return SurahCard(
             surahModel: surah,
             onTap: () {
+              context.read<HomeProvider>().onTapSurahCard(surah.id! - 1);
               print("On Tap Surah Card : ${surah.id}");
             },
           );

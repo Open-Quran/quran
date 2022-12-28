@@ -41,3 +41,10 @@ extension BuildContextExtension on BuildContext {
     return Theme.of(this);
   }
 }
+
+extension IntExtension on int {
+  String get quranPageNumber {
+    if (toString().length > 1) return toString();
+    return "0${this}";
+  }
+}
