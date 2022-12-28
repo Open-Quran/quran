@@ -53,6 +53,9 @@ class VerseTranslation {
   int? resourceId;
   String? text;
 
+  /// Expired Data
+  String? translationName;
+
   VerseTranslation({this.resourceId, this.text});
 
   VerseTranslation.fromJson(Map<String, dynamic> json) {
