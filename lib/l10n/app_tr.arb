@@ -47,5 +47,13 @@
     "noBookMarkedSurahOrAyat": "İşaretlenmiş ayet veya sure yok",
     "and": "Ve",
     "theOpenQuran": "The Open Quran",
-    "recent": "Son Arama"
+    "recent": "Son Arama",
+    "read": "Okuma",
+    "surahSize": "Sure Boyutu",
+    "layout": "Sayfa Düzeni",
+    "sound": "Ses",
+    "backgroundColor": "Arkaplan Rengi",
+    "surahAndTranslation": "Sure + Meal",
+    "hide": "Gizle",
+    "show": "Göster"
 }
