@@ -15,7 +15,9 @@ class SurahDetailsProvider extends ChangeNotifier {
   SurahDetailsProvider(this._context, this.readingSettings) {
     itemPositionsListener.itemPositions.addListener(scrollListener);
     readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber ?? 1;
-    pageController = PageController(initialPage: readingSettings.mushafPageNumber - 1);
+
+    ///todo
+    ///pageController = PageController(initialPage: readingSettings.mushafPageNumber - 1);
   }
 
   /// Detail Screen Context
@@ -23,9 +25,6 @@ class SurahDetailsProvider extends ChangeNotifier {
 
   /// Reading settings model
   late ReadingSettingsModel readingSettings;
-
-  /// Mushaf Page Controller
-  late PageController pageController;
 
   /// Scroll Controller for Verse List
   final ItemScrollController itemScrollController = ItemScrollController();
@@ -129,7 +128,9 @@ class SurahDetailsProvider extends ChangeNotifier {
     quranProvider.localSetting.quranType = EQuranType.values.elementAt(index);
     if (quranProvider.localSetting.quranType == EQuranType.reading) {
       readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber ?? 1;
-      pageController.jumpToPage(readingSettings.mushafPageNumber - 1);
+
+      ///todo
+      ///pageController.jumpToPage(readingSettings.mushafPageNumber - 1);
     } else {
       readingSettings.surahIndex = surahsOfMushafPage.first.verses.first.surahId! - 1;
       readingSettings.surahVerseIndex = surahsOfMushafPage.first.verses.first.verseNumber! - 1;
@@ -148,7 +149,9 @@ class SurahDetailsProvider extends ChangeNotifier {
     readingSettings.surahIndex = index;
     readingSettings.surahVerseIndex = 0;
     readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber!;
-    pageController.jumpToPage(readingSettings.mushafPageNumber - 1);
+
+    ///todo
+    ///pageController.jumpToPage(readingSettings.mushafPageNumber - 1);
     itemScrollController.jumpTo(index: 0);
     notifyListeners();
   }
@@ -156,14 +159,18 @@ class SurahDetailsProvider extends ChangeNotifier {
   void changeSurahVerseIndex(int index) {
     readingSettings.surahVerseIndex = index;
     readingSettings.mushafPageNumber = versesOfReadingTypeTranslation[index].pageNumber!;
-    pageController.jumpToPage(readingSettings.mushafPageNumber - 1);
+
+    ///todo
+    ///pageController.jumpToPage(readingSettings.mushafPageNumber - 1);
     itemScrollController.jumpTo(index: index);
     notifyListeners();
   }
 
   void selectJuz(int index) {
     readingSettings.juzIndex = index;
-    pageController.jumpToPage(readingSettings.mushafPageNumber - 1);
+
+    ///todo
+    ///pageController.jumpToPage(readingSettings.mushafPageNumber - 1);
     Navigator.pop(_context);
     notifyListeners();
   }
@@ -171,20 +178,23 @@ class SurahDetailsProvider extends ChangeNotifier {
   void changeSajdaIndex(int index) {
     readingSettings.sajdaIndex = index;
     readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber!;
-    pageController.jumpToPage(readingSettings.mushafPageNumber - 1);
+
+    ///todo
+    ///pageController.jumpToPage(readingSettings.mushafPageNumber - 1);
     notifyListeners();
   }
 
-  void changeMushafPageNumberForButton(int index) {
-    readingSettings.mushafPageNumber = index;
-    pageController.jumpToPage(index - 1);
-    notifyListeners();
-  }
-
-  void changeMushafPageNumberForScroll(int index) {
-    readingSettings.mushafPageNumber = index + 1;
-    notifyListeners();
-  }
+  ///todo
+  // void changeMushafPageNumberForButton(int index) {
+  //   readingSettings.mushafPageNumber = index;
+  //   pageController.jumpToPage(index - 1);
+  //   notifyListeners();
+  // }
+  ///todo
+  // void changeMushafPageNumberForScroll(int index) {
+  //   readingSettings.mushafPageNumber = index + 1;
+  //   notifyListeners();
+  // }
 
   void changeReadingMode() {
     readingSettings.isReadingMode = !readingSettings.isReadingMode;
