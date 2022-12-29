@@ -21,8 +21,6 @@ class _SettingsTopRightState extends State<SettingsTopRight> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: const SecondaryAppBar(
-          title: 'Al-Fatihah', subTitle: 'Juz 1 | Hizb 1 - Page 1'),
       body: buildBody,
     );
   }
@@ -30,8 +28,7 @@ class _SettingsTopRightState extends State<SettingsTopRight> {
   Widget get buildBody {
     return SingleChildScrollView(
       child: Padding(
-        padding: const EdgeInsets.symmetric(
-            horizontal: kPaddingXL * 2, vertical: kPaddingXXL),
+        padding: const EdgeInsets.symmetric(horizontal: kPaddingXL * 2, vertical: kPaddingXXL),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -46,14 +43,12 @@ class _SettingsTopRightState extends State<SettingsTopRight> {
                 Expanded(
                   flex: 5,
                   child: TranslationOptionsToggleButton(
-                      listType: ETranslationOptions.hide,
-                      onChanged: (ETranslationOptions) {}),
+                      listType: ETranslationOptions.hide, onChanged: (ETranslationOptions) {}),
                 ),
                 Expanded(
                   flex: 4,
                   child: LayoutOptionsToggleButton(
-                      listType: ELayoutOptions.alignRight,
-                      onChanged: (ELayoutOptions) {}),
+                      listType: ELayoutOptions.alignRight, onChanged: (ELayoutOptions) {}),
                 ),
               ],
             ),
