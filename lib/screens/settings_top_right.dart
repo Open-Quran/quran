@@ -35,7 +35,10 @@ class _SettingsTopRightState extends State<SettingsTopRight> {
             listType: context.watch<QuranProvider>().localSetting.readOptions,
             onValueChanged: context.read<QuranProvider>().changeReadingType,
           ),
-          const SurahSizeSlider(),
+          SurahSizeSlider(
+            size: context.watch<QuranProvider>().localSetting.textScaleFactorArabic,
+            onChanged: context.read<QuranProvider>().changeFontSizeArabic,
+          ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
             children: [

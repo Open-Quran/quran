@@ -90,7 +90,7 @@ class QuranProvider extends ChangeNotifier {
   }
 
   /// Changing Arabic Font Size
-  changeFontSizeArabic(dynamic value) {
+  changeFontSizeArabic(double value) {
     localSetting.textScaleFactorArabic = value;
     setLocalSettingOfQuran();
   }
