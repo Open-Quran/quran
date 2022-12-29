@@ -101,8 +101,8 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
         context.translate.arabic,
         context.translate.translation
       ],
-      onTap: context.read<QuranProvider>().changeReadingType,
-      selectedIndex: context.watch<QuranProvider>().localSetting.readingType.index,
+      onTap: (index) {},
+      selectedIndex: context.watch<QuranProvider>().localSetting.readOptions.index,
     );
   }
 

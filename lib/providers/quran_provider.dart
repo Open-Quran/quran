@@ -78,8 +78,8 @@ class QuranProvider extends ChangeNotifier {
   }
 
   /// Changing Reading Type
-  changeReadingType(int index) {
-    localSetting.readingType = EReadingType.values[index];
+  changeReadingType(EReadOptions readOptions) {
+    localSetting.readOptions = readOptions;
     setLocalSettingOfQuran();
   }
 
