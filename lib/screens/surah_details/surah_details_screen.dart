@@ -3,8 +3,9 @@ import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/screens/surah_details/reading_screen.dart';
 import 'package:fabrikod_quran/screens/surah_details/translation_screen.dart';
+import 'package:fabrikod_quran/widgets/animation/fade_indexed_stack.dart';
 import 'package:fabrikod_quran/widgets/bottom_sheets/quran_style_bottom_sheet.dart';
-import 'package:fabrikod_quran/widgets/buttons/custom_toggle_buttons.dart';
+import 'package:fabrikod_quran/widgets/buttons/translation_reading_segmented_button.dart';
 import 'package:fabrikod_quran/widgets/drawer/custom_drawer.dart';
 import 'package:fabrikod_quran/widgets/drawer/custom_drawer_scaffold.dart';
 import 'package:flutter/material.dart';
@@ -50,15 +51,10 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
     return Visibility(
       visible: !context.watch<SurahDetailsProvider>().readingSettings.isReadingMode,
       child: Padding(
-        padding:
-            const EdgeInsets.symmetric(vertical: kPaddingXXL, horizontal: kPaddingXL),
-        child: CustomToggleButtons(
-          buttonTitles: [
-            context.translate.translation,
-            context.translate.reading,
-          ],
-          selectedIndex: context.watch<QuranProvider>().localSetting.quranType.index,
-          onTap: context.read<SurahDetailsProvider>().changeQuranType,
+        padding: const EdgeInsets.symmetric(vertical: kPaddingXXL, horizontal: kPaddingXL),
+        child: TranslationReadingSegmentedButton(
+          initialIndex: context.watch<QuranProvider>().localSetting.quranType.index,
+          onValueChanged : context.read<SurahDetailsProvider>().changeQuranType,
         ),
       ),
     );
@@ -67,7 +63,7 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
   /// Switch toggles
   /// [EQuranType.translation] and [EQuranType.reading]
   Widget get buildTranslationOrReading {
-    return IndexedStack(
+    return FadeIndexedStack(
       index: context.watch<QuranProvider>().localSetting.quranType.index,
       children: const [
         TranslationScreen(),

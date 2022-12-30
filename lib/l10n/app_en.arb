@@ -4,6 +4,7 @@
     "search": "Search",
     "surah": "Surah",
     "juz": "Juz",
+    "hizb": "Hizb",
     "bookmark": "Bookmark",
     "sajda": "Sajda",
     "ayat": "Ayat",
@@ -47,5 +48,14 @@
     "and": "And",
     "theOpenQuran": "The Open Quran",
     "recent": "Recent",
-    "bookmarks": "Bookmarks"
+    "bookmarks": "Bookmarks",
+    "recent": "Recent",
+    "read":"Read",
+    "surahSize": "Surah Size",
+    "layout": "Layout",
+    "sound": "Sound",
+    "backgroundColor": "Background Color",
+    "surahAndTranslation": "Surah + Translation",
+    "hide": "Hide",
+    "show": "Show"
 }
