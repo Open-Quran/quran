@@ -55,5 +55,7 @@
     "backgroundColor": "Arkaplan Rengi",
     "surahAndTranslation": "Sure + Meal",
     "hide": "Gizle",
-    "show": "Göster"
+    "show": "Göster",
+    "recent": "Son Arama",
+    "bookmarks": "Kaydedilenler"
 }

@@ -39,11 +39,15 @@ class LocalDb {
   /// Get favorite verses
   static List<VerseModel> get getFavoriteVerses {
     var favoriteList = (_localDbBox.read('favoriteVerses') as List?) ?? [];
-    return favoriteList.map((e) => VerseModel.fromJson(e)).toList().cast<VerseModel>();
+    return favoriteList
+        .map((e) => VerseModel.fromJson(e))
+        .toList()
+        .cast<VerseModel>();
   }
 
   /// Add verse model into favorite list and save to db
-  static Future<List<VerseModel>> addVerseToFavorites(VerseModel verseModel) async {
+  static Future<List<VerseModel>> addVerseToFavorites(
+      VerseModel verseModel) async {
     var favoriteList = getFavoriteVerses;
     favoriteList.add(verseModel);
     var value = favoriteList.map((e) => e.toJson()).toList();
@@ -52,7 +56,8 @@ class LocalDb {
   }
 
   /// Delete verse model from the favorite list in db
-  static Future<List<VerseModel>> deleteVerseFromTheFavorites(VerseModel verseModel) async {
+  static Future<List<VerseModel>> deleteVerseFromTheFavorites(
+      VerseModel verseModel) async {
     var favoriteList = getFavoriteVerses;
     favoriteList.removeWhere((element) => element.id == verseModel.id);
     var value = favoriteList.map((e) => e.toJson()).toList();
@@ -63,11 +68,15 @@ class LocalDb {
   /// Get bookmarks from db
   static List<BookMarkModel> get getBookmarks {
     var bookmarkList = (_localDbBox.read('bookmarks') as List?) ?? [];
-    return bookmarkList.map((e) => BookMarkModel.fromJson(e)).toList().cast<BookMarkModel>();
+    return bookmarkList
+        .map((e) => BookMarkModel.fromJson(e))
+        .toList()
+        .cast<BookMarkModel>();
   }
 
   /// Add bookmark in db
-  static Future<List<BookMarkModel>> addBookmarked(BookMarkModel bookMark) async {
+  static Future<List<BookMarkModel>> addBookmarked(
+      BookMarkModel bookMark) async {
     var bookmarkList = getBookmarks;
     bookmarkList.add(bookMark);
     var value = bookmarkList.map((e) => e.toJson()).toList();
@@ -76,7 +85,8 @@ class LocalDb {
   }
 
   /// Delete bookmark from db
-  static Future<List<BookMarkModel>> deleteBookmarked(BookMarkModel bookMark) async {
+  static Future<List<BookMarkModel>> deleteBookmarked(
+      BookMarkModel bookMark) async {
     var bookmarkList = getBookmarks;
     bookmarkList.removeWhere((element) => element == bookMark);
     var value = bookmarkList.map((e) => e.toJson()).toList();
@@ -92,8 +102,20 @@ class LocalDb {
   }
 
   /// Adding Local Settings Of Quran to Db
-  static Future<LocalSettingModel> setLocalSettingOfQuran(LocalSettingModel localSetting) async {
+  static Future<LocalSettingModel> setLocalSettingOfQuran(
+      LocalSettingModel localSetting) async {
     await _localDbBox.write('localSettingOfQuran', localSetting.toJson());
     return getLocalSettingOfQuran;
+  }
+
+  /// Showcase delete button
+  static bool get getShowCase {
+    bool showCase = _localDbBox.read("showCase") ?? false;
+    return showCase;
+  }
+
+  /// Set Showcase delete button
+  static setShowCase(bool showCase) async {
+    await _localDbBox.write("showCase", showCase);
   }
 }

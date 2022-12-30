@@ -8,8 +8,13 @@ import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class BookmarkProvider extends ChangeNotifier {
+  final ItemScrollController itemScrollController = ItemScrollController();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
+
   /// Class Constructor
   BookmarkProvider() {
     bookmarks = LocalDb.getBookmarks;
@@ -20,7 +25,9 @@ class BookmarkProvider extends ChangeNotifier {
 
   /// Checking if the verse bookmarked
   bool isBookmark(BookMarkModel bookMark) {
-    return bookmarks.indexWhere((element) => element == bookMark) == -1 ? false : true;
+    return bookmarks.indexWhere((element) => element == bookMark) == -1
+        ? false
+        : true;
   }
 
   /// Adding bookmarks
@@ -36,7 +43,8 @@ class BookmarkProvider extends ChangeNotifier {
   }
 
   /// onTap bookmark icon for pages
-  void bookmarkIconOnTap(bool isBookmarked, VerseModel verse, EBookMarkType bookMarkType) {
+  void bookmarkIconOnTap(
+      bool isBookmarked, VerseModel verse, EBookMarkType bookMarkType) {
     var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
     isBookmarked ? _deleteBookmarked(bookMark) : _addBookmarked(bookMark);
   }
@@ -53,7 +61,8 @@ class BookmarkProvider extends ChangeNotifier {
         break;
       case EBookMarkType.page:
         context.read<QuranProvider>().changeQuranType(1);
-        model = ReadingSettingsModel(mushafPageNumber: bookmark.verseModel.pageNumber!);
+        model = ReadingSettingsModel(
+            mushafPageNumber: bookmark.verseModel.pageNumber!);
     }
 
     Navigator.push(

@@ -4,6 +4,7 @@ import 'package:fabrikod_quran/providers/favorites_provider.dart';
 import 'package:fabrikod_quran/widgets/cards/favorites_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../widgets/app_bars/primary_app_bar.dart';
 
@@ -44,14 +45,17 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
             Container(
               alignment: Alignment.topLeft,
               child: Text(
-                'Favorites',
+                context.translate.favorites,
                 style: context.theme.textTheme.displayLarge,
               ),
             ),
-            ListView.separated(
+            ScrollablePositionedList.separated(
+              itemScrollController:
+                  context.watch<FavoritesProvider>().itemScrollController,
+              itemPositionsListener:
+                  context.watch<FavoritesProvider>().itemPositionsListener,
               itemCount: 10, //favoriteVerses.length,
               shrinkWrap: true,
-              primary: false,
               padding: const EdgeInsets.symmetric(
                 vertical: kPaddingL,
               ),
