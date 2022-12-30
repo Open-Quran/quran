@@ -89,12 +89,6 @@ class QuranProvider extends ChangeNotifier {
     setLocalSettingOfQuran();
   }
 
-  /// Changing Arabic Font Size
-  changeFontSizeArabic(double value) {
-    localSetting.textScaleFactorArabic = value;
-    setLocalSettingOfQuran();
-  }
-
   /// Changing Font Type
   changeFontType(String value) {
     localSetting.fontType = value;

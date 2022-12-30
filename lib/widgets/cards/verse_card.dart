@@ -90,7 +90,7 @@ class VerseCard extends StatelessWidget {
             child: Text(
               verseModel.text ?? "",
               textDirection: TextDirection.rtl,
-              textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactorArabic,
+              textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
               style: context.theme.textTheme.headlineLarge?.copyWith(
                 fontSize: 22,
                 fontFamily:

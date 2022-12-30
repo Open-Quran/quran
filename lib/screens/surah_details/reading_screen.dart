@@ -18,7 +18,7 @@ class ReadingScreen extends StatelessWidget {
         return QuranPageWidget(
           versesOfPage: versesOfPage,
           fontTypeArabic: context.watch<QuranProvider>().localSetting.fontTypeArabic,
-          textScaleFactorArabic: context.watch<QuranProvider>().localSetting.textScaleFactorArabic,
+          textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
           onTap: context.read<SurahDetailsProvider>().changeReadingMode,
         );
       },

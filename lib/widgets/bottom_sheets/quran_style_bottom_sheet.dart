@@ -146,7 +146,7 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
         buildTitle("${context.translate.fontSize} (${context.translate.arabic})"),
         const SizedBox(height: kPaddingM),
         FontSliderCard(
-          value: context.watch<QuranProvider>().localSetting.textScaleFactorArabic,
+          value: context.watch<QuranProvider>().localSetting.textScaleFactor,
           onChange: (value){},
         ),
         CustomSpace.big(),

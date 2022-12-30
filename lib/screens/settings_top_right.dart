@@ -36,8 +36,8 @@ class _SettingsTopRightState extends State<SettingsTopRight> {
             onValueChanged: context.read<QuranProvider>().changeReadingType,
           ),
           SurahSizeSlider(
-            size: context.watch<QuranProvider>().localSetting.textScaleFactorArabic,
-            onChanged: context.read<QuranProvider>().changeFontSizeArabic,
+            size: context.watch<QuranProvider>().localSetting.textScaleFactor,
+            onChanged: context.read<QuranProvider>().changeFontSize,
           ),
           Row(
             mainAxisAlignment: MainAxisAlignment.start,
