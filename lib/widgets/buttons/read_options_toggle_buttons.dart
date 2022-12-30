@@ -28,7 +28,7 @@ class ReadOptionsToggleButton extends StatelessWidget {
                 height: 45,
                 child: Center(
                   child: Text(
-                    context.translate.surah,
+                    context.translate.ayat,
                     style: context.theme.textTheme.bodyMedium
                         ?.copyWith(color: listType == EReadOptions.surah ? null : AppColors.grey3),
                   ),
@@ -48,7 +48,7 @@ class ReadOptionsToggleButton extends StatelessWidget {
                 height: 45,
                 child: Center(
                   child: Text(
-                    context.translate.surahAndTranslation,
+                    context.translate.ayatAndTranslation,
                     style: context.theme.textTheme.bodyMedium?.copyWith(
                         color:
                             listType == EReadOptions.surahAndTranslation ? null : AppColors.grey3),

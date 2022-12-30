@@ -13,9 +13,11 @@ class VerseCard extends StatelessWidget {
     required this.textScaleFactor,
     required this.onLongPress,
     this.isPlaying = false,
+    required this.readOptions,
   }) : super(key: key);
 
   final VerseModel verseModel;
+  final EReadOptions readOptions;
   final List<VerseTranslation> verseTranslations;
   final String? arabicFontFamily;
   final String? translationFontFamily;
@@ -61,22 +63,40 @@ class VerseCard extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  VerseCardArabic(
-                    verse: verseModel.text ?? "",
-                    textScaleFactor: textScaleFactor,
-                    isPlaying: isPlaying,
-                  ),
-                  const VerseCardDividerLine(),
-                  VerseCardTranslation(
-                    verseTranslations: verseTranslations,
-                    textScaleFactor: textScaleFactor,
-                    translationFontFamily: translationFontFamily,
-                  )
+                  buildVerseCardArabic(readOptions),
+                  buildVerseCardTranslation(readOptions),
                 ],
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget buildVerseCardArabic(EReadOptions readOptions) {
+    return Visibility(
+      visible: readOptions != EReadOptions.surah,
+      child: Column(
+        children: [
+          VerseCardArabic(
+            verse: verseModel.text ?? "",
+            textScaleFactor: textScaleFactor,
+            isPlaying: isPlaying,
+          ),
+          const VerseCardDividerLine(),
+        ],
+      ),
+    );
+  }
+
+  Widget buildVerseCardTranslation(EReadOptions readOptions) {
+    return Visibility(
+      visible: readOptions != EReadOptions.translation,
+      child: VerseCardTranslation(
+        verseTranslations: verseTranslations,
+        textScaleFactor: textScaleFactor,
+        translationFontFamily: translationFontFamily,
       ),
     );
   }

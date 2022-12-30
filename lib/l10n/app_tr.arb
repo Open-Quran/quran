@@ -49,11 +49,11 @@
     "theOpenQuran": "The Open Quran",
     "recent": "Son Arama",
     "read": "Okuma",
-    "surahSize": "Sure Boyutu",
+    "fontSize": "Yazı Boyutu",
     "layout": "Sayfa Düzeni",
     "sound": "Ses",
     "backgroundColor": "Arkaplan Rengi",
-    "surahAndTranslation": "Sure + Meal",
+    "ayatAndTranslation": "Ayet + Meal",
     "hide": "Gizle",
     "show": "Göster"
 }

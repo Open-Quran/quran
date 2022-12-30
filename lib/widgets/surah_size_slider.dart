@@ -13,7 +13,7 @@ class SurahSizeSlider extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomTitle(titleText: context.translate.surahSize),
+        CustomTitle(titleText: context.translate.fontSize),
         Container(
           margin: const EdgeInsets.only(top: kPaddingM, bottom: kPaddingXXL),
           decoration: BoxDecoration(

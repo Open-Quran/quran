@@ -49,11 +49,11 @@
     "theOpenQuran": "The Open Quran",
     "recent": "Recent",
     "read":"Read",
-    "surahSize": "Surah Size",
+    "fontSize": "Font Size",
     "layout": "Layout",
     "sound": "Sound",
     "backgroundColor": "Background Color",
-    "surahAndTranslation": "Surah + Translation",
+    "ayatAndTranslation": "Ayat + Translation",
     "hide": "Hide",
     "show": "Show"
 }
