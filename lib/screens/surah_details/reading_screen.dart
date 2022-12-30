@@ -17,6 +17,7 @@ class ReadingScreen extends StatelessWidget {
         var versesOfPage = context.read<SurahDetailsProvider>().getSurahOfMushafPage(index + 1);
         return QuranPageWidget(
           versesOfPage: versesOfPage,
+          layoutOptions: context.watch<QuranProvider>().localSetting.layoutOptions,
           fontTypeArabic: context.watch<QuranProvider>().localSetting.fontTypeArabic,
           textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
           onTap: context.read<SurahDetailsProvider>().changeReadingMode,

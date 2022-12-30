@@ -24,6 +24,4 @@ enum EBookMarkType { verse, page }
 
 enum EJuzListType { list, grid }
 
-enum ETranslationOptions { hide, show }
-
-enum ELayoutOptions { alignRight, justify }
+enum ELayoutOptions { right, center }

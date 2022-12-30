@@ -39,7 +39,7 @@ class ImageConstants {
   static const String favoritesIconCard =
       "${_iconsPath}ic_favorites_cardic.svg";
   static const String alignRight = "${_iconsPath}ic_align_right.svg";
-  static const String justify = "${_iconsPath}ic_justify.svg";
+  static const String alignCenter = "${_iconsPath}ic_align_center.svg";
   static const String dropDownIcon = "${_iconsPath}ic_drop_down.svg";
   static const String onSelectLetter =
       "${_iconsPath}ic_bc_color_onselect_letter.svg";

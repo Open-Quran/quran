@@ -83,6 +83,12 @@ class QuranProvider extends ChangeNotifier {
     setLocalSettingOfQuran();
   }
 
+  /// Changing Layout Options
+  changeLayoutOptions(ELayoutOptions layoutOptions) {
+    localSetting.layoutOptions = layoutOptions;
+    setLocalSettingOfQuran();
+  }
+
   /// Changing Font Size
   changeFontSize(dynamic value) {
     localSetting.textScaleFactor = value;
