@@ -1,7 +1,7 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 
-class SecondaryButton extends StatelessWidget {
+class SecondaryButtonRate extends StatelessWidget {
   /// Button label [String]
   final String text;
 
@@ -11,8 +11,16 @@ class SecondaryButton extends StatelessWidget {
   /// Button [icon]
   final Widget icon;
 
-  const SecondaryButton(
-      {super.key, required this.text, this.onPressed, required this.icon});
+  /// BUtton [endIcon]
+  final Widget endIcon;
+
+  const SecondaryButtonRate({
+    super.key,
+    required this.text,
+    this.onPressed,
+    required this.icon,
+    required this.endIcon,
+  });
 
   @override
   Widget build(BuildContext context) {
@@ -39,6 +47,11 @@ class SecondaryButton extends StatelessWidget {
                   ?.copyWith(color: Colors.grey),
               textAlign: TextAlign.left,
             ),
+            const Spacer(),
+            endIcon,
+            const SizedBox(
+              width: kPaddingXL,
+            )
           ],
         ),
       ),
