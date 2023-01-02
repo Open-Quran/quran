@@ -13,13 +13,15 @@ class VerseCard extends StatelessWidget {
     required this.textScaleFactor,
     required this.onLongPress,
     this.isPlaying = false,
+    required this.readOptions,
   }) : super(key: key);
 
   final VerseModel verseModel;
+  final EReadOptions readOptions;
   final List<VerseTranslation> verseTranslations;
   final String? arabicFontFamily;
   final String? translationFontFamily;
-  final double? textScaleFactor;
+  final double textScaleFactor;
   final bool isPlaying;
   final Function()? onLongPress;
 
@@ -55,26 +57,46 @@ class VerseCard extends StatelessWidget {
           children: [
             VerseNumberArabicWithSymbol(
               verseNumber: verseModel.verseNumber.toString(),
+              textScaleFactor: textScaleFactor,
               arabicFontFamily: arabicFontFamily,
             ),
             Expanded(
               child: Column(
                 children: [
-                  VerseCardArabic(
-                    verse: verseModel.text ?? "",
-                    isPlaying: isPlaying,
-                  ),
-                  const VerseCardDividerLine(),
-                  VerseCardTranslation(
-                    verseTranslations: verseTranslations,
-                    textScaleFactor: textScaleFactor,
-                    translationFontFamily: translationFontFamily,
-                  )
+                  buildVerseCardArabic(readOptions),
+                  buildVerseCardTranslation(readOptions),
                 ],
               ),
             ),
           ],
         ),
+      ),
+    );
+  }
+
+  Widget buildVerseCardArabic(EReadOptions readOptions) {
+    return Visibility(
+      visible: readOptions != EReadOptions.surah,
+      child: Column(
+        children: [
+          VerseCardArabic(
+            verse: verseModel.text ?? "",
+            textScaleFactor: textScaleFactor,
+            isPlaying: isPlaying,
+          ),
+          const VerseCardDividerLine(),
+        ],
+      ),
+    );
+  }
+
+  Widget buildVerseCardTranslation(EReadOptions readOptions) {
+    return Visibility(
+      visible: readOptions != EReadOptions.translation,
+      child: VerseCardTranslation(
+        verseTranslations: verseTranslations,
+        textScaleFactor: textScaleFactor,
+        translationFontFamily: translationFontFamily,
       ),
     );
   }
@@ -86,16 +108,19 @@ class VerseNumberArabicWithSymbol extends StatelessWidget {
     Key? key,
     required this.verseNumber,
     required this.arabicFontFamily,
+    required this.textScaleFactor,
   }) : super(key: key);
 
   final String verseNumber;
   final String? arabicFontFamily;
+  final double textScaleFactor;
 
   @override
   Widget build(BuildContext context) {
     return Text(
       Utils.getArabicVerseNo(verseNumber),
       textAlign: TextAlign.start,
+      textScaleFactor: textScaleFactor,
       style: context.theme.textTheme.displayLarge?.copyWith(
         color: AppColors.grey9,
         fontSize: 27,
@@ -107,10 +132,16 @@ class VerseNumberArabicWithSymbol extends StatelessWidget {
 
 //Arabic Verse and its number
 class VerseCardArabic extends StatelessWidget {
-  const VerseCardArabic({Key? key, required this.verse, this.isPlaying = false}) : super(key: key);
+  const VerseCardArabic({
+    Key? key,
+    required this.verse,
+    this.isPlaying = false,
+    required this.textScaleFactor,
+  }) : super(key: key);
 
   final String verse;
   final bool isPlaying;
+  final double textScaleFactor;
 
   @override
   Widget build(BuildContext context) {
@@ -132,6 +163,7 @@ class VerseCardArabic extends StatelessWidget {
         verse,
         textDirection: TextDirection.rtl,
         textAlign: TextAlign.start,
+        textScaleFactor: textScaleFactor,
         style: context.theme.textTheme.displayLarge?.copyWith(
           color: AppColors.grey,
           fontSize: 27,
@@ -173,7 +205,7 @@ class VerseCardTranslation extends StatelessWidget {
   }) : super(key: key);
 
   final List<VerseTranslation> verseTranslations;
-  final double? textScaleFactor;
+  final double textScaleFactor;
   final String? translationFontFamily;
 
   @override

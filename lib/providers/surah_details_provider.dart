@@ -23,6 +23,15 @@ class SurahDetailsProvider extends ChangeNotifier {
   /// Detail Screen Context
   final BuildContext _context;
 
+  /// is Quran Screen Setting open
+  bool isOpenSetting = false;
+
+  /// Change Quran Screen Setting Mode
+  void changeOpenSetting() {
+    isOpenSetting = !isOpenSetting;
+    notifyListeners();
+  }
+
   /// Reading settings model
   late ReadingSettingsModel readingSettings;
 

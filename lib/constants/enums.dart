@@ -11,7 +11,7 @@ enum ESupportedLanguage { en, tr }
 enum EQuranType { translation, reading }
 
 /// Different types of reading
-enum EReadingType { all, arabic, translation }
+enum EReadOptions { surah, translation, surahAndTranslation }
 
 /// Toggle button text styles
 enum EToggleButtonTextStyle { selected, disabled }
@@ -24,8 +24,4 @@ enum EBookMarkType { verse, page }
 
 enum EJuzListType { list, grid }
 
-enum EReadOptions { surah, translation, surahAndTranslation }
-
-enum ETranslationOptions { hide, show }
-
-enum ELayoutOptions { alignRight, justify }
+enum ELayoutOptions { right, center }

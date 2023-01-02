@@ -38,6 +38,7 @@ class TranslationScreen extends StatelessWidget {
                     .watch<QuranProvider>()
                     .translationService
                     .translationsOfVerse(verse.id!),
+                readOptions: context.watch<QuranProvider>().localSetting.readOptions,
                 textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
                 translationFontFamily:
                     Fonts.getTranslationFont(context.watch<QuranProvider>().localSetting.fontType),

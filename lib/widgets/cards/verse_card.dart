@@ -82,7 +82,7 @@ class VerseCard extends StatelessWidget {
   Widget buildVerseText(BuildContext context) {
     return Visibility(
       visible: isFavorite ||
-          context.watch<QuranProvider>().localSetting.readingType != EReadingType.translation,
+          context.watch<QuranProvider>().localSetting.readOptions != EReadOptions.translation,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -90,7 +90,7 @@ class VerseCard extends StatelessWidget {
             child: Text(
               verseModel.text ?? "",
               textDirection: TextDirection.rtl,
-              textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactorArabic,
+              textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
               style: context.theme.textTheme.headlineLarge?.copyWith(
                 fontSize: 22,
                 fontFamily:
@@ -109,7 +109,7 @@ class VerseCard extends StatelessWidget {
         context.watch<QuranProvider>().translationService.translationsOfVerse(verseModel.id!);
     return Visibility(
       visible: isFavorite ||
-          context.watch<QuranProvider>().localSetting.readingType != EReadingType.arabic,
+          context.watch<QuranProvider>().localSetting.readOptions != EReadOptions.surah,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
