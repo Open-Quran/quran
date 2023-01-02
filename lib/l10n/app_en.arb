@@ -24,7 +24,7 @@
     "reading": "Reading",
     "searchSurah": "Search Surah",
     "madeByFabrikod": "made by fabrikod",
-    "version": "Version",
+    "version": " - V",
     "copy": "Copy",
     "copied": "Copied",
     "share": "Share",
@@ -57,5 +57,8 @@
     "backgroundColor": "Background Color",
     "surahAndTranslation": "Surah + Translation",
     "hide": "Hide",
-    "show": "Show"
+    "show": "Show",
+    "settings": "Settings",
+    "rate": "Rate",
+    "writeAnAppStoreReview": "Write an app store review"
 }

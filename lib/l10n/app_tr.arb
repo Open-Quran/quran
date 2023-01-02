@@ -24,7 +24,7 @@
     "greenMode": "Yeşil Mod",
     "searchSurah": "Sure Arama",
     "madeByFabrikod": "Fabrikod tarafından geliştirilmiştir",
-    "version": "Versiyon",
+    "version": " - V",
     "scroll": "Kayan",
     "mushaf": "Mushaf",
     "quranType": "Kur'an Tipi",
@@ -57,5 +57,9 @@
     "hide": "Gizle",
     "show": "Göster",
     "recent": "Son Arama",
-    "bookmarks": "Kaydedilenler"
+    "bookmarks": "Kaydedilenler",
+    "settings": "Ayarlar",
+    "rate": "Değerlendir",
+    "writeAnAppStoreReview": "Uygulama mağazası yorumu yazın "
+
 }
