@@ -60,6 +60,9 @@
     "bookmarks": "Kaydedilenler",
     "settings": "Ayarlar",
     "rate": "Değerlendir",
-    "writeAnAppStoreReview": "Uygulama mağazası yorumu yazın "
+    "writeAnAppStoreReview": "Uygulama mağazası yorumu yazın",
+    "play": "Oynat",
+    "favorite": "Favori",
+    "meaning": "Meal"
 
 }

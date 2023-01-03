@@ -60,5 +60,8 @@
     "show": "Show",
     "settings": "Settings",
     "rate": "Rate",
-    "writeAnAppStoreReview": "Write an app store review"
+    "writeAnAppStoreReview": "Write an app store review",
+    "play": "Play",
+    "favorite": "Favorite",
+    "meaning": "Meaning"
 }

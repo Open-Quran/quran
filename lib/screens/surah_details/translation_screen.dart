@@ -12,13 +12,16 @@ class TranslationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var verses = context.watch<SurahDetailsProvider>().versesOfReadingTypeTranslation;
+    var verses =
+        context.watch<SurahDetailsProvider>().versesOfReadingTypeTranslation;
     return InkWell(
       onTap: context.read<SurahDetailsProvider>().changeReadingMode,
       child: ScrollablePositionedList.separated(
         itemCount: verses.length,
-        itemScrollController: context.read<SurahDetailsProvider>().itemScrollController,
-        itemPositionsListener: context.read<SurahDetailsProvider>().itemPositionsListener,
+        itemScrollController:
+            context.read<SurahDetailsProvider>().itemScrollController,
+        itemPositionsListener:
+            context.read<SurahDetailsProvider>().itemPositionsListener,
         padding: const EdgeInsets.only(
           left: kPaddingM,
           right: kPaddingL,
@@ -38,13 +41,12 @@ class TranslationScreen extends StatelessWidget {
                     .watch<QuranProvider>()
                     .translationService
                     .translationsOfVerse(verse.id!),
-                readOptions: context.watch<QuranProvider>().localSetting.readOptions,
-                textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
-                translationFontFamily:
-                    Fonts.getTranslationFont(context.watch<QuranProvider>().localSetting.fontType),
-                onLongPress: (){
-                  print("onLongPress");
-                },
+                readOptions:
+                    context.watch<QuranProvider>().localSetting.readOptions,
+                textScaleFactor:
+                    context.watch<QuranProvider>().localSetting.textScaleFactor,
+                translationFontFamily: Fonts.getTranslationFont(
+                    context.watch<QuranProvider>().localSetting.fontType),
               ),
             ],
           );
