@@ -31,23 +31,26 @@ class BookmarkProvider extends ChangeNotifier {
   }
 
   /// Adding bookmarks
-  void _addBookmarked(BookMarkModel bookMark) async {
-    bookmarks = await LocalDb.addBookmarked(bookMark);
+  void onTapAddBookmark(VerseModel verse, EBookMarkType bookMarkType) async {
+    var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
+    bookmarks = await LocalDb.addBookmark(bookMark);
     notifyListeners();
   }
 
   /// Delete bookmarks
-  void _deleteBookmarked(BookMarkModel bookMark) async {
-    bookmarks = await LocalDb.deleteBookmarked(bookMark);
+  void onTapDeleteBookmark(VerseModel verse, EBookMarkType bookMarkType) async {
+    var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
+    bookmarks = await LocalDb.deleteBookmark(bookMark);
     notifyListeners();
   }
 
   /// onTap bookmark icon for pages
-  void bookmarkIconOnTap(
-      bool isBookmarked, VerseModel verse, EBookMarkType bookMarkType) {
-    var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
-    isBookmarked ? _deleteBookmarked(bookMark) : _addBookmarked(bookMark);
-  }
+  /// unused function delete in future
+  // void bookmarkIconOnTap(
+  //     bool isBookmarked, VerseModel verse, EBookMarkType bookMarkType) {
+  //   var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
+  //   isBookmarked ? deleteBookmark(bookMark) : addBookmark(bookMark);
+  // }
 
   /// onTap bookmark card
   void bookmarkOnTap(BuildContext context, BookMarkModel bookmark) {

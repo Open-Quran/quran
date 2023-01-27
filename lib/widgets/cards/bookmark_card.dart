@@ -1,22 +1,21 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/models/verse_model.dart';
+import 'package:fabrikod_quran/providers/bookmark_provider.dart';
 import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/action_type_listener.dart';
 import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/slidable_controller_sender.dart';
 import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/slidable_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class BookmarkCard extends StatefulWidget {
-  const BookmarkCard(
-      {Key? key,
-      required this.surahName,
-      required this.surahNameTranslation,
-      required this.pageNumber})
-      : super(key: key);
+  const BookmarkCard({
+    Key? key,
+    required this.verseModel,
+  }) : super(key: key);
 
-  final String surahName;
-  final String surahNameTranslation;
-  final int pageNumber;
+  final VerseModel verseModel;
 
   @override
   State<BookmarkCard> createState() => _BookmarkCardState();
@@ -39,10 +38,14 @@ class _BookmarkCardState extends State<BookmarkCard>
     return SlidablePlayer(
       animation: animationController,
       child: Slidable(
-        endActionPane: const ActionPane(
+        endActionPane: ActionPane(
           extentRatio: 0.30,
-          motion: ScrollMotion(),
-          children: [_buildDeleteButton()],
+          motion: const ScrollMotion(),
+          children: [
+            BuildDeleteButton(
+              verseModel: widget.verseModel,
+            )
+          ],
         ),
         child: _buildBookmarkCard(),
       ),
@@ -63,10 +66,9 @@ class _BookmarkCardState extends State<BookmarkCard>
             children: [
               const BookmarkIcon(),
               SurahNames(
-                  surahName: widget.surahName,
-                  surahNameTranslation: widget.surahNameTranslation),
+                  surahName: 'Al-Fatihah', surahNameTranslation: 'Al-Fatihah'),
               const Spacer(),
-              PageNumber(pageNumber: widget.pageNumber)
+              PageNumber(pageNumber: widget.verseModel.pageNumber!)
             ],
           ),
         ),
@@ -147,15 +149,16 @@ class PageNumber extends StatelessWidget {
   }
 }
 
-class _buildDeleteButton extends StatelessWidget {
-  const _buildDeleteButton({
-    Key? key,
-  }) : super(key: key);
-
+class BuildDeleteButton extends StatelessWidget {
+  const BuildDeleteButton({Key? key, required this.verseModel})
+      : super(key: key);
+  final VerseModel verseModel;
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: null,
+      onTap: () => context
+          .read<BookmarkProvider>()
+          .onTapDeleteBookmark(verseModel, EBookMarkType.verse),
       child: Container(
         height: 70,
         width: 100,

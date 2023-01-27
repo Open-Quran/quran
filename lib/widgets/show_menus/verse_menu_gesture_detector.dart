@@ -1,14 +1,24 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
+import '../../models/bookmark_model.dart';
+import '../../models/verse_model.dart';
+import '../../providers/bookmark_provider.dart';
+import '../../providers/favorites_provider.dart';
 import '../cards/verse_press_hold_button.dart';
 
 class CustomGestureDetector extends StatefulWidget {
-  const CustomGestureDetector(
-      {Key? key, required this.child, required this.globalKey})
-      : super(key: key);
+  const CustomGestureDetector({
+    Key? key,
+    required this.child,
+    required this.globalKey,
+    required this.verseModel,
+  }) : super(key: key);
   final Widget child;
   final GlobalKey globalKey;
+  final VerseModel verseModel;
+
   @override
   State<CustomGestureDetector> createState() => _CustomGestureDetectorState();
 }
@@ -24,7 +34,6 @@ class _CustomGestureDetectorState extends State<CustomGestureDetector> {
     RenderBox box =
         widget.globalKey.currentContext?.findRenderObject() as RenderBox;
     Offset position = box.localToGlobal(Offset.zero); //this is global position
-
     showMenu(
         context: context,
         color: AppColors.grey8,
@@ -71,6 +80,10 @@ class _CustomGestureDetectorState extends State<CustomGestureDetector> {
 
   @override
   Widget build(BuildContext context) {
+    bool isBookmarked = context.watch<BookmarkProvider>().isBookmark(
+          BookMarkModel(
+              verseModel: widget.verseModel, bookmarkType: EBookMarkType.verse),
+        );
     return GestureDetector(
       onLongPress: () {
         _showContextMenu(
@@ -79,11 +92,13 @@ class _CustomGestureDetectorState extends State<CustomGestureDetector> {
             debugPrint('play');
           },
           () {
-            debugPrint('favorite');
+            context
+                .read<FavoritesProvider>()
+                .addVerseToFavorite(widget.verseModel);
           },
-          () {
-            debugPrint('bookmark');
-          },
+          () => context
+              .read<BookmarkProvider>()
+              .onTapAddBookmark(widget.verseModel, EBookMarkType.verse),
           () {
             debugPrint('share');
           },

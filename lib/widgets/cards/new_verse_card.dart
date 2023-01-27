@@ -29,6 +29,7 @@ class VerseCard extends StatelessWidget {
   Widget build(BuildContext context) {
     GlobalKey globalKey = GlobalKey();
     return CustomGestureDetector(
+      verseModel: verseModel,
       globalKey: globalKey,
       child: Container(
         key: globalKey,
