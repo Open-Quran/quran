@@ -45,7 +45,10 @@ class _CustomGestureDetectorState extends State<CustomGestureDetector> {
         // Show the context menu at the tap location
         position: RelativeRect.fromRect(
             Rect.fromLTWH(
-                position.dx + kPaddingM, position.dy + kPaddingM, 0, 0),
+                position.dx + kPaddingM,
+                position.dy + (box.paintBounds.size.height - 200 - kPaddingM),
+                0,
+                0),
             Rect.fromLTWH(
                 0, 0, box.paintBounds.size.width, box.paintBounds.size.height)),
 
