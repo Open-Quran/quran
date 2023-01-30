@@ -66,11 +66,6 @@ class VerseCard extends StatelessWidget {
               .deleteVerseFromFavorites(verseModel)
           : context.read<FavoritesProvider>().addVerseToFavorite(verseModel),
       isBookmark: isBookmarked,
-      // bookmarkButtonOnTap: () => context.read<BookmarkProvider>().bookmarkIconOnTap(
-      //       isBookmarked,
-      //       verseModel,
-      //       EBookMarkType.verse,
-      //     ),
     );
   }
 

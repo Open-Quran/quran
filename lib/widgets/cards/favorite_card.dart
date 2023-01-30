@@ -1,26 +1,26 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/providers/favorites_provider.dart';
 import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/action_type_listener.dart';
 import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/slidable_controller_sender.dart';
 import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/slidable_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 
-class FavoritesCard extends StatefulWidget {
-  const FavoritesCard({
+import '../buttons/delete_button.dart';
+
+class FavoriteCard extends StatefulWidget {
+  const FavoriteCard({
     Key? key,
     required this.verseModel,
   }) : super(key: key);
   final VerseModel verseModel;
 
   @override
-  State<FavoritesCard> createState() => _FavoritesCardState();
+  State<FavoriteCard> createState() => _FavoriteCardState();
 }
 
-class _FavoritesCardState extends State<FavoritesCard>
+class _FavoriteCardState extends State<FavoriteCard>
     with SingleTickerProviderStateMixin {
   AnimationController? animationController;
   @override
@@ -41,7 +41,7 @@ class _FavoritesCardState extends State<FavoritesCard>
           extentRatio: 0.30,
           motion: const ScrollMotion(),
           children: [
-            BuildDeleteButton(
+            DeleteButton(
               verseModel: widget.verseModel,
             )
           ],
@@ -142,36 +142,6 @@ class PageNumber extends StatelessWidget {
         '$pageNumber',
         style: context.theme.textTheme.headlineSmall
             ?.copyWith(color: AppColors.grey6, fontSize: 10),
-      ),
-    );
-  }
-}
-
-class BuildDeleteButton extends StatelessWidget {
-  const BuildDeleteButton({
-    Key? key,
-    required this.verseModel,
-  }) : super(key: key);
-  final VerseModel verseModel;
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => context
-          .read<FavoritesProvider>()
-          .deleteVerseFromFavorites(verseModel),
-      child: Container(
-        height: 70,
-        width: 100,
-        margin: const EdgeInsets.only(left: kPaddingM),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(kPaddingM),
-          color: AppColors.redOrange,
-        ),
-        child: Center(
-          child: SvgPicture.asset(
-            ImageConstants.delete,
-          ),
-        ),
       ),
     );
   }

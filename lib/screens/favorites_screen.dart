@@ -1,7 +1,7 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/providers/favorites_provider.dart';
-import 'package:fabrikod_quran/widgets/cards/favorites_card.dart';
+import 'package:fabrikod_quran/widgets/cards/favorite_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -41,7 +41,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                   horizontal: kPaddingXL, vertical: kPaddingL),
               child: Column(
                 children: [
-                  Container(
+                  Align(
                     alignment: Alignment.topLeft,
                     child: Text(
                       context.translate.favorites,
@@ -59,7 +59,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     padding: const EdgeInsets.symmetric(
                       vertical: kPaddingL,
                     ),
-                    itemBuilder: (context, item) => FavoritesCard(
+                    itemBuilder: (context, item) => FavoriteCard(
                       verseModel: favoriteVerses.elementAt(item),
                     ),
                     separatorBuilder: (context, item) =>

@@ -3,7 +3,7 @@ import 'package:fabrikod_quran/models/translation.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:flutter/material.dart';
 
-import '../show_menus/verse_menu_gesture_detector.dart';
+import '../show_menus/custom_gesture_detector.dart';
 
 class VerseCard extends StatelessWidget {
   const VerseCard({

@@ -6,8 +6,9 @@ import '../../models/bookmark_model.dart';
 import '../../models/verse_model.dart';
 import '../../providers/bookmark_provider.dart';
 import '../../providers/favorites_provider.dart';
-import '../cards/verse_press_hold_button.dart';
+import '../cards/verse_menu_item.dart';
 
+/// CustomGestureDetector takes globalKey to identify child
 class CustomGestureDetector extends StatefulWidget {
   const CustomGestureDetector({
     Key? key,
@@ -56,25 +57,25 @@ class _CustomGestureDetectorState extends State<CustomGestureDetector> {
         items: [
           PopupMenuItem(
             onTap: playFunction,
-            child: VersePressHoldMenuItem(
+            child: VerseMenuItem(
                 iconPath: ImageConstants.play,
                 buttonName: context.translate.play),
           ),
           PopupMenuItem(
             onTap: favoriteFunction,
-            child: VersePressHoldMenuItem(
+            child: VerseMenuItem(
                 iconPath: ImageConstants.favoriteInactiveIcon,
                 buttonName: context.translate.favorite),
           ),
           PopupMenuItem(
             onTap: bookmarkFunction,
-            child: VersePressHoldMenuItem(
+            child: VerseMenuItem(
                 iconPath: ImageConstants.bookmarkInactiveIcon,
                 buttonName: context.translate.bookmark),
           ),
           PopupMenuItem(
             onTap: shareFunction,
-            child: VersePressHoldMenuItem(
+            child: VerseMenuItem(
                 iconPath: ImageConstants.shareAppIcon,
                 buttonName: context.translate.share),
           ),

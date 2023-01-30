@@ -2,8 +2,8 @@ import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class VersePressHoldMenuItem extends StatelessWidget {
-  const VersePressHoldMenuItem(
+class VerseMenuItem extends StatelessWidget {
+  const VerseMenuItem(
       {Key? key, required this.iconPath, required this.buttonName})
       : super(key: key);
   final String iconPath;

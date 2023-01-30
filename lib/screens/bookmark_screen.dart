@@ -43,7 +43,7 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
                   horizontal: kPaddingXL, vertical: kPaddingL),
               child: Column(
                 children: [
-                  Container(
+                  Align(
                     alignment: Alignment.topLeft,
                     child: Text(
                       context.translate.bookmarks,

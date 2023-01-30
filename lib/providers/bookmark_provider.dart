@@ -44,14 +44,6 @@ class BookmarkProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// onTap bookmark icon for pages
-  /// unused function delete in future
-  // void bookmarkIconOnTap(
-  //     bool isBookmarked, VerseModel verse, EBookMarkType bookMarkType) {
-  //   var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
-  //   isBookmarked ? deleteBookmark(bookMark) : addBookmark(bookMark);
-  // }
-
   /// onTap bookmark card
   void bookmarkOnTap(BuildContext context, BookMarkModel bookmark) {
     ReadingSettingsModel model;
