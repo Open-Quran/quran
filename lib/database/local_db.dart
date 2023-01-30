@@ -75,8 +75,7 @@ class LocalDb {
   }
 
   /// Add bookmark in db
-  static Future<List<BookMarkModel>> addBookmarked(
-      BookMarkModel bookMark) async {
+  static Future<List<BookMarkModel>> addBookmark(BookMarkModel bookMark) async {
     var bookmarkList = getBookmarks;
     bookmarkList.add(bookMark);
     var value = bookmarkList.map((e) => e.toJson()).toList();
@@ -85,7 +84,7 @@ class LocalDb {
   }
 
   /// Delete bookmark from db
-  static Future<List<BookMarkModel>> deleteBookmarked(
+  static Future<List<BookMarkModel>> deleteBookmark(
       BookMarkModel bookMark) async {
     var bookmarkList = getBookmarks;
     bookmarkList.removeWhere((element) => element == bookMark);

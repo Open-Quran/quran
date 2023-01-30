@@ -3,6 +3,8 @@ import 'package:fabrikod_quran/models/translation.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:flutter/material.dart';
 
+import '../show_menus/custom_gesture_detector.dart';
+
 class VerseCard extends StatelessWidget {
   const VerseCard({
     Key? key,
@@ -11,7 +13,6 @@ class VerseCard extends StatelessWidget {
     required this.arabicFontFamily,
     required this.translationFontFamily,
     required this.textScaleFactor,
-    required this.onLongPress,
     this.isPlaying = false,
     required this.readOptions,
   }) : super(key: key);
@@ -23,20 +24,24 @@ class VerseCard extends StatelessWidget {
   final String? translationFontFamily;
   final double textScaleFactor;
   final bool isPlaying;
-  final Function()? onLongPress;
 
   @override
   Widget build(BuildContext context) {
-    return GestureDetector(
-      onLongPress: onLongPress,
+    GlobalKey globalKey = GlobalKey();
+    return CustomGestureDetector(
+      verseModel: verseModel,
+      globalKey: globalKey,
       child: Container(
+        key: globalKey,
         decoration: isPlaying
             ? BoxDecoration(
                 color: AppColors.black9.withOpacity(0.26),
                 borderRadius: BorderRadius.circular(kPaddingM),
                 boxShadow: const [
                   BoxShadow(
-                      color: Color.fromRGBO(0, 0, 0, 0.25), offset: Offset(0, 4), blurRadius: 4)
+                      color: Color.fromRGBO(0, 0, 0, 0.25),
+                      offset: Offset(0, 4),
+                      blurRadius: 4)
                 ],
                 border: Border.all(
                   color: const Color.fromRGBO(0, 0, 0, 1),

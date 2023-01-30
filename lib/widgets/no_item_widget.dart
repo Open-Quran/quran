@@ -20,11 +20,14 @@ class NoItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           icon,
-          const Gap(20),
-          Text(
-            text,
-            style: context.theme.textTheme.headlineLarge,
-            textAlign: TextAlign.center,
+          const Gap(24),
+          Opacity(
+            opacity: 0.8,
+            child: Text(
+              text,
+              style: context.theme.textTheme.displayLarge,
+              textAlign: TextAlign.center,
+            ),
           )
         ],
       ),

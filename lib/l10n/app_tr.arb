@@ -44,7 +44,8 @@
     "surahs": "Sureler",
     "noResultsFound": "Sonuç bulunamadı\nFarklı bir anahtar kelime aramayı deneyin.",
     "suggestions": "Öneriler",
-    "noBookMarkedSurahOrAyat": "İşaretlenmiş ayet veya sure yok",
+    "noBookMarksAdded": "Kaydedilen Ayet Yok",
+    "noBookFavoritesAdded": "Favorilere Eklenen Ayet Yok",
     "and": "Ve",
     "theOpenQuran": "The Open Quran",
     "recent": "Son Arama",
@@ -60,6 +61,9 @@
     "bookmarks": "Kaydedilenler",
     "settings": "Ayarlar",
     "rate": "Değerlendir",
-    "writeAnAppStoreReview": "Uygulama mağazası yorumu yazın "
+    "writeAnAppStoreReview": "Uygulama mağazası yorumu yazın",
+    "play": "Oynat",
+    "favorite": "Favori",
+    "meaning": "Meal"
 
 }

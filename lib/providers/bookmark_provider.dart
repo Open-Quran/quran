@@ -31,22 +31,17 @@ class BookmarkProvider extends ChangeNotifier {
   }
 
   /// Adding bookmarks
-  void _addBookmarked(BookMarkModel bookMark) async {
-    bookmarks = await LocalDb.addBookmarked(bookMark);
+  void onTapAddBookmark(VerseModel verse, EBookMarkType bookMarkType) async {
+    var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
+    bookmarks = await LocalDb.addBookmark(bookMark);
     notifyListeners();
   }
 
   /// Delete bookmarks
-  void _deleteBookmarked(BookMarkModel bookMark) async {
-    bookmarks = await LocalDb.deleteBookmarked(bookMark);
-    notifyListeners();
-  }
-
-  /// onTap bookmark icon for pages
-  void bookmarkIconOnTap(
-      bool isBookmarked, VerseModel verse, EBookMarkType bookMarkType) {
+  void onTapDeleteBookmark(VerseModel verse, EBookMarkType bookMarkType) async {
     var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
-    isBookmarked ? _deleteBookmarked(bookMark) : _addBookmarked(bookMark);
+    bookmarks = await LocalDb.deleteBookmark(bookMark);
+    notifyListeners();
   }
 
   /// onTap bookmark card

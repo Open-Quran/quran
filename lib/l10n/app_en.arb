@@ -44,7 +44,8 @@
     "surahs": "Surahs",
     "noResultsFound": "No results found\nTry searching for a different keyword.",
     "suggestions": "Suggestions",
-    "noBookMarkedSurahOrAyat": "No bookmarked surah or ayat",
+    "noBookMarksAdded": "No Bookmarks Added",
+    "noBookFavoritesAdded": "No Favorites Added",
     "and": "And",
     "theOpenQuran": "The Open Quran",
     "recent": "Recent",
@@ -60,5 +61,8 @@
     "show": "Show",
     "settings": "Settings",
     "rate": "Rate",
-    "writeAnAppStoreReview": "Write an app store review"
+    "writeAnAppStoreReview": "Write an app store review",
+    "play": "Play",
+    "favorite": "Favorite",
+    "meaning": "Meaning"
 }

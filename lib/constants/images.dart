@@ -52,4 +52,5 @@ class ImageConstants {
       "${_iconsPath}ic_bc_color_onselect_letter.svg";
   static const String titleFrame = "${_iconsPath}title_frame.svg";
   static const String arrowRight = "${_iconsPath}ic_arrow_right.svg";
+  static const String meaningIcon = "${_iconsPath}ic_meaning.svg";
 }
