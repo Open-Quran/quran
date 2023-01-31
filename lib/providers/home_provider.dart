@@ -13,6 +13,16 @@ class HomeProvider extends ChangeNotifier {
   /// Juz List Type [EJuzListType]
   EJuzListType juzListType = EJuzListType.list;
 
+  /// Home toggle buttons
+  EHomeToggleOptions homeToggleOptionType = EHomeToggleOptions.juz;
+
+  /// Change type Juz, Surah or Search
+  changeHomeToggleOptionType(EHomeToggleOptions newOptionType) {
+    homeToggleOptionType = newOptionType;
+    notifyListeners();
+  }
+
+  /// Change type Grid or List
   changeJuzListType(EJuzListType newListType) {
     juzListType = newListType;
     notifyListeners();

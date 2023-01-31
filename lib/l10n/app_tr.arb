@@ -48,7 +48,6 @@
     "noBookFavoritesAdded": "Favorilere Eklenen Ayet Yok",
     "and": "Ve",
     "theOpenQuran": "The Open Quran",
-    "recent": "Son Arama",
     "read": "Okuma",
     "fontSize": "Yazı Boyutu",
     "layout": "Sayfa Düzeni",
@@ -65,5 +64,4 @@
     "play": "Oynat",
     "favorite": "Favori",
     "meaning": "Meal"
-
 }

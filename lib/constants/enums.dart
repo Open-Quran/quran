@@ -22,6 +22,20 @@ enum ESurahDetailScreenMod { surah, juz, sajda }
 /// Different types of BookMark
 enum EBookMarkType { verse, page }
 
+/// Displaying Juz as list and grid
 enum EJuzListType { list, grid }
 
+
+/// Home switch toggle buttons
+enum EHomeToggleOptions {juz, surah}
+
+enum EToggleSearchOptions {searchField, toggles}
+
+enum EReadOptions { surah, translation, surahAndTranslation }
+
+enum ETranslationOptions { hide, show }
+
+enum ELayoutOptions { alignRight, justify }
+
 enum ELayoutOptions { right, center }
+

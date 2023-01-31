@@ -1,11 +1,16 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
+import 'package:fabrikod_quran/widgets/buttons/home_toggle_button.dart';
 import 'package:fabrikod_quran/widgets/cards/grid_card.dart';
 import 'package:fabrikod_quran/widgets/cards/surah_card.dart';
+import 'package:fabrikod_quran/widgets/juz_surah_search_widget.dart';
 import 'package:fabrikod_quran/widgets/juz_category_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../widgets/animation/fade_indexed_stack.dart';
+import '../widgets/app_bars/primary_app_bar.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -17,10 +22,30 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
+    return InkWell(
+      onTap: Utils.unFocus,
       child: Scaffold(
+        appBar: PrimaryAppBar(
+          title: context.translate.theOpenQuran,
+        ),
         body: SingleChildScrollView(
-          child: buildRecentAndJuzCategoryList(),
+          child: Column(
+            children: [
+              HomeToggleButton(
+                onChanged:
+                    context.watch<HomeProvider>().changeHomeToggleOptionType,
+                toggleListType:
+                    context.watch<HomeProvider>().homeToggleOptionType,
+              ),
+              FadeIndexedStack(
+                index: context.watch<HomeProvider>().homeToggleOptionType.index,
+                children: [
+                  buildRecentAndJuzCategoryList(),
+                  buildSurahList(),
+                ],
+              ),
+            ],
+          ),
         ),
       ),
     );
@@ -35,7 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
-  /// Build Resend
+  /// Build Resent
   Widget buildResent() {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
