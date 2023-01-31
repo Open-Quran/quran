@@ -28,7 +28,8 @@ class AppSettingsProvider extends ChangeNotifier {
   }
 
   /// Get language from device if [null] default to [en]
-  Locale? localeResolutionCallback(Locale? deviceLocale, Iterable<Locale> supportedLocales) {
+  Locale? localeResolutionCallback(
+      Locale? deviceLocale, Iterable<Locale> supportedLocales) {
     if (appLocale != null) return appLocale;
 
     for (var locale in supportedLocales) {

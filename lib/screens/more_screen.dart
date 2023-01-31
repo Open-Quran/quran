@@ -1,11 +1,16 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/screens/help_guide_screen.dart';
+import 'package:fabrikod_quran/screens/language_screen.dart';
 import 'package:fabrikod_quran/widgets/app_bars/primary_app_bar.dart';
 import 'package:fabrikod_quran/widgets/buttons/secondary_button.dart';
 import 'package:fabrikod_quran/widgets/buttons/secondary_button_rate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
+
+import '../providers/more_provider.dart';
 
 class MoreScreen extends StatefulWidget {
   const MoreScreen({Key? key}) : super(key: key);
@@ -32,7 +37,7 @@ class _MoreScreenState extends State<MoreScreen> {
             vertical: kPaddingL, horizontal: kPaddingXL),
         child: Column(
           children: [
-            Container(
+            Align(
               alignment: Alignment.topLeft,
               child: Text(
                 context.translate.settings,
@@ -52,7 +57,13 @@ class _MoreScreenState extends State<MoreScreen> {
             // ),
             SecondaryButton(
               text: context.translate.language,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LanguageScreen(),
+                    ));
+              },
               icon: SvgPicture.asset(
                 ImageConstants.languageIcon,
                 color: AppColors.white,
@@ -81,7 +92,10 @@ class _MoreScreenState extends State<MoreScreen> {
             ),
             SecondaryButton(
               text: context.translate.shareApp,
-              onPressed: () {},
+              onPressed: () async {
+                const appUrl = 'the store link of app will be here';
+                await Share.share('Download Quran App \n\n $appUrl');
+              },
               icon: SvgPicture.asset(
                 ImageConstants.shareAppIcon,
                 color: AppColors.white,
@@ -104,7 +118,9 @@ class _MoreScreenState extends State<MoreScreen> {
             ),
             SecondaryButtonRate(
               text: context.translate.writeAnAppStoreReview,
-              onPressed: () {},
+              onPressed: () {
+                context.read<MoreProvider>().onPressRate();
+              },
               icon: const Text(
                 '❤',
                 style: TextStyle(fontSize: 18),
