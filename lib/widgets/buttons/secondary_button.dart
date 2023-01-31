@@ -1,0 +1,44 @@
+import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:flutter/material.dart';
+
+class SecondaryButton extends StatelessWidget {
+
+  /// Button label [String]
+  final String text;
+
+  /// Button [onPressed] function
+  final Function()? onPressed;
+
+  /// Button [icon]
+  final Widget icon;
+
+  const SecondaryButton(
+      {super.key, required this.text, this.onPressed, required this.icon});
+
+  @override
+  Widget build(BuildContext context) {
+    return ElevatedButton(
+      onPressed: onPressed,
+      style: ElevatedButton.styleFrom(
+        fixedSize: const Size(double.infinity, 60),
+        backgroundColor: context.theme.cardTheme.color?.withOpacity(0.1),
+        shadowColor: Colors.transparent,
+        padding: const EdgeInsets.all(kPaddingXL),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(kPaddingM),
+        ),
+      ),
+      child: Row(
+        children: [
+          icon,
+          const SizedBox(width: kPaddingM),
+          Text(
+            text,
+            style: context.theme.tabBarTheme.labelStyle,
+            textAlign: TextAlign.left,
+          ),
+        ],
+      ),
+    );
+  }
+}
