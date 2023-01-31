@@ -1,13 +1,12 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
+import 'package:fabrikod_quran/screens/settings_top_right.dart';
 import 'package:fabrikod_quran/screens/surah_details/reading_screen.dart';
 import 'package:fabrikod_quran/screens/surah_details/translation_screen.dart';
 import 'package:fabrikod_quran/widgets/animation/fade_indexed_stack.dart';
-import 'package:fabrikod_quran/widgets/bottom_sheets/quran_style_bottom_sheet.dart';
+import 'package:fabrikod_quran/widgets/app_bars/secondary_app_bar.dart';
 import 'package:fabrikod_quran/widgets/buttons/translation_reading_segmented_button.dart';
-import 'package:fabrikod_quran/widgets/drawer/custom_drawer.dart';
-import 'package:fabrikod_quran/widgets/drawer/custom_drawer_scaffold.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -29,19 +28,29 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return CustomDrawerScaffold(
-      appBarTitle: context.watch<SurahDetailsProvider>().appBarTitle,
-      drawer: const CustomDrawer(),
-      onTapMore: () => QuranStyleBottomSheet.show(context),
+    return Scaffold(
+      appBar: buildAppBar(),
       body: buildBody,
     );
   }
 
+  PreferredSizeWidget buildAppBar() => SecondaryAppBar(
+        title: context.watch<SurahDetailsProvider>().appBarTitle,
+        subTitle: 'Juz 1 | Hizb 1 - Page 1',
+        onTapSettings: context.read<SurahDetailsProvider>().changeOpenSetting,
+      );
+
   Widget get buildBody {
-    return Column(
+    return FadeIndexedStack(
+      index: context.watch<SurahDetailsProvider>().isOpenSetting.getNumber,
       children: [
-        buildTranslationOrReadingSwitch,
-        Expanded(child: buildTranslationOrReading),
+        Column(
+          children: [
+            buildTranslationOrReadingSwitch,
+            Expanded(child: buildTranslationOrReading),
+          ],
+        ),
+        const SettingsTopRight(),
       ],
     );
   }
@@ -54,7 +63,7 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
         padding: const EdgeInsets.symmetric(vertical: kPaddingXXL, horizontal: kPaddingXL),
         child: TranslationReadingSegmentedButton(
           initialIndex: context.watch<QuranProvider>().localSetting.quranType.index,
-          onValueChanged : context.read<SurahDetailsProvider>().changeQuranType,
+          onValueChanged: context.read<SurahDetailsProvider>().changeQuranType,
         ),
       ),
     );

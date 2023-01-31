@@ -1,8 +1,12 @@
 import 'package:fabrikod_quran/database/local_db.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:flutter/material.dart';
+import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class FavoritesProvider extends ChangeNotifier {
+  final ItemScrollController itemScrollController = ItemScrollController();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
 
   /// Class Constructor
   FavoritesProvider() {
@@ -14,7 +18,11 @@ class FavoritesProvider extends ChangeNotifier {
 
   /// Checking if the verse favorite
   bool isFavoriteVerse(VerseModel verseModel) {
-    return favoriteVerses.indexWhere((element) => element.id == verseModel.id) == -1 ? false : true;
+    return favoriteVerses
+                .indexWhere((element) => element.id == verseModel.id) ==
+            -1
+        ? false
+        : true;
   }
 
   /// Adding the verse to the favorites

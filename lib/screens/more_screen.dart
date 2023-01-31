@@ -1,17 +1,16 @@
 import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/providers/more_provider.dart';
 import 'package:fabrikod_quran/screens/help_guide_screen.dart';
+import 'package:fabrikod_quran/screens/language_screen.dart';
 import 'package:fabrikod_quran/widgets/app_bars/primary_app_bar.dart';
 import 'package:fabrikod_quran/widgets/buttons/secondary_button.dart';
-import 'package:fabrikod_quran/widgets/cards/custom_expanding_theme_card.dart';
-import 'package:fabrikod_quran/widgets/cards/custom_language_card.dart';
-import 'package:fabrikod_quran/widgets/scroll_body.dart';
+import 'package:fabrikod_quran/widgets/buttons/secondary_button_rate.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
-import '../providers/app_settings_provider.dart';
+import '../providers/more_provider.dart';
 
 class MoreScreen extends StatefulWidget {
   const MoreScreen({Key? key}) : super(key: key);
@@ -27,23 +26,49 @@ class _MoreScreenState extends State<MoreScreen> {
       appBar: PrimaryAppBar(
         title: context.translate.theOpenQuran,
       ),
-      body: ScrollBody(
-        body: Column(
+      body: buildBody,
+    );
+  }
+
+  Widget get buildBody {
+    return SingleChildScrollView(
+      child: Padding(
+        padding: const EdgeInsets.symmetric(
+            vertical: kPaddingL, horizontal: kPaddingXL),
+        child: Column(
           children: [
-            const SizedBox(height: kPaddingXXL),
-            CustomExpandingThemeCard(
-              defaultThemeMode:
-                  context.watch<AppSettingsProvider>().appThemeMode,
-              changedTheme: (newThemeMode) => context
-                  .read<AppSettingsProvider>()
-                  .changeAppTheme(newThemeMode),
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                context.translate.settings,
+                style: context.theme.textTheme.displayLarge,
+              ),
             ),
-            const SizedBox(height: kPaddingM),
-             CustomLanguageCard(
-              defaultLocale: context.watch<AppSettingsProvider>().appLocale,
-              changedLocale: context.read<MoreProvider>().changeAppLanguage,
+            // CustomExpandingThemeCard(
+            //   defaultThemeMode:
+            //       context.watch<AppSettingsProvider>().appThemeMode,
+            //   changedTheme: (newThemeMode) => context
+            //       .read<AppSettingsProvider>()
+            //       .changeAppTheme(newThemeMode),
+            // ),
+            // CustomLanguageCard(
+            //   defaultLocale: context.watch<AppSettingsProvider>().appLocale,
+            //   changedLocale: context.read<MoreProvider>().changeAppLanguage,
+            // ),
+            SecondaryButton(
+              text: context.translate.language,
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const LanguageScreen(),
+                    ));
+              },
+              icon: SvgPicture.asset(
+                ImageConstants.languageIcon,
+                color: AppColors.white,
+              ),
             ),
-            const SizedBox(height: kPaddingM),
             SecondaryButton(
                 text: context.translate.helpGuide,
                 onPressed: () {
@@ -55,37 +80,56 @@ class _MoreScreenState extends State<MoreScreen> {
                 },
                 icon: SvgPicture.asset(
                   ImageConstants.helpGuideIcon,
-                  color: context.theme.iconTheme.color,
+                  color: AppColors.white,
                 )),
-            const SizedBox(
-              height: kPaddingM,
-            ),
             SecondaryButton(
               text: context.translate.introduction,
               onPressed: () {},
               icon: SvgPicture.asset(
                 ImageConstants.introductionIcon,
-                color: context.theme.iconTheme.color,
+                color: AppColors.white,
               ),
             ),
-            const SizedBox(height: kPaddingM),
             SecondaryButton(
               text: context.translate.shareApp,
-              onPressed: () {},
+              onPressed: () async {
+                const appUrl = 'the store link of app will be here';
+                await Share.share('Download Quran App \n\n $appUrl');
+              },
               icon: SvgPicture.asset(
                 ImageConstants.shareAppIcon,
-                color: context.theme.iconTheme.color,
+                color: AppColors.white,
               ),
             ),
-            const SizedBox(height: kPaddingM),
             SecondaryButton(
                 text: context.translate.references,
                 onPressed: () {},
                 icon: SvgPicture.asset(
                   ImageConstants.referencesIcon,
-                  color: context.theme.iconTheme.color,
+                  color: AppColors.white,
                 )),
-            const SizedBox(height: kPadding3XL),
+            Container(
+              padding: const EdgeInsets.only(top: kPaddingXXL),
+              alignment: Alignment.topLeft,
+              child: Text(
+                context.translate.rate,
+                style: context.theme.textTheme.displayLarge,
+              ),
+            ),
+            SecondaryButtonRate(
+              text: context.translate.writeAnAppStoreReview,
+              onPressed: () {
+                context.read<MoreProvider>().onPressRate();
+              },
+              icon: const Text(
+                '❤',
+                style: TextStyle(fontSize: 18),
+              ),
+              endIcon: SvgPicture.asset(ImageConstants.arrowRight),
+            ),
+            const SizedBox(
+              height: kPaddingXL,
+            ),
             buildAppInfo,
           ],
         ),
@@ -94,22 +138,17 @@ class _MoreScreenState extends State<MoreScreen> {
   }
 
   Widget get buildAppInfo {
-    return Column(
-      mainAxisAlignment: MainAxisAlignment.center,
-      children: [
-        Text(context.translate.madeByFabrikod,
-            style: context.theme.textTheme.headlineSmall),
-        const SizedBox(height: kPaddingS),
-        FutureBuilder<PackageInfo>(
-          future: PackageInfo.fromPlatform(),
-          builder: (context, snapshot) {
-            return Text(
-              "${context.translate.version}  ${snapshot.data?.version ?? ""}",
-              style: context.theme.textTheme.bodyMedium,
-            );
-          },
-        ),
-      ],
+    return FutureBuilder<PackageInfo>(
+      future: PackageInfo.fromPlatform(),
+      builder: (context, snapshot) {
+        return Opacity(
+          opacity: 0.24,
+          child: Text(
+            "${context.translate.madeByFabrikod} ${context.translate.version} ${snapshot.data?.version ?? ""}",
+            style: context.theme.textTheme.headlineSmall,
+          ),
+        );
+      },
     );
   }
 }

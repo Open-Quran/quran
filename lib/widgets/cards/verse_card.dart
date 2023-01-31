@@ -14,7 +14,8 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class VerseCard extends StatelessWidget {
-  const VerseCard({Key? key, required this.verseModel, this.isFavorite = false}) : super(key: key);
+  const VerseCard({Key? key, required this.verseModel, this.isFavorite = false})
+      : super(key: key);
 
   /// Verse model
   final VerseModel verseModel;
@@ -32,10 +33,14 @@ class VerseCard extends StatelessWidget {
 
   /// The header of the action card
   Widget buildVerseActionCart(BuildContext context) {
-    bool isPlaying = context.watch<PlayerProvider>().isPlayingVerse(verseModel.verseKey ?? "");
-    bool isFavorite = context.watch<FavoritesProvider>().isFavoriteVerse(verseModel);
+    bool isPlaying = context
+        .watch<PlayerProvider>()
+        .isPlayingVerse(verseModel.verseKey ?? "");
+    bool isFavorite =
+        context.watch<FavoritesProvider>().isFavoriteVerse(verseModel);
     bool isBookmarked = context.watch<BookmarkProvider>().isBookmark(
-          BookMarkModel(verseModel: verseModel, bookmarkType: EBookMarkType.verse),
+          BookMarkModel(
+              verseModel: verseModel, bookmarkType: EBookMarkType.verse),
         );
     return ActionCard(
       shareButtonOnTap: () {
@@ -51,18 +56,16 @@ class VerseCard extends StatelessWidget {
       },
       verseKey: verseModel.verseKey,
       isPlaying: isPlaying,
-      playButtonOnTap: (isPlaying) =>
-          context.read<SurahDetailsProvider>().playTheVerses(isPlaying, verseModel.verseKey!),
+      playButtonOnTap: (isPlaying) => context
+          .read<SurahDetailsProvider>()
+          .playTheVerses(isPlaying, verseModel.verseKey!),
       isFavorite: isFavorite,
       favoriteButtonOnTap: () => isFavorite
-          ? context.read<FavoritesProvider>().deleteVerseFromFavorites(verseModel)
+          ? context
+              .read<FavoritesProvider>()
+              .deleteVerseFromFavorites(verseModel)
           : context.read<FavoritesProvider>().addVerseToFavorite(verseModel),
       isBookmark: isBookmarked,
-      bookmarkButtonOnTap: () => context.read<BookmarkProvider>().bookmarkIconOnTap(
-            isBookmarked,
-            verseModel,
-            EBookMarkType.verse,
-          ),
     );
   }
 
@@ -82,7 +85,8 @@ class VerseCard extends StatelessWidget {
   Widget buildVerseText(BuildContext context) {
     return Visibility(
       visible: isFavorite ||
-          context.watch<QuranProvider>().localSetting.readingType != EReadingType.translation,
+          context.watch<QuranProvider>().localSetting.readOptions !=
+              EReadOptions.translation,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -90,11 +94,12 @@ class VerseCard extends StatelessWidget {
             child: Text(
               verseModel.text ?? "",
               textDirection: TextDirection.rtl,
-              textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactorArabic,
+              textScaleFactor:
+                  context.watch<QuranProvider>().localSetting.textScaleFactor,
               style: context.theme.textTheme.headlineLarge?.copyWith(
                 fontSize: 22,
-                fontFamily:
-                    Fonts.getArabicFont(context.watch<QuranProvider>().localSetting.fontTypeArabic),
+                fontFamily: Fonts.getArabicFont(
+                    context.watch<QuranProvider>().localSetting.fontTypeArabic),
               ),
             ),
           ),
@@ -105,11 +110,14 @@ class VerseCard extends StatelessWidget {
 
   /// Verse Translation Text
   Widget buildVerseTranslationText(BuildContext context) {
-    List<VerseTranslation> translationList =
-        context.watch<QuranProvider>().translationService.translationsOfVerse(verseModel.id!);
+    List<VerseTranslation> translationList = context
+        .watch<QuranProvider>()
+        .translationService
+        .translationsOfVerse(verseModel.id!);
     return Visibility(
       visible: isFavorite ||
-          context.watch<QuranProvider>().localSetting.readingType != EReadingType.arabic,
+          context.watch<QuranProvider>().localSetting.readOptions !=
+              EReadOptions.surah,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -123,21 +131,30 @@ class VerseCard extends StatelessWidget {
                       children: [
                         Text(
                           e.text ?? "",
-                          textScaleFactor:
-                              context.watch<QuranProvider>().localSetting.textScaleFactor,
+                          textScaleFactor: context
+                              .watch<QuranProvider>()
+                              .localSetting
+                              .textScaleFactor,
                           style: context.theme.textTheme.titleSmall?.copyWith(
-                            fontFamily: Fonts.getTranslationFont(
-                                context.watch<QuranProvider>().localSetting.fontType),
+                            fontFamily: Fonts.getTranslationFont(context
+                                .watch<QuranProvider>()
+                                .localSetting
+                                .fontType),
                           ),
                         ),
                         CustomSpace.normal(),
                         Text(
                           "- ${context.read<QuranProvider>().translationService.translationsName(e.resourceId!)}",
-                          textScaleFactor:
-                              context.watch<QuranProvider>().localSetting.textScaleFactor,
-                          style: context.theme.textTheme.headlineLarge?.copyWith(
-                            fontFamily: Fonts.getTranslationFont(
-                                context.watch<QuranProvider>().localSetting.fontType),
+                          textScaleFactor: context
+                              .watch<QuranProvider>()
+                              .localSetting
+                              .textScaleFactor,
+                          style:
+                              context.theme.textTheme.headlineLarge?.copyWith(
+                            fontFamily: Fonts.getTranslationFont(context
+                                .watch<QuranProvider>()
+                                .localSetting
+                                .fontType),
                             fontSize: 12,
                           ),
                         ),

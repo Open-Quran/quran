@@ -101,8 +101,8 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
         context.translate.arabic,
         context.translate.translation
       ],
-      onTap: context.read<QuranProvider>().changeReadingType,
-      selectedIndex: context.watch<QuranProvider>().localSetting.readingType.index,
+      onTap: (index) {},
+      selectedIndex: context.watch<QuranProvider>().localSetting.readOptions.index,
     );
   }
 
@@ -146,8 +146,8 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
         buildTitle("${context.translate.fontSize} (${context.translate.arabic})"),
         const SizedBox(height: kPaddingM),
         FontSliderCard(
-          value: context.watch<QuranProvider>().localSetting.textScaleFactorArabic,
-          onChange: context.read<QuranProvider>().changeFontSizeArabic,
+          value: context.watch<QuranProvider>().localSetting.textScaleFactor,
+          onChange: (value){},
         ),
         CustomSpace.big(),
       ],

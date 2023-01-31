@@ -78,20 +78,20 @@ class QuranProvider extends ChangeNotifier {
   }
 
   /// Changing Reading Type
-  changeReadingType(int index) {
-    localSetting.readingType = EReadingType.values[index];
+  changeReadingType(EReadOptions readOptions) {
+    localSetting.readOptions = readOptions;
+    setLocalSettingOfQuran();
+  }
+
+  /// Changing Layout Options
+  changeLayoutOptions(ELayoutOptions layoutOptions) {
+    localSetting.layoutOptions = layoutOptions;
     setLocalSettingOfQuran();
   }
 
   /// Changing Font Size
   changeFontSize(dynamic value) {
     localSetting.textScaleFactor = value;
-    setLocalSettingOfQuran();
-  }
-
-  /// Changing Arabic Font Size
-  changeFontSizeArabic(dynamic value) {
-    localSetting.textScaleFactorArabic = value;
     setLocalSettingOfQuran();
   }
 

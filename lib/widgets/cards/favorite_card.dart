@@ -1,27 +1,26 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/providers/bookmark_provider.dart';
 import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/action_type_listener.dart';
 import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/slidable_controller_sender.dart';
 import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/slidable_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:provider/provider.dart';
 
-class BookmarkCard extends StatefulWidget {
-  const BookmarkCard({
+import '../buttons/delete_button.dart';
+
+class FavoriteCard extends StatefulWidget {
+  const FavoriteCard({
     Key? key,
     required this.verseModel,
   }) : super(key: key);
-
   final VerseModel verseModel;
 
   @override
-  State<BookmarkCard> createState() => _BookmarkCardState();
+  State<FavoriteCard> createState() => _FavoriteCardState();
 }
 
-class _BookmarkCardState extends State<BookmarkCard>
+class _FavoriteCardState extends State<FavoriteCard>
     with SingleTickerProviderStateMixin {
   AnimationController? animationController;
   @override
@@ -42,17 +41,17 @@ class _BookmarkCardState extends State<BookmarkCard>
           extentRatio: 0.30,
           motion: const ScrollMotion(),
           children: [
-            BuildDeleteButton(
+            DeleteButton(
               verseModel: widget.verseModel,
             )
           ],
         ),
-        child: _buildBookmarkCard(),
+        child: _buildFavoriteCard(),
       ),
     );
   }
 
-  _buildBookmarkCard() {
+  _buildFavoriteCard() {
     return SlidableControllerSender(
       child: ActionTypeListener(
         isFirstVerse: true,
@@ -60,12 +59,12 @@ class _BookmarkCardState extends State<BookmarkCard>
           width: double.infinity,
           height: 72,
           decoration: BoxDecoration(
-              color: AppColors.oil,
+              color: AppColors.zeus,
               borderRadius: BorderRadius.circular(kPaddingM)),
           child: Row(
             children: [
-              const BookmarkIcon(),
-              SurahNames(
+              const FavoriteIcon(),
+              const SurahNames(
                   surahName: 'Al-Fatihah', surahNameTranslation: 'Al-Fatihah'),
               const Spacer(),
               PageNumber(pageNumber: widget.verseModel.pageNumber!)
@@ -77,8 +76,8 @@ class _BookmarkCardState extends State<BookmarkCard>
   }
 }
 
-class BookmarkIcon extends StatelessWidget {
-  const BookmarkIcon({
+class FavoriteIcon extends StatelessWidget {
+  const FavoriteIcon({
     Key? key,
   }) : super(key: key);
 
@@ -87,8 +86,7 @@ class BookmarkIcon extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.all(kPaddingL),
       child: SvgPicture.asset(
-        ImageConstants.bookmarkIconCard,
-        width: 20,
+        ImageConstants.favoritesIconCard,
       ),
     );
   }
@@ -144,34 +142,6 @@ class PageNumber extends StatelessWidget {
         '$pageNumber',
         style: context.theme.textTheme.headlineSmall
             ?.copyWith(color: AppColors.grey6, fontSize: 10),
-      ),
-    );
-  }
-}
-
-class BuildDeleteButton extends StatelessWidget {
-  const BuildDeleteButton({Key? key, required this.verseModel})
-      : super(key: key);
-  final VerseModel verseModel;
-  @override
-  Widget build(BuildContext context) {
-    return InkWell(
-      onTap: () => context
-          .read<BookmarkProvider>()
-          .onTapDeleteBookmark(verseModel, EBookMarkType.verse),
-      child: Container(
-        height: 70,
-        width: 100,
-        margin: const EdgeInsets.only(left: kPaddingM),
-        decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(kPaddingM),
-          color: AppColors.redOrange,
-        ),
-        child: Center(
-          child: SvgPicture.asset(
-            ImageConstants.delete,
-          ),
-        ),
       ),
     );
   }

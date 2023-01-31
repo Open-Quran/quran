@@ -48,3 +48,9 @@ extension IntExtension on int {
     return "0${this}";
   }
 }
+
+extension BoolExtension on bool {
+  int get getNumber {
+    return this ? 1 : 0;
+  }
+}

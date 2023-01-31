@@ -9,14 +9,16 @@ class QuranPageWidget extends StatelessWidget {
     Key? key,
     required this.versesOfPage,
     this.onTap,
-    this.textScaleFactorArabic = 1.0,
+    this.textScaleFactor = 1.0,
     required this.fontTypeArabic,
+    required this.layoutOptions,
   }) : super(key: key);
 
   final List<SurahModel> versesOfPage;
   final Function()? onTap;
-  final double textScaleFactorArabic;
+  final double textScaleFactor;
   final String fontTypeArabic;
+  final ELayoutOptions layoutOptions;
 
   @override
   Widget build(BuildContext context) {
@@ -43,7 +45,7 @@ class QuranPageWidget extends StatelessWidget {
         return Column(
           children: [
             BasmalaTitle(verseKey: verses.first.verseKey ?? ""),
-            buildVersesText(context, verses, textScaleFactorArabic, fontTypeArabic),
+            buildVersesText(context, verses, textScaleFactor, layoutOptions, fontTypeArabic),
           ],
         );
       },
@@ -53,13 +55,14 @@ class QuranPageWidget extends StatelessWidget {
   Widget buildVersesText(
     BuildContext context,
     List<VerseModel> verses,
-    double textScaleFactorArabic,
+    double textScaleFactor,
+    ELayoutOptions layoutOptions,
     String fontTypeArabic,
   ) {
     return RichText(
       textDirection: TextDirection.rtl,
-      textAlign: TextAlign.center,
-      textScaleFactor: textScaleFactorArabic,
+      textAlign: layoutOptions == ELayoutOptions.center ? TextAlign.center : TextAlign.right,
+      textScaleFactor: textScaleFactor,
       text: TextSpan(
         style: context.theme.textTheme.headlineLarge?.copyWith(
           height: 2.4,

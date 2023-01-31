@@ -1,6 +1,5 @@
-import 'package:fabrikod_quran/providers/app_settings_provider.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:in_app_review/in_app_review.dart';
 
 class MoreProvider extends ChangeNotifier {
   /// Home Screen Context
@@ -9,8 +8,12 @@ class MoreProvider extends ChangeNotifier {
   /// Class Constructor
   MoreProvider(this._context);
 
-  /// Change app Language and get verses translations
-  Future<void> changeAppLanguage(String languageCode) async {
-    _context.read<AppSettingsProvider>().changeAppLanguage(languageCode);
+  Future<void> onPressRate() async {
+    final InAppReview inAppReview = InAppReview.instance;
+    if (await inAppReview.isAvailable()) {
+      inAppReview.requestReview();
+      inAppReview.openStoreListing(
+          appStoreId: '1642335045', microsoftStoreId: '...');
+    }
   }
 }
