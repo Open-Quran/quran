@@ -2,8 +2,8 @@ import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/widgets/cards/grid_card.dart';
-import 'package:fabrikod_quran/widgets/juz_category_list_widget.dart';
 import 'package:fabrikod_quran/widgets/cards/surah_card.dart';
+import 'package:fabrikod_quran/widgets/juz_category_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -44,7 +44,8 @@ class _HomeScreenState extends State<HomeScreen> {
           padding: const EdgeInsets.symmetric(horizontal: kPaddingL),
           child: Text(
             context.translate.recent,
-            style: context.theme.textTheme.displayLarge?.copyWith(letterSpacing: 0.04),
+            style: context.theme.textTheme.displayLarge
+                ?.copyWith(letterSpacing: 0.04),
           ),
         ),
         const SizedBox(height: kPaddingL),
