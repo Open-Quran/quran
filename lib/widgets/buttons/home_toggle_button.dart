@@ -20,7 +20,7 @@ class HomeToggleButton extends StatelessWidget {
       index: 0,
       children: [
         buildJuzSurahSearchToggles(controlWidth, context),
-        // CustomSearchBar2(onSubmit: (String ) {  },),
+         // CustomSearchBar2(onSubmit: (String ) {  },),
       ],
     );
   }
@@ -38,7 +38,6 @@ class HomeToggleButton extends StatelessWidget {
   Widget buildSearchButton(BuildContext context) {
     return Container(
       height: 44,
-      width: double.infinity,
       padding: const EdgeInsets.all(kPaddingM),
       decoration: const BoxDecoration(
           color: AppColors.black,

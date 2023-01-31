@@ -31,11 +31,7 @@ enum EHomeToggleOptions {juz, surah}
 
 enum EToggleSearchOptions {searchField, toggles}
 
-enum EReadOptions { surah, translation, surahAndTranslation }
-
 enum ETranslationOptions { hide, show }
-
-enum ELayoutOptions { alignRight, justify }
 
 enum ELayoutOptions { right, center }
 
