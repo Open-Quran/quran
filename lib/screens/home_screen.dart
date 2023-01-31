@@ -61,6 +61,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
           const EdgeInsets.only(top: kPaddingXXL),
       child: Column(
         children: [
+
           buildBasmala,
           const SizedBox(height: kPaddingM * 2),
           buildSearchBar,

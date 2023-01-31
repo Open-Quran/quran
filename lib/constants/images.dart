@@ -36,6 +36,7 @@ class ImageConstants {
   static const String soundIcon = "${_iconsPath}ic_sound.svg";
   static const String settingsIcon = "${_iconsPath}ic_settings.svg";
   static const String bookmarkIconCard = "${_iconsPath}ic_bookmark_cardic.svg";
+  static const String searchIcon = "${_iconsPath}ic_search.svg";
   static const String favoritesIconCard =
       "${_iconsPath}ic_favorites_cardic.svg";
   static const String alignRight = "${_iconsPath}ic_align_right.svg";
