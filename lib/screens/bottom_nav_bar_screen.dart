@@ -5,6 +5,7 @@ import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/providers/more_provider.dart';
 import 'package:fabrikod_quran/providers/player_provider.dart';
+import 'package:fabrikod_quran/providers/search_provider.dart';
 import 'package:fabrikod_quran/screens/bookmark_screen.dart';
 import 'package:fabrikod_quran/screens/favorites_screen.dart';
 import 'package:fabrikod_quran/screens/more_screen.dart';
@@ -42,6 +43,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
         ChangeNotifierProvider(
             create: (_) => HomeProvider(context), lazy: false),
         ChangeNotifierProvider(create: (_) => MoreProvider(context)),
+        ChangeNotifierProvider(create: (_) => SearchProvider(context)),
       ],
       child: Scaffold(
         body: buildBody,
@@ -55,7 +57,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
     return IndexedStack(
       index: currentIndex,
       children: const [
-        HomeScreen(),
+        NewHomeScreen(),
         BookmarkScreen(),
         FavoritesScreen(),
         MoreScreen(),

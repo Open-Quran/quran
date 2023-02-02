@@ -1,9 +1,12 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/providers/home_provider.dart';
+import 'package:fabrikod_quran/widgets/bars/search_bar.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 import '../animation/fade_indexed_stack.dart';
-import '../bars/custom_search_bar2.dart';
 
 class HomeToggleButton extends StatelessWidget {
   final EHomeToggleOptions toggleListType;
@@ -17,10 +20,10 @@ class HomeToggleButton extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
     final controlWidth = screenWidth * 0.83;
     return FadeIndexedStack(
-      index: 0,
+      index: context.read<HomeProvider>().toggleSearchOptions.index,
       children: [
         buildJuzSurahSearchToggles(controlWidth, context),
-         // CustomSearchBar2(onSubmit: (String ) {  },),
+        SearchBar(),
       ],
     );
   }
@@ -36,14 +39,21 @@ class HomeToggleButton extends StatelessWidget {
   }
 
   Widget buildSearchButton(BuildContext context) {
-    return Container(
-      height: 44,
-      padding: const EdgeInsets.all(kPaddingM),
-      decoration: const BoxDecoration(
-          color: AppColors.black,
-          borderRadius: BorderRadius.only(
-              topRight: Radius.circular(7), bottomRight: Radius.circular(7))),
-      child: SvgPicture.asset(ImageConstants.searchIcon),
+    return InkWell(
+      onTap: () {
+        context
+            .read<HomeProvider>()
+            .changeToggleSearchOptions(EToggleSearchOptions.searchField);
+      },
+      child: Container(
+        height: 44,
+        padding: const EdgeInsets.all(kPaddingM),
+        decoration: const BoxDecoration(
+            color: AppColors.black,
+            borderRadius: BorderRadius.only(
+                topRight: Radius.circular(7), bottomRight: Radius.circular(7))),
+        child: SvgPicture.asset(ImageConstants.searchIcon),
+      ),
     );
   }
 
@@ -66,7 +76,9 @@ class HomeToggleButton extends StatelessWidget {
                 child: Text(
               context.translate.juz,
               style: context.theme.textTheme.headlineSmall?.copyWith(
-                  color: toggleListType.index == 0 ? AppColors.grey : AppColors.grey3),
+                  color: toggleListType.index == 0
+                      ? AppColors.grey
+                      : AppColors.grey3),
             )),
           ),
           1: SizedBox(
@@ -75,7 +87,9 @@ class HomeToggleButton extends StatelessWidget {
                 child: Text(
               context.translate.surah,
               style: context.theme.textTheme.headlineSmall?.copyWith(
-                  color: toggleListType.index == 1 ? AppColors.grey : AppColors.grey3),
+                  color: toggleListType.index == 1
+                      ? AppColors.grey
+                      : AppColors.grey3),
             )),
           ),
         },

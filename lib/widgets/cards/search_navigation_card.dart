@@ -1,16 +1,19 @@
 import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:flutter/material.dart';
 
-class SearchSurahCard extends StatelessWidget {
-  /// [SurahModel]
-  final SurahModel surahModel;
+class SearchNavigationCard extends StatelessWidget {
+  /// The number of the page or juz
+  final String? titleNumber;
+
+  /// Card title
+  final String title;
 
   /// Function onTap
   final Function() onTap;
 
-  const SearchSurahCard(
-      {Key? key, required this.surahModel, required this.onTap})
+  /// Constructor
+  const SearchNavigationCard(
+      {Key? key, this.titleNumber, required this.onTap, required this.title})
       : super(key: key);
 
   @override
@@ -27,7 +30,7 @@ class SearchSurahCard extends StatelessWidget {
         child: Row(
           children: [
             const SizedBox(width: kPaddingXL),
-            Visibility(child: Expanded(child: surahName(context))),
+            Visibility(child: Expanded(child: navigationTitle(context))),
             const SizedBox(width: kPaddingL),
           ],
         ),
@@ -35,10 +38,10 @@ class SearchSurahCard extends StatelessWidget {
     );
   }
 
-  /// Surah name in english
-  Widget surahName(BuildContext context) {
+  /// Number of juz or page
+  Widget navigationTitle(BuildContext context) {
     return Text(
-      "${context.translate.surah} ${surahModel.nameSimple ?? ""}",
+      titleNumber ?? '',
       overflow: TextOverflow.ellipsis,
       style: context.theme.toggleButtonsTheme.textStyle,
     );

@@ -62,5 +62,8 @@
     "writeAnAppStoreReview": "Write an app store review",
     "play": "Play",
     "favorite": "Favorite",
-    "meaning": "Meaning"
+    "meaning": "Meaning",
+    "navigation": "Navigation",
+    "searchSurahJuzOrAyahs": "Search surah, juz or ayahs...",
+    "searchFor": "Search for"
 }

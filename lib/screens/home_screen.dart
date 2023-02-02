@@ -14,7 +14,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
 import '../widgets/app_bars/primary_app_bar.dart';
-import '../widgets/cards/search_card.dart';
+import '../widgets/cards/search_navigation_card.dart';
 import '../widgets/cards/search_surah_card.dart';
 
 class HomeScreen extends StatefulWidget {
@@ -61,7 +61,6 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
           const EdgeInsets.only(top: kPaddingXXL),
       child: Column(
         children: [
-
           buildBasmala,
           const SizedBox(height: kPaddingM * 2),
           buildSearchBar,
@@ -192,7 +191,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
       children: [
         Visibility(
           visible: juzNumber != null,
-          child: SearchCard(
+          child: SearchNavigationCard(
             title: context.translate.juz,
             titleNumber: "${context.translate.juz} - $pageNumber",
             onTap: () {
@@ -202,7 +201,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
         ),
         Visibility(
           visible: pageNumber != null,
-          child: SearchCard(
+          child: SearchNavigationCard(
             title: context.translate.page,
             titleNumber: "${context.translate.page} - $pageNumber",
             onTap: () {

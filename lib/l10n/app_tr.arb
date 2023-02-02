@@ -62,5 +62,8 @@
     "writeAnAppStoreReview": "Uygulama mağazası yorumu yazın",
     "play": "Oynat",
     "favorite": "Favori",
-    "meaning": "Meal"
+    "meaning": "Meal",
+    "navigation": "Navigasyon",
+    "searchSurahJuzOrAyahs": "Sure, Cüz veya Ayet Aratın...",
+    "searchFor": "Şunun için ara"
 }

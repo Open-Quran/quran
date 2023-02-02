@@ -1,9 +1,12 @@
 import 'package:fabrikod_quran/models/surah_model.dart';
+import 'package:fabrikod_quran/models/verse_model.dart';
+import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../constants/enums.dart';
 import '../models/reading_settings_model.dart';
 import '../screens/surah_details/surah_details_screen.dart';
 import '../utils/utils.dart';
@@ -23,6 +26,9 @@ class SearchProvider extends ChangeNotifier {
 
   /// The list of the [SurahModel]
   List<SurahModel> filteredSurahSearch = [];
+
+  /// The list of the [VerseModel]
+  List<VerseModel> filteredVerseSearch = [];
 
   /// Storing search query, initially empty
   String query = '';
@@ -48,9 +54,31 @@ class SearchProvider extends ChangeNotifier {
       isFieldEmpty = false;
       filterSurahSearchResults(query);
       filterByPageAndJuzNumber(query);
+      filterSurahDetails(query);
     } else {
       isFieldEmpty = true;
     }
+    notifyListeners();
+  }
+
+  /// Getting search result by surah name, id etc.
+  /// [VerseModel]
+  filterSurahDetails(String queryText) {
+    queryText = queryText.toLowerCase();
+    List<VerseModel> searchList = _context.read<QuranProvider>().getAllVerses;
+    List<SurahModel> searchListSurah = _context.read<QuranProvider>().surahs;
+    List<VerseModel> searchResult = [];
+    for (var verse in searchList) {
+      if (verse.text!.toLowerCase().contains(queryText) ||
+          searchListSurah[verse.surahId!]
+              .nameTranslated!
+              .toLowerCase()
+              .contains(queryText)) {
+        searchResult.add(verse);
+      }
+    }
+    filteredVerseSearch.clear();
+    filteredVerseSearch.addAll(searchResult);
     notifyListeners();
   }
 
@@ -107,5 +135,18 @@ class SearchProvider extends ChangeNotifier {
   selectedTag(String selectedTag) {
     textEditingController.text = selectedTag;
     searchBarFocusNode.requestFocus();
+  }
+
+  /// If search bar is not empty, clear textField
+  /// If search bar empty, show toggle buttons
+  clearSearchField(BuildContext context) {
+    if (textEditingController.text.isNotEmpty) {
+      textEditingController.clear();
+    } else {
+      Utils.unFocus();
+      context
+          .read<HomeProvider>()
+          .changeToggleSearchOptions(EToggleSearchOptions.toggles);
+    }
   }
 }
