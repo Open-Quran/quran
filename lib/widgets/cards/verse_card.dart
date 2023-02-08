@@ -58,7 +58,7 @@ class VerseCard extends StatelessWidget {
       isPlaying: isPlaying,
       playButtonOnTap: (isPlaying) => context
           .read<SurahDetailsProvider>()
-          .onTapVerseCardPlayOrPause(0,isPlaying, verseModel.verseKey!),
+          .onTapVerseCardPlayOrPause(0, isPlaying, verseModel.verseKey!),
       isFavorite: isFavorite,
       favoriteButtonOnTap: () => isFavorite
           ? context

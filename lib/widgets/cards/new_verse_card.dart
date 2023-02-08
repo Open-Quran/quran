@@ -40,7 +40,7 @@ class VerseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GlobalKey globalKey = GlobalKey();
-    return CustomGestureDetector(
+    return VersePopUpMenu(
       globalKey: globalKey,
       verseModel: verseModel,
       isPlaying: isPlaying,

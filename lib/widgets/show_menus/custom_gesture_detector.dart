@@ -4,8 +4,8 @@ import 'package:fabrikod_quran/widgets/cards/verse_menu_item.dart';
 import 'package:flutter/material.dart';
 
 /// CustomGestureDetector takes globalKey to identify child
-class CustomGestureDetector extends StatelessWidget {
-  const CustomGestureDetector({
+class VersePopUpMenu extends StatelessWidget {
+  const VersePopUpMenu({
     Key? key,
     required this.child,
     required this.globalKey,
@@ -38,7 +38,7 @@ class CustomGestureDetector extends StatelessWidget {
         Offset position = box.localToGlobal(Offset.zero);
         showMenu(
           context: context,
-          color: AppColors.grey8,
+          color: context.theme.cardColor,
           shape: RoundedRectangleBorder(
             side: BorderSide(
               color: AppColors.white.withOpacity(0.1),
