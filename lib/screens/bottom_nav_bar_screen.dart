@@ -9,6 +9,7 @@ import 'package:fabrikod_quran/screens/bookmark_screen.dart';
 import 'package:fabrikod_quran/screens/favorites_screen.dart';
 import 'package:fabrikod_quran/screens/more_screen.dart';
 import 'package:fabrikod_quran/screens/new_home_screen.dart';
+import 'package:fabrikod_quran/widgets/bars/play_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
@@ -99,6 +100,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        const PlayBar(),
         Container(
           height: 1,
           width: double.infinity,

@@ -35,3 +35,5 @@ enum ETranslationOptions { hide, show }
 
 enum ELayoutOptions { right, center }
 
+/// Different types of the Player State
+enum EPlayerState { stop, playing, pause }

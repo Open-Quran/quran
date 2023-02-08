@@ -6,6 +6,7 @@ import 'package:fabrikod_quran/screens/surah_details/reading_screen.dart';
 import 'package:fabrikod_quran/screens/surah_details/translation_screen.dart';
 import 'package:fabrikod_quran/widgets/animation/fade_indexed_stack.dart';
 import 'package:fabrikod_quran/widgets/app_bars/secondary_app_bar.dart';
+import 'package:fabrikod_quran/widgets/bars/play_bar.dart';
 import 'package:fabrikod_quran/widgets/buttons/translation_reading_segmented_button.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -48,6 +49,7 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
           children: [
             buildTranslationOrReadingSwitch,
             Expanded(child: buildTranslationOrReading),
+            const PlayBar(padding: EdgeInsets.only(bottom: kPaddingXL))
           ],
         ),
         const SettingsTopRight(),

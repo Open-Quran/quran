@@ -19,7 +19,7 @@ class VerseMenuItem extends StatelessWidget {
           Expanded(
             flex: 1,
             child: SvgPicture.asset(iconPath,
-                color: AppColors.grey4, width: kPaddingXL, height: kPaddingXL),
+                color: AppColors.white, width: kPaddingXL, height: kPaddingXL),
           ),
           const SizedBox(
             width: kPaddingL,
@@ -29,7 +29,7 @@ class VerseMenuItem extends StatelessWidget {
             child: Text(
               buttonName,
               style: context.theme.textTheme.titleMedium
-                  ?.copyWith(color: AppColors.grey2),
+                  ?.copyWith(color: AppColors.white),
             ),
           )
         ],

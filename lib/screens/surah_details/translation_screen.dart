@@ -1,4 +1,9 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/models/bookmark_model.dart';
+import 'package:fabrikod_quran/models/verse_model.dart';
+import 'package:fabrikod_quran/providers/bookmark_provider.dart';
+import 'package:fabrikod_quran/providers/favorites_provider.dart';
+import 'package:fabrikod_quran/providers/player_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/widgets/basmala_title.dart';
@@ -12,16 +17,13 @@ class TranslationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var verses =
-        context.watch<SurahDetailsProvider>().versesOfReadingTypeTranslation;
+    var verses = context.watch<SurahDetailsProvider>().versesOfReadingTypeTranslation;
     return InkWell(
       onTap: context.read<SurahDetailsProvider>().changeReadingMode,
       child: ScrollablePositionedList.separated(
         itemCount: verses.length,
-        itemScrollController:
-            context.read<SurahDetailsProvider>().itemScrollController,
-        itemPositionsListener:
-            context.read<SurahDetailsProvider>().itemPositionsListener,
+        itemScrollController: context.read<SurahDetailsProvider>().itemScrollController,
+        itemPositionsListener: context.read<SurahDetailsProvider>().itemPositionsListener,
         padding: const EdgeInsets.only(
           left: kPaddingM,
           right: kPaddingL,
@@ -33,26 +35,40 @@ class TranslationScreen extends StatelessWidget {
           return Column(
             children: [
               BasmalaTitle(verseKey: verse.verseKey ?? ""),
-              VerseCard(
-                verseModel: verse,
-                isPlaying: index == 1,
-                arabicFontFamily: Fonts.uthmanic,
-                verseTranslations: context
-                    .watch<QuranProvider>()
-                    .translationService
-                    .translationsOfVerse(verse.id!),
-                readOptions:
-                    context.watch<QuranProvider>().localSetting.readOptions,
-                textScaleFactor:
-                    context.watch<QuranProvider>().localSetting.textScaleFactor,
-                translationFontFamily: Fonts.getTranslationFont(
-                    context.watch<QuranProvider>().localSetting.fontType),
-              ),
+              buildVerseCard(index, verse, context),
             ],
           );
         },
         separatorBuilder: (context, index) => const SizedBox(height: kPaddingM),
       ),
+    );
+  }
+
+  VerseCard buildVerseCard(int index, VerseModel verse, BuildContext context) {
+    return VerseCard(
+      verseModel: verse,
+      arabicFontFamily: Fonts.uthmanic,
+      verseTranslations:
+          context.watch<QuranProvider>().translationService.translationsOfVerse(verse.id!),
+      readOptions: context.watch<QuranProvider>().localSetting.readOptions,
+      textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
+      translationFontFamily:
+          Fonts.getTranslationFont(context.watch<QuranProvider>().localSetting.fontType),
+      isPlaying: context.watch<PlayerProvider>().isPlayingVerse(verse.verseKey ?? ""),
+      playFunction: (verse, isPlaying) {
+        context.read<SurahDetailsProvider>().onTapVerseCardPlayOrPause(
+              index,
+              isPlaying,
+              verse.verseKey ?? "",
+            );
+      },
+      isFavorite: context.watch<FavoritesProvider>().isFavoriteVerse(verse),
+      favoriteFunction: context.read<FavoritesProvider>().onTapFavoriteButton,
+      isBookmark: context.watch<BookmarkProvider>().isBookmark(
+            BookMarkModel(bookmarkType: EBookMarkType.verse, verseModel: verse),
+          ),
+      bookmarkFunction: context.read<BookmarkProvider>().onTapBookMarkButton,
+      shareFunction: (verseModel) {},
     );
   }
 }
