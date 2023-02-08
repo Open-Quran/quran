@@ -158,7 +158,7 @@ class BuildDeleteButton extends StatelessWidget {
     return InkWell(
       onTap: () => context
           .read<BookmarkProvider>()
-          .onTapDeleteBookmark(verseModel, EBookMarkType.verse),
+          .deleteBookmark(verseModel, EBookMarkType.verse),
       child: Container(
         height: 70,
         width: 100,

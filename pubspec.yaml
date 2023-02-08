@@ -19,6 +19,7 @@ dependencies:
 
   #State Managements
   provider: ^6.0.3                                        # Provide state management
+  rxdart: ^0.27.7
 
   #Network
   http: ^0.13.5
@@ -36,6 +37,7 @@ dependencies:
   scrollable_positioned_list: ^0.3.5
   gap: ^2.0.0                                             # Adding gaps between widgets
   flutter_slidable: ^2.0.0                                # Slidable list item
+  audio_video_progress_bar: ^1.0.0
 
   # Local Database
   get_storage: ^2.0.3                                     # Store data locally

@@ -1,9 +1,11 @@
 import 'package:audio_service/audio_service.dart';
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/handlers/audio_player_handler.dart';
+import 'package:fabrikod_quran/models/position_data.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
+import 'package:rxdart/rxdart.dart';
 
 class PlayerProvider extends ChangeNotifier {
   /// Audio Player
@@ -18,12 +20,30 @@ class PlayerProvider extends ChangeNotifier {
   /// Verses to play
   List<VerseModel> verseListToPlay = [];
 
+  /// Index of the playing verse
+  int playerIndex = 0;
+
+  /// EPlayerState [EPlayerState]
+  EPlayerState playerState = EPlayerState.stop;
+
   /// Are there any processes in the background?
   bool isPlayedFromBackground = true;
 
   PlayerProvider() {
     player.playerStateStream.listen(checkIfCompleted);
   }
+  /// Listens to the Player's Position
+  Stream<PositionData> get positionDataStream =>
+      Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
+        player.positionStream,
+        player.bufferedPositionStream,
+        player.durationStream,
+        (position, bufferPosition, duration) => PositionData(
+          position: position,
+          bufferPosition: bufferPosition,
+          duration: duration,
+        ),
+      );
 
   /// Creating Audio Handler
   createAudioHandler(BuildContext context) async {
@@ -41,15 +61,39 @@ class PlayerProvider extends ChangeNotifier {
   void checkIfCompleted(event) {
     if (event.processingState == ProcessingState.completed) {
       if (verseListToPlay.isEmpty) return;
-      verseListToPlay.removeAt(0);
-      verseListToPlay.isEmpty ? stop() : play();
+      if (playerIndex == verseListToPlay.length - 1) {
+        stop();
+      } else {
+        playerIndex++;
+        play();
+      }
     }
+  }
+
+  /// Can i play the previous ?
+  bool get isPrevious => playerIndex > 0;
+
+  /// Play Previous Player
+  void previous() {
+    if (!isPrevious) return;
+    playerIndex--;
+    play();
+  }
+
+  /// Can i play the next ?
+  bool get isNext => playerIndex < verseListToPlay.length - 1;
+
+  /// Play Next Player
+  void next() {
+    if (!isNext) return;
+    playerIndex++;
+    play();
   }
 
   /// Is the chosen verse playing?
   bool isPlayingVerse(String verseKey) {
     if (!player.playing || verseListToPlay.isEmpty) return false;
-    return verseKey == verseListToPlay.first.verseKey;
+    return verseKey == verseListToPlay[playerIndex].verseKey;
   }
 
   /// Is the chosen mushaf page playing?
@@ -60,16 +104,19 @@ class PlayerProvider extends ChangeNotifier {
   }
 
   /// On Tap to Play and pause button
-  void onTapPlayOrPause(bool isPlaying, List<VerseModel> verses) {
+  void onTapPlayOrPause(int index, bool isPlaying, List<VerseModel> verses) {
     verseListToPlay = verses;
-    isPlaying ? stop() : play();
+    playerIndex = index;
+    isPlaying ? pause() : play();
   }
 
   /// Play verse
   Future<void> play() async {
-    if (verseListToPlay.isEmpty) return;
-    await player.setUrl(RestfulConstants.getAudioUrlOfVerse(verseListToPlay.first.audioUrl!));
+    final audioUrl = verseListToPlay[playerIndex].audioUrl;
+    if (verseListToPlay.isEmpty || audioUrl == null) return;
+    await player.setUrl(RestfulConstants.getAudioUrlOfVerse(audioUrl));
     player.play();
+    playerState = EPlayerState.playing;
     playOnBackground();
     notifyListeners();
   }
@@ -77,6 +124,7 @@ class PlayerProvider extends ChangeNotifier {
   /// Pause verse
   void pause({bool isRunBackGround = true}) {
     player.pause();
+    playerState = EPlayerState.pause;
     if (isRunBackGround) pauseOnBackground();
     notifyListeners();
   }
@@ -84,14 +132,16 @@ class PlayerProvider extends ChangeNotifier {
   /// Resume verse
   void resume({bool isRunBackGround = true}) {
     player.play();
+    playerState = EPlayerState.playing;
     if (isRunBackGround) playOnBackground();
     notifyListeners();
   }
 
   /// Stop verse
   void stop({bool isRunBackGround = true}) {
-    verseListToPlay.clear();
+    verseListToPlay = [];
     player.stop();
+    playerState = EPlayerState.stop;
     if (isRunBackGround) stopOnBackground();
     notifyListeners();
   }

@@ -8,13 +8,8 @@ import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class BookmarkProvider extends ChangeNotifier {
-  final ItemScrollController itemScrollController = ItemScrollController();
-  final ItemPositionsListener itemPositionsListener =
-      ItemPositionsListener.create();
-
   /// Class Constructor
   BookmarkProvider() {
     bookmarks = LocalDb.getBookmarks;
@@ -25,20 +20,27 @@ class BookmarkProvider extends ChangeNotifier {
 
   /// Checking if the verse bookmarked
   bool isBookmark(BookMarkModel bookMark) {
-    return bookmarks.indexWhere((element) => element == bookMark) == -1
-        ? false
-        : true;
+    var result = bookmarks.indexWhere((element) => element == bookMark);
+    return result == -1 ? false : true;
+  }
+  ///When clicked to Bookmark Button
+  void onTapBookMarkButton(EBookMarkType bookMarkType, VerseModel verseModel, bool isBookmark) {
+    if (isBookmark) {
+      deleteBookmark(verseModel, bookMarkType);
+    } else {
+      addBookmark(verseModel, bookMarkType);
+    }
   }
 
   /// Adding bookmarks
-  void onTapAddBookmark(VerseModel verse, EBookMarkType bookMarkType) async {
+  void addBookmark(VerseModel verse, EBookMarkType bookMarkType) async {
     var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
     bookmarks = await LocalDb.addBookmark(bookMark);
     notifyListeners();
   }
 
   /// Delete bookmarks
-  void onTapDeleteBookmark(VerseModel verse, EBookMarkType bookMarkType) async {
+  void deleteBookmark(VerseModel verse, EBookMarkType bookMarkType) async {
     var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
     bookmarks = await LocalDb.deleteBookmark(bookMark);
     notifyListeners();
@@ -56,8 +58,7 @@ class BookmarkProvider extends ChangeNotifier {
         break;
       case EBookMarkType.page:
         context.read<QuranProvider>().changeQuranType(1);
-        model = ReadingSettingsModel(
-            mushafPageNumber: bookmark.verseModel.pageNumber!);
+        model = ReadingSettingsModel(mushafPageNumber: bookmark.verseModel.pageNumber!);
     }
 
     Navigator.push(

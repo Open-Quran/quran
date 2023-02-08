@@ -13,7 +13,13 @@ class VerseCard extends StatelessWidget {
     required this.arabicFontFamily,
     required this.translationFontFamily,
     required this.textScaleFactor,
+    required this.playFunction,
+    required this.favoriteFunction,
+    required this.bookmarkFunction,
+    required this.shareFunction,
     this.isPlaying = false,
+    this.isFavorite = false,
+    this.isBookmark = false,
     required this.readOptions,
   }) : super(key: key);
 
@@ -24,13 +30,26 @@ class VerseCard extends StatelessWidget {
   final String? translationFontFamily;
   final double textScaleFactor;
   final bool isPlaying;
+  final bool isFavorite;
+  final bool isBookmark;
+  final Function(VerseModel verseModel, bool isPlaying) playFunction;
+  final Function(VerseModel verseModel, bool isFavorite) favoriteFunction;
+  final Function(EBookMarkType bookMarkType,VerseModel verseModel, bool isBookmark) bookmarkFunction;
+  final Function(VerseModel) shareFunction;
 
   @override
   Widget build(BuildContext context) {
     GlobalKey globalKey = GlobalKey();
     return CustomGestureDetector(
-      verseModel: verseModel,
       globalKey: globalKey,
+      verseModel: verseModel,
+      isPlaying: isPlaying,
+      playFunction: playFunction,
+      isFavorite: isFavorite,
+      favoriteFunction: favoriteFunction,
+      isBookmark: isBookmark,
+      bookmarkFunction: bookmarkFunction,
+      shareFunction: shareFunction,
       child: Container(
         key: globalKey,
         decoration: isPlaying
@@ -39,9 +58,10 @@ class VerseCard extends StatelessWidget {
                 borderRadius: BorderRadius.circular(kPaddingM),
                 boxShadow: const [
                   BoxShadow(
-                      color: Color.fromRGBO(0, 0, 0, 0.25),
-                      offset: Offset(0, 4),
-                      blurRadius: 4)
+                    color: Color.fromRGBO(0, 0, 0, 0.25),
+                    offset: Offset(0, 4),
+                    blurRadius: 4,
+                  )
                 ],
                 border: Border.all(
                   color: const Color.fromRGBO(0, 0, 0, 1),
