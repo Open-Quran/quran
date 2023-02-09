@@ -63,5 +63,8 @@
     "play": "Oynat",
     "pause": "Durdur",
     "favorite": "Favori",
-    "meaning": "Meal"
+    "meaning": "Meal",
+    "downloaded": "İndirilenler",
+    "delete": "Sil"
+
 }

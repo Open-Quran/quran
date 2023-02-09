@@ -27,6 +27,7 @@ class ImageConstants {
   static const String referencesIcon = "${_iconsPath}ic_references.svg";
   static const String surahNumberFrame = "${_iconsPath}ic_surah_number_frame.svg";
   static const String arrowBack = "${_iconsPath}ic_arrow_back.svg";
+  static const String newBackArrow = "${_iconsPath}ic_new_back_arrow.svg";
   static const String helpGuideIcon = "${_iconsPath}ic_help_guide.svg";
   static const String themeIcon = "${_iconsPath}ic_theme.svg";
   static const String checkboxActiveIcon = "${_iconsPath}ic_checkbox_active.svg";
@@ -50,4 +51,5 @@ class ImageConstants {
   static const String arrowRight = "${_iconsPath}ic_arrow_right.svg";
   static const String meaningIcon = "${_iconsPath}ic_meaning.svg";
   static const String cancelIcon = "${_iconsPath}ic_cancel.svg";
+  static const String ticIcon = "${_iconsPath}ic_tic.svg";
 }

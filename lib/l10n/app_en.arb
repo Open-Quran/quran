@@ -63,5 +63,7 @@
     "play": "Play",
     "pause": "Pause",
     "favorite": "Favorite",
-    "meaning": "Meaning"
+    "meaning": "Meaning",
+    "downloaded": "Downloaded",
+    "delete": "Delete"
 }
