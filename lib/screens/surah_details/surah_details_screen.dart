@@ -8,6 +8,7 @@ import 'package:fabrikod_quran/widgets/animation/fade_indexed_stack.dart';
 import 'package:fabrikod_quran/widgets/app_bars/secondary_app_bar.dart';
 import 'package:fabrikod_quran/widgets/bars/play_bar.dart';
 import 'package:fabrikod_quran/widgets/buttons/translation_reading_segmented_button.dart';
+import 'package:fabrikod_quran/widgets/cards/surah_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -39,20 +40,29 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
         title: context.watch<SurahDetailsProvider>().appBarTitle,
         subTitle: 'Juz 1 | Hizb 1 - Page 1',
         onTapSettings: context.read<SurahDetailsProvider>().changeOpenSetting,
+        isDrawerOpen: context.watch<SurahDetailsProvider>().isTitleMenu,
+        onTapTitle: context.watch<SurahDetailsProvider>().changeTitleMenuState,
+        onTapMenu: context.watch<SurahDetailsProvider>().changeTitleMenuState,
       );
 
   Widget get buildBody {
     return FadeIndexedStack(
-      index: context.watch<SurahDetailsProvider>().isOpenSetting.getNumber,
+      index: context.watch<SurahDetailsProvider>().isTitleMenu.getNumber,
       children: [
-        Column(
+        FadeIndexedStack(
+          index: context.watch<SurahDetailsProvider>().isOpenSetting.getNumber,
           children: [
-            buildTranslationOrReadingSwitch,
-            Expanded(child: buildTranslationOrReading),
-            const PlayBar(padding: EdgeInsets.only(bottom: kPaddingXL))
+            Column(
+              children: [
+                buildTranslationOrReadingSwitch,
+                Expanded(child: buildTranslationOrReading),
+                const PlayBar(padding: EdgeInsets.only(bottom: kPaddingXL))
+              ],
+            ),
+            const SettingsTopRight(),
           ],
         ),
-        const SettingsTopRight(),
+        buildSurahList(),
       ],
     );
   }
@@ -80,6 +90,27 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
         TranslationScreen(),
         ReadingScreen(),
       ],
+    );
+  }
+
+  /// List of the Surah Verses
+  Widget buildSurahList() {
+    var surahs = context.watch<QuranProvider>().surahs;
+    return ListView.separated(
+      itemCount: surahs.length,
+      padding: const EdgeInsets.all(kPaddingL),
+      itemBuilder: (context, index) {
+        final surah = surahs[index];
+        return SurahCard(
+          surahModel: surah,
+          onTap: () {
+            context.read<SurahDetailsProvider>().readingSettings.surahIndex = surah.id!-1;
+            context.read<SurahDetailsProvider>().changeTitleMenuState();
+            print("On Tap Surah Card : ${surah.id}");
+          },
+        );
+      },
+      separatorBuilder: (context, index) => const SizedBox(height: kPaddingL),
     );
   }
 }

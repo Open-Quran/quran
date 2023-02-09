@@ -127,8 +127,8 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
                     style: context.theme.textTheme.headlineLarge,
                   ),
                   Icon(isDrawerOpen
-                      ? Icons.arrow_drop_down_rounded
-                      : Icons.arrow_drop_up_rounded)
+                      ? Icons.arrow_drop_up_rounded
+                      : Icons.arrow_drop_down_rounded)
                 ],
               ),
               Text(

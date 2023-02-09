@@ -26,9 +26,18 @@ class SurahDetailsProvider extends ChangeNotifier {
   /// is Quran Screen Setting open
   bool isOpenSetting = false;
 
+  /// is Quran Screen Title Menu open
+  bool isTitleMenu = false;
+
   /// Change Quran Screen Setting Mode
   void changeOpenSetting() {
     isOpenSetting = !isOpenSetting;
+    notifyListeners();
+  }
+
+  /// Change Quran Screen Setting Mode
+  void changeTitleMenuState() {
+    isTitleMenu = !isTitleMenu;
     notifyListeners();
   }
 
