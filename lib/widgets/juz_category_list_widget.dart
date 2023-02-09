@@ -44,7 +44,6 @@ class _JuzCategoryListWidgetState extends State<JuzCategoryListWidget> {
             )
           ],
         ),
-        // list
         FadeIndexedStack(
           index: widget.listType.index,
           children: [

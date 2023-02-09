@@ -4,7 +4,6 @@ import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/widgets/buttons/home_toggle_button.dart';
 import 'package:fabrikod_quran/widgets/cards/grid_card.dart';
 import 'package:fabrikod_quran/widgets/cards/surah_card.dart';
-import 'package:fabrikod_quran/widgets/juz_surah_search_widget.dart';
 import 'package:fabrikod_quran/widgets/juz_category_list_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
