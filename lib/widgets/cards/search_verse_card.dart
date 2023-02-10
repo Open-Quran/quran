@@ -20,23 +20,29 @@ class SearchVerseCard extends StatelessWidget {
       onTap: onTap,
       child: Container(
         width: double.infinity,
-        margin: const EdgeInsets.only(top: kPaddingL),
-        padding: const EdgeInsets.all(kPaddingL),
+        margin: const EdgeInsets.only(top: kSizeL),
+        padding: const EdgeInsets.all(kSizeL),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(kPaddingM),
+            borderRadius: BorderRadius.circular(kSizeM),
             color: AppColors.black2),
         child: Column(
           children: [
             Row(
-              mainAxisAlignment: MainAxisAlignment.start,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                verseSurahNameTranslated(context),
-                verseNumber(context),
+                Row(
+                  children: [
+                    verseSurahNameTranslated(context),
+                    verseNumber(context),
+                  ],
+                ),
                 verseSurahNameArabic(context),
               ],
             ),
-            const SizedBox(
-              height: kPaddingS,
+            Divider(
+              thickness: 1,
+              height: kSize3XL,
+              color: context.theme.cardTheme.color,
             ),
             Row(
               children: [
@@ -54,9 +60,7 @@ class SearchVerseCard extends StatelessWidget {
     return Text(
       verseModel.text ?? "",
       textDirection: TextDirection.rtl,
-
-      ///overflow: TextOverflow.ellipsis,
-      style: context.theme.toggleButtonsTheme.textStyle,
+      style: context.theme.textTheme.headline1!.copyWith(height: 2),
     );
   }
 
@@ -66,16 +70,18 @@ class SearchVerseCard extends StatelessWidget {
       verseModel.surahNameArabic ?? "",
       overflow: TextOverflow.ellipsis,
       textDirection: TextDirection.rtl,
-      style: context.theme.toggleButtonsTheme.textStyle,
+      style: context.theme.textTheme.titleLarge!
+          .copyWith(color: AppColors.white5),
     );
   }
 
   /// Verse surah name in english
   Widget verseSurahNameTranslated(BuildContext context) {
     return Text(
-      "${context.translate.surah} ${verseModel.surahNameTranslated ?? ""}",
+      "${verseModel.surahNameTranslated},  " ?? "",
       overflow: TextOverflow.ellipsis,
-      style: context.theme.toggleButtonsTheme.textStyle,
+      style: context.theme.textTheme.titleMedium!
+          .copyWith(color: AppColors.white5),
     );
   }
 
@@ -84,7 +90,8 @@ class SearchVerseCard extends StatelessWidget {
     return Text(
       "${context.translate.ayat} ${verseModel.verseNumber ?? ""}",
       overflow: TextOverflow.ellipsis,
-      style: context.theme.toggleButtonsTheme.textStyle,
+      style: context.theme.textTheme.titleMedium!
+          .copyWith(color: AppColors.white5),
     );
   }
 }

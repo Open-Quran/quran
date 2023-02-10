@@ -26,10 +26,16 @@ enum EBookMarkType { verse, page }
 enum EJuzListType { list, grid }
 
 /// Home switch toggle buttons
-enum EHomeToggleOptions { juz, surah }
+enum EHomeToggleOptions {juz, surah}
 
+/// Home switch toggle button between toggles and search bar
 enum EToggleSearchOptions { toggles, searchField }
 
+/// Show/Hide translation
 enum ETranslationOptions { hide, show }
 
+/// Reading alignment
 enum ELayoutOptions { right, center }
+
+/// Different types of the Player State
+enum EPlayerState { stop, playing, pause }

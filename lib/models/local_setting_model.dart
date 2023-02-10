@@ -9,7 +9,7 @@ class LocalSettingModel {
   String fontTypeArabic = Fonts.arabicFontNames.first;
 
   LocalSettingModel({
-    this.quranType = EQuranType.reading,
+    this.quranType = EQuranType.translation,
     this.layoutOptions = ELayoutOptions.center,
     this.readOptions = EReadOptions.surahAndTranslation,
     this.textScaleFactor = 1.2,
@@ -24,7 +24,7 @@ class LocalSettingModel {
 
   factory LocalSettingModel.fromJson(Map<String, dynamic> json) => LocalSettingModel(
         quranType:
-            json['quranType'] != null ? EQuranType.values[json['quranType']] : EQuranType.reading,
+            json['quranType'] != null ? EQuranType.values[json['quranType']] : EQuranType.translation,
         readOptions: json['readOptions'] != null
             ? EReadOptions.values[json['readOptions']]
             : EReadOptions.surahAndTranslation,

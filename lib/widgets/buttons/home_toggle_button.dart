@@ -6,10 +6,16 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
+import '../../providers/search_provider.dart';
 import '../animation/fade_indexed_stack.dart';
 
 class HomeToggleButton extends StatelessWidget {
+
+  /// Toggle options Juz or Surah
   final EHomeToggleOptions toggleListType;
+
+  /// Changing toggles VoidCallBack
+  /// Takes [EHomeToggleOptions] and changes index
   final Function(EHomeToggleOptions)? onChanged;
 
   const HomeToggleButton(
@@ -23,11 +29,12 @@ class HomeToggleButton extends StatelessWidget {
       index: context.read<HomeProvider>().toggleSearchOptions.index,
       children: [
         buildJuzSurahSearchToggles(controlWidth, context),
-        SearchBar(),
+        const SearchBar(),
       ],
     );
   }
 
+  /// Juz/Surah and search button toggles
   Widget buildJuzSurahSearchToggles(double controlWidth, BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -38,32 +45,36 @@ class HomeToggleButton extends StatelessWidget {
     );
   }
 
+  /// Search button on the right side of home toggles
   Widget buildSearchButton(BuildContext context) {
     return InkWell(
       onTap: () {
         context
             .read<HomeProvider>()
             .changeToggleSearchOptions(EToggleSearchOptions.searchField);
+        context.read<SearchProvider>().searchBarFocusNode.requestFocus();
       },
       child: Container(
         height: 44,
-        padding: const EdgeInsets.all(kPaddingM),
+        width: 44,
+        padding: const EdgeInsets.all(kSizeM),
         decoration: const BoxDecoration(
             color: AppColors.black,
             borderRadius: BorderRadius.only(
-                topRight: Radius.circular(7), bottomRight: Radius.circular(7))),
+                topRight: Radius.circular(10), bottomRight: Radius.circular(7))),
         child: SvgPicture.asset(ImageConstants.searchIcon),
       ),
     );
   }
 
+  /// Juz and Surah toggles in the home page
   Widget buildJuzAndSurahToggles(double controlWidth, BuildContext context) {
     return Container(
       width: controlWidth,
       decoration: const BoxDecoration(
           color: AppColors.black,
           borderRadius: BorderRadius.only(
-              topLeft: Radius.circular(15), bottomLeft: Radius.circular(15))),
+              topLeft: Radius.circular(20), bottomLeft: Radius.circular(20))),
       margin: const EdgeInsets.symmetric(vertical: 20),
       child: CupertinoSlidingSegmentedControl<int>(
         backgroundColor: AppColors.black,

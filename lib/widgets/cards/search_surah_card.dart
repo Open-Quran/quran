@@ -20,15 +20,15 @@ class SearchSurahCard extends StatelessWidget {
       child: Container(
         width: double.infinity,
         height: 50,
-        margin: const EdgeInsets.only(top: kPaddingL),
+        margin: const EdgeInsets.only(top: kSizeL),
         decoration: BoxDecoration(
-            borderRadius: BorderRadius.circular(kPaddingM),
+            borderRadius: BorderRadius.circular(kSizeM),
             color: AppColors.black2),
         child: Row(
           children: [
-            const SizedBox(width: kPaddingXL),
+            const SizedBox(width: kSizeXL),
             Visibility(child: Expanded(child: surahName(context))),
-            const SizedBox(width: kPaddingL),
+            const SizedBox(width: kSizeL),
           ],
         ),
       ),

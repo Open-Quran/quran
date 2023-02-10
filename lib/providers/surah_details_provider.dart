@@ -26,9 +26,18 @@ class SurahDetailsProvider extends ChangeNotifier {
   /// is Quran Screen Setting open
   bool isOpenSetting = false;
 
+  /// is Quran Screen Title Menu open
+  bool isTitleMenu = false;
+
   /// Change Quran Screen Setting Mode
   void changeOpenSetting() {
     isOpenSetting = !isOpenSetting;
+    notifyListeners();
+  }
+
+  /// Change Quran Screen Setting Mode
+  void changeTitleMenuState() {
+    isTitleMenu = !isTitleMenu;
     notifyListeners();
   }
 
@@ -93,19 +102,17 @@ class SurahDetailsProvider extends ChangeNotifier {
     }
   }
 
-  /// Play The Verses
-  void playTheVerses(bool isPlaying, String verseKey) {
+  /// Play or Pause The Verses
+  void onTapVerseCardPlayOrPause(int index, bool isPlaying, String verseKey) {
     var verses = versesOfReadingTypeTranslation;
-    int index = verses.indexWhere((element) => element.verseKey == verseKey);
-    List<VerseModel> selectedVerses = index == -1 ? [] : verses.sublist(index);
-    _context.read<PlayerProvider>().onTapPlayOrPause(isPlaying, selectedVerses);
+    _context.read<PlayerProvider>().onTapPlayOrPause(index, isPlaying, verses);
   }
 
   /// Play The Mushaf Page
   void playTheMushafPage(bool isPlaying, int surahId) {
     var index = surahsOfMushafPage.indexWhere((element) => element.id == surahId);
     List<VerseModel> selectedVerses = index == -1 ? [] : surahsOfMushafPage[index].verses;
-    _context.read<PlayerProvider>().onTapPlayOrPause(isPlaying, selectedVerses);
+    _context.read<PlayerProvider>().onTapPlayOrPause(0, isPlaying, selectedVerses);
   }
 
   List<SurahModel> get surahsOfMushafPage {

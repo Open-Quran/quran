@@ -41,7 +41,7 @@
     "page": "Page",
     "previousPage": "Previous Page",
     "surahs": "Surahs",
-    "noResultsFound": "No results found\nTry searching for a different keyword.",
+    "noResultsFound": "No results found\nTry searching for a different keyword",
     "suggestions": "Suggestions",
     "noBookMarksAdded": "No Bookmarks Added",
     "noBookFavoritesAdded": "No Favorites Added",
@@ -61,9 +61,11 @@
     "rate": "Rate",
     "writeAnAppStoreReview": "Write an app store review",
     "play": "Play",
+    "pause": "Pause",
     "favorite": "Favorite",
     "meaning": "Meaning",
-    "navigation": "Navigation",
+    "navigation": "Navigations",
     "searchSurahJuzOrAyahs": "Search surah, juz or ayahs...",
+    "searchSurahJuzOrPage": "Search for surah, juz or page...",
     "searchFor": "Search for"
 }

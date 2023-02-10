@@ -1,4 +1,5 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/models/translation.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
@@ -8,6 +9,7 @@ import 'package:fabrikod_quran/widgets/cards/search_verse_card.dart';
 import 'package:fabrikod_quran/widgets/cards/surah_card.dart';
 import 'package:fabrikod_quran/widgets/juz_category_list_widget.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../models/surah_model.dart';
@@ -17,6 +19,8 @@ import '../widgets/app_bars/primary_app_bar.dart';
 import '../widgets/cards/search_card.dart';
 import '../widgets/cards/search_navigation_card.dart';
 import '../widgets/cards/search_surah_card.dart';
+import '../widgets/cards/search_verse_translations_card.dart';
+import '../widgets/no_item_widget.dart';
 
 class NewHomeScreen extends StatefulWidget {
   const NewHomeScreen({Key? key}) : super(key: key);
@@ -44,25 +48,42 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
                     context.watch<HomeProvider>().homeToggleOptionType,
               ),
               FadeIndexedStack(
-                  index:
-                      context.watch<HomeProvider>().toggleSearchOptions.index,
-                  children: [
-                    FadeIndexedStack(
-                      index: context
-                          .watch<HomeProvider>()
-                          .homeToggleOptionType
-                          .index,
-                      children: [
-                        buildRecentAndJuzCategoryList(),
-                        buildSurahList(),
-                      ],
-                    ),
-                    buildSearchResults(),
-                  ]),
+                index: context.watch<HomeProvider>().toggleSearchOptions.index,
+                children: [
+                  buildToggleSearchPages(context),
+                  buildSearchResults(),
+                ],
+              ),
             ],
           ),
         ),
       ),
+    );
+  }
+
+  /// Juz/Translation and Search pages
+  FadeIndexedStack buildToggleSearchPages(BuildContext context) {
+    return FadeIndexedStack(
+      index: context.watch<HomeProvider>().homeToggleOptionType.index,
+      children: [
+        buildRecentAndJuzCategoryList(),
+        buildSurahList(),
+      ],
+    );
+  }
+
+  /// [VerseTranslation] search results
+  ListView buildVerseTranslationSearchResult(
+      List<VerseTranslation> searchVerseTranslationResult) {
+    return ListView.separated(
+      itemCount: searchVerseTranslationResult.length,
+      shrinkWrap: true,
+      physics: const NeverScrollableScrollPhysics(),
+      padding: const EdgeInsets.symmetric(vertical: 0),
+      itemBuilder: (context, index) => SearchVerseTranslationCard(
+          verseTranslationModel: searchVerseTranslationResult[index],
+          onTap: () {}),
+      separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
   }
 
@@ -79,7 +100,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
             .read<HomeProvider>()
             .onTapSurahCard(searchVerseResult[index].id! - 1),
       ),
-      separatorBuilder: (context, index) => const SizedBox(height: kPaddingL),
+      separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
   }
 
@@ -96,7 +117,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
             .read<HomeProvider>()
             .onTapSurahCard(searchSurahResult[index].id! - 1),
       ),
-      separatorBuilder: (context, index) => const SizedBox(height: kPaddingL),
+      separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
   }
 
@@ -111,7 +132,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
             .read<HomeProvider>()
             .onTapSurahCard(searchSurahResult[index].id! - 1),
       ),
-      separatorBuilder: (context, index) => const SizedBox(height: kPaddingL),
+      separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
   }
 
@@ -145,44 +166,58 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
     );
   }
 
+  /// Displaying search result
   Widget buildSearchResults() {
-    /// Getting list of surahs
-    var searchSurahResult = context.watch<SearchProvider>().filteredSurahSearch;
+    return Consumer<SearchProvider>(builder: (context, searchProvider, child) {
+      return Padding(
+        padding: const EdgeInsets.fromLTRB(kSizeXL, 0, kSizeXL, kSizeXL),
+        child: searchProvider.isSearchResultEmpty
+            ? Padding(
+                padding: const EdgeInsets.only(top: 130.0),
+                child: NoItemWidget(
+                  text: context.translate.noResultsFound,
+                  icon: SvgPicture.asset(
+                    ImageConstants.searchIcon,
+                    width: 45,
+                    height: 55,
+                  ),
+                ),
+              )
+            : Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Visibility(
+                    visible: searchProvider.isSearchResultDisplayed,
+                    child: Padding(
+                      padding: const EdgeInsets.only(top: kSizeL),
+                      child: Text(
+                        context.translate.navigation,
+                        style: context.theme.textTheme.titleLarge,
+                      ),
+                    ),
+                  ),
+                  buildJuzAndPageSearchResult(searchProvider.filterPageNumber,
+                      searchProvider.filterJuzNumber),
+                  buildSurahSearchResult(searchProvider.filteredSurahSearch),
 
-    /// Getting list of verses
-    var searchVerseResult = context.watch<SearchProvider>().filteredVerseSearch;
-
-    /// Getting page number
-    var pageNumber = context.watch<SearchProvider>().filterPageNumber;
-
-    /// Getting juz number
-    var juzNumber = context.watch<SearchProvider>().filterJuzNumber;
-
-    return Padding(
-      padding: const EdgeInsets.fromLTRB(kPaddingXL, 0, kPaddingXL, kPaddingXL),
-      child: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          Text(
-            context.translate.navigation,
-            style: context.theme.textTheme.bodySmall,
-          ),
-          buildJuzAndPageSearchResult(pageNumber, juzNumber),
-          buildSurahSearchResult(searchSurahResult),
-          buildVerseSearchResult(searchVerseResult),
-          const SizedBox(
-            height: kPaddingXXL,
-          ),
-          Text(
-            context.translate.search,
-            style: context.theme.textTheme.bodySmall,
-          ),
-          buildSurahSearchResult2(searchSurahResult),
-        ],
-      ),
-    );
+                  /// Can be used later on
+                  // buildVerseSearchResult(searchProvider.filteredVerseSearch),
+                  // buildVerseTranslationSearchResult(searchProvider.filteredVerseTranslationSearch),
+                  const SizedBox(
+                    height: kSizeXXL,
+                  ),
+                  // Text(
+                  //   context.translate.search,
+                  //   style: context.theme.textTheme.bodySmall,
+                  // ),
+                  // buildSurahSearchResult2(searchSurahResult),
+                ],
+              ),
+      );
+    });
   }
 
+  /// Recent visited Surah, Juz or Page
   Widget buildRecentAndJuzCategoryList() {
     return Column(
       children: [
@@ -198,23 +233,23 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: kPaddingL),
+          padding: const EdgeInsets.symmetric(horizontal: kSizeL),
           child: Text(
             context.translate.recent,
             style: context.theme.textTheme.displayLarge
                 ?.copyWith(letterSpacing: 0.04),
           ),
         ),
-        const SizedBox(height: kPaddingL),
+        const SizedBox(height: kSizeL),
         SizedBox(
           height: 90,
           child: GridView.builder(
             itemCount: 10,
             scrollDirection: Axis.horizontal,
-            padding: const EdgeInsets.symmetric(horizontal: kPaddingM),
+            padding: const EdgeInsets.symmetric(horizontal: kSizeM),
             gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
               crossAxisCount: 1,
-              mainAxisSpacing: kPaddingS,
+              mainAxisSpacing: kSizeS,
             ),
             itemBuilder: (context, index) {
               return GridCard(
@@ -224,7 +259,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
             },
           ),
         ),
-        const SizedBox(height: kPaddingXL),
+        const SizedBox(height: kSizeXL),
       ],
     );
   }
@@ -232,7 +267,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
   /// List of The Juz Category
   Widget buildJuzCategoryList() {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kPaddingL),
+      padding: const EdgeInsets.symmetric(horizontal: kSizeL),
       child: JuzCategoryListWidget(
         juzList: context.watch<QuranProvider>().juzList,
         listType: context.watch<HomeProvider>().juzListType,
@@ -253,7 +288,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
   Widget buildSurahList() {
     var surahs = context.watch<QuranProvider>().surahs;
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: kPaddingL),
+      padding: const EdgeInsets.symmetric(horizontal: kSizeL),
       child: ListView.separated(
         itemCount: surahs.length,
         shrinkWrap: true,
@@ -264,11 +299,10 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
             surahModel: surah,
             onTap: () {
               context.read<HomeProvider>().onTapSurahCard(surah.id! - 1);
-              print("On Tap Surah Card : ${surah.id}");
             },
           );
         },
-        separatorBuilder: (context, index) => const SizedBox(height: kPaddingL),
+        separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
       ),
     );
   }

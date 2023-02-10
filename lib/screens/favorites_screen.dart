@@ -5,7 +5,6 @@ import 'package:fabrikod_quran/widgets/cards/favorite_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 import '../widgets/app_bars/primary_app_bar.dart';
 import '../widgets/no_item_widget.dart';
@@ -38,7 +37,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         : SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                  horizontal: kPaddingXL, vertical: kPaddingL),
+                  horizontal: kSizeXL, vertical: kSizeL),
               child: Column(
                 children: [
                   Align(
@@ -48,22 +47,17 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                       style: context.theme.textTheme.displayLarge,
                     ),
                   ),
-                  ScrollablePositionedList.separated(
-                    itemScrollController:
-                        context.watch<FavoritesProvider>().itemScrollController,
-                    itemPositionsListener: context
-                        .watch<FavoritesProvider>()
-                        .itemPositionsListener,
+                  ListView.separated(
                     itemCount: favoriteVerses.length,
                     shrinkWrap: true,
                     padding: const EdgeInsets.symmetric(
-                      vertical: kPaddingL,
+                      vertical: kSizeL,
                     ),
                     itemBuilder: (context, item) => FavoriteCard(
                       verseModel: favoriteVerses.elementAt(item),
                     ),
                     separatorBuilder: (context, item) =>
-                        const SizedBox(height: kPaddingXL),
+                        const SizedBox(height: kSizeXL),
                   ),
                 ],
               ),

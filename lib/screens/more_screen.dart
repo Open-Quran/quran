@@ -34,7 +34,7 @@ class _MoreScreenState extends State<MoreScreen> {
     return SingleChildScrollView(
       child: Padding(
         padding: const EdgeInsets.symmetric(
-            vertical: kPaddingL, horizontal: kPaddingXL),
+            vertical: kSizeL, horizontal: kSizeXL),
         child: Column(
           children: [
             Align(
@@ -109,7 +109,7 @@ class _MoreScreenState extends State<MoreScreen> {
                   color: AppColors.white,
                 )),
             Container(
-              padding: const EdgeInsets.only(top: kPaddingXXL),
+              padding: const EdgeInsets.only(top: kSizeXXL),
               alignment: Alignment.topLeft,
               child: Text(
                 context.translate.rate,
@@ -128,7 +128,7 @@ class _MoreScreenState extends State<MoreScreen> {
               endIcon: SvgPicture.asset(ImageConstants.arrowRight),
             ),
             const SizedBox(
-              height: kPaddingXL,
+              height: kSizeXL,
             ),
             buildAppInfo,
           ],

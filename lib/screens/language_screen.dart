@@ -30,7 +30,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
   Widget get buildBody {
     return Padding(
       padding: const EdgeInsets.symmetric(
-          vertical: kPaddingL, horizontal: kPaddingXL),
+          vertical: kSizeL, horizontal: kSizeXL),
       child: SingleChildScrollView(
         child: Column(
           children: [

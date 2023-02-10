@@ -57,16 +57,16 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
 
   Widget get buildBody {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: kPaddingXL) +
-          const EdgeInsets.only(top: kPaddingXXL),
+      padding: const EdgeInsets.symmetric(horizontal: kSizeXL) +
+          const EdgeInsets.only(top: kSizeXXL),
       child: Column(
         children: [
           buildBasmala,
-          const SizedBox(height: kPaddingM * 2),
+          const SizedBox(height: kSizeM * 2),
           buildSearchBar,
-          const SizedBox(height: kPaddingM),
+          const SizedBox(height: kSizeM),
           buildSearchTags,
-          const SizedBox(height: kPaddingM * 2),
+          const SizedBox(height: kSizeM * 2),
           RepaintBoundary(
             child: context.watch<SearchProvider>().isFieldEmpty
                 ? buildTabBar
@@ -145,7 +145,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
                   children: [
                     Padding(
                       padding: const EdgeInsets.only(
-                          left: kPaddingM, bottom: kPaddingM),
+                          left: kSizeM, bottom: kSizeM),
                       child: buildSurahLabel(),
                     ),
                     buildSurahSearchResult(searchSurahResult),
@@ -179,7 +179,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
             .read<HomeProvider>()
             .onTapSurahCard(searchSurahResult[index].id! - 1),
       ),
-      separatorBuilder: (context, index) => const SizedBox(height: kPaddingL),
+      separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
   }
 
@@ -220,13 +220,13 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
       itemCount: surahs.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.symmetric(vertical: kPaddingXXL),
+      padding: const EdgeInsets.symmetric(vertical: kSizeXXL),
       itemBuilder: (context, index) => SurahCard(
         surahModel: surahs[index],
         onTap: () =>
             context.read<HomeProvider>().onTapSurahCard(surahs[index].id! - 1),
       ),
-      separatorBuilder: (context, index) => const SizedBox(height: kPaddingL),
+      separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
   }
 
@@ -236,11 +236,11 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
       itemCount: 30,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.symmetric(vertical: kPaddingXXL),
+      padding: const EdgeInsets.symmetric(vertical: kSizeXXL),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        mainAxisSpacing: kPaddingM * 2,
-        crossAxisSpacing: kPaddingM * 2,
+        mainAxisSpacing: kSizeM * 2,
+        crossAxisSpacing: kSizeM * 2,
       ),
       itemBuilder: (context, index) => GridCard(
           text: "${index + 1}",
@@ -257,12 +257,12 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
       itemCount: sajdas.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.symmetric(vertical: kPaddingXXL),
+      padding: const EdgeInsets.symmetric(vertical: kSizeXXL),
       itemBuilder: (context, index) => SurahCard(
         surahModel: sajdas[index],
         onTap: () => context.read<HomeProvider>().onTapSajdaCard(index),
       ),
-      separatorBuilder: (context, index) => const SizedBox(height: kPaddingL),
+      separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
   }
 }
