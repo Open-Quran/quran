@@ -23,6 +23,9 @@ class PlayerProvider extends ChangeNotifier {
   /// Index of the playing verse
   int playerIndex = 0;
 
+  /// Player Speed title
+  String playerSpeedTitle = "Normal";
+
   /// EPlayerState [EPlayerState]
   EPlayerState playerState = EPlayerState.stop;
 
@@ -32,6 +35,7 @@ class PlayerProvider extends ChangeNotifier {
   PlayerProvider() {
     player.playerStateStream.listen(checkIfCompleted);
   }
+
   /// Listens to the Player's Position
   Stream<PositionData> get positionDataStream =>
       Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
@@ -68,6 +72,14 @@ class PlayerProvider extends ChangeNotifier {
         play();
       }
     }
+  }
+
+  /// Change Player's Playing Speed
+  Future<void> setPlaybackRate(String value) async {
+    playerSpeedTitle = value;
+    if (value == "Normal") value = "1.0";
+    await player.setSpeed(double.tryParse(value) ?? 1.0);
+    notifyListeners();
   }
 
   /// Can i play the previous ?
