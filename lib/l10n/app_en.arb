@@ -67,5 +67,8 @@
     "navigation": "Navigations",
     "searchSurahJuzOrAyahs": "Search surah, juz or ayahs...",
     "searchSurahJuzOrPage": "Search for surah, juz or page...",
-    "searchFor": "Search for"
+    "searchFor": "Search for",
+    "reciter": "Reciter",
+    "download": "Download",
+    "speed": "Speed"
 }

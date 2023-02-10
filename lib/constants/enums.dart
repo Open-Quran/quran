@@ -26,7 +26,7 @@ enum EBookMarkType { verse, page }
 enum EJuzListType { list, grid }
 
 /// Home switch toggle buttons
-enum EHomeToggleOptions {juz, surah}
+enum EHomeToggleOptions { juz, surah }
 
 /// Home switch toggle button between toggles and search bar
 enum EToggleSearchOptions { toggles, searchField }

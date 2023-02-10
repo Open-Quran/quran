@@ -50,4 +50,6 @@ class ImageConstants {
   static const String arrowRight = "${_iconsPath}ic_arrow_right.svg";
   static const String meaningIcon = "${_iconsPath}ic_meaning.svg";
   static const String cancelIcon = "${_iconsPath}ic_cancel.svg";
+  static const String downloadIcon = "${_iconsPath}ic_download.svg";
+  static const String okayBorderIcon = "${_iconsPath}ic_okay_border.svg";
 }
