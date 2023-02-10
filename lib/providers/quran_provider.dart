@@ -48,6 +48,15 @@ class QuranProvider extends ChangeNotifier {
     return verseList;
   }
 
+  /// Get all surah verses
+  List<VerseModel> get getAllVerseTranslations {
+    List<VerseModel> verseList = [];
+    for (var verse in surahs) {
+      verseList.addAll(verse.verses);
+    }
+    return verseList;
+  }
+
   Future<void> selectedTranslation(int? index) async {
     await translationService.selectedTranslation(index);
     notifyListeners();

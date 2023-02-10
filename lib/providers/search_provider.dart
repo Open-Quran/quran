@@ -1,12 +1,17 @@
 import 'package:fabrikod_quran/models/surah_model.dart';
+import 'package:fabrikod_quran/models/translation.dart';
+import 'package:fabrikod_quran/models/verse_model.dart';
+import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../constants/enums.dart';
 import '../models/reading_settings_model.dart';
 import '../screens/surah_details/surah_details_screen.dart';
 import '../utils/utils.dart';
+import '../widgets/tags/custom_tag_list.dart';
 
 class SearchProvider extends ChangeNotifier {
   /// Class constructor
@@ -24,11 +29,21 @@ class SearchProvider extends ChangeNotifier {
   /// The list of the [SurahModel]
   List<SurahModel> filteredSurahSearch = [];
 
+  /// The list of the [VerseModel]
+  List<VerseModel> filteredVerseSearch = [];
+
+
+  /// The list of the [VerseTranslation]
+  List<VerseTranslation> filteredVerseTranslationSearch = [];
+
   /// Storing search query, initially empty
   String query = '';
 
   /// Checks if search field is empty
   bool isFieldEmpty = true;
+
+  /// Checks if search field is empty
+  bool isSearchButtonTapped = false;
 
   /// Storing page number, initially null
   int? filterPageNumber;
@@ -42,15 +57,75 @@ class SearchProvider extends ChangeNotifier {
     onSearchFieldChanged();
   }
 
+  /// List of tags under the search
+  Widget get buildSearchTags {
+    return CustomTagList(
+      tags: const [
+        "Al-Fatiha",
+        "Al-Mulk",
+        "Ya-sin",
+        "Al-Kahf",
+        "Maryam",
+      ],
+      selectedTag: selectedTag,
+    );
+  }
+
   /// Checking if search field is empty
   onSearchFieldChanged() {
     if (query != "") {
       isFieldEmpty = false;
       filterSurahSearchResults(query);
       filterByPageAndJuzNumber(query);
+      filterSurahVerse(query);
+      filterSurahVerseTranslation(query);
+      isSearchButtonTapped = true;
     } else {
       isFieldEmpty = true;
     }
+    notifyListeners();
+  }
+
+  /// Getting search result by surah name, id etc.
+  /// [VerseModel]
+  filterSurahVerseTranslation(String queryText) {
+    queryText = queryText.toLowerCase();
+    List<VerseTranslation> searchList = _context.read<QuranProvider>().translationService.getAllVerseTranslations;
+    List<VerseTranslation> searchResult = [];
+    for (var verse in searchList) {
+      if (verse.text!.toLowerCase().contains(queryText)) {
+        searchResult.add(verse);
+      }
+    }
+    filteredVerseTranslationSearch.clear();
+    filteredVerseTranslationSearch.addAll(searchResult);
+    notifyListeners();
+  }
+
+
+  /// Getting search result by surah name, id etc.
+  /// [VerseModel]
+  filterSurahVerse(String queryText) {
+    queryText = queryText.toLowerCase();
+    List<VerseModel> searchList = _context.read<QuranProvider>().getAllVerses;
+    List<SurahModel> searchListSurah = _context.read<QuranProvider>().surahs;
+    List<VerseModel> searchResult = [];
+    for (var verse in searchList) {
+      if (verse.text!.toLowerCase().contains(queryText) ||
+          searchListSurah[verse.surahId! - 1]
+              .nameTranslated!
+              .toLowerCase()
+              .contains(queryText)) {
+        if (searchListSurah[verse.surahId! - 1].id == (verse.surahId!)) {
+          verse.surahNameTranslated =
+              searchListSurah[verse.surahId!].nameSimple;
+          verse.surahNameArabic = searchListSurah[verse.surahId!].nameArabic;
+        }
+        searchResult.add(verse);
+      }
+    }
+    filteredVerseSearch.clear();
+    filteredVerseSearch.addAll(searchResult);
     notifyListeners();
   }
 
@@ -107,5 +182,42 @@ class SearchProvider extends ChangeNotifier {
   selectedTag(String selectedTag) {
     textEditingController.text = selectedTag;
     searchBarFocusNode.requestFocus();
+  }
+
+  /// If search bar is not empty, clear textField
+  /// If search bar empty, show toggle buttons
+  clearSearchField(BuildContext context) {
+    if (textEditingController.text.isNotEmpty) {
+      textEditingController.clear();
+      filterPageNumber = null;
+      filterJuzNumber = null;
+      filteredSurahSearch.clear();
+      filteredVerseSearch.clear();
+      searchBarFocusNode.requestFocus();
+      isSearchButtonTapped = false;
+      notifyListeners();
+    } else {
+      Utils.unFocus();
+      context
+          .read<HomeProvider>()
+          .changeToggleSearchOptions(EToggleSearchOptions.toggles);
+    }
+  }
+
+  /// Checking when search result is empty
+  get isSearchResultEmpty {
+    return (filteredVerseSearch.isEmpty &&
+            filteredSurahSearch.isEmpty &&
+            filterPageNumber == null &&
+            filterJuzNumber == null) &&
+        isSearchButtonTapped;
+  }
+
+  /// Checking when search item is displayed
+  get isSearchResultDisplayed {
+    return filteredVerseSearch.isNotEmpty ||
+        filteredSurahSearch.isNotEmpty ||
+        filterPageNumber != null ||
+        filterJuzNumber != null;
   }
 }

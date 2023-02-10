@@ -13,32 +13,31 @@ class CustomTagList extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SizedBox(
-      height: 35,
-      child: ListView.separated(
-        itemCount: tags.length,
-        scrollDirection: Axis.horizontal,
-        itemBuilder: (context, index) => buildButton(context, tag: tags[index]),
-        separatorBuilder: (context, index) => const SizedBox(width: kPaddingM),
-      ),
-    );
+    return Container(
+        margin: const EdgeInsets.only(top: kSizeL),
+        height: 45,
+        child: Wrap(
+          spacing: kSizeL,
+          children: List.generate(
+              tags.length, (index) => buildButton(context, tag: tags[index])),
+        ));
   }
 
   Widget buildButton(BuildContext context, {required String tag}) {
     return ElevatedButton(
       onPressed: () => selectedTag(tag),
       style: ElevatedButton.styleFrom(
-        padding: const EdgeInsets.all(kPaddingM),
-        backgroundColor: context.theme.cardTheme.color?.withOpacity(0.1),
-        foregroundColor: Colors.transparent,
+        padding: const EdgeInsets.all(kSizeM),
+        backgroundColor: AppColors.black10,
+        foregroundColor: context.theme.cardTheme.color,
         shadowColor: Colors.transparent,
         shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(kPaddingM / 2),
+          borderRadius: BorderRadius.circular(20),
         ),
       ),
       child: Text(
         tag,
-        style: context.theme.textTheme.bodyLarge?.copyWith(
+        style: context.theme.textTheme.titleMedium?.copyWith(
           color: context.theme.secondaryHeaderColor,
         ),
       ),

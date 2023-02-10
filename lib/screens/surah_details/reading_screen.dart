@@ -12,7 +12,7 @@ class ReadingScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     return ListView.separated(
       itemCount: 604,
-      padding: const EdgeInsets.symmetric(horizontal: kPaddingL),
+      padding: const EdgeInsets.symmetric(horizontal: kSizeL),
       itemBuilder: (context, index) {
         var versesOfPage = context.read<SurahDetailsProvider>().getSurahOfMushafPage(index + 1);
         return QuranPageWidget(
@@ -23,7 +23,7 @@ class ReadingScreen extends StatelessWidget {
           onTap: context.read<SurahDetailsProvider>().changeReadingMode,
         );
       },
-      separatorBuilder: (context, index) => const SizedBox(height: kPaddingXL),
+      separatorBuilder: (context, index) => const SizedBox(height: kSizeXL),
     );
   }
 }

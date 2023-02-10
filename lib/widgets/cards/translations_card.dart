@@ -31,7 +31,7 @@ class TranslationsCard extends StatelessWidget {
                   (e) => ListTile(
                     onTap: () => context.read<QuranProvider>().selectedTranslation(e.resourceId),
                     visualDensity: const VisualDensity(vertical: -2),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: kPaddingM * 2),
+                    contentPadding: const EdgeInsets.symmetric(horizontal: kSizeM * 2),
                     dense: true,
                     title: Row(
                       children: [
@@ -43,7 +43,7 @@ class TranslationsCard extends StatelessWidget {
                           width: 25,
                           color: context.theme.iconTheme.color,
                         ),
-                        const SizedBox(width: kPaddingL),
+                        const SizedBox(width: kSizeL),
                         Expanded(
                           child: Text(
                             e.translationName ?? "",

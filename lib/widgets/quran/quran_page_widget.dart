@@ -27,7 +27,7 @@ class QuranPageWidget extends StatelessWidget {
       child: Column(
         children: [
           buildSurahCard(),
-          const SizedBox(height: kPadding3XL),
+          const SizedBox(height: kSize3XL),
           buildBottomBorder(context, versesOfPage.last.verses.last)
         ],
       ),
@@ -91,7 +91,7 @@ class QuranPageWidget extends StatelessWidget {
 
   Widget buildBottomBorder(BuildContext context, VerseModel verse) {
     return Container(
-      padding: const EdgeInsets.only(bottom: kPaddingS),
+      padding: const EdgeInsets.only(bottom: kSizeS),
       decoration: const BoxDecoration(
           border: Border(
         bottom: BorderSide(color: AppColors.black10),

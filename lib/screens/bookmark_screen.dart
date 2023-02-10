@@ -38,7 +38,7 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
           )
         : SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: kPaddingXL, vertical: kPaddingL),
+              padding: const EdgeInsets.symmetric(horizontal: kSizeXL, vertical: kSizeL),
               child: Column(
                 children: [
                   Align(
@@ -52,12 +52,12 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
                     itemCount: bookmarks.length,
                     shrinkWrap: true,
                     padding: const EdgeInsets.symmetric(
-                      vertical: kPaddingL,
+                      vertical: kSizeL,
                     ),
                     itemBuilder: (context, item) => BookmarkCard(
                       verseModel: bookmarks.elementAt(item).verseModel,
                     ),
-                    separatorBuilder: (context, item) => const SizedBox(height: kPaddingXL),
+                    separatorBuilder: (context, item) => const SizedBox(height: kSizeXL),
                   ),
                 ],
               ),
