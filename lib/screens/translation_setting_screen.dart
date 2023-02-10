@@ -51,7 +51,8 @@ class _TranslationSettingScreenState extends State<TranslationSettingScreen> {
             padding: const EdgeInsets.symmetric(horizontal: kPaddingS),
             child: Text(
               context.translate.downloaded,
-              style: context.theme.textTheme.bodyMedium,
+              style: context.theme.textTheme.bodyMedium!
+                  .copyWith(color: AppColors.white.withOpacity(0.5)),
             ),
           ),
           Divider(
@@ -62,7 +63,8 @@ class _TranslationSettingScreenState extends State<TranslationSettingScreen> {
                 horizontal: kPaddingS, vertical: kPaddingL),
             child: Text(
               context.translate.arabic,
-              style: context.theme.textTheme.headlineSmall,
+              style: context.theme.textTheme.headlineSmall!
+                  .copyWith(color: AppColors.white.withOpacity(0.5)),
             ),
           ),
           const TranslationsSettingCard(),
