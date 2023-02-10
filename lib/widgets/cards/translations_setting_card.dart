@@ -51,9 +51,9 @@ class _TranslationsSettingCardState extends State<TranslationsSettingCard>
           height: 44,
           decoration: BoxDecoration(
               color: AppColors.black3,
-              borderRadius: BorderRadius.circular(kPaddingM)),
+              borderRadius: BorderRadius.circular(kSizeM)),
           child: Padding(
-            padding: const EdgeInsets.only(left: kPaddingM, right: kPaddingM),
+            padding: const EdgeInsets.only(left: kSizeM, right: kSizeM),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
@@ -82,8 +82,8 @@ class _buildDeleteButton extends StatelessWidget {
         width: 100,
         decoration: const BoxDecoration(
           borderRadius: BorderRadius.only(
-              topRight: Radius.circular(kPaddingL),
-              bottomRight: Radius.circular(kPaddingL)),
+              topRight: Radius.circular(kSizeL),
+              bottomRight: Radius.circular(kSizeL)),
           color: AppColors.redDark,
         ),
         child: Center(child: Text(context.translate.delete)),
