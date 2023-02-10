@@ -39,10 +39,10 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(kPaddingM * 3),
+      padding: const EdgeInsets.all(kSizeM * 3),
       decoration: BoxDecoration(
         color: context.theme.backgroundColor,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(kPaddingXL)),
+        borderRadius: const BorderRadius.vertical(top: Radius.circular(kSizeXL)),
       ),
       child: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
@@ -144,7 +144,7 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         buildTitle("${context.translate.fontSize} (${context.translate.arabic})"),
-        const SizedBox(height: kPaddingM),
+        const SizedBox(height: kSizeM),
         FontSliderCard(
           value: context.watch<QuranProvider>().localSetting.textScaleFactor,
           onChange: (value){},

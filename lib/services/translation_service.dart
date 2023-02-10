@@ -6,13 +6,20 @@ import 'package:fabrikod_quran/services/asset_quran_service.dart';
 import 'package:fabrikod_quran/services/network_service.dart';
 
 class TranslationService {
+
+  /// List of all translations
   late List<Translation> allTranslation;
+
+  /// List of active translations
+  /// Active translation are selected translations
   late List<Translations> activeTranslations;
 
   TranslationService() {
     _init();
   }
 
+  /// Initialization method
+  /// Filling lists of translations
   Future _init() async {
     allTranslation = await AssetQuranService.getTranslations();
     await _getVerseTranslationListFromAsset("en", 131);
@@ -20,6 +27,7 @@ class TranslationService {
     _updateActiveTranslations();
   }
 
+  /// Get update list of active translations
   void _updateActiveTranslations() {
     List<Translations> list = [];
     for (var element in allTranslation) {
@@ -30,6 +38,7 @@ class TranslationService {
     activeTranslations = list;
   }
 
+  /// Get specific verse translation
   List<VerseTranslation> translationsOfVerse(int verseId) {
     List<VerseTranslation> list = [];
     for (var element in activeTranslations) {
@@ -37,13 +46,25 @@ class TranslationService {
     }
     return list;
   }
+
+  /// Get all verse translations
+  List<VerseTranslation> get getAllVerseTranslations {
+    List<VerseTranslation> verseTranslationList = [];
+    return verseTranslationList;
+  }
+
+  /// Get verse translation names
   String translationsName(int resourceId) {
-    var value = activeTranslations.firstWhere((element) => element.resourceId == resourceId);
+    var value = activeTranslations
+        .firstWhere((element) => element.resourceId == resourceId);
     return value.translationName ?? "";
   }
 
-  Future _getVerseTranslationListFromAsset(String countryCode, int resourceId) async {
-    List<VerseTranslation> result = await AssetQuranService.getVerseTranslationList(countryCode);
+  /// Get translations from assets
+  Future _getVerseTranslationListFromAsset(
+      String countryCode, int resourceId) async {
+    List<VerseTranslation> result =
+        await AssetQuranService.getVerseTranslationList(countryCode);
     Translations? translations = _getTranslations(resourceId);
     if (translations == null) return;
     translations.verseTranslations = result;
@@ -57,6 +78,7 @@ class TranslationService {
     if (localCountryCode == countryCode) translations.isShow = true;
   }
 
+  /// Get translations
   Translations? _getTranslations(int? resourceId) {
     if (resourceId == null) return null;
     for (var element in allTranslation) {
@@ -67,6 +89,7 @@ class TranslationService {
     return null;
   }
 
+  /// Filling list of selected translation
   Future<void> selectedTranslation(int? resourceId) async {
     Translations? translations = _getTranslations(resourceId);
     if (translations == null) return;
@@ -76,14 +99,18 @@ class TranslationService {
     _updateActiveTranslations();
   }
 
-  Future<void> _getVerseTranslationFromNetwork(Translations translations) async {
-    if (!translations.isShow || translations.verseTranslations.isNotEmpty) return;
+  /// Get translations from API
+  Future<void> _getVerseTranslationFromNetwork(
+      Translations translations) async {
+    if (!translations.isShow || translations.verseTranslations.isNotEmpty){
+      return;
+    }
     translations.verseTranslations =
-        await NetworkService.fetchVerseTranslationList(translations.resourceId!);
+        await NetworkService.fetchVerseTranslationList(
+            translations.resourceId!);
 
     for (var element in translations.verseTranslations) {
       element.translationName = translations.translationName;
     }
-
   }
 }

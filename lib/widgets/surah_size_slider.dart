@@ -15,7 +15,7 @@ class SurahSizeSlider extends StatelessWidget {
       children: [
         CustomTitle(titleText: context.translate.fontSize),
         Container(
-          margin: const EdgeInsets.only(top: kPaddingM, bottom: kPaddingXXL),
+          margin: const EdgeInsets.only(top: kSizeM, bottom: kSizeXXL),
           decoration: BoxDecoration(
             color: AppColors.black,
             borderRadius: BorderRadius.circular(8),
@@ -23,7 +23,7 @@ class SurahSizeSlider extends StatelessWidget {
           width: double.infinity,
           height: 50,
           child: Padding(
-            padding: const EdgeInsets.all(kPaddingL),
+            padding: const EdgeInsets.all(kSizeL),
             child: Row(
               children: [
                 Expanded(

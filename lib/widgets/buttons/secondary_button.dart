@@ -17,26 +17,26 @@ class SecondaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.only(top: kPaddingL),
+      padding: const EdgeInsets.only(top: kSizeL),
       child: ElevatedButton(
         onPressed: onPressed,
         style: ElevatedButton.styleFrom(
-          fixedSize: const Size(double.infinity, 72),
+          fixedSize: const Size(double.infinity, 65),
           backgroundColor: AppColors.black2,
           padding: const EdgeInsets.all(0),
           shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(kPaddingM),
+            borderRadius: BorderRadius.circular(kSizeM),
           ),
         ),
         child: Row(
           children: [
-            const SizedBox(width: kPaddingXL),
+            const SizedBox(width: kSizeXL),
             icon,
-            const SizedBox(width: kPaddingXXL),
+            const SizedBox(width: kSizeXXL),
             Text(
               text,
               style: context.theme.textTheme.headlineSmall
-                  ?.copyWith(color: Colors.grey),
+                  ?.copyWith(color: Colors.white),
               textAlign: TextAlign.left,
             ),
           ],

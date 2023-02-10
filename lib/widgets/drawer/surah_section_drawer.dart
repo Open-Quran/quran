@@ -110,7 +110,7 @@ class _SurahSectionDrawerState extends State<SurahSectionDrawer> {
   Widget get buildVerticalDivider {
     return VerticalDivider(
       color: context.theme.dividerColor,
-      width: kPaddingXL * 2,
+      width: kSizeXL * 2,
       thickness: 2,
     );
   }

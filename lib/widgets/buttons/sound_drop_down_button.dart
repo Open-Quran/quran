@@ -38,7 +38,7 @@ class _SoundDropDownState extends State<SoundDropDown> {
         ),
         Container(
           width: double.infinity,
-          margin: const EdgeInsets.only(top: kPaddingM, bottom: kPaddingXXL),
+          margin: const EdgeInsets.only(top: kSizeM, bottom: kSizeXXL),
           decoration: const BoxDecoration(
               color: AppColors.black,
               borderRadius: BorderRadius.all(Radius.circular(8))),
@@ -47,7 +47,7 @@ class _SoundDropDownState extends State<SoundDropDown> {
             decoration: const InputDecoration(
               border: InputBorder.none,
               contentPadding:
-                  EdgeInsets.only(right: kPaddingL, left: kPaddingM),
+                  EdgeInsets.only(right: kSizeL, left: kSizeM),
             ),
             value: selectedSound,
             items: sounds.map<DropdownMenuItem<String>>((String mascot) {

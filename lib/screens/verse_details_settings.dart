@@ -10,14 +10,14 @@ import '../widgets/background_color_select.dart';
 import '../widgets/buttons/layout_options_toggle_buttons.dart';
 import '../widgets/buttons/read_options_toggle_buttons.dart';
 
-class SettingsTopRight extends StatefulWidget {
-  const SettingsTopRight({Key? key}) : super(key: key);
+class VerseDetailsSettings extends StatefulWidget {
+  const VerseDetailsSettings({Key? key}) : super(key: key);
 
   @override
-  State<SettingsTopRight> createState() => _SettingsTopRightState();
+  State<VerseDetailsSettings> createState() => _VerseDetailsSettingsState();
 }
 
-class _SettingsTopRightState extends State<SettingsTopRight> {
+class _VerseDetailsSettingsState extends State<VerseDetailsSettings> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +27,7 @@ class _SettingsTopRightState extends State<SettingsTopRight> {
 
   Widget get buildBody {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: kPadding3XL, vertical: kPaddingXL),
+      padding: const EdgeInsets.symmetric(horizontal: kSize3XL, vertical: kSizeXL),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

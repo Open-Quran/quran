@@ -30,7 +30,7 @@ class VerseModel {
 
   @override
   String toString() {
-    return 'VerseModel{id: $id, verseNumber: $verseNumber, surahId: $surahId, verseKey: $verseKey, juzNumber: $juzNumber, hizbNumber: $hizbNumber, rubElHizbNumber: $rubElHizbNumber, sajdahNumber: $sajdahNumber, pageNumber: $pageNumber, text: $text, audioUrl: $audioUrl, text: $surahNameArabic, text: $surahNameTranslated}';
+    return 'VerseModel{id: $id, verseNumber: $verseNumber, surahId: $surahId, verseKey: $verseKey, juzNumber: $juzNumber, hizbNumber: $hizbNumber, rubElHizbNumber: $rubElHizbNumber, sajdahNumber: $sajdahNumber, pageNumber: $pageNumber, text: $text, audioUrl: $audioUrl, surahNameArabic: $surahNameArabic, surahNameTranslated: $surahNameTranslated}';
   }
 
   VerseModel.fromJson(Map<String, dynamic> json) {

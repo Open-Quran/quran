@@ -12,20 +12,20 @@ class SurahCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(kPaddingM),
+      borderRadius: BorderRadius.circular(kSizeM),
       child: Container(
         height: 70,
         decoration: BoxDecoration(
           color: AppColors.black2,
-          borderRadius: BorderRadius.circular(kPaddingM),
+          borderRadius: BorderRadius.circular(kSizeM),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: kPaddingXXL),
+        padding: const EdgeInsets.symmetric(horizontal: kSizeXXL),
         child: Row(
           children: [
             buildSurahNumber(context),
-            const SizedBox(width: kPaddingXXL),
+            const SizedBox(width: kSizeXXL),
             Expanded(child: buildSurahNames(context)),
-            const SizedBox(width: kPaddingXXL),
+            const SizedBox(width: kSizeXXL),
             buildVersesCount(context),
           ],
         ),
@@ -55,7 +55,7 @@ class SurahCard extends StatelessWidget {
             color: AppColors.grey,
           ),
         ),
-        const SizedBox(height: kPaddingS),
+        const SizedBox(height: kSizeS),
         Text(
           surahModel.nameTranslated.toString(),
           style: context.theme.textTheme.labelMedium?.copyWith(

@@ -60,7 +60,7 @@ class _FavoriteCardState extends State<FavoriteCard>
           height: 72,
           decoration: BoxDecoration(
               color: AppColors.zeus,
-              borderRadius: BorderRadius.circular(kPaddingM)),
+              borderRadius: BorderRadius.circular(kSizeM)),
           child: Row(
             children: [
               const FavoriteIcon(),
@@ -84,7 +84,7 @@ class FavoriteIcon extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(kPaddingL),
+      padding: const EdgeInsets.all(kSizeL),
       child: SvgPicture.asset(
         ImageConstants.favoritesIconCard,
       ),
@@ -137,7 +137,7 @@ class PageNumber extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.all(kPadding3XL),
+      padding: const EdgeInsets.all(kSize3XL),
       child: Text(
         '$pageNumber',
         style: context.theme.textTheme.headlineSmall

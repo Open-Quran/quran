@@ -25,9 +25,9 @@ class TranslationScreen extends StatelessWidget {
         itemScrollController: context.read<SurahDetailsProvider>().itemScrollController,
         itemPositionsListener: context.read<SurahDetailsProvider>().itemPositionsListener,
         padding: const EdgeInsets.only(
-          left: kPaddingM,
-          right: kPaddingL,
-          bottom: kPaddingXL,
+          left: kSizeM,
+          right: kSizeL,
+          bottom: kSizeXL,
         ),
         physics: const ClampingScrollPhysics(),
         itemBuilder: (context, index) {
@@ -39,7 +39,7 @@ class TranslationScreen extends StatelessWidget {
             ],
           );
         },
-        separatorBuilder: (context, index) => const SizedBox(height: kPaddingM),
+        separatorBuilder: (context, index) => const SizedBox(height: kSizeM),
       ),
     );
   }
