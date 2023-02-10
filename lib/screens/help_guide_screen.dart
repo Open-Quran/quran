@@ -34,8 +34,8 @@ class _HelpGuideScreenState extends State<HelpGuideScreen> {
   Widget get buildBody {
     return SingleChildScrollView(
       padding: const EdgeInsets.symmetric(
-        horizontal: kPaddingXL,
-        vertical: kPaddingXXL,
+        horizontal: kSizeXL,
+        vertical: kSizeXXL,
       ),
       child: Column(
         children: [
@@ -43,29 +43,29 @@ class _HelpGuideScreenState extends State<HelpGuideScreen> {
             text: context.translate.helpGuideTitle1,
             description: context.translate.helpGuideDescription1,
           ),
-          const SizedBox(height: kPaddingM),
+          const SizedBox(height: kSizeM),
           HelpGuideCard(
             text: context.translate.helpGuideTitle1,
             description: context.translate.helpGuideDescription1,
           ),
-          const SizedBox(height: kPaddingM),
+          const SizedBox(height: kSizeM),
           HelpGuideCard(
             text: context.translate.helpGuideTitle1,
             description: context.translate.helpGuideDescription1,
           ),
-          const SizedBox(height: kPaddingM),
+          const SizedBox(height: kSizeM),
           HelpGuideCard(
             text: context.translate.helpGuideTitle1,
             description: context.translate.helpGuideDescription1,
           ),
-          const SizedBox(height: kPaddingM),
+          const SizedBox(height: kSizeM),
           HelpGuideCard(
             text: context.translate.helpGuideTitle1,
             description: context.translate.helpGuideDescription1,
           ),
-          const SizedBox(height: kPaddingM * 5),
+          const SizedBox(height: kSizeM * 5),
           buildAppInfoHelpGuide,
-          const SizedBox(height: kPaddingM * 5)
+          const SizedBox(height: kSizeM * 5)
         ],
       ),
     );
@@ -77,7 +77,7 @@ class _HelpGuideScreenState extends State<HelpGuideScreen> {
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
         Text(context.translate.madeByFabrikod, style: context.theme.textTheme.headlineSmall),
-        const SizedBox(height: kPaddingS),
+        const SizedBox(height: kSizeS),
         FutureBuilder<PackageInfo>(
           future: PackageInfo.fromPlatform(),
           builder: (context, snapshot) {

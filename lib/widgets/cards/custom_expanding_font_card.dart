@@ -28,7 +28,7 @@ class _CustomExpandingFontCard extends State<CustomExpandingFontCard> {
     return Theme(
       data: context.theme.copyWith(dividerColor: Colors.transparent),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(kPaddingM),
+        borderRadius: BorderRadius.circular(kSizeM),
         child: ExpansionTile(
           title: Text(
             widget.title,
@@ -42,13 +42,13 @@ class _CustomExpandingFontCard extends State<CustomExpandingFontCard> {
           onExpansionChanged: changeExpanded,
           backgroundColor: context.theme.cardTheme.color?.withOpacity(0.1),
           collapsedBackgroundColor: context.theme.cardTheme.color?.withOpacity(0.1),
-          childrenPadding: const EdgeInsets.only(bottom: kPaddingM),
+          childrenPadding: const EdgeInsets.only(bottom: kSizeM),
           children: <Widget>[
             ...widget.fonts.map(
               (e) => ListTile(
                 onTap: () => widget.changedFont(e),
                 visualDensity: const VisualDensity(vertical: -2),
-                contentPadding: const EdgeInsets.symmetric(horizontal: kPaddingM * 3),
+                contentPadding: const EdgeInsets.symmetric(horizontal: kSizeM * 3),
                 dense: true,
                 title: Row(
                   children: [
@@ -60,7 +60,7 @@ class _CustomExpandingFontCard extends State<CustomExpandingFontCard> {
                       width: 25,
                       color: context.theme.iconTheme.color,
                     ),
-                    const SizedBox(width: kPaddingL),
+                    const SizedBox(width: kSizeL),
                     Text(e, style: context.theme.textTheme.titleMedium),
                   ],
                 ),

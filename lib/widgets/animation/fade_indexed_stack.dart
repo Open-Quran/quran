@@ -46,10 +46,7 @@ class _FadeIndexedStackState extends State<FadeIndexedStack> with SingleTickerPr
   Widget build(BuildContext context) {
     return FadeTransition(
       opacity: _controller,
-      child: IndexedStack(
-        index: widget.index,
-        children: widget.children,
-      ),
+      child: widget.children[widget.index],
     );
   }
 }

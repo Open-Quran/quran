@@ -39,7 +39,7 @@ class _TranslationDropDownState extends State<TranslationDropDown> {
         ),
         Container(
           width: double.infinity,
-          margin: const EdgeInsets.only(top: kPaddingM, bottom: kPaddingXXL),
+          margin: const EdgeInsets.only(top: kSizeM, bottom: kSizeXXL),
           decoration: const BoxDecoration(
               color: AppColors.black,
               borderRadius: BorderRadius.all(Radius.circular(8))),
@@ -48,7 +48,7 @@ class _TranslationDropDownState extends State<TranslationDropDown> {
             decoration: const InputDecoration(
               border: InputBorder.none,
               contentPadding:
-                  EdgeInsets.only(right: kPaddingL, left: kPaddingM),
+                  EdgeInsets.only(right: kSizeL, left: kSizeM),
             ),
             value: selectedTranslation,
             items: translations.map<DropdownMenuItem<String>>((String mascot) {

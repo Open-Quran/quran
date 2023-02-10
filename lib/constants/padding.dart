@@ -1,7 +1,7 @@
-/// App Padding Constants
-const double kPaddingS = 5;
-const double kPaddingM = 10;
-const double kPaddingL = 15;
-const double kPaddingXL = 20;
-const double kPaddingXXL = 25;
-const double kPadding3XL = 30;
+/// Size Constants
+const double kSizeS = 5;
+const double kSizeM = 10;
+const double kSizeL = 15;
+const double kSizeXL = 20;
+const double kSizeXXL = 25;
+const double kSize3XL = 30;

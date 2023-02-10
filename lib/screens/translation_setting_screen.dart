@@ -43,12 +43,12 @@ class _TranslationSettingScreenState extends State<TranslationSettingScreen> {
   Widget buildDownloaded() {
     return Padding(
       padding: const EdgeInsets.symmetric(
-          horizontal: kPaddingL, vertical: kPaddingL),
+          horizontal: kSizeL, vertical: kSizeL),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: kPaddingS),
+            padding: const EdgeInsets.symmetric(horizontal: kSizeS),
             child: Text(
               context.translate.downloaded,
               style: context.theme.textTheme.bodyMedium!
@@ -60,7 +60,7 @@ class _TranslationSettingScreenState extends State<TranslationSettingScreen> {
           ),
           Padding(
             padding: const EdgeInsets.symmetric(
-                horizontal: kPaddingS, vertical: kPaddingL),
+                horizontal: kSizeS, vertical: kSizeL),
             child: Text(
               context.translate.arabic,
               style: context.theme.textTheme.headlineSmall!
@@ -68,9 +68,9 @@ class _TranslationSettingScreenState extends State<TranslationSettingScreen> {
             ),
           ),
           const TranslationsSettingCard(),
-          const SizedBox(height: kPaddingM),
+          const SizedBox(height: kSizeM),
           const TranslationsSettingCard(),
-          const SizedBox(height: kPaddingM),
+          const SizedBox(height: kSizeM),
           const TranslationsSettingCard(),
         ],
       ),

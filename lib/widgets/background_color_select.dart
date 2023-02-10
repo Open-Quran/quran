@@ -22,7 +22,7 @@ class BackgroundColorSelect extends StatelessWidget {
       children: [
         CustomTitle(titleText: context.translate.backgroundColor),
         Container(
-          margin: const EdgeInsets.only(top: kPaddingXL, bottom: kPaddingXXL),
+          margin: const EdgeInsets.only(top: kSizeXL, bottom: kSizeXXL),
           child: Row(
             children: List.generate(colors.length, (index) {
               return Expanded(

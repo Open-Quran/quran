@@ -19,10 +19,10 @@ class VerseMenuItem extends StatelessWidget {
           Expanded(
             flex: 1,
             child: SvgPicture.asset(iconPath,
-                color: AppColors.white, width: kPaddingXL, height: kPaddingXL),
+                color: AppColors.white, width: kSizeXL, height: kSizeXL),
           ),
           const SizedBox(
-            width: kPaddingL,
+            width: kSizeL,
           ),
           Expanded(
             flex: 3,

@@ -16,9 +16,18 @@ class HomeProvider extends ChangeNotifier {
   /// Home toggle buttons
   EHomeToggleOptions homeToggleOptionType = EHomeToggleOptions.juz;
 
+  /// Enum toggle search options
+  EToggleSearchOptions toggleSearchOptions = EToggleSearchOptions.toggles;
+
   /// Change type Juz, Surah or Search
   changeHomeToggleOptionType(EHomeToggleOptions newOptionType) {
     homeToggleOptionType = newOptionType;
+    notifyListeners();
+  }
+
+  /// Changing between toggle buttons and search bar
+  changeToggleSearchOptions(EToggleSearchOptions newOptionType) {
+    toggleSearchOptions = newOptionType;
     notifyListeners();
   }
 
@@ -34,21 +43,26 @@ class HomeProvider extends ChangeNotifier {
   /// Navigation to details when user clicks on [SurahCard]
   void onTapSurahCard(int surahId) {
     goToSurahDetailScreen(
-      ReadingSettingsModel(surahDetailScreenMod: ESurahDetailScreenMod.surah, surahIndex: surahId),
+      ReadingSettingsModel(
+          surahDetailScreenMod: ESurahDetailScreenMod.surah,
+          surahIndex: surahId),
     );
   }
 
   /// Navigation to details when user clicks on [GridCard]
   void onTapJuzCard(int juzIndex) {
     goToSurahDetailScreen(
-      ReadingSettingsModel(surahDetailScreenMod: ESurahDetailScreenMod.juz, juzIndex: juzIndex),
+      ReadingSettingsModel(
+          surahDetailScreenMod: ESurahDetailScreenMod.juz, juzIndex: juzIndex),
     );
   }
 
   /// Navigation to Sajda ayat
   void onTapSajdaCard(int surahId) {
     goToSurahDetailScreen(
-      ReadingSettingsModel(surahDetailScreenMod: ESurahDetailScreenMod.sajda, sajdaIndex: surahId),
+      ReadingSettingsModel(
+          surahDetailScreenMod: ESurahDetailScreenMod.sajda,
+          sajdaIndex: surahId),
     );
   }
 

@@ -62,11 +62,11 @@ class _JuzSurahSearchWidgetState extends State<JuzSurahSearchWidget> {
       itemCount: widget.juzList.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.symmetric(vertical: kPaddingL),
+      padding: const EdgeInsets.symmetric(vertical: kSizeL),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 4,
-        mainAxisSpacing: kPaddingM,
-        crossAxisSpacing: kPaddingM,
+        mainAxisSpacing: kSizeM,
+        crossAxisSpacing: kSizeM,
       ),
       itemBuilder: (context, index) {
         int juzId = index + 1;
@@ -84,7 +84,7 @@ class _JuzSurahSearchWidgetState extends State<JuzSurahSearchWidget> {
       itemCount: widget.juzList.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.symmetric(vertical: kPaddingL),
+      padding: const EdgeInsets.symmetric(vertical: kSizeL),
       itemBuilder: (context, juzIndex) {
         int juzId = juzIndex + 1;
         return Column(
@@ -93,9 +93,9 @@ class _JuzSurahSearchWidgetState extends State<JuzSurahSearchWidget> {
             Container(
               width: double.infinity,
               height: 44,
-              padding: const EdgeInsets.symmetric(horizontal: kPaddingL),
+              padding: const EdgeInsets.symmetric(horizontal: kSizeL),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(kPaddingM),
+                borderRadius: BorderRadius.circular(kSizeM),
                 color: AppColors.black3,
               ),
               child: Align(
@@ -106,7 +106,7 @@ class _JuzSurahSearchWidgetState extends State<JuzSurahSearchWidget> {
                 ),
               ),
             ),
-            const SizedBox(height: kPaddingM),
+            const SizedBox(height: kSizeM),
             ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -117,10 +117,10 @@ class _JuzSurahSearchWidgetState extends State<JuzSurahSearchWidget> {
                   onTap: () => widget.onTapSurahCard(surah.id ?? 1),
                 );
               },
-              separatorBuilder: (context, surahIndex) => const SizedBox(height: kPaddingL),
+              separatorBuilder: (context, surahIndex) => const SizedBox(height: kSizeL),
               itemCount: widget.juzList[juzIndex].length,
             ),
-            const SizedBox(height: kPaddingXL)
+            const SizedBox(height: kSizeXL)
           ],
         );
       },
