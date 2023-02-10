@@ -38,4 +38,5 @@ class AppColors {
   static const Color zeus = Color(0xFF26211A);
   static const Color brandy = Color(0xFFE3BE92);
   static const Color redOrange = Color(0xFFFF3B30);
+  static const Color redDark = Color(0xFF923131);
 }

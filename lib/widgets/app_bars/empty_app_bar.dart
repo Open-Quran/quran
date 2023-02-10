@@ -1,25 +1,24 @@
-import 'dart:io';
-
-import 'package:fabrikod_quran/constants/colors.dart';
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 
-class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
+class EmptyAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
   final Size preferredSize;
   final String title;
   final List<Widget>? actions;
   final Widget? leading;
-  final Function()? onPressed;
+  final PreferredSizeWidget? bottom;
+  final Function()? onTap;
   final double? bottomHeight;
   final double? elevation;
 
-  const PrimaryAppBar({
+  EmptyAppBar({
     Key? key,
     required this.title,
     this.actions,
     this.leading,
-    this.onPressed,
+    this.bottom,
+    this.onTap,
     this.bottomHeight,
     this.elevation,
   })  : preferredSize = const Size.fromHeight(75.0),
@@ -30,17 +29,13 @@ class PrimaryAppBar extends StatelessWidget implements PreferredSizeWidget {
     return AppBar(
       toolbarHeight: 75,
       centerTitle: true,
-      backgroundColor: AppColors.black,
-      title: Padding(
-        padding: const EdgeInsets.only(top: 10),
-        child: Text(
-          title.toUpperCase(),
-          style: context.theme.textTheme.displayMedium,
-        ),
+      title: Text(
+        title,
+        style: context.theme.textTheme.headlineMedium,
       ),
       leading: leading,
       actions: actions,
-      automaticallyImplyLeading: false,
+      bottom: bottom,
     );
   }
 }

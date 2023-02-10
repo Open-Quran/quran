@@ -70,5 +70,7 @@
     "searchFor": "Search for",
     "reciter": "Reciter",
     "download": "Download",
-    "speed": "Speed"
+    "speed": "Speed",
+    "downloaded": "Downloaded",
+    "delete": "Delete"
 }

@@ -70,5 +70,8 @@
     "searchFor": "Şunun için ara",
     "reciter": "Okuyan",
     "download": "İndir",
-    "speed": "Hız"
+    "speed": "Hız",
+    "downloaded": "İndirilenler",
+    "delete": "Sil"
+
 }
