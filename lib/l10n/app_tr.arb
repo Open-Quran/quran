@@ -64,6 +64,10 @@
     "pause": "Durdur",
     "favorite": "Favori",
     "meaning": "Meal",
+    "navigation": "Navigasyon",
+    "searchSurahJuzOrAyahs": "Sure, Cüz veya Ayet Aratın...",
+    "searchSurahJuzOrPage": "Search for surah, juz or page...",
+    "searchFor": "Şunun için ara",
     "reciter": "Okuyan",
     "download": "İndir",
     "speed": "Hız"

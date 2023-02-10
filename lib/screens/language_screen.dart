@@ -30,22 +30,25 @@ class _LanguageScreenState extends State<LanguageScreen> {
   Widget get buildBody {
     return Padding(
       padding: const EdgeInsets.symmetric(
-          vertical: kPaddingL, horizontal: kPaddingXL),
-      child: Column(
-        children: [
-          Align(
-            alignment: Alignment.topLeft,
-            child: Text(
-              context.translate.language,
-              style: context.theme.textTheme.displayLarge,
+          vertical: kSizeL, horizontal: kSizeXL),
+      child: SingleChildScrollView(
+        child: Column(
+          children: [
+            Align(
+              alignment: Alignment.topLeft,
+              child: Text(
+                context.translate.language,
+                style: context.theme.textTheme.displayLarge,
+              ),
             ),
-          ),
-          CustomLanguageCard(
-            defaultLocale: context.watch<AppSettingsProvider>().appLocale,
-            changedLocale:
-                context.read<AppSettingsProvider>().changeAppLanguage,
-          ),
-        ],
+            const SizedBox(height: 30),
+            CustomLanguageCard(
+              defaultLocale: context.watch<AppSettingsProvider>().appLocale,
+              changedLocale:
+                  context.read<AppSettingsProvider>().changeAppLanguage,
+            ),
+          ],
+        ),
       ),
     );
   }

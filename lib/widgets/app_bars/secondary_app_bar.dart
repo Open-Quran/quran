@@ -111,7 +111,7 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
         onTap: onTapTitle,
         child: Container(
           padding: const EdgeInsets.symmetric(
-              vertical: kPaddingS + 3, horizontal: kPaddingL + 10),
+              vertical: kSizeS + 3, horizontal: kSizeL + 10),
           decoration: BoxDecoration(
               color: isDrawerOpen ? AppColors.black2 : AppColors.black,
               borderRadius: BorderRadius.circular(10)),

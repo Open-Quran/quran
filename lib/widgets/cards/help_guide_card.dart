@@ -25,7 +25,7 @@ class _HelpGuideCardState extends State<HelpGuideCard> {
     return Theme(
       data: context.theme.copyWith(dividerColor: Colors.transparent),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(kPaddingM),
+        borderRadius: BorderRadius.circular(kSizeM),
         child: ExpansionTile(
           title: Row(
             children: [
@@ -46,11 +46,11 @@ class _HelpGuideCardState extends State<HelpGuideCard> {
           backgroundColor: context.theme.cardTheme.color?.withOpacity(0.1),
           collapsedBackgroundColor:
               context.theme.cardTheme.color?.withOpacity(0.1),
-          childrenPadding: const EdgeInsets.only(bottom: kPaddingM),
+          childrenPadding: const EdgeInsets.only(bottom: kSizeM),
           children: [
             Padding(
               padding: const EdgeInsets.symmetric(
-                  vertical: 0, horizontal: kPaddingXL),
+                  vertical: 0, horizontal: kSizeXL),
               child: Text(
                 widget.description,
                 style: context.theme.textTheme.bodySmall,

@@ -35,8 +35,7 @@ class PlayerProvider extends ChangeNotifier {
   PlayerProvider() {
     player.playerStateStream.listen(checkIfCompleted);
   }
-
-  /// Listens to the Player's Position
+  /// Listens the Player's Position
   Stream<PositionData> get positionDataStream =>
       Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
         player.positionStream,
@@ -61,7 +60,8 @@ class PlayerProvider extends ChangeNotifier {
     );
   }
 
-  /// player is complete
+  /// Checking player for the next ayat audio
+  /// if there is no ayat stop player if there are ayats play
   void checkIfCompleted(event) {
     if (event.processingState == ProcessingState.completed) {
       if (verseListToPlay.isEmpty) return;
@@ -82,17 +82,17 @@ class PlayerProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Can i play the previous ?
+  /// Checking if previous ayat exists
   bool get isPrevious => playerIndex > 0;
 
-  /// Play Previous Player
+  /// Play previous Ayat
   void previous() {
     if (!isPrevious) return;
     playerIndex--;
     play();
   }
 
-  /// Can i play the next ?
+  /// Checking if next ayat exists
   bool get isNext => playerIndex < verseListToPlay.length - 1;
 
   /// Play Next Player
@@ -102,7 +102,7 @@ class PlayerProvider extends ChangeNotifier {
     play();
   }
 
-  /// Is the chosen verse playing?
+  /// Is selected verse playing?
   bool isPlayingVerse(String verseKey) {
     if (!player.playing || verseListToPlay.isEmpty) return false;
     return verseKey == verseListToPlay[playerIndex].verseKey;
@@ -115,7 +115,7 @@ class PlayerProvider extends ChangeNotifier {
         verseListToPlay.first.pageNumber == pageNumber;
   }
 
-  /// On Tap to Play and pause button
+  /// OnTap to play or pause
   void onTapPlayOrPause(int index, bool isPlaying, List<VerseModel> verses) {
     verseListToPlay = verses;
     playerIndex = index;
@@ -158,21 +158,21 @@ class PlayerProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Play Background
+  /// Play when app in background
   Future<void> playOnBackground() async {
     isPlayedFromBackground = false;
     await _audioHandler.play();
     isPlayedFromBackground = true;
   }
 
-  /// Pause Background
+  /// Pause app in background
   Future<void> pauseOnBackground() async {
     isPlayedFromBackground = false;
     await _audioHandler.pause();
     isPlayedFromBackground = true;
   }
 
-  /// Stop Background
+  /// Stop app in background
   Future<void> stopOnBackground() async {
     isPlayedFromBackground = false;
     await _audioHandler.stop();

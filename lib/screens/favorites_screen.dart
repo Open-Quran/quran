@@ -37,7 +37,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         : SingleChildScrollView(
             child: Padding(
               padding: const EdgeInsets.symmetric(
-                  horizontal: kPaddingXL, vertical: kPaddingL),
+                  horizontal: kSizeXL, vertical: kSizeL),
               child: Column(
                 children: [
                   Align(
@@ -51,13 +51,13 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                     itemCount: favoriteVerses.length,
                     shrinkWrap: true,
                     padding: const EdgeInsets.symmetric(
-                      vertical: kPaddingL,
+                      vertical: kSizeL,
                     ),
                     itemBuilder: (context, item) => FavoriteCard(
                       verseModel: favoriteVerses.elementAt(item),
                     ),
                     separatorBuilder: (context, item) =>
-                        const SizedBox(height: kPaddingXL),
+                        const SizedBox(height: kSizeXL),
                   ),
                 ],
               ),

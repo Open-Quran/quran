@@ -18,8 +18,8 @@ class LayoutOptionsToggleButton extends StatelessWidget {
         CustomTitle(titleText: context.translate.layout),
         Container(
           margin: const EdgeInsets.only(
-            top: kPaddingM,
-            bottom: kPaddingXXL,
+            top: kSizeM,
+            bottom: kSizeXXL,
           ),
           width: 150,
           child: CupertinoSlidingSegmentedControl<int>(

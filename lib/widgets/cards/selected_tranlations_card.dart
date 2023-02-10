@@ -22,13 +22,13 @@ class SelectedTranslationsCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(kPaddingM),
+      borderRadius: BorderRadius.circular(kSizeM),
       child: Container(
         constraints: const BoxConstraints(minHeight: 70),
-        padding: const EdgeInsets.all(kPaddingM),
+        padding: const EdgeInsets.all(kSizeM),
         decoration: BoxDecoration(
           color: context.theme.cardTheme.color?.withOpacity(0.1),
-          borderRadius: BorderRadius.circular(kPaddingM),
+          borderRadius: BorderRadius.circular(kSizeM),
         ),
         child: Row(
           children: [
@@ -39,7 +39,7 @@ class SelectedTranslationsCard extends StatelessWidget {
               ),
             ),
             const Padding(
-              padding: EdgeInsets.all(kPaddingM),
+              padding: EdgeInsets.all(kSizeM),
               child: Icon(Icons.arrow_forward_ios),
             )
           ],

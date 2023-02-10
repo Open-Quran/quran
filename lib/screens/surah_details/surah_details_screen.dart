@@ -1,16 +1,17 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
-import 'package:fabrikod_quran/screens/settings_top_right.dart';
 import 'package:fabrikod_quran/screens/surah_details/reading_screen.dart';
 import 'package:fabrikod_quran/screens/surah_details/translation_screen.dart';
 import 'package:fabrikod_quran/widgets/animation/fade_indexed_stack.dart';
 import 'package:fabrikod_quran/widgets/app_bars/secondary_app_bar.dart';
 import 'package:fabrikod_quran/widgets/bars/play_bar.dart';
 import 'package:fabrikod_quran/widgets/buttons/translation_reading_segmented_button.dart';
-import 'package:fabrikod_quran/widgets/cards/surah_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../widgets/cards/surah_card.dart';
+import '../verse_details_settings.dart';
 
 class SurahDetailsScreen extends StatefulWidget {
   const SurahDetailsScreen({Key? key}) : super(key: key);
@@ -56,10 +57,10 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
               children: [
                 buildTranslationOrReadingSwitch,
                 Expanded(child: buildTranslationOrReading),
-                const PlayBar(padding: EdgeInsets.only(bottom: kPaddingXL))
+                const PlayBar(padding: EdgeInsets.only(bottom: kSizeXL))
               ],
             ),
-            const SettingsTopRight(),
+            const VerseDetailsSettings(),
           ],
         ),
         buildSurahList(),
@@ -72,7 +73,7 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
     return Visibility(
       visible: !context.watch<SurahDetailsProvider>().readingSettings.isReadingMode,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: kPaddingXXL, horizontal: kPaddingXL),
+        padding: const EdgeInsets.symmetric(vertical: kSizeXXL, horizontal: kSizeXL),
         child: TranslationReadingSegmentedButton(
           initialIndex: context.watch<QuranProvider>().localSetting.quranType.index,
           onValueChanged: context.read<SurahDetailsProvider>().changeQuranType,
@@ -98,7 +99,7 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
     var surahs = context.watch<QuranProvider>().surahs;
     return ListView.separated(
       itemCount: surahs.length,
-      padding: const EdgeInsets.all(kPaddingL),
+      padding: const EdgeInsets.all(kSizeL),
       itemBuilder: (context, index) {
         final surah = surahs[index];
         return SurahCard(
@@ -110,7 +111,7 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
           },
         );
       },
-      separatorBuilder: (context, index) => const SizedBox(height: kPaddingL),
+      separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
   }
 }

@@ -6,6 +6,8 @@ final ThemeData theme = ThemeData(
   appBarTheme: _appBarTheme,
   bottomNavigationBarTheme: _bottomNavigationBarThemeData,
   tabBarTheme: _tabBarTheme,
+  cardColor: const Color(0xFF414141),
+  cardTheme: const CardTheme(color: Color(0xFF414141)),
   sliderTheme: _sliderThemeData,
   toggleButtonsTheme: _toggleButtonsThemeData,
   drawerTheme: _drawerThemeData,

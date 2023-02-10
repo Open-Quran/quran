@@ -16,7 +16,7 @@ class ReadOptionsToggleButton extends StatelessWidget {
       children: [
         CustomTitle(titleText: context.translate.read),
         Container(
-          margin: const EdgeInsets.only(top: kPaddingM, bottom: kPaddingXXL),
+          margin: const EdgeInsets.only(top: kSizeM, bottom: kSizeXXL),
           width: double.infinity,
           child: CupertinoSlidingSegmentedControl<int>(
             backgroundColor: AppColors.black,

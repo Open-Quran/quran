@@ -23,9 +23,9 @@ class DeleteButton extends StatelessWidget {
       child: Container(
         height: 70,
         width: 100,
-        margin: const EdgeInsets.only(left: kPaddingM),
+        margin: const EdgeInsets.only(left: kSizeM),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(kPaddingM),
+          borderRadius: BorderRadius.circular(kSizeM),
           color: AppColors.redOrange,
         ),
         child: Center(

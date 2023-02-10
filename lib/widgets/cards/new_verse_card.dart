@@ -3,7 +3,7 @@ import 'package:fabrikod_quran/models/translation.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:flutter/material.dart';
 
-import '../show_menus/custom_gesture_detector.dart';
+import '../pop_up/verse_pop_up_menu.dart';
 
 class VerseCard extends StatelessWidget {
   const VerseCard({
@@ -40,7 +40,7 @@ class VerseCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     GlobalKey globalKey = GlobalKey();
-    return CustomGestureDetector(
+    return VersePopUpMenu(
       globalKey: globalKey,
       verseModel: verseModel,
       isPlaying: isPlaying,
@@ -55,7 +55,7 @@ class VerseCard extends StatelessWidget {
         decoration: isPlaying
             ? BoxDecoration(
                 color: AppColors.black9.withOpacity(0.26),
-                borderRadius: BorderRadius.circular(kPaddingM),
+                borderRadius: BorderRadius.circular(kSizeM),
                 boxShadow: const [
                   BoxShadow(
                     color: Color.fromRGBO(0, 0, 0, 0.25),
@@ -76,7 +76,7 @@ class VerseCard extends StatelessWidget {
                   ),
                 ),
               ),
-        padding: const EdgeInsets.all(kPaddingS),
+        padding: const EdgeInsets.all(kSizeS),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -180,10 +180,10 @@ class VerseCardArabic extends StatelessWidget {
                   AppColors.brandy.withOpacity(0.24),
                 ],
               ),
-              borderRadius: BorderRadius.circular(kPaddingM),
+              borderRadius: BorderRadius.circular(kSizeM),
             )
           : null,
-      padding: const EdgeInsets.all(kPaddingM),
+      padding: const EdgeInsets.all(kSizeM),
       child: Text(
         verse,
         textDirection: TextDirection.rtl,
@@ -207,7 +207,7 @@ class VerseCardDividerLine extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 1,
-      margin: const EdgeInsets.symmetric(vertical: kPaddingM),
+      margin: const EdgeInsets.symmetric(vertical: kSizeM),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
@@ -239,7 +239,7 @@ class VerseCardTranslation extends StatelessWidget {
       itemCount: verseTranslations.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.only(bottom: kPaddingM),
+      padding: const EdgeInsets.only(bottom: kSizeM),
       separatorBuilder: (context, index) => const VerseCardDividerLine(),
       itemBuilder: (context, index) {
         final verseTranslation = verseTranslations[index];
@@ -255,7 +255,7 @@ class VerseCardTranslation extends StatelessWidget {
                 color: AppColors.grey2,
               ),
             ),
-            const SizedBox(height: kPaddingM),
+            const SizedBox(height: kSizeM),
             Text(
               "- ${verseTranslation.translationName}",
               textAlign: TextAlign.end,

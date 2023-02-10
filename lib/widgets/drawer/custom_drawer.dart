@@ -23,8 +23,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
       child: Drawer(
         child: Container(
           padding: const EdgeInsets.symmetric(
-            vertical: kPaddingXXL,
-            horizontal: kPaddingXL,
+            vertical: kSizeXXL,
+            horizontal: kSizeXL,
           ),
           decoration: BoxDecoration(
             border: Border(
@@ -34,7 +34,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           child: Column(
             children: [
               buildToggleButton,
-              const SizedBox(height: kPaddingXL),
+              const SizedBox(height: kSizeXL),
               Expanded(child: body)
             ],
           ),
@@ -82,8 +82,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
       itemCount: 30,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        mainAxisSpacing: kPaddingM * 2,
-        crossAxisSpacing: kPaddingM * 2,
+        mainAxisSpacing: kSizeM * 2,
+        crossAxisSpacing: kSizeM * 2,
       ),
       itemBuilder: (context, index) => GridCard(
           text: "${index + 1}",
@@ -114,7 +114,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
         ),
         VerticalDivider(
           color: context.theme.dividerColor,
-          width: kPaddingXL * 2,
+          width: kSizeXL * 2,
           thickness: 2,
         ),
         Expanded(

@@ -20,12 +20,12 @@ class BasmalaTitle extends StatelessWidget {
             visible: isBasmalaVisible,
             child: Column(
               children: [
-                const SizedBox(height: kPaddingL),
+                const SizedBox(height: kSizeL),
                 SvgPicture.asset(ImageConstants.basmalaIcon),
               ],
             ),
           ),
-          const SizedBox(height: kPadding3XL),
+          const SizedBox(height: kSize3XL),
         ],
       ),
     );
