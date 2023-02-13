@@ -158,7 +158,7 @@ class SearchProvider extends ChangeNotifier {
   }
 
   /// Navigation to the specific page
-  void onTapSearchPageCard(int pageIndex) {
+  void onTapSearchPageCard() {
     SurahDetailNavigationManager.gotoMushaf(_context, filterPageNumber!);
   }
 

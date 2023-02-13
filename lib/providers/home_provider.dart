@@ -43,7 +43,7 @@ class HomeProvider extends ChangeNotifier {
   }
 
   /// Navigation to details when user clicks on [GridCard]
-  void onTapJuzCard(int juzIndex) {
-    SurahDetailNavigationManager.gotoSurah(_context, juzIndex);
+  void onTapJuzCard(int juzId) {
+    SurahDetailNavigationManager.gotoSurah(_context, juzId);
   }
 }

@@ -9,33 +9,33 @@ class SurahDetailNavigationManager {
   SurahDetailNavigationManager._();
 
   /// Go to surah list on surah detail page
-  static void gotoSurah(BuildContext context, int surahId, {int verseIndex = 0}) {
+  static void gotoSurah(BuildContext context, int surahId, {int verseId = 0}) {
     _goToSurahDetail(
       context,
       ReadingSettingsModel(
         surahDetailScreenMod: ESurahDetailScreenMod.surah,
-        surahIndex: surahId,
-        surahVerseIndex: verseIndex,
+        surahId: surahId,
+        verseId: verseId,
       ),
     );
   }
 
   /// Go to Juz on surah detail page
-  static void gotoJuz(BuildContext context, int juzIndex) {
+  static void gotoJuz(BuildContext context, int juzId) {
     _goToSurahDetail(
       context,
       ReadingSettingsModel(
         surahDetailScreenMod: ESurahDetailScreenMod.juz,
-        juzIndex: juzIndex,
+        juzId: juzId,
       ),
     );
   }
 
   /// Go to Mushaf on surah detail page
-  static void gotoMushaf(BuildContext context, int pageIndex) {
+  static void gotoMushaf(BuildContext context, int pageNumber) {
     _goToSurahDetail(
       context,
-      ReadingSettingsModel(mushafPageNumber: pageIndex),
+      ReadingSettingsModel(mushafPageNumber: pageNumber),
       quranType: EQuranType.reading,
     );
   }

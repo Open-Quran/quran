@@ -49,8 +49,8 @@ class BookmarkProvider extends ChangeNotifier {
       case EBookMarkType.verse:
         SurahDetailNavigationManager.gotoSurah(
           context,
-          bookmark.verseModel.surahId! - 1,
-          verseIndex: bookmark.verseModel.verseNumber! - 1,
+          bookmark.verseModel.surahId!,
+          verseId: bookmark.verseModel.verseNumber!,
         );
         break;
       case EBookMarkType.page:
