@@ -109,12 +109,10 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
       tabTitles: [
         context.translate.surah,
         context.translate.juz,
-        context.translate.sajda,
       ],
       tabViews: [
         buildSurahList,
         buildJuzList,
-        buildSajdaList,
       ],
     );
   }
@@ -247,22 +245,6 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
           onTap: () {
             context.read<HomeProvider>().onTapJuzCard(index);
           }),
-    );
-  }
-
-  /// List of the Sajda Verses
-  Widget get buildSajdaList {
-    var sajdas = context.watch<QuranProvider>().sajdaSurahs;
-    return ListView.separated(
-      itemCount: sajdas.length,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.symmetric(vertical: kSizeXXL),
-      itemBuilder: (context, index) => SurahCard(
-        surahModel: sajdas[index],
-        onTap: () => context.read<HomeProvider>().onTapSajdaCard(index),
-      ),
-      separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
   }
 }

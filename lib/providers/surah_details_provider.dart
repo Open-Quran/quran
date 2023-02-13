@@ -12,7 +12,8 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class SurahDetailsProvider extends ChangeNotifier {
   /// Class Constructor
-  SurahDetailsProvider(this._context, this.readingSettings) {
+  SurahDetailsProvider(this._context, this.readingSettings, EQuranType quranType) {
+    quranProvider.changeQuranType(quranType.index);
     itemPositionsListener.itemPositions.addListener(scrollListener);
     readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber ?? 1;
 
@@ -77,8 +78,6 @@ class SurahDetailsProvider extends ChangeNotifier {
             return quranProvider.surahs[readingSettings.surahIndex].nameSimple ?? "";
           case ESurahDetailScreenMod.juz:
             return "${_context.translate.juz} - ${readingSettings.juzIndex + 1}";
-          case ESurahDetailScreenMod.sajda:
-            return quranProvider.sajdaSurahs[readingSettings.sajdaIndex].nameSimple ?? "";
         }
       case EQuranType.reading:
         return surahsOfMushafPage.first.nameSimple ?? "";
@@ -96,9 +95,6 @@ class SurahDetailsProvider extends ChangeNotifier {
           list.addAll(element.juzVerses(readingSettings.juzIndex));
         }
         return list;
-      case ESurahDetailScreenMod.sajda:
-        var surahs = quranProvider.sajdaSurahs[readingSettings.sajdaIndex].verses;
-        return [surahs.firstWhere((element) => element.sajdahNumber != null)];
     }
   }
 
