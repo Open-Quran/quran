@@ -95,7 +95,6 @@ class _SurahSectionDrawerState extends State<SurahSectionDrawer> {
         var surah = surahs[index];
         return CustomButton(
           title: "${surah.id}  ${surah.nameComplex}",
-          state: context.watch<SurahDetailsProvider>().readingSettings.surahIndex == index,
           centerTitle: false,
           height: 45,
           onTap: () {
@@ -132,7 +131,6 @@ class _SurahSectionDrawerState extends State<SurahSectionDrawer> {
         var number = verses[index].verseNumber;
         return CustomButton(
           title: "$number",
-          state: context.watch<SurahDetailsProvider>().readingSettings.surahVerseIndex == index,
           centerTitle: false,
           height: 45,
           onTap: () {

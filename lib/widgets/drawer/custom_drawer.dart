@@ -104,10 +104,10 @@ class _CustomDrawerState extends State<CustomDrawer> {
               var surah = context.watch<QuranProvider>().sajdaSurahs[index];
               return CustomButton(
                 title: "${surah.id}  ${surah.nameComplex}",
-                state: context.watch<SurahDetailsProvider>().readingSettings.sajdaIndex == index,
+                state: false,
                 centerTitle: false,
                 height: 45,
-                onTap: () => context.read<SurahDetailsProvider>().changeSajdaIndex(index),
+                // onTap: () => context.read<SurahDetailsProvider>().changeSajdaIndex(index),
               );
             },
           ),

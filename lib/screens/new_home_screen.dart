@@ -98,7 +98,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
         verseModel: searchVerseResult[index],
         onTap: () => context
             .read<HomeProvider>()
-            .onTapSurahCard(searchVerseResult[index].id! - 1),
+            .onTapSurahCard(searchVerseResult[index].id!),
       ),
       separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
@@ -115,7 +115,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
         surahModel: searchSurahResult[index],
         onTap: () => context
             .read<HomeProvider>()
-            .onTapSurahCard(searchSurahResult[index].id! - 1),
+            .onTapSurahCard(searchSurahResult[index].id!),
       ),
       separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
@@ -130,7 +130,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
         surahModel: searchSurahResult[index],
         onTap: () => context
             .read<HomeProvider>()
-            .onTapSurahCard(searchSurahResult[index].id! - 1),
+            .onTapSurahCard(searchSurahResult[index].id!),
       ),
       separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
@@ -148,7 +148,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
             title: context.translate.juz,
             titleNumber: "${context.translate.juz} $pageNumber",
             onTap: () {
-              context.read<HomeProvider>().onTapJuzCard(juzNumber! - 1);
+              context.read<HomeProvider>().onTapJuzCard(juzNumber!);
             },
           ),
         ),
@@ -158,7 +158,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
             title: context.translate.page,
             titleNumber: "${context.translate.page} $pageNumber",
             onTap: () {
-              context.read<SearchProvider>().onTapSearchPageCard(pageNumber!);
+              context.read<SearchProvider>().onTapSearchPageCard();
             },
           ),
         ),
@@ -273,11 +273,11 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
         listType: context.watch<HomeProvider>().juzListType,
         onChangedListType: context.read<HomeProvider>().changeJuzListType,
         onTapGridCard: (int juzId) {
-          context.read<HomeProvider>().onTapJuzCard(juzId - 1);
+          context.read<HomeProvider>().onTapJuzCard(juzId);
           print("On Tap Juz Card : $juzId");
         },
         onTapSurahCard: (int surahId) {
-          context.read<HomeProvider>().onTapSurahCard(surahId - 1);
+          context.read<HomeProvider>().onTapSurahCard(surahId);
           print("On Tap Surah Card : $surahId");
         },
       ),
@@ -298,7 +298,7 @@ class _NewHomeScreenState extends State<NewHomeScreen> {
           return SurahCard(
             surahModel: surah,
             onTap: () {
-              context.read<HomeProvider>().onTapSurahCard(surah.id! - 1);
+              context.read<HomeProvider>().onTapSurahCard(surah.id!);
             },
           );
         },
