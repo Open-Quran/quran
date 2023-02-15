@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
@@ -7,19 +8,22 @@ import '../../constants/images.dart';
 import '../../constants/padding.dart';
 import '../../models/verse_model.dart';
 import '../../providers/favorites_provider.dart';
+import '../cards/slidable_verse_card/slidable_provider.dart';
 
-class DeleteButton extends StatelessWidget {
-  const DeleteButton({
+class DeleteVerseButton extends StatelessWidget {
+  const DeleteVerseButton({
     Key? key,
-    required this.verseModel,
+    required this.onTap,
   }) : super(key: key);
-  final VerseModel verseModel;
+
+  /// On Tap for removing item
+  final Function() onTap;
+
+  /// Custom button
   @override
   Widget build(BuildContext context) {
     return InkWell(
-      onTap: () => context
-          .read<FavoritesProvider>()
-          .deleteVerseFromFavorites(verseModel),
+      onTap: onTap,
       child: Container(
         height: 70,
         width: 100,

@@ -17,7 +17,7 @@ class TranslationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var verses = context.watch<SurahDetailsProvider>().versesOfReadingTypeTranslation;
+    var verses = context.watch<SurahDetailsProvider>().versesOfReadingTypeOrTranslation;
     return InkWell(
       onTap: context.read<SurahDetailsProvider>().changeReadingMode,
       child: ScrollablePositionedList.separated(
