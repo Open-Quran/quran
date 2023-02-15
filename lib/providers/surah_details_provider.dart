@@ -15,7 +15,7 @@ class SurahDetailsProvider extends ChangeNotifier {
   SurahDetailsProvider(this._context, this.readingSettings, EQuranType quranType) {
     // quranProvider.changeQuranType(quranType.index);
     // itemPositionsListener.itemPositions.addListener(scrollListener);
-    readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber ?? 1;
+    readingSettings.mushafPageNumber = versesOfReadingTypeOrTranslation.first.pageNumber ?? 1;
 
     ///todo
     ///pageController = PageController(initialPage: readingSettings.mushafPageNumber - 1);
@@ -84,8 +84,8 @@ class SurahDetailsProvider extends ChangeNotifier {
     }
   }
 
-  /// Getting Verses Of Reading Type Translation
-  List<VerseModel> get versesOfReadingTypeTranslation {
+  /// Getting Verses Of Reading Type or Translation
+  List<VerseModel> get versesOfReadingTypeOrTranslation {
     switch (readingSettings.surahDetailScreenMod) {
       case ESurahDetailScreenMod.surah:
         return quranProvider.surahs[readingSettings.surahIndex].verses;
@@ -100,7 +100,7 @@ class SurahDetailsProvider extends ChangeNotifier {
 
   /// Play or Pause The Verses
   void onTapVerseCardPlayOrPause(int index, bool isPlaying, String verseKey) {
-    var verses = versesOfReadingTypeTranslation;
+    var verses = versesOfReadingTypeOrTranslation;
     _context.read<PlayerProvider>().onTapPlayOrPause(index, isPlaying, verses);
   }
 
@@ -139,7 +139,7 @@ class SurahDetailsProvider extends ChangeNotifier {
   void changeQuranType(int index) {
     quranProvider.localSetting.quranType = EQuranType.values.elementAt(index);
     if (quranProvider.localSetting.quranType == EQuranType.reading) {
-      readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber ?? 1;
+      readingSettings.mushafPageNumber = versesOfReadingTypeOrTranslation.first.pageNumber ?? 1;
 
       ///todo
       ///pageController.jumpToPage(readingSettings.mushafPageNumber - 1);
@@ -160,7 +160,7 @@ class SurahDetailsProvider extends ChangeNotifier {
   void changeSurahIndex(int index) {
     readingSettings.surahIndex = index;
     readingSettings.verseIndex = 0;
-    readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber!;
+    readingSettings.mushafPageNumber = versesOfReadingTypeOrTranslation.first.pageNumber!;
 
     ///todo
     ///pageController.jumpToPage(readingSettings.mushafPageNumber - 1);
@@ -170,7 +170,7 @@ class SurahDetailsProvider extends ChangeNotifier {
 
   void changeSurahVerseIndex(int index) {
     readingSettings.verseIndex = index;
-    readingSettings.mushafPageNumber = versesOfReadingTypeTranslation[index].pageNumber!;
+    readingSettings.mushafPageNumber = versesOfReadingTypeOrTranslation[index].pageNumber!;
 
     ///todo
     ///pageController.jumpToPage(readingSettings.mushafPageNumber - 1);

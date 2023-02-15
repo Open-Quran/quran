@@ -38,7 +38,8 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
           )
         : SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(horizontal: kSizeXL, vertical: kSizeL),
+              padding: const EdgeInsets.symmetric(
+                  horizontal: kSizeXL, vertical: kSizeL),
               child: Column(
                 children: [
                   Align(
@@ -51,13 +52,18 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
                   ListView.separated(
                     itemCount: bookmarks.length,
                     shrinkWrap: true,
+                    primary: false,
                     padding: const EdgeInsets.symmetric(
                       vertical: kSizeL,
                     ),
                     itemBuilder: (context, item) => BookmarkCard(
+                      onTap: () => context
+                          .read<BookmarkProvider>()
+                          .bookmarkOnTap(context, bookmarks.elementAt(item)),
                       verseModel: bookmarks.elementAt(item).verseModel,
                     ),
-                    separatorBuilder: (context, item) => const SizedBox(height: kSizeXL),
+                    separatorBuilder: (context, item) =>
+                        const SizedBox(height: kSizeXL),
                   ),
                 ],
               ),

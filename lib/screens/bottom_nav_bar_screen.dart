@@ -15,6 +15,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
+import '../widgets/cards/slidable_verse_card/slidable_provider.dart';
+
 class BottomNavBarScreen extends StatefulWidget {
   const BottomNavBarScreen({Key? key}) : super(key: key);
 
@@ -45,6 +47,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
             create: (_) => HomeProvider(context), lazy: false),
         ChangeNotifierProvider(create: (_) => MoreProvider(context)),
         ChangeNotifierProvider(create: (_) => SearchProvider(context)),
+        ChangeNotifierProvider(create: (_) => SlidableProvider(context)),
       ],
       child: Scaffold(
         body: buildBody,

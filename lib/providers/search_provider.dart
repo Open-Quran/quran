@@ -1,4 +1,3 @@
-import 'package:fabrikod_quran/managers/surah_detail_navigation_manager.dart';
 import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/models/translation.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
@@ -8,6 +7,7 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../constants/enums.dart';
+import '../managers/surah_detail_navigation_manager.dart';
 import '../utils/utils.dart';
 import '../widgets/tags/custom_tag_list.dart';
 
@@ -159,7 +159,7 @@ class SearchProvider extends ChangeNotifier {
 
   /// Navigation to the specific page
   void onTapSearchPageCard() {
-    SurahDetailNavigationManager.gotoMushaf(_context, filterPageNumber!);
+    SurahDetailNavigationManager.goToMushaf(_context, filterPageNumber!);
   }
 
   selectedTag(String selectedTag) {
