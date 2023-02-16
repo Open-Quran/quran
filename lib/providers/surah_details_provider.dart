@@ -5,6 +5,7 @@ import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/providers/app_settings_provider.dart';
 import 'package:fabrikod_quran/providers/player_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
+import 'package:fabrikod_quran/providers/search_provider.dart';
 import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -20,6 +21,13 @@ class SurahDetailsProvider extends ChangeNotifier {
     ///todo
     ///pageController = PageController(initialPage: readingSettings.mushafPageNumber - 1);
   }
+
+
+  /// Surah Details page - juz and surah toggle buttons
+  EJuzSurahToggleOptions juzSurahToggleOptionType = EJuzSurahToggleOptions.juz;
+
+  /// Juz List Type [EJuzListType]
+  EJuzListType juzListType = EJuzListType.list;
 
   /// Detail Screen Context
   final BuildContext _context;
@@ -40,6 +48,7 @@ class SurahDetailsProvider extends ChangeNotifier {
   void changeTitleMenuState() {
     isTitleMenu = !isTitleMenu;
     notifyListeners();
+    changeToggleSearchOptions(EToggleSearchOptions.toggles);
   }
 
   /// Reading settings model
@@ -201,6 +210,33 @@ class SurahDetailsProvider extends ChangeNotifier {
 
   void changeReadingMode() {
     readingSettings.isReadingMode = !readingSettings.isReadingMode;
+    notifyListeners();
+  }
+
+  /// Surah card onTap in the surah details title page
+  surahCardOnTap(BuildContext context, int surahId){
+      context.read<SurahDetailsProvider>().readingSettings.surahIndex =
+          surahId - 1;
+      context.read<SurahDetailsProvider>().changeTitleMenuState();
+      debugPrint("On Tap Surah Card : $surahId");
+    }
+
+  /// Change type Juz, Surah or Search
+  changeJuzOrSurahToggleOptionType(EJuzSurahToggleOptions newOptionType) {
+    juzSurahToggleOptionType = newOptionType;
+    notifyListeners();
+  }
+
+
+  /// Change type Grid or List
+  changeJuzListType(EJuzListType newListType) {
+    juzListType = newListType;
+    notifyListeners();
+  }
+
+  /// Changing between toggle buttons and search bar
+  changeToggleSearchOptions(EToggleSearchOptions newOptionType) {
+    _context.read<SearchProvider>().toggleSearchOptions = newOptionType;
     notifyListeners();
   }
 }

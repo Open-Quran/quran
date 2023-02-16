@@ -10,23 +10,17 @@ class HomeProvider extends ChangeNotifier {
   /// Juz List Type [EJuzListType]
   EJuzListType juzListType = EJuzListType.list;
 
-  /// Home toggle buttons
-  EHomeToggleOptions homeToggleOptionType = EHomeToggleOptions.juz;
+  /// Home juz and surah toggle buttons
+  EJuzSurahToggleOptions juzSurahToggleOptionType = EJuzSurahToggleOptions.juz;
 
-  /// Enum toggle search options
-  EToggleSearchOptions toggleSearchOptions = EToggleSearchOptions.toggles;
+
 
   /// Change type Juz, Surah or Search
-  changeHomeToggleOptionType(EHomeToggleOptions newOptionType) {
-    homeToggleOptionType = newOptionType;
+  changeJuzOrSurahToggleOptionType(EJuzSurahToggleOptions newOptionType) {
+    juzSurahToggleOptionType = newOptionType;
     notifyListeners();
   }
 
-  /// Changing between toggle buttons and search bar
-  changeToggleSearchOptions(EToggleSearchOptions newOptionType) {
-    toggleSearchOptions = newOptionType;
-    notifyListeners();
-  }
 
   /// Change type Grid or List
   changeJuzListType(EJuzListType newListType) {
@@ -40,10 +34,12 @@ class HomeProvider extends ChangeNotifier {
   /// Navigation to details when user clicks on [SurahCard]
   void onTapSurahCard(int surahId) {
     SurahDetailNavigationManager.goToSurah(_context, surahId);
+    debugPrint("On Tap Surah Card : $surahId");
   }
 
   /// Navigation to details when user clicks on [GridCard]
   void onTapJuzCard(int juzId) {
     SurahDetailNavigationManager.goToSurah(_context, juzId);
+    debugPrint("On Tap Juz Card : $juzId");
   }
 }
