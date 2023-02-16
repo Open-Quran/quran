@@ -75,7 +75,8 @@ class SurahModel {
 
   /// Get surahs of the selected mushaf page
   SurahModel? surahOfMushafPage(int mushafPageNo) {
-    var newVerses = verses.where((element) => element.pageNumber == mushafPageNo).toList();
+    var newVerses =
+        verses.where((element) => element.pageNumber == mushafPageNo).toList();
     if (newVerses.isEmpty) return null;
     var newSurah = clone;
     newSurah.verses = newVerses;
@@ -99,7 +100,15 @@ class SurahModel {
     startPage = json['start_page'];
     endPage = json['end_page'];
     if (json['verses'] != null) {
-      verses = json['verses'].map((e) => VerseModel.fromJson(e)).toList().cast<VerseModel>();
+      verses = json['verses']
+          .map((e) => VerseModel.fromJson(e))
+          .toList()
+          .cast<VerseModel>();
+      for (var element in verses) {
+        element.surahNameArabic = nameArabic;
+        element.surahNameTranslated = nameTranslated;
+        element.surahNameSimple = nameSimple;
+      }
     }
   }
 
@@ -113,8 +122,10 @@ class SurahModel {
     startPage = (json['pages'] as List).first;
     endPage = (json['pages'] as List)[1];
     if (json['verses'] != null) {
-      verses =
-          json['verses'].map((e) => VerseModel.fromJsonForQuranApi(e)).toList().cast<VerseModel>();
+      verses = json['verses']
+          .map((e) => VerseModel.fromJsonForQuranApi(e))
+          .toList()
+          .cast<VerseModel>();
     }
   }
 

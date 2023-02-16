@@ -2,6 +2,9 @@ import 'package:fabrikod_quran/database/local_db.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:flutter/material.dart';
 
+import '../constants/enums.dart';
+import '../managers/surah_detail_navigation_manager.dart';
+
 class FavoritesProvider extends ChangeNotifier {
   /// Class Constructor
   FavoritesProvider() {
@@ -16,7 +19,7 @@ class FavoritesProvider extends ChangeNotifier {
     var result = favoriteVerses.indexWhere((element) => element.id == verseModel.id);
     return result == -1 ? false : true;
   }
-  ///When clicked to Favorite Button in Verse Card
+  /// Make favorite or remove from favorite
   onTapFavoriteButton(VerseModel verseModel, bool isFavorite) {
     if (isFavorite) {
       deleteVerseFromFavorites(verseModel);
@@ -35,5 +38,14 @@ class FavoritesProvider extends ChangeNotifier {
   void deleteVerseFromFavorites(VerseModel verseModel) async {
     favoriteVerses = await LocalDb.deleteVerseFromTheFavorites(verseModel);
     notifyListeners();
+  }
+
+  /// Favorite card onTap
+  void onTapFavoriteCard(BuildContext context, VerseModel verseModel) {
+        SurahDetailNavigationManager.goToSurah(
+          context,
+          verseModel.surahId!,
+          verseId: verseModel.verseNumber!,
+        );
   }
 }

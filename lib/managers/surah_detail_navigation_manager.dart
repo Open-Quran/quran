@@ -8,8 +8,8 @@ import 'package:provider/provider.dart';
 class SurahDetailNavigationManager {
   SurahDetailNavigationManager._();
 
-  /// Go to surah list on surah detail page
-  static void gotoSurah(BuildContext context, int surahId, {int verseId = 1}) {
+  /// Navigation to the surah details from surah list
+  static void goToSurah(BuildContext context, int surahId, {int verseId = 1}) {
     _goToSurahDetail(
       context,
       ReadingSettingsModel(
@@ -20,8 +20,8 @@ class SurahDetailNavigationManager {
     );
   }
 
-  /// Go to Juz on surah detail page
-  static void gotoJuz(BuildContext context, int juzId) {
+  /// Navigation to the surah details from juz list
+  static void goToJuz(BuildContext context, int juzId) {
     _goToSurahDetail(
       context,
       ReadingSettingsModel(
@@ -31,8 +31,8 @@ class SurahDetailNavigationManager {
     );
   }
 
-  /// Go to Mushaf on surah detail page
-  static void gotoMushaf(BuildContext context, int pageNumber) {
+  /// Navigation to the reading/mushaf surah details
+  static void goToMushaf(BuildContext context, int pageNumber) {
     _goToSurahDetail(
       context,
       ReadingSettingsModel(mushafPageNumber: pageNumber),
@@ -40,7 +40,7 @@ class SurahDetailNavigationManager {
     );
   }
 
-  /// Navigate To Surah Detail
+  /// Navigation to the surah details
   static void _goToSurahDetail(
     BuildContext context,
     ReadingSettingsModel readingModel, {

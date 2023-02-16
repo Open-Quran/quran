@@ -27,10 +27,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => SearchProvider(_),
-      child: const _MyHomeScreen(),
-    );
+    return const _MyHomeScreen();
   }
 }
 

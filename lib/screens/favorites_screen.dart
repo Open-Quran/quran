@@ -30,7 +30,7 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
         context.watch<FavoritesProvider>().favoriteVerses;
     return favoriteVerses.isEmpty
         ? NoItemWidget(
-            text: context.translate.noBookFavoritesAdded,
+            text: context.translate.noFavoritesAdded,
             icon: SvgPicture.asset(ImageConstants.favoriteInactiveIcon,
                 width: 55, height: 50),
           )
@@ -50,10 +50,15 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                   ListView.separated(
                     itemCount: favoriteVerses.length,
                     shrinkWrap: true,
+                    primary: false,
                     padding: const EdgeInsets.symmetric(
                       vertical: kSizeL,
                     ),
                     itemBuilder: (context, item) => FavoriteCard(
+                      onTap: () => context
+                          .read<FavoritesProvider>()
+                          .onTapFavoriteCard(context,
+                              favoriteVerses.elementAt(item), ),
                       verseModel: favoriteVerses.elementAt(item),
                     ),
                     separatorBuilder: (context, item) =>

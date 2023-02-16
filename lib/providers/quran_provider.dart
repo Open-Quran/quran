@@ -39,6 +39,7 @@ class QuranProvider extends ChangeNotifier {
     return juz;
   }
 
+
   /// Get all surah verses
   List<VerseModel> get getAllVerses {
     List<VerseModel> verseList = [];

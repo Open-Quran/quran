@@ -1,5 +1,7 @@
+import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/slidable_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:provider/provider.dart';
 
 import '../../../database/local_db.dart';
 
@@ -14,16 +16,15 @@ class ActionTypeListener extends StatefulWidget {
   final bool isFirstVerse;
 
   @override
-  _ActionTypeListenerState createState() => _ActionTypeListenerState();
+  ActionTypeListenerState createState() => ActionTypeListenerState();
 }
 
-class _ActionTypeListenerState extends State<ActionTypeListener> {
-  ValueNotifier<ActionPaneType>? _actionPaneTypeValueNotifier;
+class ActionTypeListenerState extends State<ActionTypeListener> {
 
   @override
   void initState() {
     super.initState();
-    WidgetsBinding.instance!.addPostFrameCallback((_) async {
+    WidgetsBinding.instance.addPostFrameCallback((_) async {
       if (widget.isFirstVerse) {
         if (!LocalDb.getShowCase) {
           LocalDb.setShowCase(true);
@@ -36,18 +37,6 @@ class _ActionTypeListenerState extends State<ActionTypeListener> {
         }
       }
     });
-    _actionPaneTypeValueNotifier = Slidable.of(context)?.actionPaneType;
-    _actionPaneTypeValueNotifier?.addListener(_onActionPaneTypeChanged);
-  }
-
-  @override
-  void dispose() {
-    _actionPaneTypeValueNotifier?.removeListener(_onActionPaneTypeChanged);
-    super.dispose();
-  }
-
-  void _onActionPaneTypeChanged() {
-    debugPrint('Value is ${_actionPaneTypeValueNotifier?.value}');
   }
 
   @override
@@ -55,12 +44,12 @@ class _ActionTypeListenerState extends State<ActionTypeListener> {
     return InkWell(
       child: widget.child,
       onTap: () {
-        if (_actionPaneTypeValueNotifier?.value == ActionPaneType.end) {
+        if (context.read<SlidableProvider>().actionPaneTypeValueNotifier?.value == ActionPaneType.end) {
           Slidable.of(context)!.close();
         }
       },
       onLongPress: () {
-        if (_actionPaneTypeValueNotifier?.value == ActionPaneType.none) {
+        if (context.read<SlidableProvider>().actionPaneTypeValueNotifier?.value == ActionPaneType.none) {
           Slidable.of(context)!.openEndActionPane();
         }
       },
