@@ -1,5 +1,7 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:provider/provider.dart';
 
 class TranslationReadingSegmentedButton extends StatelessWidget {
   const TranslationReadingSegmentedButton({
@@ -16,8 +18,10 @@ class TranslationReadingSegmentedButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: CupertinoSlidingSegmentedControl<int>(
-        backgroundColor: AppColors.black,
-        thumbColor: AppColors.black3,
+        backgroundColor:
+            context.watch<QuranProvider>().mushafColor.switchBackgroundColor,
+        thumbColor:
+            context.watch<QuranProvider>().mushafColor.switchSelectColor,
         padding: const EdgeInsets.all(3),
         groupValue: initialIndex,
         children: {
@@ -26,8 +30,13 @@ class TranslationReadingSegmentedButton extends StatelessWidget {
             child: Center(
               child: Text(
                 context.translate.translation,
-                style: context.theme.textTheme.headlineSmall
-                    ?.copyWith(color: initialIndex == 0 ? AppColors.grey : AppColors.grey3),
+                style: context.theme.textTheme.headlineSmall?.copyWith(
+                    color: initialIndex == 0
+                        ? context.watch<QuranProvider>().mushafColor.textColor
+                        : context
+                            .watch<QuranProvider>()
+                            .mushafColor
+                            .switchUnselectTextColor),
               ),
             ),
           ),
@@ -36,8 +45,13 @@ class TranslationReadingSegmentedButton extends StatelessWidget {
             child: Center(
               child: Text(
                 context.translate.reading,
-                style: context.theme.textTheme.headlineSmall
-                    ?.copyWith(color: initialIndex == 1 ? AppColors.grey : AppColors.grey3),
+                style: context.theme.textTheme.headlineSmall?.copyWith(
+                    color: initialIndex == 1
+                        ? context.watch<QuranProvider>().mushafColor.textColor
+                        : context
+                            .watch<QuranProvider>()
+                            .mushafColor
+                            .switchUnselectTextColor),
               ),
             ),
           ),

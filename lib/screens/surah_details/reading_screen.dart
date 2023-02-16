@@ -14,13 +14,20 @@ class ReadingScreen extends StatelessWidget {
       itemCount: 604,
       padding: const EdgeInsets.symmetric(horizontal: kSizeL),
       itemBuilder: (context, index) {
-        var versesOfPage = context.read<SurahDetailsProvider>().getSurahOfMushafPage(index + 1);
+        var versesOfPage = context
+            .read<SurahDetailsProvider>()
+            .getSurahOfMushafPage(index + 1);
         return QuranPageWidget(
           versesOfPage: versesOfPage,
-          layoutOptions: context.watch<QuranProvider>().localSetting.layoutOptions,
-          fontTypeArabic: context.watch<QuranProvider>().localSetting.fontTypeArabic,
-          textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
+          layoutOptions:
+              context.watch<QuranProvider>().localSetting.layoutOptions,
+          fontTypeArabic:
+              context.watch<QuranProvider>().localSetting.fontTypeArabic,
+          textScaleFactor:
+              context.watch<QuranProvider>().localSetting.textScaleFactor,
           onTap: context.read<SurahDetailsProvider>().changeReadingMode,
+          mushafBackgroundColorModel:
+              context.watch<QuranProvider>().mushafColor,
         );
       },
       separatorBuilder: (context, index) => const SizedBox(height: kSizeXL),

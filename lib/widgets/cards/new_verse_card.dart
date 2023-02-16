@@ -1,7 +1,9 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/translation.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
+import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../pop_up/verse_pop_up_menu.dart';
 
@@ -34,7 +36,9 @@ class VerseCard extends StatelessWidget {
   final bool isBookmark;
   final Function(VerseModel verseModel, bool isPlaying) playFunction;
   final Function(VerseModel verseModel, bool isFavorite) favoriteFunction;
-  final Function(EBookMarkType bookMarkType,VerseModel verseModel, bool isBookmark) bookmarkFunction;
+  final Function(
+          EBookMarkType bookMarkType, VerseModel verseModel, bool isBookmark)
+      bookmarkFunction;
   final Function(VerseModel) shareFunction;
 
   @override
@@ -147,7 +151,7 @@ class VerseNumberArabicWithSymbol extends StatelessWidget {
       textAlign: TextAlign.start,
       textScaleFactor: textScaleFactor,
       style: context.theme.textTheme.displayLarge?.copyWith(
-        color: AppColors.grey9,
+        color: context.watch<QuranProvider>().mushafColor.textColor,
         fontSize: 27,
         fontFamily: arabicFontFamily,
       ),
@@ -190,7 +194,7 @@ class VerseCardArabic extends StatelessWidget {
         textAlign: TextAlign.start,
         textScaleFactor: textScaleFactor,
         style: context.theme.textTheme.displayLarge?.copyWith(
-          color: AppColors.grey,
+          color: context.watch<QuranProvider>().mushafColor.textColor,
           fontSize: 27,
         ),
       ),
@@ -211,8 +215,8 @@ class VerseCardDividerLine extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            AppColors.black10.withOpacity(0),
-            AppColors.grey10.withOpacity(1),
+            context.watch<QuranProvider>().mushafColor.transparentTextColor,
+            context.watch<QuranProvider>().mushafColor.textColor,
           ],
         ),
       ),
@@ -252,7 +256,7 @@ class VerseCardTranslation extends StatelessWidget {
               textScaleFactor: textScaleFactor,
               style: context.theme.textTheme.titleSmall?.copyWith(
                 fontFamily: translationFontFamily,
-                color: AppColors.grey2,
+                color: context.watch<QuranProvider>().mushafColor.textColor,
               ),
             ),
             const SizedBox(height: kSizeM),
@@ -262,7 +266,10 @@ class VerseCardTranslation extends StatelessWidget {
               textScaleFactor: textScaleFactor,
               style: context.theme.textTheme.labelLarge?.copyWith(
                 fontFamily: translationFontFamily,
-                color: AppColors.grey11,
+                color: context
+                    .watch<QuranProvider>()
+                    .mushafColor
+                    .transparentTextColor,
               ),
             ),
           ],

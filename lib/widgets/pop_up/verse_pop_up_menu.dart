@@ -26,7 +26,8 @@ class VersePopUpMenu extends StatelessWidget {
   final bool isBookmark;
   final Function(VerseModel verseModel, bool isPlaying) playFunction;
   final Function(VerseModel verseModel, bool isFavorite) favoriteFunction;
-  final Function(EBookMarkType bookMarkType, VerseModel verseModel, bool isBookmark)
+  final Function(
+          EBookMarkType bookMarkType, VerseModel verseModel, bool isBookmark)
       bookmarkFunction;
   final Function(VerseModel) shareFunction;
 
@@ -34,7 +35,8 @@ class VersePopUpMenu extends StatelessWidget {
   Widget build(BuildContext context) {
     return GestureDetector(
       onLongPress: () {
-        RenderBox box = globalKey.currentContext?.findRenderObject() as RenderBox;
+        RenderBox box =
+            globalKey.currentContext?.findRenderObject() as RenderBox;
         Offset position = box.localToGlobal(Offset.zero);
         showMenu(
           context: context,
@@ -46,16 +48,23 @@ class VersePopUpMenu extends StatelessWidget {
             borderRadius: BorderRadius.circular(10),
           ),
           position: RelativeRect.fromRect(
-            Rect.fromLTWH(position.dx + kSizeM,
-                position.dy + (box.paintBounds.size.height - 200 - kSizeM), 0, 0),
-            Rect.fromLTWH(0, 0, box.paintBounds.size.width, box.paintBounds.size.height),
+            Rect.fromLTWH(
+                position.dx + kSizeM,
+                position.dy + (box.paintBounds.size.height - 200 - kSizeM),
+                0,
+                0),
+            Rect.fromLTWH(
+                0, 0, box.paintBounds.size.width, box.paintBounds.size.height),
           ),
           items: [
             PopupMenuItem(
               onTap: () => playFunction(verseModel, isPlaying),
               child: VerseMenuItem(
-                iconPath: isPlaying ? ImageConstants.pauseIcon : ImageConstants.play,
-                buttonName: isPlaying ? context.translate.pause : context.translate.play,
+                iconPath:
+                    isPlaying ? ImageConstants.pauseIcon : ImageConstants.play,
+                buttonName: isPlaying
+                    ? context.translate.pause
+                    : context.translate.play,
               ),
             ),
             PopupMenuItem(
@@ -68,7 +77,8 @@ class VersePopUpMenu extends StatelessWidget {
               ),
             ),
             PopupMenuItem(
-              onTap: () => bookmarkFunction(EBookMarkType.verse, verseModel, isBookmark),
+              onTap: () =>
+                  bookmarkFunction(EBookMarkType.verse, verseModel, isBookmark),
               child: VerseMenuItem(
                 iconPath: isBookmark
                     ? ImageConstants.bookmarkActiveIcon

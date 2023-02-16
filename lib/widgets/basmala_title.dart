@@ -21,7 +21,9 @@ class BasmalaTitle extends StatelessWidget {
             child: Column(
               children: [
                 const SizedBox(height: kSizeL),
-                SvgPicture.asset(ImageConstants.basmalaIcon),
+                SvgPicture.asset(ImageConstants.basmalaIcon,
+                    color:
+                        context.watch<QuranProvider>().mushafColor.textColor),
               ],
             ),
           ),
@@ -35,11 +37,12 @@ class BasmalaTitle extends StatelessWidget {
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [
-        SvgPicture.asset(ImageConstants.titleFrame),
+        SvgPicture.asset(ImageConstants.titleFrame,
+            color: context.watch<QuranProvider>().mushafColor.titleVectorColor),
         Text(
           surahName(context),
           style: context.theme.textTheme.headlineLarge?.copyWith(
-            color: AppColors.grey,
+            color: context.watch<QuranProvider>().mushafColor.textColor,
             letterSpacing: 0.04,
           ),
         ),

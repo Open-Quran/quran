@@ -5,6 +5,7 @@ class LocalSettingModel {
   EReadOptions readOptions;
   ELayoutOptions layoutOptions;
   double textScaleFactor;
+  int mushafBackgroundColorIndex;
   String fontType = Fonts.translationFontNames.first;
   String fontTypeArabic = Fonts.arabicFontNames.first;
 
@@ -13,6 +14,7 @@ class LocalSettingModel {
     this.layoutOptions = ELayoutOptions.center,
     this.readOptions = EReadOptions.surahAndTranslation,
     this.textScaleFactor = 1.2,
+    this.mushafBackgroundColorIndex = 0,
     this.fontType = "Nunito",
     this.fontTypeArabic = "Nunito",
   });
@@ -22,9 +24,11 @@ class LocalSettingModel {
     return 'LocalSettingModel{quranType: $quranType, readOptions: $readOptions, layoutOptions: $layoutOptions, textScaleFactor: $textScaleFactor, fontType: $fontType, fontTypeArabic: $fontTypeArabic}';
   }
 
-  factory LocalSettingModel.fromJson(Map<String, dynamic> json) => LocalSettingModel(
-        quranType:
-            json['quranType'] != null ? EQuranType.values[json['quranType']] : EQuranType.translation,
+  factory LocalSettingModel.fromJson(Map<String, dynamic> json) =>
+      LocalSettingModel(
+        quranType: json['quranType'] != null
+            ? EQuranType.values[json['quranType']]
+            : EQuranType.translation,
         readOptions: json['readOptions'] != null
             ? EReadOptions.values[json['readOptions']]
             : EReadOptions.surahAndTranslation,
@@ -32,6 +36,7 @@ class LocalSettingModel {
             ? ELayoutOptions.values[json['layoutOptions']]
             : ELayoutOptions.center,
         textScaleFactor: json['textScaleFactor'] ?? 1.2,
+        mushafBackgroundColorIndex: json['mushafBackgroundColorIndex'] ?? 0,
         fontType: json['fontType'] ?? "Nunito",
         fontTypeArabic: json['fontTypeArabic'] ?? "Nunito",
       );
@@ -41,6 +46,7 @@ class LocalSettingModel {
         'readOptions': readOptions.index,
         'layoutOptions': layoutOptions.index,
         'textScaleFactor': textScaleFactor,
+        'mushafBackgroundColorIndex': mushafBackgroundColorIndex,
         'fontType': fontType,
         'fontTypeArabic': fontTypeArabic,
       };

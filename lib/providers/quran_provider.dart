@@ -1,6 +1,7 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/database/local_db.dart';
 import 'package:fabrikod_quran/models/local_setting_model.dart';
+import 'package:fabrikod_quran/models/mushaf_backgrund_model.dart';
 import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/services/asset_quran_service.dart';
@@ -113,6 +114,15 @@ class QuranProvider extends ChangeNotifier {
   /// Changing Arabic Font Type
   changeFontTypeArabic(String value) {
     localSetting.fontTypeArabic = value;
+    setLocalSettingOfQuran();
+  }
+
+  MushafBackgroundColorModel get mushafColor =>
+      AppColors.mushafColors.elementAt(localSetting.mushafBackgroundColorIndex);
+
+  /// Changing Mushaf Background Color
+  changeMushafBackgroundColor(int index) {
+    localSetting.mushafBackgroundColorIndex = index;
     setLocalSettingOfQuran();
   }
 }

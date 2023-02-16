@@ -1,8 +1,10 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/widgets/app_bars/empty_app_bar.dart';
 import 'package:fabrikod_quran/widgets/cards/translations_setting_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
 class TranslationSettingScreen extends StatefulWidget {
   const TranslationSettingScreen({super.key});
@@ -43,7 +45,9 @@ class _TranslationSettingScreenState extends State<TranslationSettingScreen> {
   Widget buildDownloaded() {
     return Padding(
       padding: const EdgeInsets.symmetric(
-          horizontal: kSizeL, vertical: kSizeL),
+        horizontal: kSizeL,
+        vertical: kSizeL,
+      ),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [

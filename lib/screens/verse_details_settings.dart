@@ -27,7 +27,8 @@ class _VerseDetailsSettingsState extends State<VerseDetailsSettings> {
 
   Widget get buildBody {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: kSize3XL, vertical: kSizeXL),
+      padding:
+          const EdgeInsets.symmetric(horizontal: kSize3XL, vertical: kSizeXL),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -40,7 +41,8 @@ class _VerseDetailsSettingsState extends State<VerseDetailsSettings> {
             onChanged: context.read<QuranProvider>().changeFontSize,
           ),
           LayoutOptionsToggleButton(
-            layoutOptions: context.watch<QuranProvider>().localSetting.layoutOptions,
+            layoutOptions:
+                context.watch<QuranProvider>().localSetting.layoutOptions,
             onChanged: context.read<QuranProvider>().changeLayoutOptions,
           ),
           const SoundDropDown(),
@@ -51,10 +53,14 @@ class _VerseDetailsSettingsState extends State<VerseDetailsSettings> {
               AppColors.oasis,
               AppColors.white3,
               AppColors.grey7,
-              AppColors.white4
+              AppColors.pink
             ],
-            defaultIndex: 0,
-            onChangedColor: (index) {},
+            defaultIndex: context
+                .watch<QuranProvider>()
+                .localSetting
+                .mushafBackgroundColorIndex,
+            onChangedColor:
+                context.read<QuranProvider>().changeMushafBackgroundColor,
           ),
         ],
       ),

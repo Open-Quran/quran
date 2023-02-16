@@ -34,6 +34,8 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
     return Scaffold(
       appBar: buildAppBar(),
       body: buildBody,
+      backgroundColor:
+          context.watch<QuranProvider>().mushafColor.backgroundColor,
     );
   }
 
@@ -71,11 +73,14 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
   /// Switch [translation] or [reading]
   Widget get buildTranslationOrReadingSwitch {
     return Visibility(
-      visible: !context.watch<SurahDetailsProvider>().readingSettings.isReadingMode,
+      visible:
+          !context.watch<SurahDetailsProvider>().readingSettings.isReadingMode,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: kSizeXXL, horizontal: kSizeXL),
+        padding:
+            const EdgeInsets.symmetric(vertical: kSizeXXL, horizontal: kSizeXL),
         child: TranslationReadingSegmentedButton(
-          initialIndex: context.watch<QuranProvider>().localSetting.quranType.index,
+          initialIndex:
+              context.watch<QuranProvider>().localSetting.quranType.index,
           onValueChanged: context.read<SurahDetailsProvider>().changeQuranType,
         ),
       ),
@@ -105,7 +110,8 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
         return SurahCard(
           surahModel: surah,
           onTap: () {
-            context.read<SurahDetailsProvider>().readingSettings.surahIndex = surah.id!-1;
+            context.read<SurahDetailsProvider>().readingSettings.surahIndex =
+                surah.id! - 1;
             context.read<SurahDetailsProvider>().changeTitleMenuState();
             print("On Tap Surah Card : ${surah.id}");
           },
