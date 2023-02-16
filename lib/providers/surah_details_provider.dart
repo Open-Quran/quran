@@ -8,27 +8,33 @@ import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
 class SurahDetailsProvider extends ChangeNotifier {
-  /// Class Constructor
-  SurahDetailsProvider(this._context, this.readingSettings, EQuranType quranType) {
-    // quranProvider.changeQuranType(quranType.index);
-    // itemPositionsListener.itemPositions.addListener(scrollListener);
-    readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber ?? 1;
-
-    ///todo
-    ///pageController = PageController(initialPage: readingSettings.mushafPageNumber - 1);
-  }
-
   /// Detail Screen Context
   final BuildContext _context;
+
+  /// Reading settings model
+  late ReadingSettingsModel readingSettings;
 
   /// is Quran Screen Setting open
   bool isOpenSetting = false;
 
   /// is Quran Screen Title Menu open
   bool isTitleMenu = false;
+
+  /// Get [QuranProvider]
+  QuranProvider get quranProvider => _context.read<QuranProvider>();
+
+  /// Get [AppSettingsProvider]
+  AppSettingsProvider get appSettingsProvider => _context.read<AppSettingsProvider>();
+
+  /// Class Constructor
+  SurahDetailsProvider(this._context, this.readingSettings, EQuranType quranType) {
+    quranProvider.changeQuranType(quranType.index);
+    getShowedSurahs();
+    getShowedVerses();
+    getMushafPageList();
+  }
 
   /// Change Quran Screen Setting Mode
   void changeOpenSetting() {
@@ -42,162 +48,159 @@ class SurahDetailsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Reading settings model
-  late ReadingSettingsModel readingSettings;
+  List<SurahModel> showedSurahs = [];
 
-  /// Scroll Controller for Verse List
-  final ItemScrollController itemScrollController = ItemScrollController();
+  List<VerseModel> showedVerses = [];
 
-  /// Item position listener of Verse list
-  final ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
+  List<List<SurahModel>> mushafPageList = [];
 
-  /// Scroll Listener
-  void scrollListener() {
-    if (readingSettings.surahDetailScreenMod != ESurahDetailScreenMod.surah) return;
-    // readingSettings.verseIndex = itemPositionsListener.itemPositions.value.first.index;
+  int get jumpToVerseIndex {
+    int value = showedVerses.indexWhere((element) {
+      return element.surahId == readingSettings.surahId &&
+          element.verseNumber == readingSettings.verseId;
+    });
+    return value == -1 ? 0 : value;
   }
 
-  void initAfterScreen() {
-    if (readingSettings.surahDetailScreenMod == ESurahDetailScreenMod.surah) {
-      // itemScrollController.jumpTo(index: readingSettings.verseIndex);
-    }
+  int get jumpToMushafPageListIndex {
+    int value = mushafPageList.indexWhere((element) {
+      return element.first.verses.first.pageNumber == readingSettings.mushafPageNumber;
+    });
+    return value == -1 ? 0 : value;
   }
 
-  /// Get [QuranProvider]
-  QuranProvider get quranProvider => _context.read<QuranProvider>();
-
-  /// Get [AppSettingsProvider]
-  AppSettingsProvider get appSettingsProvider => _context.read<AppSettingsProvider>();
-
-  /// [SurahDetailsScreen] app bar title
-  String get appBarTitle {
+  void getShowedSurahs() {
+    showedSurahs = [];
     switch (quranProvider.localSetting.quranType) {
       case EQuranType.translation:
         switch (readingSettings.surahDetailScreenMod) {
           case ESurahDetailScreenMod.surah:
-            return quranProvider.surahs[readingSettings.surahIndex].nameSimple ?? "";
+            showedSurahs.add(quranProvider.surahs[readingSettings.surahIndex]);
+            break;
           case ESurahDetailScreenMod.juz:
-            return "${_context.translate.juz} - ${readingSettings.juzId}";
+            List<SurahModel> list = [];
+            for (var element in quranProvider.surahs) {
+              var surah = element.juzSurahs(readingSettings.juzId);
+              if (surah != null) list.add(surah);
+            }
+            showedSurahs = list;
         }
+        break;
       case EQuranType.reading:
-        return surahsOfMushafPage.first.nameSimple ?? "";
-    }
-  }
-
-  /// Getting Verses Of Reading Type Translation
-  List<VerseModel> get versesOfReadingTypeTranslation {
-    switch (readingSettings.surahDetailScreenMod) {
-      case ESurahDetailScreenMod.surah:
-        return quranProvider.surahs[readingSettings.surahIndex].verses;
-      case ESurahDetailScreenMod.juz:
-        List<VerseModel> list = [];
-        for (var element in quranProvider.surahs) {
-          list.addAll(element.juzVerses(readingSettings.juzIndex));
+        for (var surah in quranProvider.surahs) {
+          for (var verse in surah.verses) {
+            if (verse.pageNumber == readingSettings.mushafPageNumber) {
+              showedSurahs.add(quranProvider.surahs[verse.surahId! - 1]);
+              return;
+            }
+          }
         }
-        return list;
     }
   }
 
-  /// Play or Pause The Verses
-  void onTapVerseCardPlayOrPause(int index, bool isPlaying, String verseKey) {
-    var verses = versesOfReadingTypeTranslation;
-    _context.read<PlayerProvider>().onTapPlayOrPause(index, isPlaying, verses);
-  }
-
-  /// Play The Mushaf Page
-  void playTheMushafPage(bool isPlaying, int surahId) {
-    var index = surahsOfMushafPage.indexWhere((element) => element.id == surahId);
-    List<VerseModel> selectedVerses = index == -1 ? [] : surahsOfMushafPage[index].verses;
-    _context.read<PlayerProvider>().onTapPlayOrPause(0, isPlaying, selectedVerses);
-  }
-
-  List<SurahModel> get surahsOfMushafPage {
-    List<SurahModel> list = [];
-    for (var surah in quranProvider.surahs) {
-      var newSurah = surah.surahOfMushafPage(readingSettings.mushafPageNumber);
-      if (newSurah != null) list.add(newSurah);
+  void getShowedVerses() {
+    List<VerseModel> verses = [];
+    for (var element in showedSurahs) {
+      verses = verses + element.verses;
     }
-    return list;
+    showedVerses = verses;
+  }
+
+  void getMushafPageList() {
+    List<List<SurahModel>> list = [];
+    int pageNo = showedVerses.first.pageNumber!;
+    list.add(getSurahOfMushafPage(pageNo));
+    for (var verse in showedVerses) {
+      if (verse.pageNumber != pageNo) {
+        pageNo = verse.pageNumber!;
+        list.add(getSurahOfMushafPage(pageNo));
+      }
+    }
+    mushafPageList = list;
   }
 
   List<SurahModel> getSurahOfMushafPage(int pageNo) {
     List<SurahModel> list = [];
-    for (var surah in quranProvider.surahs) {
+    for (var surah in showedSurahs) {
       var newSurah = surah.surahOfMushafPage(pageNo);
       if (newSurah != null) list.add(newSurah);
     }
     return list;
   }
 
-  /// Getting Verses Of selected Surah
-  List<VerseModel> get versesOfSelectedSurah {
-    return quranProvider.surahs[readingSettings.surahIndex].verses;
+  listenToTranslationScreenList(int index) {
+    var verse = showedVerses[index];
+    if (verse.verseNumber == readingSettings.verseId && verse.surahId == readingSettings.surahId) {
+      return;
+    }
+    readingSettings.surahId = verse.surahId ?? 1;
+    readingSettings.verseId = verse.verseNumber ?? 1;
+    notifyListeners();
+  }
+
+  listenToReadingScreenList(int index) {
+    var pageNumber = mushafPageList[index].first.verses.first.pageNumber;
+    if (pageNumber == readingSettings.mushafPageNumber) {
+      return;
+    }
+    readingSettings.mushafPageNumber = pageNumber ?? 1;
+    notifyListeners();
+  }
+
+  /// [SurahDetailsScreen] app bar title
+  String get appBarTitle {
+    switch (quranProvider.localSetting.quranType) {
+      case EQuranType.translation:
+        return quranProvider.surahs[readingSettings.surahIndex].nameSimple ?? "";
+      case EQuranType.reading:
+        return mushafPageList.first.first.nameSimple ?? "";
+    }
+  }
+
+  /// [SurahDetailsScreen] app bar description
+  String get appBarDescription {
+    VerseModel verse;
+    switch (quranProvider.localSetting.quranType) {
+      case EQuranType.translation:
+        verse = quranProvider.surahs[readingSettings.surahIndex].verses[readingSettings.verseIndex];
+        break;
+      case EQuranType.reading:
+        verse = mushafPageList.first.first.verses.first;
+    }
+    return "${_context.translate.juz} ${verse.juzNumber} | ${_context.translate.hizb} ${verse.hizbNumber} - ${_context.translate.page} ${verse.pageNumber}";
+  }
+
+  /// Play or Pause The Verses
+  void onTapVerseCardPlayOrPause(int index, bool isPlaying, String verseKey) {
+    _context.read<PlayerProvider>().onTapPlayOrPause(index, isPlaying, showedVerses);
+  }
+
+  /// Play The Mushaf Page
+  void playTheMushafPage(bool isPlaying, int surahId) {
+    var index = showedSurahs.indexWhere((element) => element.id == surahId);
+    List<VerseModel> selectedVerses = index == -1 ? [] : showedSurahs[index].verses;
+    _context.read<PlayerProvider>().onTapPlayOrPause(0, isPlaying, selectedVerses);
   }
 
   /// Changing reading style in the home page
   /// EX: [Translation] or [Reading]
   void changeQuranType(int index) {
     quranProvider.localSetting.quranType = EQuranType.values.elementAt(index);
-    if (quranProvider.localSetting.quranType == EQuranType.reading) {
-      readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber ?? 1;
-
-      ///todo
-      ///pageController.jumpToPage(readingSettings.mushafPageNumber - 1);
-    } else {
-      readingSettings.surahId = surahsOfMushafPage.first.verses.first.surahId!;
-      readingSettings.verseId = surahsOfMushafPage.first.verses.first.verseNumber!;
+    switch (quranProvider.localSetting.quranType) {
+      case EQuranType.translation:
+        int index = showedVerses
+            .indexWhere((element) => element.pageNumber == readingSettings.mushafPageNumber);
+        if (index != -1) {
+          readingSettings.surahId = showedVerses[index].surahId ?? 1;
+          readingSettings.verseId = showedVerses[index].verseNumber ?? 1;
+        }
+        break;
+      case EQuranType.reading:
+        readingSettings.mushafPageNumber = quranProvider
+            .surahs[readingSettings.surahIndex].verses[readingSettings.verseIndex].pageNumber!;
     }
     notifyListeners();
   }
-
-  /// Changing Surah detail screen mod in the drawer menu
-  /// EX: [Surah] or [Juz] or [Sajda]
-  void changeSurahDetailScreenMod(int index) {
-    readingSettings.surahDetailScreenMod = ESurahDetailScreenMod.values.elementAt(index);
-    notifyListeners();
-  }
-
-  void changeSurahIndex(int index) {
-    readingSettings.surahIndex = index;
-    readingSettings.verseIndex = 0;
-    readingSettings.mushafPageNumber = versesOfReadingTypeTranslation.first.pageNumber!;
-
-    ///todo
-    ///pageController.jumpToPage(readingSettings.mushafPageNumber - 1);
-    // itemScrollController.jumpTo(index: 0);
-    notifyListeners();
-  }
-
-  void changeSurahVerseIndex(int index) {
-    readingSettings.verseIndex = index;
-    readingSettings.mushafPageNumber = versesOfReadingTypeTranslation[index].pageNumber!;
-
-    ///todo
-    ///pageController.jumpToPage(readingSettings.mushafPageNumber - 1);
-    // itemScrollController.jumpTo(index: index);
-    notifyListeners();
-  }
-
-  void selectJuz(int index) {
-    readingSettings.juzIndex = index;
-
-    ///todo
-    ///pageController.jumpToPage(readingSettings.mushafPageNumber - 1);
-    Navigator.pop(_context);
-    notifyListeners();
-  }
-
-  ///todo
-  // void changeMushafPageNumberForButton(int index) {
-  //   readingSettings.mushafPageNumber = index;
-  //   pageController.jumpToPage(index - 1);
-  //   notifyListeners();
-  // }
-  ///todo
-  // void changeMushafPageNumberForScroll(int index) {
-  //   readingSettings.mushafPageNumber = index + 1;
-  //   notifyListeners();
-  // }
 
   void changeReadingMode() {
     readingSettings.isReadingMode = !readingSettings.isReadingMode;

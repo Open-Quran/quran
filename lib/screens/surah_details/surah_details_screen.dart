@@ -22,14 +22,6 @@ class SurahDetailsScreen extends StatefulWidget {
 
 class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
   @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context.read<SurahDetailsProvider>().initAfterScreen();
-    });
-  }
-
-  @override
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: buildAppBar(),
@@ -39,7 +31,7 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
 
   PreferredSizeWidget buildAppBar() => SecondaryAppBar(
         title: context.watch<SurahDetailsProvider>().appBarTitle,
-        subTitle: 'Juz 1 | Hizb 1 - Page 1',
+        subTitle: context.watch<SurahDetailsProvider>().appBarDescription,
         onTapSettings: context.read<SurahDetailsProvider>().changeOpenSetting,
         isDrawerOpen: context.watch<SurahDetailsProvider>().isTitleMenu,
         onTapTitle: context.watch<SurahDetailsProvider>().changeTitleMenuState,
@@ -105,9 +97,8 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
         return SurahCard(
           surahModel: surah,
           onTap: () {
-            context.read<SurahDetailsProvider>().readingSettings.surahIndex = surah.id!-1;
+            context.read<SurahDetailsProvider>().readingSettings.surahIndex = surah.id! - 1;
             context.read<SurahDetailsProvider>().changeTitleMenuState();
-            print("On Tap Surah Card : ${surah.id}");
           },
         );
       },

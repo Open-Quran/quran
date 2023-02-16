@@ -45,20 +45,29 @@ class SurahModel {
   }
 
   /// Filters and returns juz verses
-  List<VerseModel> juzVerses(int juzIndex) {
+  List<VerseModel> juzVerses(int juzId) {
     List<VerseModel> list = [];
     for (var element in verses) {
-      if (element.juzNumber == juzIndex + 1) list.add(element);
+      if (element.juzNumber == juzId) list.add(element);
     }
     return list;
+  }
+
+  /// Filters and returns juz Surahs
+  SurahModel? juzSurahs(int juzId) {
+    var verses = juzVerses(juzId);
+    if (verses.isEmpty) return null;
+    var newSurah = clone;
+    newSurah.verses = verses;
+    return newSurah;
   }
 
   /// Filters and return juz numbers of Surah
   List<int> get juzNumbers {
     List<int> juzNumbers = [];
     for (var element in verses) {
-      if(juzNumbers.contains(element.juzNumber)) continue;
-      if(element.juzNumber == null) continue;
+      if (juzNumbers.contains(element.juzNumber)) continue;
+      if (element.juzNumber == null) continue;
       juzNumbers.add(element.juzNumber!);
     }
     return juzNumbers;
