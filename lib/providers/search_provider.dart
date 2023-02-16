@@ -48,6 +48,9 @@ class SearchProvider extends ChangeNotifier {
   /// Storing juz number, initially null
   int? filterJuzNumber;
 
+  /// Enum toggle search options
+  EToggleSearchOptions toggleSearchOptions = EToggleSearchOptions.toggles;
+
   /// OnTap search
   void handleSearchSubmitted(String query) {
     this.query = query;
@@ -181,8 +184,15 @@ class SearchProvider extends ChangeNotifier {
       notifyListeners();
     } else {
       Utils.unFocus();
-      context.read<HomeProvider>().changeToggleSearchOptions(EToggleSearchOptions.toggles);
+     changeToggleSearchOptions(EToggleSearchOptions.toggles);
     }
+  }
+
+
+  /// Changing between toggle buttons and search bar
+  changeToggleSearchOptions(EToggleSearchOptions newOptionType) {
+    toggleSearchOptions = newOptionType;
+    notifyListeners();
   }
 
   /// Checking when search result is empty

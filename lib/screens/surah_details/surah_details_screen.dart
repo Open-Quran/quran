@@ -1,5 +1,6 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
+import 'package:fabrikod_quran/providers/search_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/screens/surah_details/reading_screen.dart';
 import 'package:fabrikod_quran/screens/surah_details/translation_screen.dart';
@@ -7,10 +8,13 @@ import 'package:fabrikod_quran/widgets/animation/fade_indexed_stack.dart';
 import 'package:fabrikod_quran/widgets/app_bars/secondary_app_bar.dart';
 import 'package:fabrikod_quran/widgets/bars/play_bar.dart';
 import 'package:fabrikod_quran/widgets/buttons/translation_reading_segmented_button.dart';
+import 'package:fabrikod_quran/widgets/lists/juz_list.dart';
+import 'package:fabrikod_quran/widgets/lists/surah_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../widgets/cards/surah_card.dart';
+import '../../widgets/buttons/juz_surah_search_toggle_button.dart';
+import '../search_result_page.dart';
 import '../verse_details_settings.dart';
 
 class SurahDetailsScreen extends StatefulWidget {
@@ -63,7 +67,37 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
             const VerseDetailsSettings(),
           ],
         ),
-        buildSurahList(),
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              JuzSurahSearchToggleButton(
+                toggleSearchButtonIndex: context
+                    .read<SearchProvider>()
+                    .toggleSearchOptions
+                    .index,
+                onChanged: context
+                    .watch<SurahDetailsProvider>()
+                    .changeJuzOrSurahToggleOptionType,
+                onTapSearchButton:    context
+                    .read<SurahDetailsProvider>()
+                    .changeToggleSearchOptions,
+                toggleListType: context
+                    .watch<SurahDetailsProvider>()
+                    .juzSurahToggleOptionType,
+              ),
+              FadeIndexedStack(
+                index: context
+                    .watch<SearchProvider>()
+                    .toggleSearchOptions
+                    .index,
+                children: [
+                  buildToggleSearchPages(context),
+                  const SearchResultPage(),
+                ],
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
@@ -71,11 +105,14 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
   /// Switch [translation] or [reading]
   Widget get buildTranslationOrReadingSwitch {
     return Visibility(
-      visible: !context.watch<SurahDetailsProvider>().readingSettings.isReadingMode,
+      visible:
+          !context.watch<SurahDetailsProvider>().readingSettings.isReadingMode,
       child: Padding(
-        padding: const EdgeInsets.symmetric(vertical: kSizeXXL, horizontal: kSizeXL),
+        padding:
+            const EdgeInsets.symmetric(vertical: kSizeXXL, horizontal: kSizeXL),
         child: TranslationReadingSegmentedButton(
-          initialIndex: context.watch<QuranProvider>().localSetting.quranType.index,
+          initialIndex:
+              context.watch<QuranProvider>().localSetting.quranType.index,
           onValueChanged: context.read<SurahDetailsProvider>().changeQuranType,
         ),
       ),
@@ -94,24 +131,26 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
     );
   }
 
-  /// List of the Surah Verses
-  Widget buildSurahList() {
-    var surahs = context.watch<QuranProvider>().surahs;
-    return ListView.separated(
-      itemCount: surahs.length,
-      padding: const EdgeInsets.all(kSizeL),
-      itemBuilder: (context, index) {
-        final surah = surahs[index];
-        return SurahCard(
-          surahModel: surah,
-          onTap: () {
-            context.read<SurahDetailsProvider>().readingSettings.surahIndex = surah.id!-1;
-            context.read<SurahDetailsProvider>().changeTitleMenuState();
-            print("On Tap Surah Card : ${surah.id}");
-          },
-        );
-      },
-      separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
+  /// Juz/Translation and Search pages
+  FadeIndexedStack buildToggleSearchPages(BuildContext context) {
+    return FadeIndexedStack(
+      index:
+          context.watch<SurahDetailsProvider>().juzSurahToggleOptionType.index,
+      children: [
+        JuzList(
+            changeListType:
+                context.read<SurahDetailsProvider>().changeJuzListType,
+            juzListType: context.watch<SurahDetailsProvider>().juzListType,
+            onTapJuzCard: (juzId) {
+              /// ToDo: Navigate from juz list
+            },
+            onTapSurahCard: (surahId) {
+              /// ToDo: Navigate from surah list
+            }),
+        SurahList(onTap: (surahId) {
+          context.read<SurahDetailsProvider>().surahCardOnTap(context, surahId);
+        }),
+      ],
     );
   }
 }
