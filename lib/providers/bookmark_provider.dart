@@ -1,13 +1,9 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/database/local_db.dart';
+import 'package:fabrikod_quran/managers/surah_detail_navigation_manager.dart';
 import 'package:fabrikod_quran/models/bookmark_model.dart';
-import 'package:fabrikod_quran/models/reading_settings_model.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/providers/surah_details_provider.dart';
-import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
 
 class BookmarkProvider extends ChangeNotifier {
   /// Class Constructor
@@ -23,6 +19,7 @@ class BookmarkProvider extends ChangeNotifier {
     var result = bookmarks.indexWhere((element) => element == bookMark);
     return result == -1 ? false : true;
   }
+
   ///When clicked to Bookmark Button
   void onTapBookMarkButton(EBookMarkType bookMarkType, VerseModel verseModel, bool isBookmark) {
     if (isBookmark) {
@@ -48,27 +45,20 @@ class BookmarkProvider extends ChangeNotifier {
 
   /// onTap bookmark card
   void bookmarkOnTap(BuildContext context, BookMarkModel bookmark) {
-    ReadingSettingsModel model;
+    print("3333333");
     switch (bookmark.bookmarkType) {
       case EBookMarkType.verse:
-        model = ReadingSettingsModel(
-          surahIndex: bookmark.verseModel.surahId! - 1,
-          surahVerseIndex: bookmark.verseModel.verseNumber! - 1,
+        SurahDetailNavigationManager.goToSurah(
+          context,
+          bookmark.verseModel.surahId!,
+          verseId: bookmark.verseModel.verseNumber!,
         );
         break;
       case EBookMarkType.page:
-        context.read<QuranProvider>().changeQuranType(1);
-        model = ReadingSettingsModel(mushafPageNumber: bookmark.verseModel.pageNumber!);
+        SurahDetailNavigationManager.goToMushaf(
+          context,
+          bookmark.verseModel.pageNumber!,
+        );
     }
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ChangeNotifierProvider(
-          create: (context) => SurahDetailsProvider(context, model),
-          child: const SurahDetailsScreen(),
-        ),
-      ),
-    );
   }
 }

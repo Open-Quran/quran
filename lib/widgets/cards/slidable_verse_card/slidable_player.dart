@@ -12,14 +12,14 @@ class SlidablePlayer extends StatefulWidget {
   final Widget child;
 
   @override
-  _SlidablePlayerState createState() => _SlidablePlayerState();
+  SlidablePlayerState createState() => SlidablePlayerState();
 
-  static _SlidablePlayerState? of(BuildContext context) {
-    return context.findAncestorStateOfType<_SlidablePlayerState>();
+  static SlidablePlayerState? of(BuildContext context) {
+    return context.findAncestorStateOfType<SlidablePlayerState>();
   }
 }
 
-class _SlidablePlayerState extends State<SlidablePlayer> {
+class SlidablePlayerState extends State<SlidablePlayer> {
   SlidableController? controller;
 
   @override

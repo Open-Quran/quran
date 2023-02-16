@@ -27,10 +27,7 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => SearchProvider(_),
-      child: const _MyHomeScreen(),
-    );
+    return const _MyHomeScreen();
   }
 }
 
@@ -109,12 +106,10 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
       tabTitles: [
         context.translate.surah,
         context.translate.juz,
-        context.translate.sajda,
       ],
       tabViews: [
         buildSurahList,
         buildJuzList,
-        buildSajdaList,
       ],
     );
   }
@@ -177,7 +172,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
         surahModel: searchSurahResult[index],
         onTap: () => context
             .read<HomeProvider>()
-            .onTapSurahCard(searchSurahResult[index].id! - 1),
+            .onTapSurahCard(searchSurahResult[index].id!),
       ),
       separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
@@ -195,7 +190,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
             title: context.translate.juz,
             titleNumber: "${context.translate.juz} - $pageNumber",
             onTap: () {
-              context.read<HomeProvider>().onTapJuzCard(juzNumber! - 1);
+              context.read<HomeProvider>().onTapJuzCard(juzNumber!);
             },
           ),
         ),
@@ -205,7 +200,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
             title: context.translate.page,
             titleNumber: "${context.translate.page} - $pageNumber",
             onTap: () {
-              context.read<SearchProvider>().onTapSearchPageCard(pageNumber!);
+              context.read<SearchProvider>().onTapSearchPageCard();
             },
           ),
         ),
@@ -224,7 +219,7 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
       itemBuilder: (context, index) => SurahCard(
         surahModel: surahs[index],
         onTap: () =>
-            context.read<HomeProvider>().onTapSurahCard(surahs[index].id! - 1),
+            context.read<HomeProvider>().onTapSurahCard(surahs[index].id!),
       ),
       separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
@@ -245,24 +240,8 @@ class _MyHomeScreenState extends State<_MyHomeScreen> {
       itemBuilder: (context, index) => GridCard(
           text: "${index + 1}",
           onTap: () {
-            context.read<HomeProvider>().onTapJuzCard(index);
+            context.read<HomeProvider>().onTapJuzCard(index + 1);
           }),
-    );
-  }
-
-  /// List of the Sajda Verses
-  Widget get buildSajdaList {
-    var sajdas = context.watch<QuranProvider>().sajdaSurahs;
-    return ListView.separated(
-      itemCount: sajdas.length,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.symmetric(vertical: kSizeXXL),
-      itemBuilder: (context, index) => SurahCard(
-        surahModel: sajdas[index],
-        onTap: () => context.read<HomeProvider>().onTapSajdaCard(index),
-      ),
-      separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
   }
 }

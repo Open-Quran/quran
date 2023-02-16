@@ -3,13 +3,11 @@ import 'package:fabrikod_quran/models/translation.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../constants/enums.dart';
-import '../models/reading_settings_model.dart';
-import '../screens/surah_details/surah_details_screen.dart';
+import '../managers/surah_detail_navigation_manager.dart';
 import '../utils/utils.dart';
 import '../widgets/tags/custom_tag_list.dart';
 
@@ -31,7 +29,6 @@ class SearchProvider extends ChangeNotifier {
 
   /// The list of the [VerseModel]
   List<VerseModel> filteredVerseSearch = [];
-
 
   /// The list of the [VerseTranslation]
   List<VerseTranslation> filteredVerseTranslationSearch = [];
@@ -90,7 +87,8 @@ class SearchProvider extends ChangeNotifier {
   /// [VerseModel]
   filterSurahVerseTranslation(String queryText) {
     queryText = queryText.toLowerCase();
-    List<VerseTranslation> searchList = _context.read<QuranProvider>().translationService.getAllVerseTranslations;
+    List<VerseTranslation> searchList =
+        _context.read<QuranProvider>().translationService.getAllVerseTranslations;
     List<VerseTranslation> searchResult = [];
     for (var verse in searchList) {
       if (verse.text!.toLowerCase().contains(queryText)) {
@@ -102,7 +100,6 @@ class SearchProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-
   /// Getting search result by surah name, id etc.
   /// [VerseModel]
   filterSurahVerse(String queryText) {
@@ -112,13 +109,9 @@ class SearchProvider extends ChangeNotifier {
     List<VerseModel> searchResult = [];
     for (var verse in searchList) {
       if (verse.text!.toLowerCase().contains(queryText) ||
-          searchListSurah[verse.surahId! - 1]
-              .nameTranslated!
-              .toLowerCase()
-              .contains(queryText)) {
+          searchListSurah[verse.surahId! - 1].nameTranslated!.toLowerCase().contains(queryText)) {
         if (searchListSurah[verse.surahId! - 1].id == (verse.surahId!)) {
-          verse.surahNameTranslated =
-              searchListSurah[verse.surahId!].nameSimple;
+          verse.surahNameTranslated = searchListSurah[verse.surahId!].nameSimple;
           verse.surahNameArabic = searchListSurah[verse.surahId!].nameArabic;
         }
         searchResult.add(verse);
@@ -165,18 +158,8 @@ class SearchProvider extends ChangeNotifier {
   }
 
   /// Navigation to the specific page
-  void onTapSearchPageCard(int pageIndex) {
-    _context.read<QuranProvider>().changeQuranType(1);
-    var model = ReadingSettingsModel(mushafPageNumber: filterPageNumber!);
-    Navigator.push(
-      _context,
-      MaterialPageRoute(
-        builder: (context) => ChangeNotifierProvider(
-          create: (context) => SurahDetailsProvider(context, model),
-          child: const SurahDetailsScreen(),
-        ),
-      ),
-    );
+  void onTapSearchPageCard() {
+    SurahDetailNavigationManager.goToMushaf(_context, filterPageNumber!);
   }
 
   selectedTag(String selectedTag) {
@@ -198,9 +181,7 @@ class SearchProvider extends ChangeNotifier {
       notifyListeners();
     } else {
       Utils.unFocus();
-      context
-          .read<HomeProvider>()
-          .changeToggleSearchOptions(EToggleSearchOptions.toggles);
+      context.read<HomeProvider>().changeToggleSearchOptions(EToggleSearchOptions.toggles);
     }
   }
 

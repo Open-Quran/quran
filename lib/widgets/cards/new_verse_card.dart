@@ -92,7 +92,7 @@ class VerseCard extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  buildVerseCardArabic(readOptions),
+                  buildVerseCardArabic(readOptions, context),
                   buildVerseCardTranslation(readOptions),
                 ],
               ),
@@ -103,7 +103,7 @@ class VerseCard extends StatelessWidget {
     );
   }
 
-  Widget buildVerseCardArabic(EReadOptions readOptions) {
+  Widget buildVerseCardArabic(EReadOptions readOptions, BuildContext context) {
     return Visibility(
       visible: readOptions != EReadOptions.surah,
       child: Column(
@@ -113,7 +113,7 @@ class VerseCard extends StatelessWidget {
             textScaleFactor: textScaleFactor,
             isPlaying: isPlaying,
           ),
-          const VerseCardDividerLine(),
+          buildVerseCardDivider(context),
         ],
       ),
     );
@@ -202,26 +202,21 @@ class VerseCardArabic extends StatelessWidget {
   }
 }
 
-// Divider Line between arabic verse and its translation
-class VerseCardDividerLine extends StatelessWidget {
-  const VerseCardDividerLine({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      height: 1,
-      margin: const EdgeInsets.symmetric(vertical: kSizeM),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            context.watch<QuranProvider>().mushafColor.transparentTextColor,
-            context.watch<QuranProvider>().mushafColor.textColor,
-          ],
-        ),
+/// Divider Line between arabic verse and its translation
+Widget buildVerseCardDivider(BuildContext context) {
+  return Container(
+    width: double.infinity,
+    height: 1,
+    margin: const EdgeInsets.symmetric(vertical: kSizeM),
+    decoration: BoxDecoration(
+      gradient: LinearGradient(
+        colors: [
+          context.watch<QuranProvider>().mushafColor.transparentTextColor,
+          context.watch<QuranProvider>().mushafColor.textColor,
+        ],
       ),
-    );
-  }
+    ),
+  );
 }
 
 //Text of translation verse
@@ -244,7 +239,7 @@ class VerseCardTranslation extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.only(bottom: kSizeM),
-      separatorBuilder: (context, index) => const VerseCardDividerLine(),
+      separatorBuilder: (context, index) => buildVerseCardDivider(context),
       itemBuilder: (context, index) {
         final verseTranslation = verseTranslations[index];
         return Column(

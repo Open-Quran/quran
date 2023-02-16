@@ -6,15 +6,23 @@ import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/slidable_player
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:provider/provider.dart';
 
-import '../buttons/delete_button.dart';
+import '../../providers/favorites_provider.dart';
+import '../buttons/delete_verse_button.dart';
 
 class FavoriteCard extends StatefulWidget {
   const FavoriteCard({
     Key? key,
     required this.verseModel,
+    required this.onTap,
   }) : super(key: key);
+
+  /// [VerseModel]
   final VerseModel verseModel;
+
+  /// Favorite item onTap
+  final Function() onTap;
 
   @override
   State<FavoriteCard> createState() => _FavoriteCardState();
@@ -22,9 +30,12 @@ class FavoriteCard extends StatefulWidget {
 
 class _FavoriteCardState extends State<FavoriteCard>
     with SingleTickerProviderStateMixin {
+  /// Animation controller for the [SlidablePlayer]
   AnimationController? animationController;
+
   @override
   void initState() {
+    /// Animate delete button
     animationController = AnimationController(
         vsync: this,
         upperBound: 0.5,
@@ -35,54 +46,55 @@ class _FavoriteCardState extends State<FavoriteCard>
   @override
   Widget build(BuildContext context) {
     return SlidablePlayer(
+      key: UniqueKey(),
       animation: animationController,
       child: Slidable(
         endActionPane: ActionPane(
           extentRatio: 0.30,
           motion: const ScrollMotion(),
           children: [
-            DeleteButton(
-              verseModel: widget.verseModel,
+            DeleteVerseButton(
+              onTap: () => context
+                  .read<FavoritesProvider>()
+                  .deleteVerseFromFavorites(widget.verseModel),
             )
           ],
         ),
-        child: _buildFavoriteCard(),
+        child: buildFavoriteCard(),
       ),
     );
   }
 
-  _buildFavoriteCard() {
+  /// Favorite card item
+  buildFavoriteCard() {
     return SlidableControllerSender(
       child: ActionTypeListener(
         isFirstVerse: true,
-        child: Container(
-          width: double.infinity,
-          height: 72,
-          decoration: BoxDecoration(
-              color: AppColors.zeus,
-              borderRadius: BorderRadius.circular(kSizeM)),
-          child: Row(
-            children: [
-              const FavoriteIcon(),
-              const SurahNames(
-                  surahName: 'Al-Fatihah', surahNameTranslation: 'Al-Fatihah'),
-              const Spacer(),
-              PageNumber(pageNumber: widget.verseModel.pageNumber!)
-            ],
+        child: GestureDetector(
+          onTap: widget.onTap,
+          child: Container(
+            width: double.infinity,
+            height: 72,
+            decoration: BoxDecoration(
+                color: AppColors.zeus,
+                borderRadius: BorderRadius.circular(kSizeM)),
+            child: Row(
+              children: [
+                buildIcon(),
+                buildSurahName(widget.verseModel.surahNameSimple ?? "",
+                    widget.verseModel.surahNameTranslated ?? ""),
+                const Spacer(),
+                buildAyatNumber("${context.translate.ayat} ${widget.verseModel.verseNumber!.toString()}")
+              ],
+            ),
           ),
         ),
       ),
     );
   }
-}
 
-class FavoriteIcon extends StatelessWidget {
-  const FavoriteIcon({
-    Key? key,
-  }) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
+  /// Favorite card icon
+  buildIcon() {
     return Padding(
       padding: const EdgeInsets.all(kSizeL),
       child: SvgPicture.asset(
@@ -90,20 +102,9 @@ class FavoriteIcon extends StatelessWidget {
       ),
     );
   }
-}
 
-class SurahNames extends StatelessWidget {
-  const SurahNames({
-    Key? key,
-    required this.surahName,
-    required this.surahNameTranslation,
-  }) : super(key: key);
-
-  final String surahName;
-  final String surahNameTranslation;
-
-  @override
-  Widget build(BuildContext context) {
+  /// Surah name and translation name
+  buildSurahName(String surahName, String surahNameTranslation) {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
@@ -124,22 +125,13 @@ class SurahNames extends StatelessWidget {
       ],
     );
   }
-}
 
-class PageNumber extends StatelessWidget {
-  const PageNumber({
-    Key? key,
-    required this.pageNumber,
-  }) : super(key: key);
-
-  final int pageNumber;
-
-  @override
-  Widget build(BuildContext context) {
+  /// Surah ayat number
+  buildAyatNumber(String ayatNo) {
     return Padding(
       padding: const EdgeInsets.all(kSize3XL),
       child: Text(
-        '$pageNumber',
+        ayatNo,
         style: context.theme.textTheme.headlineSmall
             ?.copyWith(color: AppColors.grey6, fontSize: 10),
       ),
