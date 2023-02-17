@@ -5,7 +5,7 @@ class LocalSettingModel {
   EReadOptions readOptions;
   ELayoutOptions layoutOptions;
   double textScaleFactor;
-  int mushafBackgroundColorIndex;
+  int surahDetailsPageThemeIndex;
   String fontType = Fonts.translationFontNames.first;
   String fontTypeArabic = Fonts.arabicFontNames.first;
 
@@ -14,7 +14,7 @@ class LocalSettingModel {
     this.layoutOptions = ELayoutOptions.center,
     this.readOptions = EReadOptions.surahAndTranslation,
     this.textScaleFactor = 1.2,
-    this.mushafBackgroundColorIndex = 0,
+    this.surahDetailsPageThemeIndex = 0,
     this.fontType = "Nunito",
     this.fontTypeArabic = "Nunito",
   });
@@ -36,7 +36,7 @@ class LocalSettingModel {
             ? ELayoutOptions.values[json['layoutOptions']]
             : ELayoutOptions.center,
         textScaleFactor: json['textScaleFactor'] ?? 1.2,
-        mushafBackgroundColorIndex: json['mushafBackgroundColorIndex'] ?? 0,
+        surahDetailsPageThemeIndex: json['mushafBackgroundColorIndex'] ?? 0,
         fontType: json['fontType'] ?? "Nunito",
         fontTypeArabic: json['fontTypeArabic'] ?? "Nunito",
       );
@@ -46,7 +46,7 @@ class LocalSettingModel {
         'readOptions': readOptions.index,
         'layoutOptions': layoutOptions.index,
         'textScaleFactor': textScaleFactor,
-        'mushafBackgroundColorIndex': mushafBackgroundColorIndex,
+        'mushafBackgroundColorIndex': surahDetailsPageThemeIndex,
         'fontType': fontType,
         'fontTypeArabic': fontTypeArabic,
       };

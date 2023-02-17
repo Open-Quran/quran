@@ -18,10 +18,14 @@ class TranslationReadingSegmentedButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: CupertinoSlidingSegmentedControl<int>(
-        backgroundColor:
-            context.watch<QuranProvider>().mushafColor.switchBackgroundColor,
-        thumbColor:
-            context.watch<QuranProvider>().mushafColor.switchSelectColor,
+        backgroundColor: context
+            .watch<QuranProvider>()
+            .surahDetailsPageThemeColor
+            .switchBackgroundColor,
+        thumbColor: context
+            .watch<QuranProvider>()
+            .surahDetailsPageThemeColor
+            .switchSelectColor,
         padding: const EdgeInsets.all(3),
         groupValue: initialIndex,
         children: {
@@ -32,10 +36,13 @@ class TranslationReadingSegmentedButton extends StatelessWidget {
                 context.translate.translation,
                 style: context.theme.textTheme.headlineSmall?.copyWith(
                     color: initialIndex == 0
-                        ? context.watch<QuranProvider>().mushafColor.textColor
+                        ? context
+                            .watch<QuranProvider>()
+                            .surahDetailsPageThemeColor
+                            .textColor
                         : context
                             .watch<QuranProvider>()
-                            .mushafColor
+                            .surahDetailsPageThemeColor
                             .switchUnselectTextColor),
               ),
             ),
@@ -47,10 +54,13 @@ class TranslationReadingSegmentedButton extends StatelessWidget {
                 context.translate.reading,
                 style: context.theme.textTheme.headlineSmall?.copyWith(
                     color: initialIndex == 1
-                        ? context.watch<QuranProvider>().mushafColor.textColor
+                        ? context
+                            .watch<QuranProvider>()
+                            .surahDetailsPageThemeColor
+                            .textColor
                         : context
                             .watch<QuranProvider>()
-                            .mushafColor
+                            .surahDetailsPageThemeColor
                             .switchUnselectTextColor),
               ),
             ),

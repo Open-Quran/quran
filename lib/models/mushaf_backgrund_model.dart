@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-class MushafBackgroundColorModel {
+class SurahDetailsPageThemeModel {
   final Color backgroundColor;
   final Color switchSelectColor;
   final Color switchBackgroundColor;
@@ -10,7 +10,7 @@ class MushafBackgroundColorModel {
   final Color transparentVectorColor;
   final Color transparentTextColor;
 
-  MushafBackgroundColorModel({
+  SurahDetailsPageThemeModel({
     required this.backgroundColor,
     required this.switchSelectColor,
     required this.switchUnselectTextColor,

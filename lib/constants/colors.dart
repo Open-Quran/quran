@@ -44,8 +44,8 @@ class AppColors {
   static const Color redOrange = Color(0xFFFF3B30);
   static const Color redDark = Color(0xFF923131);
 
-  static List<MushafBackgroundColorModel> mushafColors = [
-    MushafBackgroundColorModel(
+  static List<SurahDetailsPageThemeModel> mushafColors = [
+    SurahDetailsPageThemeModel(
       backgroundColor: const Color(0xFFFCF6E5),
       switchSelectColor: const Color(0xFFDDC9A5),
       switchUnselectTextColor: const Color(0xFFB39B74),
@@ -55,7 +55,7 @@ class AppColors {
       transparentVectorColor: const Color(0xFFCFC1A7),
       transparentTextColor: const Color(0xFFCFC1A7),
     ),
-    MushafBackgroundColorModel(
+    SurahDetailsPageThemeModel(
       backgroundColor: const Color(0xFFFFF1CA),
       switchSelectColor: const Color(0xFFE0CCA8),
       switchUnselectTextColor: const Color(0xFFB39B74),
@@ -65,7 +65,7 @@ class AppColors {
       transparentVectorColor: const Color(0xFFE0CCA8),
       transparentTextColor: const Color(0xFFE0CCA8),
     ),
-    MushafBackgroundColorModel(
+    SurahDetailsPageThemeModel(
       backgroundColor: const Color(0xFFF1F2F5),
       switchSelectColor: const Color(0xFFB6B9C3),
       switchUnselectTextColor: const Color(0xFF93959A),
@@ -75,7 +75,7 @@ class AppColors {
       transparentVectorColor: const Color(0xFFBCC1D0),
       transparentTextColor: const Color(0xFFBCC1D0),
     ),
-    MushafBackgroundColorModel(
+    SurahDetailsPageThemeModel(
       backgroundColor: const Color(0xFF111111),
       switchSelectColor: const Color(0xFF1A1A1A),
       switchUnselectTextColor: const Color(0xFFA5A5A5),
@@ -85,7 +85,7 @@ class AppColors {
       transparentVectorColor: const Color(0xFFA8A2A2),
       transparentTextColor: const Color(0xFFA8A2A2),
     ),
-    MushafBackgroundColorModel(
+    SurahDetailsPageThemeModel(
       backgroundColor: const Color(0xFFFCE9E9),
       switchSelectColor: const Color(0xFFC0AFAF),
       switchUnselectTextColor: const Color(0xFF9D9595),

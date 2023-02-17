@@ -15,7 +15,7 @@ class QuranPageWidget extends StatelessWidget {
     this.textScaleFactor = 1.0,
     required this.fontTypeArabic,
     required this.layoutOptions,
-    required this.mushafBackgroundColorModel,
+    required this.surahDetailsPageTheme,
   }) : super(key: key);
 
   final List<SurahModel> versesOfPage;
@@ -23,7 +23,7 @@ class QuranPageWidget extends StatelessWidget {
   final double textScaleFactor;
   final String fontTypeArabic;
   final ELayoutOptions layoutOptions;
-  final MushafBackgroundColorModel mushafBackgroundColorModel;
+  final SurahDetailsPageThemeModel surahDetailsPageTheme;
 
   @override
   Widget build(BuildContext context) {
@@ -75,7 +75,10 @@ class QuranPageWidget extends StatelessWidget {
         style: context.theme.textTheme.headlineLarge?.copyWith(
             height: 2.4,
             fontFamily: Fonts.getArabicFont(fontTypeArabic),
-            color: context.watch<QuranProvider>().mushafColor.textColor),
+            color: context
+                .watch<QuranProvider>()
+                .surahDetailsPageThemeColor
+                .textColor),
         children: verses
             .map(
               (e) => TextSpan(
@@ -89,7 +92,7 @@ class QuranPageWidget extends StatelessWidget {
                         height: 0,
                         color: context
                             .watch<QuranProvider>()
-                            .mushafColor
+                            .surahDetailsPageThemeColor
                             .textColor),
                   ),
                 ],
@@ -105,8 +108,7 @@ class QuranPageWidget extends StatelessWidget {
       padding: const EdgeInsets.only(bottom: kSizeS),
       decoration: BoxDecoration(
           border: Border(
-        bottom: BorderSide(
-            color: mushafBackgroundColorModel.transparentVectorColor),
+        bottom: BorderSide(color: surahDetailsPageTheme.transparentVectorColor),
       )),
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
@@ -114,13 +116,13 @@ class QuranPageWidget extends StatelessWidget {
           Text(
             "${context.translate.juz} ${verse.juzNumber} | ${context.translate.hizb} ${verse.hizbNumber} - ${context.translate.page} ${verse.pageNumber}",
             style: context.theme.textTheme.bodySmall?.copyWith(
-                color: mushafBackgroundColorModel.transparentTextColor,
+                color: surahDetailsPageTheme.transparentTextColor,
                 letterSpacing: 0.15),
           ),
           Text(
             verse.pageNumber?.quranPageNumber ?? "",
             style: context.theme.textTheme.bodyMedium?.copyWith(
-                color: mushafBackgroundColorModel.transparentVectorColor,
+                color: surahDetailsPageTheme.transparentVectorColor,
                 letterSpacing: 0.04),
           ),
         ],

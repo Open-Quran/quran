@@ -58,9 +58,9 @@ class _VerseDetailsSettingsState extends State<VerseDetailsSettings> {
             defaultIndex: context
                 .watch<QuranProvider>()
                 .localSetting
-                .mushafBackgroundColorIndex,
+                .surahDetailsPageThemeIndex,
             onChangedColor:
-                context.read<QuranProvider>().changeMushafBackgroundColor,
+                context.read<QuranProvider>().changeSurahDetailsPageTheme,
           ),
         ],
       ),

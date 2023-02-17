@@ -40,7 +40,6 @@ class QuranProvider extends ChangeNotifier {
     return juz;
   }
 
-
   /// Get all surah verses
   List<VerseModel> get getAllVerses {
     List<VerseModel> verseList = [];
@@ -118,12 +117,12 @@ class QuranProvider extends ChangeNotifier {
     setLocalSettingOfQuran();
   }
 
-  MushafBackgroundColorModel get mushafColor =>
-      AppColors.mushafColors.elementAt(localSetting.mushafBackgroundColorIndex);
+  SurahDetailsPageThemeModel get surahDetailsPageThemeColor =>
+      AppColors.mushafColors.elementAt(localSetting.surahDetailsPageThemeIndex);
 
   /// Changing Mushaf Background Color
-  changeMushafBackgroundColor(int index) {
-    localSetting.mushafBackgroundColorIndex = index;
+  changeSurahDetailsPageTheme(int index) {
+    localSetting.surahDetailsPageThemeIndex = index;
     setLocalSettingOfQuran();
   }
 }

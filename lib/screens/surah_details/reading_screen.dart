@@ -26,8 +26,8 @@ class ReadingScreen extends StatelessWidget {
           textScaleFactor:
               context.watch<QuranProvider>().localSetting.textScaleFactor,
           onTap: context.read<SurahDetailsProvider>().changeReadingMode,
-          mushafBackgroundColorModel:
-              context.watch<QuranProvider>().mushafColor,
+          surahDetailsPageTheme:
+              context.watch<QuranProvider>().surahDetailsPageThemeColor,
         );
       },
       separatorBuilder: (context, index) => const SizedBox(height: kSizeXL),
