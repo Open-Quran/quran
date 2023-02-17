@@ -2,6 +2,7 @@ import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/search_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
+import 'package:fabrikod_quran/screens/search_result_screen.dart';
 import 'package:fabrikod_quran/screens/surah_details/reading_screen.dart';
 import 'package:fabrikod_quran/screens/surah_details/translation_screen.dart';
 import 'package:fabrikod_quran/widgets/animation/fade_indexed_stack.dart';
@@ -14,7 +15,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../../widgets/buttons/juz_surah_search_toggle_button.dart';
-import '../search_result_page.dart';
 import '../verse_details_settings.dart';
 
 class SurahDetailsScreen extends StatefulWidget {
@@ -84,7 +84,7 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
                     .index,
                 children: [
                   buildToggleSearchPages(context),
-                  const SearchResultPage(),
+                  const SearchResultScreen(isHome: false),
                 ],
               ),
             ],
@@ -134,13 +134,13 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
                 context.read<SurahDetailsProvider>().changeJuzListType,
             juzListType: context.watch<SurahDetailsProvider>().juzListType,
             onTapJuzCard: (juzId) {
-              /// ToDo: Navigate from juz list
+              context.read<SearchProvider>().goToJuz(context, juzId, false);
             },
             onTapSurahCard: (surahId) {
-              /// ToDo: Navigate from surah list
+              context.read<SearchProvider>().goToSurah(context, surahId, false);
             }),
         SurahList(onTap: (surahId) {
-
+          context.read<SearchProvider>().goToSurah(context, surahId, false);
         }),
       ],
     );

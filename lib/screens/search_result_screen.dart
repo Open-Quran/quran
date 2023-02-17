@@ -6,17 +6,18 @@ import 'package:provider/provider.dart';
 import '../models/surah_model.dart';
 import '../models/translation.dart';
 import '../models/verse_model.dart';
-import '../providers/home_provider.dart';
 import '../providers/search_provider.dart';
-import '../widgets/cards/search_card.dart';
 import '../widgets/cards/search_navigation_card.dart';
 import '../widgets/cards/search_surah_card.dart';
 import '../widgets/cards/search_verse_card.dart';
 import '../widgets/cards/search_verse_translations_card.dart';
 import '../widgets/no_item_widget.dart';
 
-class SearchResultPage extends StatelessWidget {
-  const SearchResultPage({Key? key}) : super(key: key);
+class SearchResultScreen extends StatelessWidget {
+  const SearchResultScreen({Key? key, required this.isHome}) : super(key: key);
+
+  /// Checking is navigation from home screen
+  final bool isHome;
 
   @override
   Widget build(BuildContext context) {
@@ -49,23 +50,13 @@ class SearchResultPage extends StatelessWidget {
                     ),
                   ),
                   buildJuzAndPageSearchResult(
-                      context,
-                      searchProvider.filterPageNumber,
-                      searchProvider.filterJuzNumber),
+                      context, searchProvider.filterPageNumber, searchProvider.filterJuzNumber),
                   buildSurahSearchResult(searchProvider.filteredSurahSearch),
 
                   /// Can be used later on
                   buildVerseSearchResult(searchProvider.filteredVerseSearch),
-                  buildVerseTranslationSearchResult(
-                      searchProvider.filteredVerseTranslationSearch),
-                  const SizedBox(
-                    height: kSizeXXL,
-                  ),
-                  // Text(
-                  //   context.translate.search,
-                  //   style: context.theme.textTheme.bodySmall,
-                  // ),
-                  // buildSurahSearchResult2(searchSurahResult),
+                  buildVerseTranslationSearchResult(searchProvider.filteredVerseTranslationSearch),
+                  const SizedBox(height: kSizeXXL),
                 ],
               ),
       );
@@ -73,16 +64,14 @@ class SearchResultPage extends StatelessWidget {
   }
 
   /// [VerseTranslation] search results
-  ListView buildVerseTranslationSearchResult(
-      List<VerseTranslation> searchVerseTranslationResult) {
+  ListView buildVerseTranslationSearchResult(List<VerseTranslation> searchVerseTranslationResult) {
     return ListView.separated(
       itemCount: searchVerseTranslationResult.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.symmetric(vertical: 0),
       itemBuilder: (context, index) => SearchVerseTranslationCard(
-          verseTranslationModel: searchVerseTranslationResult[index],
-          onTap: () {}),
+          verseTranslationModel: searchVerseTranslationResult[index], onTap: () {}),
       separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
   }
@@ -96,9 +85,12 @@ class SearchResultPage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 0),
       itemBuilder: (context, index) => SearchVerseCard(
         verseModel: searchVerseResult[index],
-        onTap: () => context
-            .read<HomeProvider>()
-            .onTapSurahCard(searchVerseResult[index].id!),
+        onTap: () {
+          var verse = searchVerseResult[index];
+          context
+              .read<SearchProvider>()
+              .goToSurah(context, verse.surahId!, isHome, verseId: verse.verseNumber!);
+        },
       ),
       separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
@@ -113,32 +105,16 @@ class SearchResultPage extends StatelessWidget {
       padding: const EdgeInsets.symmetric(vertical: 0),
       itemBuilder: (context, index) => SearchSurahCard(
         surahModel: searchSurahResult[index],
-        onTap: () => context
-            .read<HomeProvider>()
-            .onTapSurahCard(searchSurahResult[index].id!),
-      ),
-      separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
-    );
-  }
-
-  ListView buildSurahSearchResult2(List<SurahModel> searchSurahResult) {
-    return ListView.separated(
-      itemCount: searchSurahResult.length,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      itemBuilder: (context, index) => SearchCard(
-        surahModel: searchSurahResult[index],
-        onTap: () => context
-            .read<HomeProvider>()
-            .onTapSurahCard(searchSurahResult[index].id!),
+        onTap: () {
+          context.read<SearchProvider>().goToSurah(context, searchSurahResult[index].id!, isHome);
+        },
       ),
       separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
   }
 
   /// [Juz] and [Page] search results
-  ListView buildJuzAndPageSearchResult(
-      BuildContext context, int? pageNumber, int? juzNumber) {
+  ListView buildJuzAndPageSearchResult(BuildContext context, int? pageNumber, int? juzNumber) {
     return ListView(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -149,7 +125,7 @@ class SearchResultPage extends StatelessWidget {
             title: context.translate.juz,
             titleNumber: "${context.translate.juz} $pageNumber",
             onTap: () {
-              context.read<HomeProvider>().onTapJuzCard(juzNumber!);
+              context.read<SearchProvider>().goToJuz(context, juzNumber ?? 1, isHome);
             },
           ),
         ),
@@ -159,7 +135,7 @@ class SearchResultPage extends StatelessWidget {
             title: context.translate.page,
             titleNumber: "${context.translate.page} $pageNumber",
             onTap: () {
-              context.read<SearchProvider>().onTapSearchPageCard();
+              context.read<SearchProvider>().goToMushaf(context, pageNumber ?? 1, isHome);
             },
           ),
         ),
