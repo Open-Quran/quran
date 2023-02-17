@@ -161,7 +161,10 @@ class SurahDetailsProvider extends ChangeNotifier {
       case EQuranType.translation:
         return quranProvider.surahs[readingSettings.surahIndex].nameSimple ?? "";
       case EQuranType.reading:
-        return mushafPageList.first.first.nameSimple ?? "";
+        var index = showedVerses
+            .indexWhere((element) => element.pageNumber == readingSettings.mushafPageNumber);
+        if (index == -1) return "";
+        return quranProvider.surahs[showedVerses[index].surahId! - 1].nameSimple ?? "";
     }
   }
 
@@ -173,7 +176,10 @@ class SurahDetailsProvider extends ChangeNotifier {
         verse = quranProvider.surahs[readingSettings.surahIndex].verses[readingSettings.verseIndex];
         break;
       case EQuranType.reading:
-        verse = mushafPageList.first.first.verses.first;
+        var index = showedVerses
+            .indexWhere((element) => element.pageNumber == readingSettings.mushafPageNumber);
+        if (index == -1) return "";
+        verse = showedVerses[index];
     }
     return "${_context.translate.juz} ${verse.juzNumber} | ${_context.translate.hizb} ${verse.hizbNumber} - ${_context.translate.page} ${verse.pageNumber}";
   }

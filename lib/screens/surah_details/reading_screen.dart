@@ -32,7 +32,9 @@ class _ReadingScreenState extends State<ReadingScreen> {
 
   /// Scroll Listener
   void scrollListener() {
-    var index = itemPositionsListener.itemPositions.value.first.index;
+    var first = itemPositionsListener.itemPositions.value.first.index;
+    var last = itemPositionsListener.itemPositions.value.last.index;
+    var index = first <= last ? first : last;
     context.read<SurahDetailsProvider>().listenToReadingScreenList(index);
   }
 
