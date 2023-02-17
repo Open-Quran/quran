@@ -44,6 +44,7 @@ class AppColors {
   static const Color redOrange = Color(0xFFFF3B30);
   static const Color redDark = Color(0xFF923131);
 
+  /// Surah details page theme model list
   static List<SurahDetailsPageThemeModel> mushafColors = [
     SurahDetailsPageThemeModel(
       backgroundColor: const Color(0xFFFCF6E5),

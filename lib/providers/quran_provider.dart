@@ -111,16 +111,17 @@ class QuranProvider extends ChangeNotifier {
     setLocalSettingOfQuran();
   }
 
-  /// Changing Arabic Font Type
+  /// Changing arabic font type
   changeFontTypeArabic(String value) {
     localSetting.fontTypeArabic = value;
     setLocalSettingOfQuran();
   }
 
+  /// Getting surah details theme
   SurahDetailsPageThemeModel get surahDetailsPageThemeColor =>
       AppColors.mushafColors.elementAt(localSetting.surahDetailsPageThemeIndex);
 
-  /// Changing Mushaf Background Color
+  /// Changing surah details background color
   changeSurahDetailsPageTheme(int index) {
     localSetting.surahDetailsPageThemeIndex = index;
     setLocalSettingOfQuran();
