@@ -6,7 +6,8 @@ class SurahCard extends StatelessWidget {
   final SurahModel surahModel;
   final Function() onTap;
 
-  const SurahCard({Key? key, required this.surahModel, required this.onTap}) : super(key: key);
+  const SurahCard({Key? key, required this.surahModel, required this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
