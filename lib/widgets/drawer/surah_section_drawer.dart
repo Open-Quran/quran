@@ -98,7 +98,7 @@ class _SurahSectionDrawerState extends State<SurahSectionDrawer> {
           centerTitle: false,
           height: 45,
           onTap: () {
-            context.read<SurahDetailsProvider>().changeSurahIndex(surah.id! - 1);
+            // context.read<SurahDetailsProvider>().changeSurahIndex(surah.id! - 1);
             Utils.unFocus();
           },
         );
@@ -134,8 +134,8 @@ class _SurahSectionDrawerState extends State<SurahSectionDrawer> {
           centerTitle: false,
           height: 45,
           onTap: () {
-            context.read<SurahDetailsProvider>().changeSurahVerseIndex(number! - 1);
-            Utils.unFocus();
+            // context.read<SurahDetailsProvider>().changeSurahVerseIndex(number! - 1);
+            // Utils.unFocus();
           },
         );
       },

@@ -12,18 +12,44 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-class TranslationScreen extends StatelessWidget {
+class TranslationScreen extends StatefulWidget {
   const TranslationScreen({Key? key}) : super(key: key);
 
   @override
+  State<TranslationScreen> createState() => _TranslationScreenState();
+}
+
+class _TranslationScreenState extends State<TranslationScreen> {
+  /// Scroll Controller for Verse List
+  final ItemScrollController itemScrollController = ItemScrollController();
+
+  /// Item position listener of Verse list
+  final ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      itemScrollController.jumpTo(index: context.read<SurahDetailsProvider>().jumpToVerseIndex);
+      itemPositionsListener.itemPositions.addListener(scrollListener);
+    });
+  }
+
+  /// Scroll Listener
+  void scrollListener() {
+    var index = itemPositionsListener.itemPositions.value.first.index;
+    context.read<SurahDetailsProvider>().listenToTranslationScreenList(index);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var verses = context.watch<SurahDetailsProvider>().versesOfReadingTypeOrTranslation;
+    var verses = context.watch<SurahDetailsProvider>().showedVerses;
     return InkWell(
       onTap: context.read<SurahDetailsProvider>().changeReadingMode,
       child: ScrollablePositionedList.separated(
         itemCount: verses.length,
-        itemScrollController: context.read<SurahDetailsProvider>().itemScrollController,
-        itemPositionsListener: context.read<SurahDetailsProvider>().itemPositionsListener,
+        itemScrollController: itemScrollController,
+        itemPositionsListener: itemPositionsListener,
         padding: const EdgeInsets.only(
           left: kSizeM,
           right: kSizeL,
