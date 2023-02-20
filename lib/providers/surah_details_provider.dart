@@ -3,9 +3,11 @@ import 'package:fabrikod_quran/models/reading_settings_model.dart';
 import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/providers/app_settings_provider.dart';
+import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/providers/player_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/search_provider.dart';
+import 'package:fabrikod_quran/screens/home_screen.dart';
 import 'package:fabrikod_quran/screens/surah_details/reading_screen.dart';
 import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
 import 'package:fabrikod_quran/screens/surah_details/translation_screen.dart';
@@ -13,16 +15,26 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SurahDetailsProvider extends ChangeNotifier {
+
+  /// Class Constructor
+  SurahDetailsProvider(
+      this._context, this.readingSettings, EQuranType quranType) {
+    quranProvider.changeQuranType(quranType.index);
+    getDisplayedSurahs();
+    getDisplayedVerses();
+    getMushafPageList();
+  }
+
   /// Detail Screen Context
   final BuildContext _context;
 
   /// Reading settings model
   late ReadingSettingsModel readingSettings;
 
-  /// is Quran Screen Setting open
+  /// [bool] checking if settings is opened in [SurahDetailsScreen]
   bool isOpenSetting = false;
 
-  /// is Quran Screen Title Menu open
+  /// [bool] checking if title page is opened in [SurahDetailsScreen]
   bool isTitleMenu = false;
 
   /// Surah Details page - juz and surah toggle buttons
@@ -38,14 +50,14 @@ class SurahDetailsProvider extends ChangeNotifier {
   AppSettingsProvider get appSettingsProvider =>
       _context.read<AppSettingsProvider>();
 
-  /// Class Constructor
-  SurahDetailsProvider(
-      this._context, this.readingSettings, EQuranType quranType) {
-    quranProvider.changeQuranType(quranType.index);
-    getDisplayedSurahs();
-    getDisplayedVerses();
-    getMushafPageList();
-  }
+  /// List of surahs which are displayed in the [SurahDetailsScreen] in [TranslationScreen]
+  List<SurahModel> displayedSurahs = [];
+
+  /// List of verses which are displayed in the [SurahDetailsScreen] in [TranslationScreen]
+  List<VerseModel> displayedVerses = [];
+
+  /// List of verses which are displayed in the [SurahDetailsScreen] in [ReadingScreen]
+  List<List<SurahModel>> mushafPageList = [];
 
   /// Change Quran Screen Setting Mode
   void changeOpenSetting() {
@@ -59,15 +71,6 @@ class SurahDetailsProvider extends ChangeNotifier {
     notifyListeners();
     changeToggleSearchOptions(EToggleSearchOptions.toggles);
   }
-
-  /// List of surahs which are displayed in the [SurahDetailsScreen] in [TranslationScreen]
-  List<SurahModel> displayedSurahs = [];
-
-  /// List of verses which are displayed in the [SurahDetailsScreen] in [TranslationScreen]
-  List<VerseModel> displayedVerses = [];
-
-  /// List of verses which are displayed in the [SurahDetailsScreen] in [ReadingScreen]
-  List<List<SurahModel>> mushafPageList = [];
 
   /// Navigation to the specific verse
   int get jumpToVerseIndex {
@@ -247,18 +250,20 @@ class SurahDetailsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Changing reading mode
   void changeReadingMode() {
     readingSettings.isReadingMode = !readingSettings.isReadingMode;
     notifyListeners();
   }
 
-  /// Change type Juz, Surah or Search
+  /// Change type juz, surah or search
   changeJuzOrSurahToggleOptionType(EJuzSurahToggleOptions newOptionType) {
     juzSurahToggleOptionType = newOptionType;
     notifyListeners();
   }
 
-  /// Change type Grid or List
+  /// Change list type in [HomeScreen]
+  /// Grid view or list view
   changeJuzListType(EJuzListType newListType) {
     juzListType = newListType;
     notifyListeners();
