@@ -53,8 +53,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
       selectedIndex:
           context.watch<SurahDetailsProvider>().readingSettings.surahDetailScreenMod.index,
       onTap: (index) {
-        context.read<SurahDetailsProvider>().changeSurahDetailScreenMod(index);
-        Utils.unFocus();
+        // context.read<SurahDetailsProvider>().changeSurahDetailScreenMod(index);
+        // Utils.unFocus();
       },
     );
   }
@@ -73,7 +73,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   Widget get buildSurah {
     return SurahSectionDrawer(
       surahs: context.watch<QuranProvider>().surahs,
-      versesOfSelectedSurah: context.watch<SurahDetailsProvider>().versesOfSelectedSurah,
+      versesOfSelectedSurah: [],
     );
   }
 
@@ -88,7 +88,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
       itemBuilder: (context, index) => GridCard(
           text: "${index + 1}",
           onTap: () {
-            context.read<SurahDetailsProvider>().selectJuz(index);
+            // context.read<SurahDetailsProvider>().selectJuz(index);
           }),
     );
   }

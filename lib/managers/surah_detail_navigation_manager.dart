@@ -9,7 +9,7 @@ class SurahDetailNavigationManager {
   SurahDetailNavigationManager._();
 
   /// Navigation to the surah details from surah list
-  static void goToSurah(BuildContext context, int surahId, {int verseId = 0}) {
+  static void goToSurah(BuildContext context, int surahId, {int verseId = 1}) {
     _goToSurahDetail(
       context,
       ReadingSettingsModel(

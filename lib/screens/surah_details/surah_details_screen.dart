@@ -1,16 +1,20 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
+import 'package:fabrikod_quran/providers/search_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
+import 'package:fabrikod_quran/screens/search_result_screen.dart';
 import 'package:fabrikod_quran/screens/surah_details/reading_screen.dart';
 import 'package:fabrikod_quran/screens/surah_details/translation_screen.dart';
 import 'package:fabrikod_quran/widgets/animation/fade_indexed_stack.dart';
 import 'package:fabrikod_quran/widgets/app_bars/secondary_app_bar.dart';
 import 'package:fabrikod_quran/widgets/bars/play_bar.dart';
 import 'package:fabrikod_quran/widgets/buttons/translation_reading_segmented_button.dart';
+import 'package:fabrikod_quran/widgets/lists/juz_list.dart';
+import 'package:fabrikod_quran/widgets/lists/surah_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../widgets/cards/surah_card.dart';
+import '../../widgets/buttons/juz_surah_search_toggle_button.dart';
 import '../verse_details_settings.dart';
 
 class SurahDetailsScreen extends StatefulWidget {
@@ -21,14 +25,6 @@ class SurahDetailsScreen extends StatefulWidget {
 }
 
 class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
-  @override
-  void initState() {
-    super.initState();
-    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      context.read<SurahDetailsProvider>().initAfterScreen();
-    });
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,7 +39,7 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
 
   PreferredSizeWidget buildAppBar() => SecondaryAppBar(
         title: context.watch<SurahDetailsProvider>().appBarTitle,
-        subTitle: 'Juz 1 | Hizb 1 - Page 1',
+        subTitle: context.watch<SurahDetailsProvider>().appBarDescription,
         onTapSettings: context.read<SurahDetailsProvider>().changeOpenSetting,
         isDrawerOpen: context.watch<SurahDetailsProvider>().isTitleMenu,
         onTapTitle: context.watch<SurahDetailsProvider>().changeTitleMenuState,
@@ -67,7 +63,37 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
             const VerseDetailsSettings(),
           ],
         ),
-        buildSurahList(),
+        SingleChildScrollView(
+          child: Column(
+            children: [
+              JuzSurahSearchToggleButton(
+                toggleSearchButtonIndex: context
+                    .read<SearchProvider>()
+                    .toggleSearchOptions
+                    .index,
+                onChanged: context
+                    .watch<SurahDetailsProvider>()
+                    .changeJuzOrSurahToggleOptionType,
+                onTapSearchButton:    context
+                    .read<SurahDetailsProvider>()
+                    .changeToggleSearchOptions,
+                toggleListType: context
+                    .watch<SurahDetailsProvider>()
+                    .juzSurahToggleOptionType,
+              ),
+              FadeIndexedStack(
+                index: context
+                    .watch<SearchProvider>()
+                    .toggleSearchOptions
+                    .index,
+                children: [
+                  buildToggleSearchPages(context),
+                  const SearchResultScreen(isHome: false),
+                ],
+              ),
+            ],
+          ),
+        ),
       ],
     );
   }
@@ -101,25 +127,26 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
     );
   }
 
-  /// List of the Surah Verses
-  Widget buildSurahList() {
-    var surahs = context.watch<QuranProvider>().surahs;
-    return ListView.separated(
-      itemCount: surahs.length,
-      padding: const EdgeInsets.all(kSizeL),
-      itemBuilder: (context, index) {
-        final surah = surahs[index];
-        return SurahCard(
-          surahModel: surah,
-          onTap: () {
-            context.read<SurahDetailsProvider>().readingSettings.surahIndex =
-                surah.id! - 1;
-            context.read<SurahDetailsProvider>().changeTitleMenuState();
-            print("On Tap Surah Card : ${surah.id}");
-          },
-        );
-      },
-      separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
+  /// Juz/Translation and Search pages
+  FadeIndexedStack buildToggleSearchPages(BuildContext context) {
+    return FadeIndexedStack(
+      index:
+          context.watch<SurahDetailsProvider>().juzSurahToggleOptionType.index,
+      children: [
+        JuzList(
+            changeListType:
+                context.read<SurahDetailsProvider>().changeJuzListType,
+            juzListType: context.watch<SurahDetailsProvider>().juzListType,
+            onTapJuzCard: (juzId) {
+              context.read<SearchProvider>().goToJuz(context, juzId, false);
+            },
+            onTapSurahCard: (surahId) {
+              context.read<SearchProvider>().goToSurah(context, surahId, false);
+            }),
+        SurahList(onTap: (surahId) {
+          context.read<SearchProvider>().goToSurah(context, surahId, false);
+        }),
+      ],
     );
   }
 }

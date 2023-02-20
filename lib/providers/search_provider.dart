@@ -1,13 +1,12 @@
+import 'package:fabrikod_quran/managers/surah_detail_navigation_manager.dart';
 import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/models/translation.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../constants/enums.dart';
-import '../managers/surah_detail_navigation_manager.dart';
 import '../utils/utils.dart';
 import '../widgets/tags/custom_tag_list.dart';
 
@@ -47,6 +46,9 @@ class SearchProvider extends ChangeNotifier {
 
   /// Storing juz number, initially null
   int? filterJuzNumber;
+
+  /// Enum toggle search options
+  EToggleSearchOptions toggleSearchOptions = EToggleSearchOptions.toggles;
 
   /// OnTap search
   void handleSearchSubmitted(String query) {
@@ -111,13 +113,13 @@ class SearchProvider extends ChangeNotifier {
       if (verse.text!.toLowerCase().contains(queryText) ||
           searchListSurah[verse.surahId! - 1].nameTranslated!.toLowerCase().contains(queryText)) {
         if (searchListSurah[verse.surahId! - 1].id == (verse.surahId!)) {
-          verse.surahNameTranslated = searchListSurah[verse.surahId!].nameSimple;
-          verse.surahNameArabic = searchListSurah[verse.surahId!].nameArabic;
+          verse.surahNameTranslated = searchListSurah[verse.surahId! - 1].nameSimple;
+          verse.surahNameArabic = searchListSurah[verse.surahId! - 1].nameArabic;
         }
         searchResult.add(verse);
       }
     }
-    filteredVerseSearch.clear();
+    filteredVerseSearch = [];
     filteredVerseSearch.addAll(searchResult);
     notifyListeners();
   }
@@ -157,11 +159,6 @@ class SearchProvider extends ChangeNotifier {
     }
   }
 
-  /// Navigation to the specific page
-  void onTapSearchPageCard() {
-    SurahDetailNavigationManager.goToMushaf(_context, filterPageNumber!);
-  }
-
   selectedTag(String selectedTag) {
     textEditingController.text = selectedTag;
     searchBarFocusNode.requestFocus();
@@ -174,15 +171,21 @@ class SearchProvider extends ChangeNotifier {
       textEditingController.clear();
       filterPageNumber = null;
       filterJuzNumber = null;
-      filteredSurahSearch.clear();
-      filteredVerseSearch.clear();
+      filteredSurahSearch = [];
+      filteredVerseSearch = [];
       searchBarFocusNode.requestFocus();
       isSearchButtonTapped = false;
       notifyListeners();
     } else {
       Utils.unFocus();
-      context.read<HomeProvider>().changeToggleSearchOptions(EToggleSearchOptions.toggles);
+      changeToggleSearchOptions(EToggleSearchOptions.toggles);
     }
+  }
+
+  /// Changing between toggle buttons and search bar
+  changeToggleSearchOptions(EToggleSearchOptions newOptionType) {
+    toggleSearchOptions = newOptionType;
+    notifyListeners();
   }
 
   /// Checking when search result is empty
@@ -200,5 +203,20 @@ class SearchProvider extends ChangeNotifier {
         filteredSurahSearch.isNotEmpty ||
         filterPageNumber != null ||
         filterJuzNumber != null;
+  }
+
+  void goToSurah(BuildContext context, int surahId, bool isHome, {int verseId = 1}) {
+    if (!isHome) Navigator.pop(context);
+    SurahDetailNavigationManager.goToSurah(context, surahId, verseId: verseId);
+  }
+
+  void goToJuz(BuildContext context, int juzId, bool isHome) {
+    if (!isHome) Navigator.pop(context);
+    SurahDetailNavigationManager.goToJuz(context, juzId);
+  }
+
+  void goToMushaf(BuildContext context, int pageNumber, bool isHome) {
+    if (!isHome) Navigator.pop(context);
+    SurahDetailNavigationManager.goToMushaf(context, pageNumber);
   }
 }

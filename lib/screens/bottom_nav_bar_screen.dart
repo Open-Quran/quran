@@ -8,8 +8,8 @@ import 'package:fabrikod_quran/providers/player_provider.dart';
 import 'package:fabrikod_quran/providers/search_provider.dart';
 import 'package:fabrikod_quran/screens/bookmark_screen.dart';
 import 'package:fabrikod_quran/screens/favorites_screen.dart';
+import 'package:fabrikod_quran/screens/home_screen.dart';
 import 'package:fabrikod_quran/screens/more_screen.dart';
-import 'package:fabrikod_quran/screens/new_home_screen.dart';
 import 'package:fabrikod_quran/widgets/bars/play_bar.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
@@ -61,7 +61,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
     return IndexedStack(
       index: currentIndex,
       children: const [
-        NewHomeScreen(),
+        HomeScreen(),
         BookmarkScreen(),
         FavoritesScreen(),
         MoreScreen(),

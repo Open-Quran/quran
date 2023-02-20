@@ -1,5 +1,6 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/home_provider.dart';
+import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/widgets/bars/search_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -9,24 +10,34 @@ import 'package:provider/provider.dart';
 import '../../providers/search_provider.dart';
 import '../animation/fade_indexed_stack.dart';
 
-class HomeToggleButton extends StatelessWidget {
-
+class JuzSurahSearchToggleButton extends StatelessWidget {
   /// Toggle options Juz or Surah
-  final EHomeToggleOptions toggleListType;
+  final EJuzSurahToggleOptions toggleListType;
 
   /// Changing toggles VoidCallBack
-  /// Takes [EHomeToggleOptions] and changes index
-  final Function(EHomeToggleOptions)? onChanged;
+  /// Takes [EJuzSurahToggleOptions] and changes index
+  final Function(EJuzSurahToggleOptions)? onChanged;
 
-  const HomeToggleButton(
-      {super.key, required this.toggleListType, required this.onChanged});
+  /// Search button onTap
+  final Function(EToggleSearchOptions)? onTapSearchButton;
+
+  /// Index of juz/surah and search toggle buttons
+  final int toggleSearchButtonIndex;
+
+  const JuzSurahSearchToggleButton(
+      {super.key,
+      required this.toggleListType,
+      required this.onChanged,
+      required this.toggleSearchButtonIndex,
+      required this.onTapSearchButton,
+      });
 
   @override
   Widget build(BuildContext context) {
     final screenWidth = MediaQuery.of(context).size.width;
     final controlWidth = screenWidth * 0.83;
     return FadeIndexedStack(
-      index: context.read<HomeProvider>().toggleSearchOptions.index,
+      index: toggleSearchButtonIndex,
       children: [
         buildJuzSurahSearchToggles(controlWidth, context),
         const SearchBar(),
@@ -49,9 +60,7 @@ class HomeToggleButton extends StatelessWidget {
   Widget buildSearchButton(BuildContext context) {
     return InkWell(
       onTap: () {
-        context
-            .read<HomeProvider>()
-            .changeToggleSearchOptions(EToggleSearchOptions.searchField);
+        onTapSearchButton!((EToggleSearchOptions.searchField));
         context.read<SearchProvider>().searchBarFocusNode.requestFocus();
       },
       child: Container(
@@ -61,7 +70,8 @@ class HomeToggleButton extends StatelessWidget {
         decoration: const BoxDecoration(
             color: AppColors.black,
             borderRadius: BorderRadius.only(
-                topRight: Radius.circular(10), bottomRight: Radius.circular(7))),
+                topRight: Radius.circular(10),
+                bottomRight: Radius.circular(7))),
         child: SvgPicture.asset(ImageConstants.searchIcon),
       ),
     );
@@ -105,9 +115,9 @@ class HomeToggleButton extends StatelessWidget {
           ),
         },
         onValueChanged: (value) {
-          var result = toggleListType == EHomeToggleOptions.juz
-              ? EHomeToggleOptions.surah
-              : EHomeToggleOptions.juz;
+          var result = toggleListType == EJuzSurahToggleOptions.juz
+              ? EJuzSurahToggleOptions.surah
+              : EJuzSurahToggleOptions.juz;
           onChanged!(result);
         },
       ),

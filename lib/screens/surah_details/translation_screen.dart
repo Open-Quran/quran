@@ -13,21 +13,46 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
-class TranslationScreen extends StatelessWidget {
+class TranslationScreen extends StatefulWidget {
   const TranslationScreen({Key? key}) : super(key: key);
 
   @override
+  State<TranslationScreen> createState() => _TranslationScreenState();
+}
+
+class _TranslationScreenState extends State<TranslationScreen> {
+  /// Scroll Controller for Verse List
+  final ItemScrollController itemScrollController = ItemScrollController();
+
+  /// Item position listener of Verse list
+  final ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
+
+  @override
+  void initState() {
+    super.initState();
+    WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
+      itemScrollController.jumpTo(index: context.read<SurahDetailsProvider>().jumpToVerseIndex);
+      itemPositionsListener.itemPositions.addListener(scrollListener);
+    });
+  }
+
+  /// Scroll Listener
+  void scrollListener() {
+    var first = itemPositionsListener.itemPositions.value.first.index;
+    var last = itemPositionsListener.itemPositions.value.last.index;
+    var index = first <= last ? first : last;
+    context.read<SurahDetailsProvider>().listenToTranslationScreenList(index);
+  }
+
+  @override
   Widget build(BuildContext context) {
-    var verses =
-        context.watch<SurahDetailsProvider>().versesOfReadingTypeOrTranslation;
+    var verses = context.watch<SurahDetailsProvider>().showedVerses;
     return InkWell(
       onTap: context.read<SurahDetailsProvider>().changeReadingMode,
       child: ScrollablePositionedList.separated(
         itemCount: verses.length,
-        itemScrollController:
-            context.read<SurahDetailsProvider>().itemScrollController,
-        itemPositionsListener:
-            context.read<SurahDetailsProvider>().itemPositionsListener,
+        itemScrollController: itemScrollController,
+        itemPositionsListener: itemPositionsListener,
         padding: const EdgeInsets.only(
           left: kSizeM,
           right: kSizeL,
@@ -52,17 +77,13 @@ class TranslationScreen extends StatelessWidget {
     return VerseCard(
       verseModel: verse,
       arabicFontFamily: Fonts.uthmanic,
-      verseTranslations: context
-          .watch<QuranProvider>()
-          .translationService
-          .translationsOfVerse(verse.id!),
+      verseTranslations:
+          context.watch<QuranProvider>().translationService.translationsOfVerse(verse.id!),
       readOptions: context.watch<QuranProvider>().localSetting.readOptions,
-      textScaleFactor:
-          context.watch<QuranProvider>().localSetting.textScaleFactor,
-      translationFontFamily: Fonts.getTranslationFont(
-          context.watch<QuranProvider>().localSetting.fontType),
-      isPlaying:
-          context.watch<PlayerProvider>().isPlayingVerse(verse.verseKey ?? ""),
+      textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
+      translationFontFamily:
+          Fonts.getTranslationFont(context.watch<QuranProvider>().localSetting.fontType),
+      isPlaying: context.watch<PlayerProvider>().isPlayingVerse(verse.verseKey ?? ""),
       playFunction: (verse, isPlaying) {
         context.read<SurahDetailsProvider>().onTapVerseCardPlayOrPause(
               index,
