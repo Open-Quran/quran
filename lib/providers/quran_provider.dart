@@ -1,6 +1,7 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/database/local_db.dart';
 import 'package:fabrikod_quran/models/local_setting_model.dart';
+import 'package:fabrikod_quran/models/mushaf_backgrund_model.dart';
 import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/services/asset_quran_service.dart';
@@ -38,7 +39,6 @@ class QuranProvider extends ChangeNotifier {
     }
     return juz;
   }
-
 
   /// Get all surah verses
   List<VerseModel> get getAllVerses {
@@ -111,9 +111,19 @@ class QuranProvider extends ChangeNotifier {
     setLocalSettingOfQuran();
   }
 
-  /// Changing Arabic Font Type
+  /// Changing arabic font type
   changeFontTypeArabic(String value) {
     localSetting.fontTypeArabic = value;
+    setLocalSettingOfQuran();
+  }
+
+  /// Getting surah details theme
+  SurahDetailsPageThemeModel get surahDetailsPageThemeColor =>
+      AppColors.mushafColors.elementAt(localSetting.surahDetailsPageThemeIndex);
+
+  /// Changing surah details background color
+  changeSurahDetailsPageTheme(int index) {
+    localSetting.surahDetailsPageThemeIndex = index;
     setLocalSettingOfQuran();
   }
 }

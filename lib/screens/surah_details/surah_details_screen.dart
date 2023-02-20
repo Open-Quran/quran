@@ -30,6 +30,10 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
     return Scaffold(
       appBar: buildAppBar(),
       body: buildBody,
+      backgroundColor: context
+          .watch<QuranProvider>()
+          .surahDetailsPageThemeColor
+          .backgroundColor,
     );
   }
 

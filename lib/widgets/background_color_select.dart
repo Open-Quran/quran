@@ -27,10 +27,9 @@ class BackgroundColorSelect extends StatelessWidget {
             children: List.generate(colors.length, (index) {
               return Expanded(
                   child: BackgroundColorsButton(
-                backgroundColor: colors.elementAt(index),
-                isSelected: index == defaultIndex ? true : false,
-                onTap: () => onChangedColor(index),
-              ));
+                      backgroundColor: colors.elementAt(index),
+                      isSelected: index == defaultIndex ? true : false,
+                      onTap: () => onChangedColor(index)));
             }),
           ),
         ),

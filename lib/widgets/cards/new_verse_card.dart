@@ -1,7 +1,9 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/translation.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
+import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 
 import '../pop_up/verse_pop_up_menu.dart';
 
@@ -34,7 +36,9 @@ class VerseCard extends StatelessWidget {
   final bool isBookmark;
   final Function(VerseModel verseModel, bool isPlaying) playFunction;
   final Function(VerseModel verseModel, bool isFavorite) favoriteFunction;
-  final Function(EBookMarkType bookMarkType,VerseModel verseModel, bool isBookmark) bookmarkFunction;
+  final Function(
+          EBookMarkType bookMarkType, VerseModel verseModel, bool isBookmark)
+      bookmarkFunction;
   final Function(VerseModel) shareFunction;
 
   @override
@@ -68,10 +72,13 @@ class VerseCard extends StatelessWidget {
                   width: 1,
                 ),
               )
-            : const BoxDecoration(
+            : BoxDecoration(
                 border: Border(
                   top: BorderSide(
-                    color: AppColors.grey10,
+                    color: context
+                        .watch<QuranProvider>()
+                        .surahDetailsPageThemeColor
+                        .titleVectorColor,
                     width: 1,
                   ),
                 ),
@@ -88,7 +95,7 @@ class VerseCard extends StatelessWidget {
             Expanded(
               child: Column(
                 children: [
-                  buildVerseCardArabic(readOptions),
+                  buildVerseCardArabic(readOptions, context),
                   buildVerseCardTranslation(readOptions),
                 ],
               ),
@@ -99,7 +106,7 @@ class VerseCard extends StatelessWidget {
     );
   }
 
-  Widget buildVerseCardArabic(EReadOptions readOptions) {
+  Widget buildVerseCardArabic(EReadOptions readOptions, BuildContext context) {
     return Visibility(
       visible: readOptions != EReadOptions.surah,
       child: Column(
@@ -109,7 +116,7 @@ class VerseCard extends StatelessWidget {
             textScaleFactor: textScaleFactor,
             isPlaying: isPlaying,
           ),
-          buildVerseCardDivider,
+          buildVerseCardDivider(context),
         ],
       ),
     );
@@ -147,7 +154,8 @@ class VerseNumberArabicWithSymbol extends StatelessWidget {
       textAlign: TextAlign.start,
       textScaleFactor: textScaleFactor,
       style: context.theme.textTheme.displayLarge?.copyWith(
-        color: AppColors.grey9,
+        color:
+            context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor,
         fontSize: 27,
         fontFamily: arabicFontFamily,
       ),
@@ -190,7 +198,10 @@ class VerseCardArabic extends StatelessWidget {
         textAlign: TextAlign.start,
         textScaleFactor: textScaleFactor,
         style: context.theme.textTheme.displayLarge?.copyWith(
-          color: AppColors.grey,
+          color: context
+              .watch<QuranProvider>()
+              .surahDetailsPageThemeColor
+              .textColor,
           fontSize: 27,
         ),
       ),
@@ -199,21 +210,29 @@ class VerseCardArabic extends StatelessWidget {
 }
 
 /// Divider Line between arabic verse and its translation
-  get buildVerseCardDivider {
-    return Container(
-      width: double.infinity,
-      height: 1,
-      margin: const EdgeInsets.symmetric(vertical: kSizeM),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          colors: [
-            AppColors.black10.withOpacity(0),
-            AppColors.grey10.withOpacity(1),
-          ],
-        ),
+Widget buildVerseCardDivider(BuildContext context) {
+  return Container(
+    width: double.infinity,
+    height: 1,
+    margin: const EdgeInsets.symmetric(vertical: kSizeM),
+    decoration: BoxDecoration(
+      gradient: LinearGradient(
+        colors: [
+          context
+              .watch<QuranProvider>()
+              .surahDetailsPageThemeColor
+              .transparentVectorColor
+              .withOpacity(0),
+          context
+              .watch<QuranProvider>()
+              .surahDetailsPageThemeColor
+              .textColor
+              .withOpacity(0.24),
+        ],
       ),
-    );
-  }
+    ),
+  );
+}
 
 //Text of translation verse
 class VerseCardTranslation extends StatelessWidget {
@@ -235,7 +254,7 @@ class VerseCardTranslation extends StatelessWidget {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.only(bottom: kSizeM),
-      separatorBuilder: (context, index) => buildVerseCardDivider(),
+      separatorBuilder: (context, index) => buildVerseCardDivider(context),
       itemBuilder: (context, index) {
         final verseTranslation = verseTranslations[index];
         return Column(
@@ -247,7 +266,10 @@ class VerseCardTranslation extends StatelessWidget {
               textScaleFactor: textScaleFactor,
               style: context.theme.textTheme.titleSmall?.copyWith(
                 fontFamily: translationFontFamily,
-                color: AppColors.grey2,
+                color: context
+                    .watch<QuranProvider>()
+                    .surahDetailsPageThemeColor
+                    .textColor,
               ),
             ),
             const SizedBox(height: kSizeM),
@@ -257,7 +279,10 @@ class VerseCardTranslation extends StatelessWidget {
               textScaleFactor: textScaleFactor,
               style: context.theme.textTheme.labelLarge?.copyWith(
                 fontFamily: translationFontFamily,
-                color: AppColors.grey11,
+                color: context
+                    .watch<QuranProvider>()
+                    .surahDetailsPageThemeColor
+                    .transparentTextColor,
               ),
             ),
           ],
