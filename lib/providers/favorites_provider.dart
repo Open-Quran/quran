@@ -16,9 +16,11 @@ class FavoritesProvider extends ChangeNotifier {
 
   /// Checking if the verse favorite
   bool isFavoriteVerse(VerseModel verseModel) {
-    var result = favoriteVerses.indexWhere((element) => element.id == verseModel.id);
+    var result =
+        favoriteVerses.indexWhere((element) => element.id == verseModel.id);
     return result == -1 ? false : true;
   }
+
   /// Make favorite or remove from favorite
   onTapFavoriteButton(VerseModel verseModel, bool isFavorite) {
     if (isFavorite) {
@@ -42,10 +44,10 @@ class FavoritesProvider extends ChangeNotifier {
 
   /// Favorite card onTap
   void onTapFavoriteCard(BuildContext context, VerseModel verseModel) {
-        SurahDetailNavigationManager.goToSurah(
-          context,
-          verseModel.surahId!,
-          verseId: verseModel.verseNumber!,
-        );
+    SurahDetailNavigationManager.goToSurah(
+      context,
+      verseModel.surahId!,
+      verseId: verseModel.verseNumber!,
+    );
   }
 }
