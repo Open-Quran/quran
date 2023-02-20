@@ -14,7 +14,7 @@ class LocalSettingModel {
     this.layoutOptions = ELayoutOptions.center,
     this.readOptions = EReadOptions.surahAndTranslation,
     this.textScaleFactor = 1.2,
-    this.surahDetailsPageThemeIndex = 0,
+    this.surahDetailsPageThemeIndex = 3,
     this.fontType = "Nunito",
     this.fontTypeArabic = "Nunito",
   });
@@ -36,7 +36,7 @@ class LocalSettingModel {
             ? ELayoutOptions.values[json['layoutOptions']]
             : ELayoutOptions.center,
         textScaleFactor: json['textScaleFactor'] ?? 1.2,
-        surahDetailsPageThemeIndex: json['mushafBackgroundColorIndex'] ?? 0,
+        surahDetailsPageThemeIndex: json['mushafBackgroundColorIndex'] ?? 3,
         fontType: json['fontType'] ?? "Nunito",
         fontTypeArabic: json['fontTypeArabic'] ?? "Nunito",
       );

@@ -40,24 +40,21 @@ class _ReadingScreenState extends State<ReadingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.separated(
-      itemCount: 604,
+    return ScrollablePositionedList.separated(
+      itemCount: context.watch<SurahDetailsProvider>().mushafPageList.length,
+      itemScrollController: itemScrollController,
+      itemPositionsListener: itemPositionsListener,
       padding: const EdgeInsets.symmetric(horizontal: kSizeL),
+      physics: const ClampingScrollPhysics(),
       itemBuilder: (context, index) {
-        var versesOfPage = context
-            .read<SurahDetailsProvider>()
-            .getSurahOfMushafPage(index + 1);
+        var versesOfPage = context.watch<SurahDetailsProvider>().mushafPageList[index];
         return QuranPageWidget(
           versesOfPage: versesOfPage,
-          layoutOptions:
-              context.watch<QuranProvider>().localSetting.layoutOptions,
-          fontTypeArabic:
-              context.watch<QuranProvider>().localSetting.fontTypeArabic,
-          textScaleFactor:
-              context.watch<QuranProvider>().localSetting.textScaleFactor,
+          layoutOptions: context.watch<QuranProvider>().localSetting.layoutOptions,
+          fontTypeArabic: context.watch<QuranProvider>().localSetting.fontTypeArabic,
+          textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
           onTap: context.read<SurahDetailsProvider>().changeReadingMode,
-          surahDetailsPageTheme:
-              context.watch<QuranProvider>().surahDetailsPageThemeColor,
+          surahDetailsPageTheme: context.watch<QuranProvider>().surahDetailsPageThemeColor,
         );
       },
       separatorBuilder: (context, index) => const SizedBox(height: kSizeXL),
