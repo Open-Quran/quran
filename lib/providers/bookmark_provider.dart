@@ -45,7 +45,6 @@ class BookmarkProvider extends ChangeNotifier {
 
   /// onTap bookmark card
   void bookmarkOnTap(BuildContext context, BookMarkModel bookmark) {
-    print("3333333");
     switch (bookmark.bookmarkType) {
       case EBookMarkType.verse:
         SurahDetailNavigationManager.goToSurah(
