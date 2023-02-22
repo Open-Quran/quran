@@ -6,6 +6,7 @@ import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:flutter/material.dart';
 
 class BookmarkProvider extends ChangeNotifier {
+
   /// Class Constructor
   BookmarkProvider() {
     bookmarks = LocalDb.getBookmarks;
@@ -20,7 +21,7 @@ class BookmarkProvider extends ChangeNotifier {
     return result == -1 ? false : true;
   }
 
-  ///When clicked to Bookmark Button
+  /// When clicked to bookmark button
   void onTapBookMarkButton(EBookMarkType bookMarkType, VerseModel verseModel, bool isBookmark) {
     if (isBookmark) {
       deleteBookmark(verseModel, bookMarkType);
@@ -29,14 +30,14 @@ class BookmarkProvider extends ChangeNotifier {
     }
   }
 
-  /// Adding bookmarks
+  /// Add bookmark
   void addBookmark(VerseModel verse, EBookMarkType bookMarkType) async {
     var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
     bookmarks = await LocalDb.addBookmark(bookMark);
     notifyListeners();
   }
 
-  /// Delete bookmarks
+  /// Delete bookmark
   void deleteBookmark(VerseModel verse, EBookMarkType bookMarkType) async {
     var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
     bookmarks = await LocalDb.deleteBookmark(bookMark);

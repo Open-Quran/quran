@@ -1,7 +1,8 @@
-import 'package:fabrikod_quran/constants/constants.dart';
+
+import '../constants/enums.dart';
 
 class ReadingSettingsModel {
-  late ESurahDetailScreenMod surahDetailScreenMod;
+  late ESurahDetailScreenMode surahDetailScreenMode;
   bool isReadingMode = false;
   int surahId = 1;
   int verseId = 1;
@@ -9,7 +10,7 @@ class ReadingSettingsModel {
   int mushafPageNumber = 1;
 
   ReadingSettingsModel({
-    this.surahDetailScreenMod = ESurahDetailScreenMod.surah,
+    this.surahDetailScreenMode = ESurahDetailScreenMode.surah,
     this.isReadingMode = false,
     this.surahId = 1,
     this.verseId = 1,
@@ -37,6 +38,6 @@ class ReadingSettingsModel {
 
   @override
   String toString() {
-    return 'ReadingSettingsModel{surahDetailScreenMod: $surahDetailScreenMod, isReadingMode: $isReadingMode, surahId: $surahId, verseId: $verseId, juzId: $juzId, mushafPageNumber: $mushafPageNumber}';
+    return 'ReadingSettingsModel{surahDetailScreenMode: $surahDetailScreenMode, isReadingMode: $isReadingMode, surahId: $surahId, verseId: $verseId, juzId: $juzId, mushafPageNumber: $mushafPageNumber}';
   }
 }

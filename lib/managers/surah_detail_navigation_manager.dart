@@ -5,52 +5,62 @@ import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../database/local_db.dart';
+import '../models/recent_model.dart';
+
 class SurahDetailNavigationManager {
   SurahDetailNavigationManager._();
 
   /// Navigation to the surah details from surah list
-  static void goToSurah(BuildContext context, int surahId, {int verseId = 1}) {
-    _goToSurahDetail(
+  static Future<void> goToSurah(BuildContext context, int surahId, {int verseId = 1}) async {
+   await _goToSurahDetail(
       context,
       ReadingSettingsModel(
-        surahDetailScreenMod: ESurahDetailScreenMod.surah,
+        surahDetailScreenMode: ESurahDetailScreenMode.surah,
         surahId: surahId,
         verseId: verseId,
       ),
     );
+    LocalDb.addRecent(RecentModel(
+        eRecentVisitedType: ERecentVisitedType.surah, index: surahId));
   }
 
   /// Navigation to the surah details from juz list
-  static void goToJuz(BuildContext context, int juzId) {
-    _goToSurahDetail(
+  static Future<void> goToJuz(BuildContext context, int juzId) async{
+    await _goToSurahDetail(
       context,
       ReadingSettingsModel(
-        surahDetailScreenMod: ESurahDetailScreenMod.juz,
+        surahDetailScreenMode: ESurahDetailScreenMode.juz,
         juzId: juzId,
       ),
     );
+    LocalDb.addRecent(RecentModel(
+        eRecentVisitedType: ERecentVisitedType.juz, index: juzId));
   }
 
   /// Navigation to the reading/mushaf surah details
-  static void goToMushaf(BuildContext context, int pageNumber) {
-    _goToSurahDetail(
+  static Future<void> goToMushaf(BuildContext context, int pageNumber) async {
+   await _goToSurahDetail(
       context,
       ReadingSettingsModel(mushafPageNumber: pageNumber),
       quranType: EQuranType.reading,
     );
+    LocalDb.addRecent(RecentModel(
+        eRecentVisitedType: ERecentVisitedType.page, index: pageNumber));
   }
 
   /// Navigation to the surah details
-  static void _goToSurahDetail(
+  static Future<void> _goToSurahDetail(
     BuildContext context,
     ReadingSettingsModel readingModel, {
     EQuranType quranType = EQuranType.translation,
-  }) {
-    Navigator.push(
+  }) async {
+   await Navigator.push(
       context,
       MaterialPageRoute(
         builder: (context) => ChangeNotifierProvider(
-          create: (context) => SurahDetailsProvider(context, readingModel, quranType),
+          create: (context) =>
+              SurahDetailsProvider(context, readingModel, quranType),
           child: const SurahDetailsScreen(),
         ),
       ),
