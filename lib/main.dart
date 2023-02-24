@@ -49,7 +49,7 @@ class MyApp extends StatelessWidget {
   List<SingleChildWidget> get providers {
     return [
       ChangeNotifierProvider(create: (_) => AppSettingsProvider()),
-      ChangeNotifierProvider(create: (_) => QuranProvider(),lazy: false,),
+      ChangeNotifierProvider(create: (_) => QuranProvider(), lazy: false),
       ChangeNotifierProvider(create: (_) => PlayerProvider()),
       ChangeNotifierProvider(create: (_) => FavoritesProvider()),
       ChangeNotifierProvider(create: (_) => BookmarkProvider()),
