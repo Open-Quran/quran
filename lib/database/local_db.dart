@@ -96,7 +96,7 @@ class LocalDb {
   }
 
   /// Get recents from db
-  static List<RecentModel> get getRecents {
+  static List<RecentModel>get getRecents {
     var recentList = (_localDbBox.read('recents') as List?) ?? [];
     return recentList
         .map((e) => RecentModel.fromJson(e))
@@ -108,10 +108,12 @@ class LocalDb {
   static Future<List<RecentModel>> addRecent(RecentModel recent) async {
     /// Checking if user clicked on same surah, juz, page or recent
     /// Do not add it to the list
+    if(getRecents.isNotEmpty){
     var firstRecents = getRecents.reversed.first;
       if (firstRecents.index == recent.index) {
         return getRecents;
       }
+    }
     var recentsList = getRecents;
     recentsList.add(recent);
     var value = recentsList.map((e) => e.toJson()).toList();

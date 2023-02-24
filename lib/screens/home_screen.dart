@@ -86,7 +86,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   /// Build recent visited paged
   Widget buildRecent() {
-   var reversedList = LocalDb.getRecents.reversed.toList();
+   var reversedList = LocalDb.getRecents.reversed.take(8).toList();
     return Visibility(
       visible: LocalDb.getRecents.isNotEmpty,
       child: Padding(
@@ -105,7 +105,7 @@ class _HomeScreenState extends State<HomeScreen> {
             SizedBox(
               height: 90,
               child: GridView.builder(
-                itemCount: 8,
+                itemCount: reversedList.length,
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: kSizeM),
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
