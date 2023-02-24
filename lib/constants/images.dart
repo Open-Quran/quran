@@ -35,6 +35,7 @@ class ImageConstants {
   static const String newBackArrow = "${_iconsPath}ic_new_back_arrow.svg";
   static const String helpGuideIcon = "${_iconsPath}ic_help_guide.svg";
   static const String themeIcon = "${_iconsPath}ic_theme.svg";
+  static const String readingSetting = "${_iconsPath}ic_reading_setting.svg";
   static const String checkboxActiveIcon =
       "${_iconsPath}ic_checkbox_active.svg";
   static const String checkboxInactiveIcon =

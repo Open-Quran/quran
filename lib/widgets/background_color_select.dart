@@ -5,15 +5,17 @@ import 'package:flutter/material.dart';
 import 'buttons/background_color_buttons.dart';
 
 class BackgroundColorSelect extends StatelessWidget {
-  const BackgroundColorSelect(
-      {Key? key,
-      required this.colors,
-      required this.defaultIndex,
-      required this.onChangedColor})
-      : super(key: key);
+  const BackgroundColorSelect({
+    Key? key,
+    required this.colors,
+    required this.defaultIndex,
+    required this.onChangedColor,
+    this.isPopUp = false,
+  }) : super(key: key);
   final List<Color> colors;
   final int defaultIndex;
   final Function(int newIndex) onChangedColor;
+  final bool isPopUp;
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +24,17 @@ class BackgroundColorSelect extends StatelessWidget {
       children: [
         CustomTitle(titleText: context.translate.backgroundColor),
         Container(
-          margin: const EdgeInsets.only(top: kSizeXL, bottom: kSizeXXL),
+          height: Utils.isSmallPhone(context)
+              ? 40
+              : Utils.isMediumPhone(context)
+                  ? 40
+                  : Utils.isTablet(context)
+                      ? 70
+                      : 100,
+          margin: EdgeInsets.only(
+            top: Utils.isSmallPhone(context) ? 10 : kSizeM,
+            bottom: Utils.isSmallPhone(context) ? 10 : kSizeL,
+          ),
           child: Row(
             children: List.generate(colors.length, (index) {
               return Expanded(

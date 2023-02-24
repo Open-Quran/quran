@@ -1,30 +1,25 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/widgets/title.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 
-import '../title.dart';
-
-class TranslationDropDown extends StatefulWidget {
-  const TranslationDropDown({Key? key}) : super(key: key);
+class QuranFontButton extends StatefulWidget {
+  const QuranFontButton({super.key});
 
   @override
-  State<TranslationDropDown> createState() => _TranslationDropDownState();
+  State<QuranFontButton> createState() => _QuranFontButtonState();
 }
 
-class _TranslationDropDownState extends State<TranslationDropDown> {
-  List<String> translations = [
-    'Turkish Diyanet',
-    'Turkish Diyaneasdt',
-    'Turkish Diyaneast',
-    'Turkish Diyaasdnet',
-    'Turkish Diyansadet',
-    'Turkish Diysadaanet',
-  ];
-  String selectedTranslation = 'Turkish Diyanet';
+class _QuranFontButtonState extends State<QuranFontButton> {
+  List<String> fonts = ['Uthmani'];
+
+  String selectFont = 'Uthmani';
+  final bool isPopUp = true;
+
   void dropdownCallback(String? selectedValue) {
     if (selectedValue is String) {
       setState(() {
-        selectedTranslation = selectedValue;
+        selectFont = selectedValue;
       });
     }
   }
@@ -35,11 +30,15 @@ class _TranslationDropDownState extends State<TranslationDropDown> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomTitle(
-          titleText: context.translate.translation,
+          titleText: context.translate.quranFont,
         ),
         Container(
-          width: double.infinity,
-          height: Utils.isSmallPhone(context) ? 45 : 50,
+          width: Utils.isSmallPhone(context) ? 120 : 120,
+          height: Utils.isSmallPhone(context)
+              ? 45
+              : Utils.isMediumPhone(context)
+                  ? 50
+                  : 50,
           margin: EdgeInsets.only(
             top: Utils.isSmallPhone(context) ? 10 : kSizeM,
             bottom: Utils.isSmallPhone(context) ? 10 : kSizeL,
@@ -49,14 +48,14 @@ class _TranslationDropDownState extends State<TranslationDropDown> {
               borderRadius: BorderRadius.all(Radius.circular(8))),
           child: Center(
             child: DropdownButtonFormField(
+              alignment: AlignmentDirectional.topStart,
               dropdownColor: AppColors.black,
               decoration: const InputDecoration(
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.only(right: kSizeL, left: kSizeM),
               ),
-              value: selectedTranslation,
-              items:
-                  translations.map<DropdownMenuItem<String>>((String mascot) {
+              value: selectFont,
+              items: fonts.map<DropdownMenuItem<String>>((String mascot) {
                 return DropdownMenuItem<String>(
                     value: mascot, child: Text(mascot));
               }).toList(),

@@ -10,9 +10,6 @@ class CustomTitle extends StatelessWidget {
   final String titleText;
   @override
   Widget build(BuildContext context) {
-    return Text(
-      titleText,
-      style: context.theme.textTheme.bodyLarge,
-    );
+    return Text(titleText, style: context.theme.textTheme.bodyLarge);
   }
 }
