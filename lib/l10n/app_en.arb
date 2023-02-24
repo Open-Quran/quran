@@ -72,5 +72,6 @@
     "download": "Download",
     "speed": "Speed",
     "downloaded": "Downloaded",
-    "delete": "Delete"
+    "delete": "Delete",
+    "quranFont": "Qur'an Font" 
 }

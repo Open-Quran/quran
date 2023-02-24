@@ -32,32 +32,36 @@ class _SoundDropDownState extends State<SoundDropDown> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CustomTitle(
-          titleText: context.translate.sound,
-        ),
+        CustomTitle(titleText: context.translate.sound),
         Container(
           width: double.infinity,
-          margin: const EdgeInsets.only(top: kSizeM, bottom: kSizeXXL),
+          height: Utils.isSmallPhone(context) ? 45 : 50,
+          margin: EdgeInsets.only(
+            top: Utils.isSmallPhone(context) ? 10 : kSizeM,
+            bottom: Utils.isSmallPhone(context) ? 10 : kSizeL,
+          ),
           decoration: const BoxDecoration(
               color: AppColors.black,
               borderRadius: BorderRadius.all(Radius.circular(8))),
-          child: DropdownButtonFormField(
-            dropdownColor: AppColors.black,
-            decoration: const InputDecoration(
-              border: InputBorder.none,
-              contentPadding:
-                  EdgeInsets.only(right: kSizeL, left: kSizeM),
+          child: Center(
+            child: DropdownButtonFormField(
+              dropdownColor: AppColors.black,
+              decoration: const InputDecoration(
+                border: InputBorder.none,
+                contentPadding: EdgeInsets.only(right: kSizeL, left: kSizeM),
+              ),
+              value: selectedSound,
+              items: sounds.map<DropdownMenuItem<String>>((String mascot) {
+                return DropdownMenuItem<String>(
+                    value: mascot, child: Text(mascot));
+              }).toList(),
+              onChanged: dropdownCallback,
+              style: context.theme.textTheme.bodyMedium,
+              isExpanded: true,
+              icon: SvgPicture.asset(ImageConstants.dropDownIcon),
             ),
-            value: selectedSound,
-            items: sounds.map<DropdownMenuItem<String>>((String mascot) {
-              return DropdownMenuItem<String>(
-                  value: mascot, child: Text(mascot));
-            }).toList(),
-            onChanged: dropdownCallback,
-            style: context.theme.textTheme.bodyMedium,
-            isExpanded: true,
-            icon: SvgPicture.asset(ImageConstants.dropDownIcon),
           ),
         ),
       ],

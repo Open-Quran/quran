@@ -14,7 +14,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 class SurahDetailsProvider extends ChangeNotifier {
-
   /// Class Constructor
   SurahDetailsProvider(
       this._context, this.readingSettings, EQuranType quranType) {
