@@ -1,6 +1,7 @@
 <br />
 <p align="center">
 <img width="215" src="https://www.fabrikod.com/logo.jpg">
+<img width="215" src="https://www.fabrikod.com/logo.jpg">
 </p>
 <br />
 
