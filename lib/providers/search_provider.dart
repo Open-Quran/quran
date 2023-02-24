@@ -205,18 +205,21 @@ class SearchProvider extends ChangeNotifier {
         filterJuzNumber != null;
   }
 
-  void goToSurah(BuildContext context, int surahId, bool isHome, {int verseId = 1}) {
+  Future<void> goToSurah(BuildContext context, int surahId, bool isHome, {int verseId = 1}) async {
     if (!isHome) Navigator.pop(context);
-    SurahDetailNavigationManager.goToSurah(context, surahId, verseId: verseId);
+   await SurahDetailNavigationManager.goToSurah(context, surahId, verseId: verseId);
+   notifyListeners();
   }
 
-  void goToJuz(BuildContext context, int juzId, bool isHome) {
+  Future<void> goToJuz(BuildContext context, int juzId, bool isHome) async {
     if (!isHome) Navigator.pop(context);
-    SurahDetailNavigationManager.goToJuz(context, juzId);
+   await SurahDetailNavigationManager.goToJuz(context, juzId);
+    notifyListeners();
   }
 
-  void goToMushaf(BuildContext context, int pageNumber, bool isHome) {
+  Future<void> goToMushaf(BuildContext context, int pageNumber, bool isHome) async {
     if (!isHome) Navigator.pop(context);
-    SurahDetailNavigationManager.goToMushaf(context, pageNumber);
+    await SurahDetailNavigationManager.goToMushaf(context, pageNumber);
+    notifyListeners();
   }
 }

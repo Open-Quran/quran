@@ -3,7 +3,6 @@ import 'package:fabrikod_quran/models/reading_settings_model.dart';
 import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/providers/app_settings_provider.dart';
-import 'package:fabrikod_quran/providers/home_provider.dart';
 import 'package:fabrikod_quran/providers/player_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/search_provider.dart';
@@ -94,12 +93,12 @@ class SurahDetailsProvider extends ChangeNotifier {
     displayedSurahs = [];
     switch (quranProvider.localSetting.quranType) {
       case EQuranType.translation:
-        switch (readingSettings.surahDetailScreenMod) {
-          case ESurahDetailScreenMod.surah:
+        switch (readingSettings.surahDetailScreenMode) {
+          case ESurahDetailScreenMode.surah:
             displayedSurahs
                 .add(quranProvider.surahs[readingSettings.surahIndex]);
             break;
-          case ESurahDetailScreenMod.juz:
+          case ESurahDetailScreenMode.juz:
             List<SurahModel> list = [];
             for (var element in quranProvider.surahs) {
               var surah = element.juzSurahs(readingSettings.juzId);

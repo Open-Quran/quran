@@ -1,3 +1,6 @@
+import 'package:fabrikod_quran/screens/surah_details/reading_screen.dart';
+import 'package:fabrikod_quran/screens/surah_details/translation_screen.dart';
+
 /// App Bottom Navigation Bar Items
 enum EBottomNavBarItems { home, more }
 
@@ -17,10 +20,14 @@ enum EReadOptions { surah, translation, surahAndTranslation }
 enum EToggleButtonTextStyle { selected, disabled }
 
 /// Surah Detail screen Mode
-enum ESurahDetailScreenMod { surah, juz }
+enum ESurahDetailScreenMode { surah, juz }
 
-/// Different types of BookMark
+/// Bookmarking verse or page
 enum EBookMarkType { verse, page }
+
+/// Recent visited screen type
+/// [ReadingScreen] or [TranslationScreen]
+enum ERecentVisitedType { juz, page, surah }
 
 /// Displaying Juz as list and grid
 enum EJuzListType { list, grid }

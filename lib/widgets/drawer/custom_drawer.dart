@@ -51,7 +51,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
         context.translate.sajda,
       ],
       selectedIndex:
-          context.watch<SurahDetailsProvider>().readingSettings.surahDetailScreenMod.index,
+          context.watch<SurahDetailsProvider>().readingSettings.surahDetailScreenMode.index,
       onTap: (index) {
         // context.read<SurahDetailsProvider>().changeSurahDetailScreenMod(index);
         // Utils.unFocus();
@@ -61,7 +61,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
   Widget get body {
     return IndexedStack(
-      index: context.watch<SurahDetailsProvider>().readingSettings.surahDetailScreenMod.index,
+      index: context.watch<SurahDetailsProvider>().readingSettings.surahDetailScreenMode.index,
       children: [
         buildSurah,
         buildJuz,

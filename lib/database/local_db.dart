@@ -5,6 +5,8 @@ import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../models/recent_model.dart';
+
 class LocalDb {
   LocalDb._();
 
@@ -55,7 +57,7 @@ class LocalDb {
     return getFavoriteVerses;
   }
 
-  /// Delete verse model from the favorite list in db
+  /// Delete verse model from the favorite list from db
   static Future<List<VerseModel>> deleteVerseFromTheFavorites(
       VerseModel verseModel) async {
     var favoriteList = getFavoriteVerses;
@@ -91,6 +93,32 @@ class LocalDb {
     var value = bookmarkList.map((e) => e.toJson()).toList();
     await _localDbBox.write('bookmarks', value);
     return getBookmarks;
+  }
+
+  /// Get recents from db
+  static List<RecentModel> get getRecents {
+    var recentList = (_localDbBox.read('recents') as List?) ?? [];
+    return recentList
+        .map((e) => RecentModel.fromJson(e))
+        .toList()
+        .cast<RecentModel>();
+  }
+
+  /// Add recent visited in db
+  static Future<List<RecentModel>> addRecent(RecentModel recent) async {
+    /// Checking if user clicked on same surah, juz, page or recent
+    /// Do not add it to the list
+    var first8Recents = getRecents.reversed.toList().getRange(0, 8);
+    for (var element in first8Recents) {
+      if (element.index == recent.index) {
+        return getRecents;
+      }
+    }
+    var recentsList = getRecents;
+    recentsList.add(recent);
+    var value = recentsList.map((e) => e.toJson()).toList();
+    await _localDbBox.write('recents', value);
+    return getRecents;
   }
 
   /// Getting Local Settings Of Quran from Db
