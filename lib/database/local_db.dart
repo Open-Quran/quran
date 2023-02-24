@@ -108,12 +108,10 @@ class LocalDb {
   static Future<List<RecentModel>> addRecent(RecentModel recent) async {
     /// Checking if user clicked on same surah, juz, page or recent
     /// Do not add it to the list
-    var first8Recents = getRecents.reversed.toList().getRange(0, 8);
-    for (var element in first8Recents) {
-      if (element.index == recent.index) {
+    var firstRecents = getRecents.reversed.first;
+      if (firstRecents.index == recent.index) {
         return getRecents;
       }
-    }
     var recentsList = getRecents;
     recentsList.add(recent);
     var value = recentsList.map((e) => e.toJson()).toList();
