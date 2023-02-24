@@ -1,6 +1,5 @@
 <br />
 <p align="center">
-<img width="215" src="https://www.fabrikod.com/logo.jpg">
 <img width="215" src="https://github.com/fabrikod/the-open-quran/blob/main/assets/images/logo_pic.png?raw=true">
 </p>
 <br />
@@ -12,6 +11,14 @@ A demonstration app for Flutter that targets iOS, Android and shows how it can g
 The Open Qur'an App was carefully built by [fabrikod](https://fabrikod.com) to take into account user expectations, input methods, and idioms for each platform, guaranteeing it is comfortable on all of them. 
 
 ### About Fabrikod
+
+<br />
+<p align="center">
+<img width="215" src="https://www.fabrikod.com/logo.jpg">
+<img width="215" src="https://github.com/fabrikod/the-open-quran/blob/main/assets/images/logo_pic.png?raw=true">
+</p>
+<br />
+
 We are a company that creates cutting-edge digital experiences for savvy customers, and we like how simple Flutter simplifies that process.
 Please [visit our website](https://fabrikod.com) to discover more about what we do.
 Please get in touch with us! 
