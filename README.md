@@ -7,8 +7,8 @@
 
 # The Open Qur'an - Mobile App
 
-A demonstration app for Flutter that targets iOS, Android, MacOS, Windows, Linux, and the web and shows how it can give a fantastic cross-platform experience.
-The Holy Qur'an App was carefully built by [fabrikod](https://fabrikod.com) to take into account user expectations, input methods, and idioms for each platform, guaranteeing it is comfortable on all of them. 
+A demonstration app for Flutter that targets iOS, Android and shows how it can give a fantastic cross-platform experience.
+The Open Qur'an App was carefully built by [fabrikod](https://fabrikod.com) to take into account user expectations, input methods, and idioms for each platform, guaranteeing it is comfortable on all of them. 
 
 ### About Fabrikod
 We are a company that creates cutting-edge digital experiences for savvy customers, and we like how simple Flutter simplifies that process.
@@ -62,12 +62,16 @@ lib/                     # Root Package
 ├─ utils/                # Utils for components 
 │
 ├─ widgets/              # App widgets
-│  ├─ app_bars/          # Different style of app bars
+   ├─ animations/        # Animations
+   ├─ app_bars/          # Different style of app bars
    ├─ bars/              # Different bar styles
    ├─ bottom_sheets/     # Different style of bottom sheets
    ├─ buttons/           # Different style of buttons
    ├─ cards/             # Cards
    ├─ drawer/            # Drawer
+   ├─ lists/             # List widgets
+   ├─ pop_up/            # Pop Up dialogs
+   ├─ quran/             # Widgets related to the Quran
    ├─ tags/              # Tags
 
 ```
