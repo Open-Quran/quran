@@ -1,6 +1,5 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/bookmark_model.dart';
-import 'package:fabrikod_quran/models/mushaf_backgrund_model.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/providers/bookmark_provider.dart';
 import 'package:fabrikod_quran/providers/favorites_provider.dart';
@@ -37,6 +36,17 @@ class _TranslationScreenState extends State<TranslationScreen> {
       itemScrollController.jumpTo(
           index: context.read<SurahDetailsProvider>().jumpToVerseIndex);
       itemPositionsListener.itemPositions.addListener(scrollListener);
+      listenToPlayer();
+    });
+  }
+
+  /// Listen To Player
+  void listenToPlayer() {
+    context.read<PlayerProvider>().addListener(() {
+      if (context.read<PlayerProvider>().playerState == EPlayerState.playing) {
+        itemScrollController.jumpTo(
+            index: context.read<PlayerProvider>().playerIndex);
+      }
     });
   }
 
@@ -50,7 +60,7 @@ class _TranslationScreenState extends State<TranslationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var verses = context.watch<SurahDetailsProvider>().showedVerses;
+    var verses = context.watch<SurahDetailsProvider>().displayedVerses;
     return Scaffold(
       backgroundColor: Colors.transparent,
       floatingActionButton: Visibility(
