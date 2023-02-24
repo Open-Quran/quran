@@ -15,7 +15,6 @@ The Open Qur'an App was carefully built by [fabrikod](https://fabrikod.com) to t
 <br />
 <p align="center">
 <img width="215" src="https://www.fabrikod.com/logo.jpg">
-<img width="215" src="https://github.com/fabrikod/the-open-quran/blob/main/assets/images/logo_pic.png?raw=true">
 </p>
 <br />
 
