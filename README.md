@@ -4,12 +4,6 @@
 </p>
 <br />
 
-
-# The Open Qur'an - Mobile App
-
-A demonstration app for Flutter that targets iOS, Android and shows how it can give a fantastic cross-platform experience.
-The Open Qur'an App was carefully built by [fabrikod](https://fabrikod.com) to take into account user expectations, input methods, and idioms for each platform, guaranteeing it is comfortable on all of them. 
-
 <br />
 <p align="center">
 <img width="215" src="https://github.com/fabrikod/the-open-quran/blob/develop/assets/images/Juz%20Grid.png?raw=true">
@@ -17,6 +11,13 @@ The Open Qur'an App was carefully built by [fabrikod](https://fabrikod.com) to t
 <img width="215" src="https://github.com/fabrikod/the-open-quran/blob/develop/assets/images/Juz%20List.png?raw=true">
 </p>
 <br />
+
+
+# The Open Qur'an - Mobile App
+
+A demonstration app for Flutter that targets iOS, Android and shows how it can give a fantastic cross-platform experience.
+The Open Qur'an App was carefully built by [fabrikod](https://fabrikod.com) to take into account user expectations, input methods, and idioms for each platform, guaranteeing it is comfortable on all of them. 
+
 
 ### About Fabrikod
 
