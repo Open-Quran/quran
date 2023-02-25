@@ -3,6 +3,7 @@ import 'package:fabrikod_quran/database/local_db.dart';
 import 'package:fabrikod_quran/models/local_setting_model.dart';
 import 'package:fabrikod_quran/models/mushaf_backgrund_model.dart';
 import 'package:fabrikod_quran/models/surah_model.dart';
+import 'package:fabrikod_quran/models/translation.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/services/asset_quran_service.dart';
 import 'package:fabrikod_quran/services/translation_service.dart';
@@ -58,8 +59,22 @@ class QuranProvider extends ChangeNotifier {
     return verseList;
   }
 
-  Future<void> selectedTranslation(int? index) async {
-    await translationService.selectedTranslation(index);
+  Future<void> onTapTranslationAuthorCard(TranslationAuthor translationAuthor) async {
+    switch (translationAuthor.verseTranslationState) {
+      case EVerseTranslationState.download:
+        translationAuthor.verseTranslationState = EVerseTranslationState.downloading;
+        notifyListeners();
+        var result = await translationService.downloadTranslationFromNetwork(translationAuthor);
+        translationAuthor.verseTranslationState =
+            result ? EVerseTranslationState.downloaded : EVerseTranslationState.download;
+
+        break;
+      case EVerseTranslationState.downloading:
+        break;
+      case EVerseTranslationState.downloaded:
+        translationAuthor.isShow = !translationAuthor.isShow;
+        break;
+    }
     notifyListeners();
   }
 

@@ -21,9 +21,9 @@ class AssetQuranService {
     return result.map((e) => VerseTranslation.fromJson(e)).toList().cast<VerseTranslation>();
   }
 
-  static Future<List<Translation>> getTranslations() async {
+  static Future<List<TranslationCountry>> getTranslations() async {
     String data = await rootBundle.loadString(JsonPathConstants.translations);
     var result = json.decode(data);
-    return result.map((e) => Translation.fromJson(e)).toList().cast<Translation>();
+    return result.map((e) => TranslationCountry.fromJson(e)).toList().cast<TranslationCountry>();
   }
 }

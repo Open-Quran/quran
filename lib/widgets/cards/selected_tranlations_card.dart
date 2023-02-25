@@ -5,7 +5,7 @@ import 'package:flutter/material.dart';
 class SelectedTranslationsCard extends StatelessWidget {
   final String? text;
   final Function()? onTap;
-  final List<Translations> activeTranslations;
+  final List<TranslationAuthor> activeTranslations;
 
   const SelectedTranslationsCard(
       {Key? key, this.text, this.onTap, required this.activeTranslations})

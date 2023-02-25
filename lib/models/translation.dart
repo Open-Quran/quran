@@ -1,17 +1,17 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 
-class Translation {
+class TranslationCountry {
   String? name;
-  late List<Translations> translations;
+  late List<TranslationAuthor> translationsAuthor;
 
-  Translation({this.name, required this.translations});
+  TranslationCountry({this.name, required this.translationsAuthor});
 
-  Translation.fromJson(Map<String, dynamic> json) {
+  TranslationCountry.fromJson(Map<String, dynamic> json) {
     name = json['name'];
     if (json['translations'] != null) {
-      translations = [];
+      translationsAuthor = [];
       json['translations'].forEach((v) {
-        translations.add(Translations.fromJson(v));
+        translationsAuthor.add(TranslationAuthor.fromJson(v));
       });
     }
   }
@@ -19,22 +19,29 @@ class Translation {
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['name'] = name;
-    data['translations'] = translations.map((v) => v.toJson()).toList();
+    data['translations'] = translationsAuthor.map((v) => v.toJson()).toList();
 
     return data;
   }
+
+  List<TranslationAuthor> get downloadedList {
+    return translationsAuthor
+        .where((element) => element.verseTranslationState == EVerseTranslationState.downloaded)
+        .toList();
+  }
 }
 
-class Translations {
+class TranslationAuthor {
   String? translationName;
   String? authorName;
   int? resourceId;
   bool isShow = false;
+  EVerseTranslationState verseTranslationState = EVerseTranslationState.download;
   List<VerseTranslation> verseTranslations = [];
 
-  Translations({this.translationName, this.authorName, this.resourceId});
+  TranslationAuthor({this.translationName, this.authorName, this.resourceId});
 
-  Translations.fromJson(Map<String, dynamic> json) {
+  TranslationAuthor.fromJson(Map<String, dynamic> json) {
     translationName = json['translation_name'];
     authorName = json['author_name'];
     resourceId = json['resource_id'];

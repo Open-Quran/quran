@@ -1,33 +1,15 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:provider/provider.dart';
 
 import '../title.dart';
 
-class TranslationDropDown extends StatefulWidget {
-  const TranslationDropDown({Key? key}) : super(key: key);
+class TranslationBox extends StatelessWidget {
+  final Function() onTap;
 
-  @override
-  State<TranslationDropDown> createState() => _TranslationDropDownState();
-}
-
-class _TranslationDropDownState extends State<TranslationDropDown> {
-  List<String> translations = [
-    'Turkish Diyanet',
-    'Turkish Diyaneasdt',
-    'Turkish Diyaneast',
-    'Turkish Diyaasdnet',
-    'Turkish Diyansadet',
-    'Turkish Diysadaanet',
-  ];
-  String selectedTranslation = 'Turkish Diyanet';
-  void dropdownCallback(String? selectedValue) {
-    if (selectedValue is String) {
-      setState(() {
-        selectedTranslation = selectedValue;
-      });
-    }
-  }
+  const TranslationBox({Key? key, required this.onTap}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -37,28 +19,31 @@ class _TranslationDropDownState extends State<TranslationDropDown> {
         CustomTitle(
           titleText: context.translate.translation,
         ),
-        Container(
-          width: double.infinity,
-          margin: const EdgeInsets.only(top: kSizeM, bottom: kSizeXXL),
-          decoration: const BoxDecoration(
+        InkWell(
+          onTap: onTap,
+          child: Container(
+            width: double.infinity,
+            height: 45,
+            margin: const EdgeInsets.only(top: kSizeM, bottom: kSizeXXL),
+            padding: const EdgeInsets.all(kSizeM),
+            decoration: const BoxDecoration(
               color: AppColors.black,
-              borderRadius: BorderRadius.all(Radius.circular(8))),
-          child: DropdownButtonFormField(
-            dropdownColor: AppColors.black,
-            decoration: const InputDecoration(
-              border: InputBorder.none,
-              contentPadding:
-                  EdgeInsets.only(right: kSizeL, left: kSizeM),
+              borderRadius: BorderRadius.all(
+                Radius.circular(8),
+              ),
             ),
-            value: selectedTranslation,
-            items: translations.map<DropdownMenuItem<String>>((String mascot) {
-              return DropdownMenuItem<String>(
-                  value: mascot, child: Text(mascot));
-            }).toList(),
-            onChanged: dropdownCallback,
-            style: context.theme.textTheme.bodyMedium,
-            isExpanded: true,
-            icon: SvgPicture.asset(ImageConstants.dropDownIcon),
+            child: Row(
+              children: [
+                Expanded(
+                  child: Text(
+                    context.watch<QuranProvider>().translationService.translationButtonName ??
+                        context.translate.translation,
+                    style: context.theme.textTheme.bodyMedium,
+                  ),
+                ),
+                SvgPicture.asset(ImageConstants.dropDownIcon)
+              ],
+            ),
           ),
         ),
       ],
