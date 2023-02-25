@@ -1,29 +1,25 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/widgets/title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-import '../title.dart';
-
-class SoundDropDown extends StatefulWidget {
-  const SoundDropDown({Key? key}) : super(key: key);
+class QuranFontButton extends StatefulWidget {
+  const QuranFontButton({super.key});
 
   @override
-  State<SoundDropDown> createState() => _SoundDropDownState();
+  State<QuranFontButton> createState() => _QuranFontButtonState();
 }
 
-class _SoundDropDownState extends State<SoundDropDown> {
-  List<String> sounds = [
-    'Mohmoud Al Husary',
-    'Mahir il-Muaykili',
-    'Suud eş-Şureym',
-    'Abdurrahman es-Sudais',
-    'Mahir Bin Hamad Al-Muaiqly'
-  ];
-  String selectedSound = 'Mohmoud Al Husary';
+class _QuranFontButtonState extends State<QuranFontButton> {
+  List<String> fonts = ['Uthmani'];
+
+  String selectFont = 'Uthmani';
+  final bool isPopUp = true;
+
   void dropdownCallback(String? selectedValue) {
     if (selectedValue is String) {
       setState(() {
-        selectedSound = selectedValue;
+        selectFont = selectedValue;
       });
     }
   }
@@ -32,12 +28,17 @@ class _SoundDropDownState extends State<SoundDropDown> {
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        CustomTitle(titleText: context.translate.sound),
+        CustomTitle(
+          titleText: context.translate.quranFont,
+        ),
         Container(
-          width: double.infinity,
-          height: Utils.isSmallPhone(context) ? 45 : 50,
+          width: Utils.isSmallPhone(context) ? 120 : 120,
+          height: Utils.isSmallPhone(context)
+              ? 45
+              : Utils.isMediumPhone(context)
+                  ? 50
+                  : 50,
           margin: EdgeInsets.only(
             top: Utils.isSmallPhone(context) ? 10 : kSizeM,
             bottom: Utils.isSmallPhone(context) ? 10 : kSizeL,
@@ -47,13 +48,14 @@ class _SoundDropDownState extends State<SoundDropDown> {
               borderRadius: BorderRadius.all(Radius.circular(8))),
           child: Center(
             child: DropdownButtonFormField(
+              alignment: AlignmentDirectional.topStart,
               dropdownColor: AppColors.black,
               decoration: const InputDecoration(
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.only(right: kSizeL, left: kSizeM),
               ),
-              value: selectedSound,
-              items: sounds.map<DropdownMenuItem<String>>((String mascot) {
+              value: selectFont,
+              items: fonts.map<DropdownMenuItem<String>>((String mascot) {
                 return DropdownMenuItem<String>(
                     value: mascot, child: Text(mascot));
               }).toList(),

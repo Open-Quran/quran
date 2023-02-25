@@ -7,21 +7,33 @@ import '../title.dart';
 class LayoutOptionsToggleButton extends StatelessWidget {
   final ELayoutOptions layoutOptions;
   final Function(ELayoutOptions layoutOptions) onChanged;
+  final bool isPopUp;
 
-  const LayoutOptionsToggleButton({super.key, required this.layoutOptions, required this.onChanged});
+  const LayoutOptionsToggleButton({
+    super.key,
+    required this.layoutOptions,
+    required this.onChanged,
+    this.isPopUp = false,
+  });
 
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         CustomTitle(titleText: context.translate.layout),
         Container(
-          margin: const EdgeInsets.only(
-            top: kSizeM,
-            bottom: kSizeXXL,
+          margin: EdgeInsets.only(
+            top: Utils.isSmallPhone(context) ? 10 : kSizeM,
+            bottom: Utils.isSmallPhone(context) ? 10 : kSizeL,
           ),
-          width: 150,
+          height: Utils.isSmallPhone(context)
+              ? 45
+              : Utils.isMediumPhone(context)
+                  ? 50
+                  : 50,
+          width: isPopUp ? 120 : 120,
           child: CupertinoSlidingSegmentedControl<int>(
             backgroundColor: AppColors.black,
             thumbColor: AppColors.black3,
@@ -29,17 +41,21 @@ class LayoutOptionsToggleButton extends StatelessWidget {
             groupValue: layoutOptions.index,
             children: {
               0: SizedBox(
-                height: 45,
+                height: Utils.isSmallPhone(context) ? 40 : 45,
                 child: SvgPicture.asset(
                   ImageConstants.alignRight,
-                  color: layoutOptions == ELayoutOptions.right ? AppColors.white5 : AppColors.grey3,
+                  color: layoutOptions == ELayoutOptions.right
+                      ? AppColors.white5
+                      : AppColors.grey3,
                 ),
               ),
               1: SizedBox(
-                height: 45,
+                height: Utils.isSmallPhone(context) ? 40 : 45,
                 child: SvgPicture.asset(
                   ImageConstants.alignCenter,
-                  color: layoutOptions == ELayoutOptions.center ? AppColors.white5 : AppColors.grey3,
+                  color: layoutOptions == ELayoutOptions.center
+                      ? AppColors.white5
+                      : AppColors.grey3,
                 ),
               ),
             },

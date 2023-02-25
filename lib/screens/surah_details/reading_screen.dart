@@ -1,6 +1,8 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
+import 'package:fabrikod_quran/widgets/buttons/verse_detail_settings_button.dart';
+import 'package:fabrikod_quran/widgets/cards/mushaf_settings_card.dart';
 import 'package:fabrikod_quran/widgets/quran/quran_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -18,14 +20,16 @@ class _ReadingScreenState extends State<ReadingScreen> {
   final ItemScrollController itemScrollController = ItemScrollController();
 
   /// Item position listener of Verse list
-  final ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
+  final ItemPositionsListener itemPositionsListener =
+      ItemPositionsListener.create();
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
       itemScrollController.jumpTo(
-          index: context.read<SurahDetailsProvider>().jumpToMushafPageListIndex);
+          index:
+              context.read<SurahDetailsProvider>().jumpToMushafPageListIndex);
       itemPositionsListener.itemPositions.addListener(scrollListener);
     });
   }
@@ -40,24 +44,43 @@ class _ReadingScreenState extends State<ReadingScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return ScrollablePositionedList.separated(
-      itemCount: context.watch<SurahDetailsProvider>().mushafPageList.length,
-      itemScrollController: itemScrollController,
-      itemPositionsListener: itemPositionsListener,
-      padding: const EdgeInsets.symmetric(horizontal: kSizeL),
-      physics: const ClampingScrollPhysics(),
-      itemBuilder: (context, index) {
-        var versesOfPage = context.watch<SurahDetailsProvider>().mushafPageList[index];
-        return QuranPageWidget(
-          versesOfPage: versesOfPage,
-          layoutOptions: context.watch<QuranProvider>().localSetting.layoutOptions,
-          fontTypeArabic: context.watch<QuranProvider>().localSetting.fontTypeArabic,
-          textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
-          onTap: context.read<SurahDetailsProvider>().changeReadingMode,
-          surahDetailsPageTheme: context.watch<QuranProvider>().surahDetailsPageThemeColor,
-        );
-      },
-      separatorBuilder: (context, index) => const SizedBox(height: kSizeXL),
+    return Scaffold(
+      backgroundColor: Colors.transparent,
+      floatingActionButton: Visibility(
+        visible:
+            context.watch<SurahDetailsProvider>().readingSettings.isReadingMode,
+        child: VerseDetailSettingsButton(
+          onPressed: () {
+            showDialog(
+                context: context,
+                builder: (BuildContext context) => const MushafSettingsCard());
+          },
+        ),
+      ),
+      body: ScrollablePositionedList.separated(
+        itemCount: context.watch<SurahDetailsProvider>().mushafPageList.length,
+        itemScrollController: itemScrollController,
+        itemPositionsListener: itemPositionsListener,
+        padding: const EdgeInsets.symmetric(horizontal: kSizeL),
+        physics: const ClampingScrollPhysics(),
+        itemBuilder: (context, index) {
+          var versesOfPage =
+              context.watch<SurahDetailsProvider>().mushafPageList[index];
+          return QuranPageWidget(
+            versesOfPage: versesOfPage,
+            layoutOptions:
+                context.watch<QuranProvider>().localSetting.layoutOptions,
+            fontTypeArabic:
+                context.watch<QuranProvider>().localSetting.fontTypeArabic,
+            textScaleFactor:
+                context.watch<QuranProvider>().localSetting.textScaleFactor,
+            onTap: context.read<SurahDetailsProvider>().changeReadingMode,
+            surahDetailsPageTheme:
+                context.watch<QuranProvider>().surahDetailsPageThemeColor,
+          );
+        },
+        separatorBuilder: (context, index) => const SizedBox(height: kSizeXL),
+      ),
     );
   }
 }

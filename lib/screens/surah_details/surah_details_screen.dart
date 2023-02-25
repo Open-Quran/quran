@@ -27,13 +27,19 @@ class SurahDetailsScreen extends StatefulWidget {
 class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: buildAppBar(),
-      body: buildBody,
-      backgroundColor: context
-          .watch<QuranProvider>()
-          .surahDetailsPageThemeColor
-          .backgroundColor,
+    return SafeArea(
+      child: Scaffold(
+        appBar:
+            context.watch<SurahDetailsProvider>().readingSettings.isReadingMode
+                ? const PreferredSize(
+                    child: const SizedBox(), preferredSize: Size.zero)
+                : buildAppBar(),
+        body: buildBody,
+        backgroundColor: context
+            .watch<QuranProvider>()
+            .surahDetailsPageThemeColor
+            .backgroundColor,
+      ),
     );
   }
 
@@ -57,7 +63,7 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
               children: [
                 buildTranslationOrReadingSwitch,
                 Expanded(child: buildTranslationOrReading),
-                const PlayBar(padding: EdgeInsets.only(bottom: kSizeXL))
+                const PlayBar(padding: EdgeInsets.only(bottom: kSizeXL)),
               ],
             ),
             const VerseDetailsSettings(),
@@ -67,14 +73,12 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
           child: Column(
             children: [
               JuzSurahSearchToggleButton(
-                toggleSearchButtonIndex: context
-                    .read<SearchProvider>()
-                    .toggleSearchOptions
-                    .index,
+                toggleSearchButtonIndex:
+                    context.read<SearchProvider>().toggleSearchOptions.index,
                 onChanged: context
                     .watch<SurahDetailsProvider>()
                     .changeJuzOrSurahToggleOptionType,
-                onTapSearchButton:    context
+                onTapSearchButton: context
                     .read<SurahDetailsProvider>()
                     .changeToggleSearchOptions,
                 toggleListType: context
@@ -82,10 +86,8 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
                     .juzSurahToggleOptionType,
               ),
               FadeIndexedStack(
-                index: context
-                    .watch<SearchProvider>()
-                    .toggleSearchOptions
-                    .index,
+                index:
+                    context.watch<SearchProvider>().toggleSearchOptions.index,
                 children: [
                   buildToggleSearchPages(context),
                   const SearchResultScreen(isHome: false),

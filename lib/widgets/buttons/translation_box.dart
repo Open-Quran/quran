@@ -23,7 +23,7 @@ class TranslationBox extends StatelessWidget {
           onTap: onTap,
           child: Container(
             width: double.infinity,
-            height: 45,
+            height: Utils.isSmallPhone(context) ? 45 : 50,
             margin: const EdgeInsets.only(top: kSizeM, bottom: kSizeXXL),
             padding: const EdgeInsets.all(kSizeM),
             decoration: const BoxDecoration(

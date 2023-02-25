@@ -1,8 +1,9 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/screens/translation_setting_screen.dart';
+import 'package:fabrikod_quran/widgets/buttons/quran_font_button.dart';
 import 'package:fabrikod_quran/widgets/buttons/sound_drop_down_button.dart';
-import 'package:fabrikod_quran/widgets/buttons/translation_drop_down_button.dart';
+import 'package:fabrikod_quran/widgets/buttons/translation_box.dart';
 import 'package:fabrikod_quran/widgets/surah_size_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -33,16 +34,26 @@ class _VerseDetailsSettingsState extends State<VerseDetailsSettings> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           ReadOptionsToggleButton(
+            isPopUp: false,
             listType: context.watch<QuranProvider>().localSetting.readOptions,
             onValueChanged: context.read<QuranProvider>().changeReadingType,
           ),
           SurahSizeSlider(
+            isPopUp: false,
             size: context.watch<QuranProvider>().localSetting.textScaleFactor,
             onChanged: context.read<QuranProvider>().changeFontSize,
           ),
-          LayoutOptionsToggleButton(
-            layoutOptions: context.watch<QuranProvider>().localSetting.layoutOptions,
-            onChanged: context.read<QuranProvider>().changeLayoutOptions,
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              const QuranFontButton(),
+              LayoutOptionsToggleButton(
+                isPopUp: false,
+                layoutOptions:
+                    context.watch<QuranProvider>().localSetting.layoutOptions,
+                onChanged: context.read<QuranProvider>().changeLayoutOptions,
+              ),
+            ],
           ),
           const SoundDropDown(),
           TranslationBox(
