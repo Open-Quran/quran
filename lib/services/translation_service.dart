@@ -68,10 +68,10 @@ class TranslationService {
 
   /// Get translations from assets
   Future _getVerseTranslationListFromAsset(String countryCode, int resourceId) async {
-    List<VerseTranslation> result = await AssetQuranService.getVerseTranslationList(countryCode);
+    List<VerseTranslation> verseTranslations = await AssetQuranService.getVerseTranslationList(countryCode);
     TranslationAuthor? translationAuthor = _getTranslationAuthor(resourceId);
     if (translationAuthor == null) return;
-    translationAuthor.verseTranslations = result;
+    translationAuthor.verseTranslations = verseTranslations;
     translationAuthor.verseTranslationState = EVerseTranslationState.downloaded;
 
     for (var element in translationAuthor.verseTranslations) {
