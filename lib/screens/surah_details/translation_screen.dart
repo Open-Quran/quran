@@ -44,6 +44,7 @@ class _TranslationScreenState extends State<TranslationScreen> {
   /// Listen To Player
   void listenToPlayer() {
     context.read<PlayerProvider>().addListener(() {
+      if(!mounted) return;
       if (context
           .read<PlayerProvider>()
           .playerState == EPlayerState.playing) {
