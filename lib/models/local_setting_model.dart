@@ -11,7 +11,7 @@ class LocalSettingModel {
 
   LocalSettingModel({
     this.quranType = EQuranType.translation,
-    this.layoutOptions = ELayoutOptions.center,
+    this.layoutOptions = ELayoutOptions.justify,
     this.readOptions = EReadOptions.surahAndTranslation,
     this.textScaleFactor = 1.2,
     this.surahDetailsPageThemeIndex = 3,
@@ -34,7 +34,7 @@ class LocalSettingModel {
             : EReadOptions.surahAndTranslation,
         layoutOptions: json['layoutOptions'] != null
             ? ELayoutOptions.values[json['layoutOptions']]
-            : ELayoutOptions.center,
+            : ELayoutOptions.justify,
         textScaleFactor: json['textScaleFactor'] ?? 1.2,
         surahDetailsPageThemeIndex: json['mushafBackgroundColorIndex'] ?? 3,
         fontType: json['fontType'] ?? "Nunito",

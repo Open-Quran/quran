@@ -52,8 +52,8 @@ class LayoutOptionsToggleButton extends StatelessWidget {
               1: SizedBox(
                 height: Utils.isSmallPhone(context) ? 40 : 45,
                 child: SvgPicture.asset(
-                  ImageConstants.alignCenter,
-                  color: layoutOptions == ELayoutOptions.center
+                  ImageConstants.alignJustify,
+                  color: layoutOptions == ELayoutOptions.justify
                       ? AppColors.white5
                       : AppColors.grey3,
                 ),

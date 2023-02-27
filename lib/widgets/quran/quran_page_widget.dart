@@ -67,8 +67,8 @@ class QuranPageWidget extends StatelessWidget {
   ) {
     return RichText(
       textDirection: TextDirection.rtl,
-      textAlign: layoutOptions == ELayoutOptions.center
-          ? TextAlign.center
+      textAlign: layoutOptions == ELayoutOptions.justify
+          ? TextAlign.justify
           : TextAlign.right,
       textScaleFactor: textScaleFactor,
       text: TextSpan(

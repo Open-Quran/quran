@@ -42,7 +42,7 @@ enum EToggleSearchOptions { toggles, searchField }
 enum ETranslationOptions { hide, show }
 
 /// Reading alignment
-enum ELayoutOptions { right, center }
+enum ELayoutOptions { right, justify }
 
 /// Different types of the Player State
 enum EPlayerState { stop, playing, pause }
