@@ -51,7 +51,7 @@ class TranslationsSettingCard extends StatelessWidget {
       case EVerseTranslationState.downloading:
         return SvgPicture.asset(ImageConstants.icTranslationDownloading);
       case EVerseTranslationState.downloaded:
-        return translationAuthor.isShow
+        return translationAuthor.isSelectedTranslation
             ? SvgPicture.asset(ImageConstants.ticIcon)
             : const SizedBox();
     }

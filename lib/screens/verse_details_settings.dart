@@ -1,6 +1,6 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/screens/translation_setting_screen.dart';
+import 'package:fabrikod_quran/screens/quran_translation_screen.dart';
 import 'package:fabrikod_quran/widgets/buttons/quran_font_button.dart';
 import 'package:fabrikod_quran/widgets/buttons/sound_drop_down_button.dart';
 import 'package:fabrikod_quran/widgets/buttons/translation_box.dart';
@@ -60,7 +60,7 @@ class _VerseDetailsSettingsState extends State<VerseDetailsSettings> {
             onTap: () {
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) {
-                  return const TranslationSettingScreen();
+                  return const QuranTranslationsScreen();
                 },
               ));
             },

@@ -36,7 +36,7 @@ class TranslationsCard extends StatelessWidget {
                     title: Row(
                       children: [
                         SvgPicture.asset(
-                          e.isShow
+                          e.isSelectedTranslation
                               ? ImageConstants.checkboxActiveIcon
                               : ImageConstants.checkboxInactiveIcon,
                           height: 25,

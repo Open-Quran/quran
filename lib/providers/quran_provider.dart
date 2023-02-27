@@ -72,7 +72,7 @@ class QuranProvider extends ChangeNotifier {
       case EVerseTranslationState.downloading:
         break;
       case EVerseTranslationState.downloaded:
-        translationAuthor.isShow = !translationAuthor.isShow;
+        translationAuthor.isSelectedTranslation = !translationAuthor.isSelectedTranslation;
         break;
     }
     notifyListeners();

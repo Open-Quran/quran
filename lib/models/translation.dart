@@ -35,7 +35,7 @@ class TranslationAuthor {
   String? translationName;
   String? authorName;
   int? resourceId;
-  bool isShow = false;
+  bool isSelectedTranslation = false;
   EVerseTranslationState verseTranslationState = EVerseTranslationState.download;
   List<VerseTranslation> verseTranslations = [];
 

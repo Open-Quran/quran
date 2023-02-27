@@ -1,24 +1,24 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/translation.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/widgets/app_bars/empty_app_bar.dart';
+import 'package:fabrikod_quran/widgets/app_bars/primary_app_bar.dart';
 import 'package:fabrikod_quran/widgets/cards/translations_setting_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 
-class TranslationSettingScreen extends StatefulWidget {
-  const TranslationSettingScreen({super.key});
+class QuranTranslationsScreen extends StatefulWidget {
+  const QuranTranslationsScreen({super.key});
 
   @override
-  State<TranslationSettingScreen> createState() => _TranslationSettingScreenState();
+  State<QuranTranslationsScreen> createState() => _QuranTranslationsScreenState();
 }
 
-class _TranslationSettingScreenState extends State<TranslationSettingScreen> {
+class _QuranTranslationsScreenState extends State<QuranTranslationsScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: EmptyAppBar(
+      appBar: PrimaryAppBar(
         title: context.translate.selectedTranslation,
         leading: IconButton(
           icon: SvgPicture.asset(ImageConstants.newBackArrow),
@@ -83,6 +83,7 @@ class _TranslationSettingScreenState extends State<TranslationSettingScreen> {
     );
   }
 
+  /// List of downloaded Qur'an translations
   Widget buildDownloaded(TranslationCountry translationCountry, bool isDownload) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kSizeL),

@@ -1,6 +1,6 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/screens/translation_setting_screen.dart';
+import 'package:fabrikod_quran/screens/quran_translation_screen.dart';
 import 'package:fabrikod_quran/widgets/background_color_select.dart';
 import 'package:fabrikod_quran/widgets/buttons/layout_options_toggle_buttons.dart';
 import 'package:fabrikod_quran/widgets/buttons/quran_font_button.dart';
@@ -80,7 +80,7 @@ class _MushafSettingsCardState extends State<MushafSettingsCard> {
             TranslationBox(onTap: () {
               Navigator.push(context, MaterialPageRoute(
                 builder: (context) {
-                  return const TranslationSettingScreen();
+                  return const QuranTranslationsScreen();
                 },
               ));
             }),
