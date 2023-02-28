@@ -65,4 +65,5 @@ class ImageConstants {
   static const String downloadIcon = "${_iconsPath}ic_download.svg";
   static const String okayBorderIcon = "${_iconsPath}ic_okay_border.svg";
   static const String launchIcon = "${_iconsPath}ic_launch.png";
+  static const String appLogo = "${_basePath}img_app_logo.png";
 }

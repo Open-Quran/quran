@@ -1,6 +1,7 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/screens/help_guide_screen.dart';
 import 'package:fabrikod_quran/screens/language_screen.dart';
+import 'package:fabrikod_quran/screens/references_screen.dart';
 import 'package:fabrikod_quran/widgets/app_bars/primary_app_bar.dart';
 import 'package:fabrikod_quran/widgets/buttons/secondary_button.dart';
 import 'package:flutter/material.dart';
@@ -33,8 +34,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   Widget get buildBody {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-          vertical: kSizeL, horizontal: kSizeXL),
+      padding:
+          const EdgeInsets.symmetric(vertical: kSizeL, horizontal: kSizeXL),
       child: Column(
         children: [
           Align(
@@ -44,6 +45,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               style: context.theme.textTheme.displayLarge,
             ),
           ),
+
           /// ToDo: Uncomment for release
           // CustomExpandingThemeCard(
           //   defaultThemeMode:
@@ -83,6 +85,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ImageConstants.helpGuideIcon,
                 color: AppColors.white,
               )),
+
           /// ToDo: Uncomment for release
           // SecondaryButton(
           //   text: context.translate.introduction,
@@ -105,11 +108,18 @@ class _SettingsScreenState extends State<SettingsScreen> {
           // ),
           SecondaryButton(
               text: context.translate.references,
-              onPressed: () {},
+              onPressed: () {
+                Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (context) => const ReferencesScreen(),
+                    ));
+              },
               icon: SvgPicture.asset(
                 ImageConstants.referencesIcon,
                 color: AppColors.white,
               )),
+
           /// ToDo: Uncomment for release
           // Container(
           //   padding: const EdgeInsets.only(top: kSizeXXL),
@@ -130,8 +140,6 @@ class _SettingsScreenState extends State<SettingsScreen> {
           //   ),
           //   endIcon: SvgPicture.asset(ImageConstants.arrowRight),
           // ),
-
-
         ],
       ),
     );

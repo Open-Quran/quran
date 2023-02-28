@@ -29,9 +29,11 @@ class _HelpGuideCardState extends State<HelpGuideCard> {
         child: ExpansionTile(
           title: Row(
             children: [
-              Text(
-                widget.text,
-                style: context.theme.textTheme.headlineSmall,
+              Flexible(
+                child: Text(
+                  widget.text,
+                  style: context.theme.textTheme.headlineSmall,
+                ),
               ),
             ],
           ),
@@ -49,8 +51,8 @@ class _HelpGuideCardState extends State<HelpGuideCard> {
           childrenPadding: const EdgeInsets.only(bottom: kSizeM),
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(
-                  vertical: 0, horizontal: kSizeXL),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 0, horizontal: kSizeXL),
               child: Text(
                 widget.description,
                 style: context.theme.textTheme.bodySmall,

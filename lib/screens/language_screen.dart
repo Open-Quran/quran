@@ -29,8 +29,8 @@ class _LanguageScreenState extends State<LanguageScreen> {
 
   Widget get buildBody {
     return Padding(
-      padding: const EdgeInsets.symmetric(
-          vertical: kSizeL, horizontal: kSizeXL),
+      padding:
+          const EdgeInsets.symmetric(vertical: kSizeL, horizontal: kSizeXL),
       child: SingleChildScrollView(
         child: Column(
           children: [
@@ -57,7 +57,7 @@ class _LanguageScreenState extends State<LanguageScreen> {
     return PrimaryAppBar(
       title: context.translate.theOpenQuran,
       leading: IconButton(
-        icon: SvgPicture.asset(ImageConstants.arrowBack),
+        icon: SvgPicture.asset(ImageConstants.newBackArrow),
         onPressed: () => Navigator.pop(context),
       ),
     );
