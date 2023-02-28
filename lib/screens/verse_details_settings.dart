@@ -1,8 +1,9 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
+import 'package:fabrikod_quran/screens/quran_translation_screen.dart';
 import 'package:fabrikod_quran/widgets/buttons/quran_font_button.dart';
 import 'package:fabrikod_quran/widgets/buttons/sound_drop_down_button.dart';
-import 'package:fabrikod_quran/widgets/buttons/translation_drop_down_button.dart';
+import 'package:fabrikod_quran/widgets/buttons/translation_box.dart';
 import 'package:fabrikod_quran/widgets/surah_size_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -28,8 +29,7 @@ class _VerseDetailsSettingsState extends State<VerseDetailsSettings> {
 
   Widget get buildBody {
     return SingleChildScrollView(
-      padding:
-          const EdgeInsets.symmetric(horizontal: kSize3XL, vertical: kSizeXL),
+      padding: const EdgeInsets.symmetric(horizontal: kSize3XL, vertical: kSizeXL),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -56,7 +56,15 @@ class _VerseDetailsSettingsState extends State<VerseDetailsSettings> {
             ],
           ),
           const SoundDropDown(),
-          const TranslationDropDown(),
+          TranslationBox(
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(
+                builder: (context) {
+                  return const QuranTranslationsScreen();
+                },
+              ));
+            },
+          ),
           BackgroundColorSelect(
             colors: const [
               AppColors.white2,
@@ -65,12 +73,8 @@ class _VerseDetailsSettingsState extends State<VerseDetailsSettings> {
               AppColors.grey7,
               AppColors.pink
             ],
-            defaultIndex: context
-                .watch<QuranProvider>()
-                .localSetting
-                .surahDetailsPageThemeIndex,
-            onChangedColor:
-                context.read<QuranProvider>().changeSurahDetailsPageTheme,
+            defaultIndex: context.watch<QuranProvider>().localSetting.surahDetailsPageThemeIndex,
+            onChangedColor: context.read<QuranProvider>().changeSurahDetailsPageTheme,
           ),
         ],
       ),
