@@ -52,8 +52,9 @@ class _QuranTranslationsScreenState extends State<QuranTranslationsScreen> {
         children: [
           Text(
             title,
-            style: context.theme.textTheme.bodyMedium!
-                .copyWith(color: AppColors.white.withOpacity(0.5)),
+            style: context.theme.textTheme.bodyMedium!.copyWith(
+              color: AppColors.white.withOpacity(0.5),
+            ),
           ),
           Divider(color: Theme.of(context).canvasColor),
         ],
@@ -84,7 +85,6 @@ class _QuranTranslationsScreenState extends State<QuranTranslationsScreen> {
       },
     );
   }
-
 
   Widget buildList(TranslationCountry translationCountry, bool isDownload) {
     return Padding(

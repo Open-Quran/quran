@@ -7,7 +7,6 @@ import 'package:fabrikod_quran/services/asset_quran_service.dart';
 import 'package:fabrikod_quran/services/network_service.dart';
 
 class TranslationService {
-
   /// Class constructor
   TranslationService() {
     _init();
@@ -22,6 +21,16 @@ class TranslationService {
     allTranslationCountry = await AssetQuranService.getTranslations();
     await _getVerseTranslationListFromAsset("en", 131);
     await _getVerseTranslationListFromAsset("tr", 77);
+
+    String localCountryCode =
+        LocalDb.getLocale?.countryCode ?? Platform.localeName.split("_").first;
+    if (localCountryCode == "tr") {
+      var author = _getTranslationAuthor(77);
+      if (author != null) author.isTranslationSelected = true;
+    } else {
+      var author = _getTranslationAuthor(131);
+      if (author != null) author.isTranslationSelected = true;
+    }
   }
 
   /// List of selected translations in downloaded list
@@ -62,13 +71,15 @@ class TranslationService {
 
   /// Get verse translation names
   String translationsName(int resourceId) {
-    var value = selectedTranslationAuthors.firstWhere((element) => element.resourceId == resourceId);
+    var value =
+        selectedTranslationAuthors.firstWhere((element) => element.resourceId == resourceId);
     return value.translationName ?? "";
   }
 
   /// Get translations from assets
   Future _getVerseTranslationListFromAsset(String countryCode, int resourceId) async {
-    List<VerseTranslation> verseTranslations = await AssetQuranService.getVerseTranslationList(countryCode);
+    List<VerseTranslation> verseTranslations =
+        await AssetQuranService.getVerseTranslationList(countryCode);
     TranslationAuthor? translationAuthor = _getTranslationAuthor(resourceId);
     if (translationAuthor == null) return;
     translationAuthor.verseTranslations = verseTranslations;
@@ -77,10 +88,6 @@ class TranslationService {
     for (var element in translationAuthor.verseTranslations) {
       element.translationName = translationAuthor.translationName;
     }
-
-    String localCountryCode =
-        LocalDb.getLocale?.countryCode ?? Platform.localeName.split("_").first;
-    if (localCountryCode == countryCode) translationAuthor.isTranslationSelected = true;
   }
 
   /// Get translation author name
