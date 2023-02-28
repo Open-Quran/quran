@@ -59,6 +59,9 @@ class QuranProvider extends ChangeNotifier {
     return verseList;
   }
 
+  /// Selecting translation
+  /// If translation is not downloaded - Download it
+  /// If translation is downloaded then select translation
   Future<void> onTapTranslationAuthorCard(TranslationAuthor translationAuthor) async {
     switch (translationAuthor.verseTranslationState) {
       case EVerseTranslationState.download:
@@ -72,7 +75,7 @@ class QuranProvider extends ChangeNotifier {
       case EVerseTranslationState.downloading:
         break;
       case EVerseTranslationState.downloaded:
-        translationAuthor.isSelectedTranslation = !translationAuthor.isSelectedTranslation;
+        translationAuthor.isTranslationSelected = !translationAuthor.isTranslationSelected;
         break;
     }
     notifyListeners();

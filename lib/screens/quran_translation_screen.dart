@@ -61,30 +61,32 @@ class _QuranTranslationsScreenState extends State<QuranTranslationsScreen> {
     );
   }
 
+  /// List of Qur'an translations to download
   Widget buildDownloadList(List<TranslationCountry> translationCountries) {
     return ListView.builder(
       itemCount: translationCountries.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        return buildDownloaded(translationCountries.elementAt(index), false);
+        return buildList(translationCountries.elementAt(index), false);
       },
     );
   }
 
+  /// List of downloaded Qur'an translations
   Widget buildDownloadedList(List<TranslationCountry> translationCountries) {
     return ListView.builder(
       itemCount: translationCountries.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        return buildDownloaded(translationCountries.elementAt(index), true);
+        return buildList(translationCountries.elementAt(index), true);
       },
     );
   }
 
-  /// List of downloaded Qur'an translations
-  Widget buildDownloaded(TranslationCountry translationCountry, bool isDownload) {
+
+  Widget buildList(TranslationCountry translationCountry, bool isDownload) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kSizeL),
       child: Column(

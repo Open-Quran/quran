@@ -29,7 +29,7 @@ class TranslationService {
     List<TranslationAuthor> list = [];
     for (var element in allTranslationCountry) {
       for (var element in element.downloadedList) {
-        if (element.isSelectedTranslation) list.add(element);
+        if (element.isTranslationSelected) list.add(element);
       }
     }
     return list;
@@ -40,7 +40,7 @@ class TranslationService {
     List<VerseTranslation> list = [];
     for (var translationCountry in allTranslationCountry) {
       for (var translationsAuthor in translationCountry.downloadedList) {
-        if (translationsAuthor.isSelectedTranslation) {
+        if (translationsAuthor.isTranslationSelected) {
           list.add(translationsAuthor.verseTranslations[verseId - 1]);
         }
       }
@@ -80,7 +80,7 @@ class TranslationService {
 
     String localCountryCode =
         LocalDb.getLocale?.countryCode ?? Platform.localeName.split("_").first;
-    if (localCountryCode == countryCode) translationAuthor.isSelectedTranslation = true;
+    if (localCountryCode == countryCode) translationAuthor.isTranslationSelected = true;
   }
 
   /// Get translation author name
