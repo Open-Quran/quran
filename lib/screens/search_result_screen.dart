@@ -54,8 +54,8 @@ class SearchResultScreen extends StatelessWidget {
                   buildSurahSearchResult(searchProvider.filteredSurahSearch),
 
                   /// Can be used later on
-                  buildVerseSearchResult(searchProvider.filteredVerseSearch),
-                  buildVerseTranslationSearchResult(searchProvider.filteredVerseTranslationSearch),
+                  // buildVerseSearchResult(searchProvider.filteredVerseSearch),
+                  // buildVerseTranslationSearchResult(searchProvider.filteredVerseTranslationSearch),
                   const SizedBox(height: kSizeXXL),
                 ],
               ),

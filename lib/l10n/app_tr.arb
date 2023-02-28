@@ -90,11 +90,11 @@
     "downloaded": "İndirilenler",
     "delete": "Sil",
     "quranFont": "Kur'an Fontu",
+    "availableToDownload": "İndirilebilir",
     "fabrikodTwoThree": "@2023 Fabrikod",
     "referencesDescription": "Projenin amacı insanlara Kur'an -ı Kerim'i incelemek için uygun bir platform sağlamaktır. Bu nedenle, Kuran artık akıllı telefonlarda, tabletlerde ve diğer modern cihazlarda okunabilir. Bu uygulamanın kaynak kodunu görmek için lütfen ziyaret edin ",
     "referencesDescription2": " Gizlilik politikamızda açıklandığı gibi, herhangi bir kişisel bilgi toplamıyoruz.",
     "referencesDescription3": "API ve tüm Kuran kaynakları",
     "contactUs" : "Yardım için merhaba@fabrikod.com adresinden bize ulaşın.",
     "privacyPolicy": "Gizlilik politikası"
-
 }

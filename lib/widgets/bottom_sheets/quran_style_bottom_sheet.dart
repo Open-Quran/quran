@@ -82,11 +82,11 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
         children: [
           buildTitle(context.translate.selectedTranslation),
           CustomSpace.normal(),
-          SelectedTranslationsCard(
-            onTap: changedOpenTranslations,
-            activeTranslations:
-                context.watch<QuranProvider>().translationService.activeTranslations,
-          ),
+          // SelectedTranslationsCard(
+          //   onTap: changedOpenTranslations,
+          //   activeTranslations:
+          //       context.watch<QuranProvider>().translationService.activeTranslations,
+          // ),
           CustomSpace.big(),
         ],
       ),

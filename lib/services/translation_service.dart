@@ -1,116 +1,119 @@
 import 'dart:io';
 
+import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/database/local_db.dart';
 import 'package:fabrikod_quran/models/translation.dart';
 import 'package:fabrikod_quran/services/asset_quran_service.dart';
 import 'package:fabrikod_quran/services/network_service.dart';
 
 class TranslationService {
-
-  /// List of all translations
-  late List<Translation> allTranslation;
-
-  /// List of active translations
-  /// Active translation are selected translations
-  late List<Translations> activeTranslations;
-
+  /// Class constructor
   TranslationService() {
     _init();
   }
 
+  /// List of all translation Country
+  late List<TranslationCountry> allTranslationCountry;
+
   /// Initialization method
   /// Filling lists of translations
   Future _init() async {
-    allTranslation = await AssetQuranService.getTranslations();
+    allTranslationCountry = await AssetQuranService.getTranslations();
     await _getVerseTranslationListFromAsset("en", 131);
     await _getVerseTranslationListFromAsset("tr", 77);
-    _updateActiveTranslations();
+
+    String localCountryCode =
+        LocalDb.getLocale?.countryCode ?? Platform.localeName.split("_").first;
+    if (localCountryCode == "tr") {
+      var author = _getTranslationAuthor(77);
+      if (author != null) author.isTranslationSelected = true;
+    } else {
+      var author = _getTranslationAuthor(131);
+      if (author != null) author.isTranslationSelected = true;
+    }
   }
 
-  /// Get update list of active translations
-  void _updateActiveTranslations() {
-    List<Translations> list = [];
-    for (var element in allTranslation) {
-      for (var element in element.translations) {
-        if (element.isShow) list.add(element);
+  /// List of selected translations in downloaded list
+  List<TranslationAuthor> get selectedTranslationAuthors {
+    List<TranslationAuthor> list = [];
+    for (var element in allTranslationCountry) {
+      for (var element in element.downloadedList) {
+        if (element.isTranslationSelected) list.add(element);
       }
     }
-    activeTranslations = list;
+    return list;
   }
 
   /// Get specific verse translation
   List<VerseTranslation> translationsOfVerse(int verseId) {
     List<VerseTranslation> list = [];
-    for (var element in activeTranslations) {
-      list.add(element.verseTranslations[verseId - 1]);
+    for (var translationCountry in allTranslationCountry) {
+      for (var translationsAuthor in translationCountry.downloadedList) {
+        if (translationsAuthor.isTranslationSelected) {
+          list.add(translationsAuthor.verseTranslations[verseId - 1]);
+        }
+      }
     }
     return list;
   }
 
   /// Get all verse translations
-  List<VerseTranslation> get getAllVerseTranslations {
-    List<VerseTranslation> verseTranslationList = [];
-    return verseTranslationList;
+  String? get translationButtonName {
+    var list = selectedTranslationAuthors;
+    if (list.isEmpty) {
+      return null;
+    }
+    if (list.length == 1) {
+      return "${list.first.translationName}";
+    }
+    return "${list.first.translationName} +${list.length}";
   }
 
   /// Get verse translation names
   String translationsName(int resourceId) {
-    var value = activeTranslations
-        .firstWhere((element) => element.resourceId == resourceId);
+    var value =
+        selectedTranslationAuthors.firstWhere((element) => element.resourceId == resourceId);
     return value.translationName ?? "";
   }
 
   /// Get translations from assets
-  Future _getVerseTranslationListFromAsset(
-      String countryCode, int resourceId) async {
-    List<VerseTranslation> result =
+  Future _getVerseTranslationListFromAsset(String countryCode, int resourceId) async {
+    List<VerseTranslation> verseTranslations =
         await AssetQuranService.getVerseTranslationList(countryCode);
-    Translations? translations = _getTranslations(resourceId);
-    if (translations == null) return;
-    translations.verseTranslations = result;
+    TranslationAuthor? translationAuthor = _getTranslationAuthor(resourceId);
+    if (translationAuthor == null) return;
+    translationAuthor.verseTranslations = verseTranslations;
+    translationAuthor.verseTranslationState = EVerseTranslationState.downloaded;
 
-    for (var element in translations.verseTranslations) {
-      element.translationName = translations.translationName;
+    for (var element in translationAuthor.verseTranslations) {
+      element.translationName = translationAuthor.translationName;
     }
-
-    String localCountryCode =
-        LocalDb.getLocale?.countryCode ?? Platform.localeName.split("_").first;
-    if (localCountryCode == countryCode) translations.isShow = true;
   }
 
-  /// Get translations
-  Translations? _getTranslations(int? resourceId) {
+  /// Get translation author name
+  TranslationAuthor? _getTranslationAuthor(int? resourceId) {
     if (resourceId == null) return null;
-    for (var element in allTranslation) {
-      for (var element in element.translations) {
+    for (var element in allTranslationCountry) {
+      for (var element in element.translationsAuthor) {
         if (element.resourceId == resourceId) return element;
       }
     }
     return null;
   }
 
-  /// Filling list of selected translation
-  Future<void> selectedTranslation(int? resourceId) async {
-    Translations? translations = _getTranslations(resourceId);
-    if (translations == null) return;
-    translations.isShow = !translations.isShow;
-    await _getVerseTranslationFromNetwork(translations);
-    if (translations.verseTranslations.isEmpty) translations.isShow = false;
-    _updateActiveTranslations();
-  }
+  /// Downloading translations from Quran.com API V4
+  Future<bool> downloadTranslationFromNetwork(TranslationAuthor translationAuthor) async {
+    try {
+      translationAuthor.verseTranslations =
+          await NetworkService.fetchVerseTranslationList(translationAuthor.resourceId!);
 
-  /// Get translations from API
-  Future<void> _getVerseTranslationFromNetwork(
-      Translations translations) async {
-    if (!translations.isShow || translations.verseTranslations.isNotEmpty){
-      return;
-    }
-    translations.verseTranslations =
-        await NetworkService.fetchVerseTranslationList(
-            translations.resourceId!);
+      for (var element in translationAuthor.verseTranslations) {
+        element.translationName = translationAuthor.translationName;
+      }
 
-    for (var element in translations.verseTranslations) {
-      element.translationName = translations.translationName;
+      return translationAuthor.verseTranslations.isEmpty ? false : true;
+    } catch (e) {
+      return false;
     }
   }
 }

@@ -108,7 +108,7 @@ class VerseCard extends StatelessWidget {
 
   Widget buildVerseCardArabic(EReadOptions readOptions, BuildContext context) {
     return Visibility(
-      visible: readOptions != EReadOptions.surah,
+      visible: readOptions != EReadOptions.translation,
       child: Column(
         children: [
           VerseCardArabic(
@@ -124,7 +124,7 @@ class VerseCard extends StatelessWidget {
 
   Widget buildVerseCardTranslation(EReadOptions readOptions) {
     return Visibility(
-      visible: readOptions != EReadOptions.translation,
+      visible: readOptions != EReadOptions.surah,
       child: VerseCardTranslation(
         verseTranslations: verseTranslations,
         textScaleFactor: textScaleFactor,

@@ -1,6 +1,3 @@
-import 'dart:io';
-
-import 'package:fabrikod_quran/constants/colors.dart';
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 

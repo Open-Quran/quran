@@ -46,3 +46,6 @@ enum ELayoutOptions { right, justify }
 
 /// Different types of the Player State
 enum EPlayerState { stop, playing, pause }
+
+/// Download statuses for Verse Translations
+enum EVerseTranslationState { download, downloading, downloaded }

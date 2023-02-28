@@ -76,8 +76,8 @@ class SearchProvider extends ChangeNotifier {
       isFieldEmpty = false;
       filterSurahSearchResults(query);
       filterByPageAndJuzNumber(query);
-      filterSurahVerse(query);
-      filterSurahVerseTranslation(query);
+      // filterSurahVerse(query);
+      // filterSurahVerseTranslation(query);
       isSearchButtonTapped = true;
     } else {
       isFieldEmpty = true;
@@ -85,22 +85,22 @@ class SearchProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Getting search result by surah name, id etc.
-  /// [VerseModel]
-  filterSurahVerseTranslation(String queryText) {
-    queryText = queryText.toLowerCase();
-    List<VerseTranslation> searchList =
-        _context.read<QuranProvider>().translationService.getAllVerseTranslations;
-    List<VerseTranslation> searchResult = [];
-    for (var verse in searchList) {
-      if (verse.text!.toLowerCase().contains(queryText)) {
-        searchResult.add(verse);
-      }
-    }
-    filteredVerseTranslationSearch.clear();
-    filteredVerseTranslationSearch.addAll(searchResult);
-    notifyListeners();
-  }
+  // /// Getting search result by surah name, id etc.
+  // /// [VerseModel]
+  // filterSurahVerseTranslation(String queryText) {
+  //   queryText = queryText.toLowerCase();
+  //   List<VerseTranslation> searchList =
+  //       _context.read<QuranProvider>().translationService.getAllVerseTranslations;
+  //   List<VerseTranslation> searchResult = [];
+  //   for (var verse in searchList) {
+  //     if (verse.text!.toLowerCase().contains(queryText)) {
+  //       searchResult.add(verse);
+  //     }
+  //   }
+  //   filteredVerseTranslationSearch.clear();
+  //   filteredVerseTranslationSearch.addAll(searchResult);
+  //   notifyListeners();
+  // }
 
   /// Getting search result by surah name, id etc.
   /// [VerseModel]

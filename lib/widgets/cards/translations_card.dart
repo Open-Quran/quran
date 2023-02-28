@@ -15,9 +15,9 @@ class TranslationsCard extends StatelessWidget {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: context.watch<QuranProvider>().translationService.allTranslation.length,
+      itemCount: context.watch<QuranProvider>().translationService.allTranslationCountry.length,
       itemBuilder: (context, index) {
-        var allTranslation = context.read<QuranProvider>().translationService.allTranslation;
+        var allTranslation = context.read<QuranProvider>().translationService.allTranslationCountry;
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -27,16 +27,16 @@ class TranslationsCard extends StatelessWidget {
             ),
             Text(allTranslation[index].name ?? "", style: context.theme.appBarTheme.titleTextStyle),
             CustomSpace.normal(),
-            ...allTranslation[index].translations.map(
+            ...allTranslation[index].translationsAuthor.map(
                   (e) => ListTile(
-                    onTap: () => context.read<QuranProvider>().selectedTranslation(e.resourceId),
+                    // onTap: () => context.read<QuranProvider>().selectedTranslation(e.resourceId),
                     visualDensity: const VisualDensity(vertical: -2),
                     contentPadding: const EdgeInsets.symmetric(horizontal: kSizeM * 2),
                     dense: true,
                     title: Row(
                       children: [
                         SvgPicture.asset(
-                          e.isShow
+                          e.isTranslationSelected
                               ? ImageConstants.checkboxActiveIcon
                               : ImageConstants.checkboxInactiveIcon,
                           height: 25,
