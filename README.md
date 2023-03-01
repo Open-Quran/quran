@@ -15,7 +15,7 @@
 
 <br />
 <p align="center">
-<img width="215" src="https://github.com/fabrikod/the-open-quran/blob/main/assets/images/the_open_quran.gif">
+<img width="415" src="https://github.com/fabrikod/the-open-quran/blob/main/assets/images/the_open_quran.gif">
 </p>
 <br />
 
