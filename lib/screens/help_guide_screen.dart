@@ -25,7 +25,7 @@ class _HelpGuideScreenState extends State<HelpGuideScreen> {
     return PrimaryAppBar(
       title: context.translate.theOpenQuran,
       leading: IconButton(
-        icon: SvgPicture.asset(ImageConstants.arrowBack),
+        icon: SvgPicture.asset(ImageConstants.newBackArrow),
         onPressed: () => Navigator.pop(context),
       ),
     );
@@ -38,30 +38,46 @@ class _HelpGuideScreenState extends State<HelpGuideScreen> {
         vertical: kSizeXXL,
       ),
       child: Column(
-        children: [
+        children: <Widget>[
           HelpGuideCard(
             text: context.translate.helpGuideTitle1,
             description: context.translate.helpGuideDescription1,
           ),
           const SizedBox(height: kSizeM),
           HelpGuideCard(
-            text: context.translate.helpGuideTitle1,
-            description: context.translate.helpGuideDescription1,
+            text: context.translate.helpGuideTitle2,
+            description: context.translate.helpGuideDescription2,
           ),
           const SizedBox(height: kSizeM),
           HelpGuideCard(
-            text: context.translate.helpGuideTitle1,
-            description: context.translate.helpGuideDescription1,
+            text: context.translate.helpGuideTitle3,
+            description: context.translate.helpGuideDescription3,
           ),
           const SizedBox(height: kSizeM),
           HelpGuideCard(
-            text: context.translate.helpGuideTitle1,
-            description: context.translate.helpGuideDescription1,
+            text: context.translate.helpGuideTitle4,
+            description: context.translate.helpGuideDescription4,
           ),
           const SizedBox(height: kSizeM),
           HelpGuideCard(
-            text: context.translate.helpGuideTitle1,
-            description: context.translate.helpGuideDescription1,
+            text: context.translate.helpGuideTitle5,
+            description: context.translate.helpGuideDescription5,
+          ),
+          HelpGuideCard(
+            text: context.translate.helpGuideTitle6,
+            description: context.translate.helpGuideDescription6,
+          ),
+          HelpGuideCard(
+            text: context.translate.helpGuideTitle7,
+            description: context.translate.helpGuideDescription7,
+          ),
+          HelpGuideCard(
+            text: context.translate.helpGuideTitle8,
+            description: context.translate.helpGuideDescription8,
+          ),
+          HelpGuideCard(
+            text: context.translate.helpGuideTitle9,
+            description: context.translate.helpGuideDescription9,
           ),
           const SizedBox(height: kSizeM * 5),
           buildAppInfoHelpGuide,
@@ -76,7 +92,8 @@ class _HelpGuideScreenState extends State<HelpGuideScreen> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       children: [
-        Text(context.translate.madeByFabrikod, style: context.theme.textTheme.headlineSmall),
+        Text(context.translate.madeByFabrikod,
+            style: context.theme.textTheme.headlineSmall),
         const SizedBox(height: kSizeS),
         FutureBuilder<PackageInfo>(
           future: PackageInfo.fromPlatform(),
