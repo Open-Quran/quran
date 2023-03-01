@@ -3,25 +3,15 @@ import 'package:fabrikod_quran/widgets/title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
-class QuranFontButton extends StatefulWidget {
-  const QuranFontButton({super.key});
+class QuranFontButton extends StatelessWidget {
+  const QuranFontButton({super.key, required this.selectedFont, required this.onChangeArabicFont});
 
-  @override
-  State<QuranFontButton> createState() => _QuranFontButtonState();
-}
-
-class _QuranFontButtonState extends State<QuranFontButton> {
-  List<String> fonts = ['Uthmani'];
-
-  String selectFont = 'Uthmani';
-  final bool isPopUp = true;
+  final String selectedFont;
+  final Function(String) onChangeArabicFont;
 
   void dropdownCallback(String? selectedValue) {
-    if (selectedValue is String) {
-      setState(() {
-        selectFont = selectedValue;
-      });
-    }
+    if (selectedValue == null) return;
+    onChangeArabicFont(selectedValue);
   }
 
   @override
@@ -44,8 +34,7 @@ class _QuranFontButtonState extends State<QuranFontButton> {
             bottom: Utils.isSmallPhone(context) ? 10 : kSizeL,
           ),
           decoration: const BoxDecoration(
-              color: AppColors.black,
-              borderRadius: BorderRadius.all(Radius.circular(8))),
+              color: AppColors.black, borderRadius: BorderRadius.all(Radius.circular(8))),
           child: Center(
             child: DropdownButtonFormField(
               alignment: AlignmentDirectional.topStart,
@@ -54,10 +43,9 @@ class _QuranFontButtonState extends State<QuranFontButton> {
                 border: InputBorder.none,
                 contentPadding: EdgeInsets.only(right: kSizeL, left: kSizeM),
               ),
-              value: selectFont,
-              items: fonts.map<DropdownMenuItem<String>>((String mascot) {
-                return DropdownMenuItem<String>(
-                    value: mascot, child: Text(mascot));
+              value: selectedFont,
+              items: Fonts.arabicFontNames.map<DropdownMenuItem<String>>((String mascot) {
+                return DropdownMenuItem<String>(value: mascot, child: Text(mascot));
               }).toList(),
               onChanged: dropdownCallback,
               style: context.theme.textTheme.bodyMedium,

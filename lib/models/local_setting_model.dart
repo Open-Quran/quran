@@ -6,8 +6,8 @@ class LocalSettingModel {
   ELayoutOptions layoutOptions;
   double textScaleFactor;
   int surahDetailsPageThemeIndex;
-  String fontType = Fonts.translationFontNames.first;
-  String fontTypeArabic = Fonts.arabicFontNames.first;
+  String fontType = "Nunito";
+  String fontTypeArabic = "Uthmani";
 
   LocalSettingModel({
     this.quranType = EQuranType.translation,
@@ -16,7 +16,7 @@ class LocalSettingModel {
     this.textScaleFactor = 1.2,
     this.surahDetailsPageThemeIndex = 3,
     this.fontType = "Nunito",
-    this.fontTypeArabic = "Nunito",
+    this.fontTypeArabic = "Uthmani",
   });
 
   @override
@@ -38,7 +38,7 @@ class LocalSettingModel {
         textScaleFactor: json['textScaleFactor'] ?? 1.2,
         surahDetailsPageThemeIndex: json['mushafBackgroundColorIndex'] ?? 3,
         fontType: json['fontType'] ?? "Nunito",
-        fontTypeArabic: json['fontTypeArabic'] ?? "Nunito",
+        fontTypeArabic: json['fontTypeArabic'] ?? "Uthmani",
       );
 
   Map<String, dynamic> toJson() => {
