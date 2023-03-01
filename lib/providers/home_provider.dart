@@ -2,6 +2,7 @@ import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 
 class HomeProvider extends ChangeNotifier {
+
   /// Home Screen Context
   final BuildContext _context;
 

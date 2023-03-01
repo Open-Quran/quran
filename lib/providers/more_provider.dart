@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:in_app_review/in_app_review.dart';
 
 class MoreProvider extends ChangeNotifier {
-  /// Home Screen Context
+  /// More Provider Context
   final BuildContext _context;
 
   /// Class Constructor

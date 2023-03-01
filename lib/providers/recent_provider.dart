@@ -1,10 +1,7 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/database/local_db.dart';
-import 'package:fabrikod_quran/managers/surah_detail_navigation_manager.dart';
-import 'package:fabrikod_quran/models/bookmark_model.dart';
 import 'package:fabrikod_quran/models/reading_settings_model.dart';
 import 'package:fabrikod_quran/models/recent_model.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

@@ -38,7 +38,7 @@ class _ReferencesScreenState extends State<ReferencesScreen> {
         mainAxisAlignment: MainAxisAlignment.start,
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-          SizedBox(
+          const SizedBox(
             height: 100,
           ),
           Row(
@@ -90,9 +90,9 @@ class _ReferencesScreenState extends State<ReferencesScreen> {
                   recognizer: TapGestureRecognizer()
                     ..onTap = () async {
                       const url = 'https://github.com/fabrikod/the-open-quran';
-                      if (await canLaunch(url)) {
-                        await launch(
-                          url,
+                      if (await canLaunchUrl(Uri.parse(url))) {
+                        await launchUrl(
+                          Uri.parse(url),
                         );
                       }
                     },
@@ -102,7 +102,7 @@ class _ReferencesScreenState extends State<ReferencesScreen> {
                   style: context.theme.textTheme.headlineMedium,
                 ),
                 TextSpan(
-                  text: "\n \n" + context.translate.referencesDescription3,
+                  text: "\n \n${context.translate.referencesDescription3}",
                   style: context.theme.textTheme.headlineMedium,
                 ),
                 TextSpan(
@@ -112,18 +112,18 @@ class _ReferencesScreenState extends State<ReferencesScreen> {
                   recognizer: TapGestureRecognizer()
                     ..onTap = () async {
                       const url = 'https://quran.api-docs.io/';
-                      if (await canLaunch(url)) {
-                        await launch(
-                          url,
+                      if (await canLaunchUrl(Uri.parse(url))) {
+                        await launchUrl(
+                          Uri.parse(url),
                         );
                       }
                     },
                 ),
                 TextSpan(
-                    text: "\n \n" + context.translate.contactUs,
+                    text: "\n \n${context.translate.contactUs}",
                     style: context.theme.textTheme.headlineMedium),
                 TextSpan(
-                    text: "\n \n" + context.translate.privacyPolicy,
+                    text: "\n \n${context.translate.privacyPolicy}",
                     style: context.theme.textTheme.headlineMedium),
                 TextSpan(
                   style: context.theme.textTheme.headlineMedium!
@@ -132,9 +132,9 @@ class _ReferencesScreenState extends State<ReferencesScreen> {
                   recognizer: TapGestureRecognizer()
                     ..onTap = () async {
                       const url = 'https://www.fabrikod.com/privacy-policy';
-                      if (await canLaunch(url)) {
-                        await launch(
-                          url,
+                      if (await canLaunchUrl(Uri.parse(url))) {
+                        await launchUrl(
+                          Uri.parse(url),
                         );
                       }
                     },

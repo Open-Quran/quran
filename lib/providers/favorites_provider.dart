@@ -2,7 +2,6 @@ import 'package:fabrikod_quran/database/local_db.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:flutter/material.dart';
 
-import '../constants/enums.dart';
 import '../managers/surah_detail_navigation_manager.dart';
 
 class FavoritesProvider extends ChangeNotifier {
