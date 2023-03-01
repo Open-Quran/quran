@@ -13,6 +13,13 @@
 <br />
 
 
+<br />
+<p align="center">
+<img width="215" src="https://github.com/fabrikod/the-open-quran/blob/main/assets/images/the_open_quran.gif">
+</p>
+<br />
+
+
 # The Open Qur'an - Mobile App
 
 A demonstration app for Flutter that targets iOS, Android and shows how it can give a fantastic cross-platform experience.
