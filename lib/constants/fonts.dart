@@ -10,6 +10,8 @@ class Fonts {
 
   /// For Verse Signs
   static const String uthmanic = "Uthmani";
+  static const String uthmanicBold = "UthmaniBold";
+  static const String majeed = "Majeed";
 
   /// Translation Fonts
   static final String robotoSlab = GoogleFonts.robotoSlab().fontFamily!;
@@ -21,7 +23,7 @@ class Fonts {
   static final String notoNaskhArabic = GoogleFonts.notoNaskhArabic().fontFamily ?? uthmanic;
 
   static const List<String> translationFontNames = ["Nunito", "Roboto Slab"];
-  static const List<String> arabicFontNames = ["Uthmani","Nunito", "Amiri", "Lateef", "Noto Naskh"];
+  static const List<String> arabicFontNames = ["Uthmani", "Uthmani Bold", "Majeed"];
 
   static String? getTranslationFont(String fontName) {
     if (fontName == translationFontNames[1]) return robotoSlab;
@@ -29,10 +31,8 @@ class Fonts {
   }
 
   static String? getArabicFont(String fontName) {
-    if (fontName == arabicFontNames[1]) return nunito;
-    if (fontName == arabicFontNames[2]) return amiri;
-    if (fontName == arabicFontNames[3]) return lateef;
-    if (fontName == arabicFontNames[4]) return notoNaskhArabic;
+    if (fontName == arabicFontNames[1]) return uthmanicBold;
+    if (fontName == arabicFontNames[2]) return majeed;
     return uthmanic;
   }
 }
