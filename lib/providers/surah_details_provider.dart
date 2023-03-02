@@ -12,6 +12,7 @@ import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
 import 'package:fabrikod_quran/screens/surah_details/translation_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:share_plus/share_plus.dart';
 
 class SurahDetailsProvider extends ChangeNotifier {
   /// Class Constructor
@@ -271,5 +272,23 @@ class SurahDetailsProvider extends ChangeNotifier {
   changeToggleSearchOptions(EToggleSearchOptions newOptionType) {
     _context.read<SearchProvider>().toggleSearchOptions = newOptionType;
     notifyListeners();
+  }
+
+  /// Share verse
+  Future shareVerse(VerseModel verseModel, int index) async {
+    String verseText = verseModel.text!;
+    if (_context.read<QuranProvider>().localSetting.readOptions ==
+        EReadOptions.translation) {
+      verseText = _context
+          .read<QuranProvider>()
+          .translationService
+          .translationsOfVerse(verseModel.id!)[index]
+          .text!;
+    } else if (_context.read<QuranProvider>().localSetting.readOptions ==
+        EReadOptions.surahAndTranslation) {
+      verseText =
+          "${verseModel.text!}\n${_context.read<QuranProvider>().translationService.translationsOfVerse(verseModel.id!)[index].text!}";
+    }
+    await Share.share(verseText);
   }
 }
