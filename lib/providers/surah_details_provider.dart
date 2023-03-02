@@ -11,6 +11,7 @@ import 'package:fabrikod_quran/screens/surah_details/reading_screen.dart';
 import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
 import 'package:fabrikod_quran/screens/surah_details/translation_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import 'package:share_plus/share_plus.dart';
 
@@ -30,7 +31,7 @@ class SurahDetailsProvider extends ChangeNotifier {
   late ReadingSettingsModel readingSettings;
 
   /// [bool] checking if settings is opened in [SurahDetailsScreen]
-  bool isOpenSetting = false;
+  bool isSettingsOpen = false;
 
   /// [bool] checking if title page is opened in [SurahDetailsScreen]
   bool isTitleMenu = false;
@@ -58,7 +59,7 @@ class SurahDetailsProvider extends ChangeNotifier {
 
   /// Change Quran Screen Setting Mode
   void changeOpenSetting() {
-    isOpenSetting = !isOpenSetting;
+    isSettingsOpen = !isSettingsOpen;
     notifyListeners();
   }
 
@@ -247,6 +248,11 @@ class SurahDetailsProvider extends ChangeNotifier {
   /// Changing reading mode
   void changeReadingMode() {
     readingSettings.isReadingMode = !readingSettings.isReadingMode;
+    if(readingSettings.isReadingMode == true){
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+    }else{
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
+    }
     notifyListeners();
   }
 

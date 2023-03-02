@@ -3,6 +3,7 @@ import 'dart:io';
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:gap/gap.dart';
 
 class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
   @override
@@ -12,6 +13,7 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
   final List<Widget>? actions;
   final Widget? leading;
   final bool isDrawerOpen;
+  final bool isSettingsOpen;
   final bool isBookmarked;
   final bool isActiveSoundIcon;
   final Function()? onTapTitle;
@@ -28,6 +30,7 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.actions,
     this.leading,
     this.isDrawerOpen = false,
+    this.isSettingsOpen = false,
     this.isBookmarked = false,
     this.isActiveSoundIcon = false,
     this.bottomHeight,
@@ -61,11 +64,13 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// Settings button
   IconButton buildSettingsButton() {
     return IconButton(
-      onPressed: onTapSettings,
-      icon: SvgPicture.asset(
-        ImageConstants.settingsIcon,
-        height: 20,
-      ),
+        onPressed: onTapSettings,
+        icon: SvgPicture.asset(
+          isSettingsOpen
+              ? ImageConstants.settingsIconOpen
+              : ImageConstants.settingsIcon,
+          height: 20,
+        ),
     );
   }
 
@@ -74,7 +79,9 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
     return IconButton(
       onPressed: () => onTapSound(isActiveSoundIcon),
       icon: SvgPicture.asset(
-        isActiveSoundIcon ? ImageConstants.soundIcon : ImageConstants.soundInactiveIcon,
+        isActiveSoundIcon
+            ? ImageConstants.soundIcon
+            : ImageConstants.soundInactiveIcon,
         height: 20,
       ),
     );
@@ -85,7 +92,9 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
     return IconButton(
       onPressed: onTapBookmark,
       icon: SvgPicture.asset(
-        isBookmarked ? ImageConstants.bookmarkActiveIcon : ImageConstants.bookmarkIcon,
+        isBookmarked
+            ? ImageConstants.bookmarkActiveIcon
+            : ImageConstants.bookmarkIcon,
         height: 20,
       ),
     );
@@ -96,28 +105,34 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
     return GestureDetector(
         onTap: onTapTitle,
         child: Container(
-          padding: const EdgeInsets.symmetric(vertical: kSizeS + 3, horizontal: kSizeL + 10),
+          padding: const EdgeInsets.symmetric(
+              vertical: kSizeS + 3, horizontal: kSizeL),
           decoration: BoxDecoration(
               color: isDrawerOpen ? AppColors.black2 : AppColors.black,
               borderRadius: BorderRadius.circular(10)),
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
             children: [
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
                 mainAxisSize: MainAxisSize.min,
                 children: [
                   Text(
                     title,
                     style: context.theme.textTheme.headlineLarge,
                   ),
-                  Icon(isDrawerOpen ? Icons.arrow_drop_up_rounded : Icons.arrow_drop_down_rounded)
+                  Icon(isDrawerOpen
+                      ? Icons.arrow_drop_up_rounded
+                      : Icons.arrow_drop_down_rounded)
                 ],
               ),
+              const Gap(5),
               Text(
                 subTitle,
-                style: context.theme.textTheme.bodySmall!
-                    .copyWith(color: AppColors.grey.withOpacity(0.58), letterSpacing: 0),
+                style: context.theme.textTheme.bodyLarge!.copyWith(
+                    color: AppColors.grey.withOpacity(0.80), letterSpacing: 0),
               ),
             ],
           ),

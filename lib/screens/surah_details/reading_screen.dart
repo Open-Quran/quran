@@ -1,8 +1,6 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
-import 'package:fabrikod_quran/widgets/buttons/verse_detail_settings_button.dart';
-import 'package:fabrikod_quran/widgets/cards/mushaf_settings_card.dart';
 import 'package:fabrikod_quran/widgets/quran/quran_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -46,17 +44,6 @@ class _ReadingScreenState extends State<ReadingScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.transparent,
-      floatingActionButton: Visibility(
-        visible:
-            context.watch<SurahDetailsProvider>().readingSettings.isReadingMode,
-        child: VerseDetailSettingsButton(
-          onPressed: () {
-            showDialog(
-                context: context,
-                builder: (BuildContext context) => const MushafSettingsCard());
-          },
-        ),
-      ),
       body: ScrollablePositionedList.separated(
         itemCount: context.watch<SurahDetailsProvider>().mushafPageList.length,
         itemScrollController: itemScrollController,

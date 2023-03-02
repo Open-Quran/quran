@@ -18,14 +18,8 @@ class TranslationReadingSegmentedButton extends StatelessWidget {
     return SizedBox(
       width: double.infinity,
       child: CupertinoSlidingSegmentedControl<int>(
-        backgroundColor: context
-            .watch<QuranProvider>()
-            .surahDetailsPageThemeColor
-            .switchBackgroundColor,
-        thumbColor: context
-            .watch<QuranProvider>()
-            .surahDetailsPageThemeColor
-            .switchSelectColor,
+        backgroundColor: AppColors.black,
+        thumbColor: AppColors.black3,
         padding: const EdgeInsets.all(3),
         groupValue: initialIndex,
         children: {
@@ -34,16 +28,8 @@ class TranslationReadingSegmentedButton extends StatelessWidget {
             child: Center(
               child: Text(
                 context.translate.translation,
-                style: context.theme.textTheme.headlineSmall?.copyWith(
-                    color: initialIndex == 0
-                        ? context
-                            .watch<QuranProvider>()
-                            .surahDetailsPageThemeColor
-                            .textColor
-                        : context
-                            .watch<QuranProvider>()
-                            .surahDetailsPageThemeColor
-                            .switchUnselectTextColor),
+                style: context.theme.textTheme.headlineSmall
+                    ?.copyWith(color: initialIndex == 0 ? AppColors.grey : AppColors.grey3),
               ),
             ),
           ),
@@ -52,16 +38,8 @@ class TranslationReadingSegmentedButton extends StatelessWidget {
             child: Center(
               child: Text(
                 context.translate.reading,
-                style: context.theme.textTheme.headlineSmall?.copyWith(
-                    color: initialIndex == 1
-                        ? context
-                            .watch<QuranProvider>()
-                            .surahDetailsPageThemeColor
-                            .textColor
-                        : context
-                            .watch<QuranProvider>()
-                            .surahDetailsPageThemeColor
-                            .switchUnselectTextColor),
+                style: context.theme.textTheme.headlineSmall
+                    ?.copyWith(color: initialIndex == 1 ? AppColors.grey : AppColors.grey3),
               ),
             ),
           ),
