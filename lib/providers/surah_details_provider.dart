@@ -249,7 +249,9 @@ class SurahDetailsProvider extends ChangeNotifier {
   void changeReadingMode() {
     readingSettings.isReadingMode = !readingSettings.isReadingMode;
     if(readingSettings.isReadingMode == true){
-      SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersive);
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: []);
+    }else{
+      SystemChrome.setEnabledSystemUIMode(SystemUiMode.manual, overlays: SystemUiOverlay.values);
     }
     notifyListeners();
   }

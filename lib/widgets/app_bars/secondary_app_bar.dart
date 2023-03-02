@@ -63,7 +63,6 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
 
   /// Settings button
   IconButton buildSettingsButton() {
-    print(isSettingsOpen);
     return IconButton(
         onPressed: onTapSettings,
         icon: SvgPicture.asset(
@@ -71,7 +70,8 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
               ? ImageConstants.settingsIconOpen
               : ImageConstants.settingsIcon,
           height: 20,
-        ));
+        ),
+    );
   }
 
   /// Sound button
