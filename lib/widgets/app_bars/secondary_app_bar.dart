@@ -1,7 +1,6 @@
 import 'dart:io';
 
 import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/main.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
@@ -48,7 +47,7 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
       titleSpacing: 5,
       title: buildAppBarTitle(context),
       leading: Row(
-        children: [buildMenuButton(), buildBookmarkButton()],
+        children: [buildBackIconButton(context), buildBookmarkButton()],
       ),
       leadingWidth: 100,
       actions: [
