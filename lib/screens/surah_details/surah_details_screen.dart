@@ -28,15 +28,12 @@ class SurahDetailsScreen extends StatefulWidget {
 class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
   @override
   Widget build(BuildContext context) {
-    return SafeArea(
-      bottom: false,
-      child: Scaffold(
-        appBar: context.watch<SurahDetailsProvider>().readingSettings.isReadingMode
-            ? const PreferredSize(preferredSize: Size.zero, child: SizedBox())
-            : buildAppBar(),
-        body: buildBody,
-        backgroundColor: context.watch<QuranProvider>().surahDetailsPageThemeColor.backgroundColor,
-      ),
+    return Scaffold(
+      appBar: context.watch<SurahDetailsProvider>().readingSettings.isReadingMode
+          ? const PreferredSize(preferredSize: Size.zero, child: SizedBox())
+          : buildAppBar(),
+      body: buildBody,
+      backgroundColor: context.watch<QuranProvider>().surahDetailsPageThemeColor.backgroundColor,
     );
   }
 
@@ -45,6 +42,7 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
         subTitle: context.watch<SurahDetailsProvider>().appBarDescription,
         onTapSettings: context.read<SurahDetailsProvider>().changeOpenSetting,
         isDrawerOpen: context.watch<SurahDetailsProvider>().isTitleMenu,
+        isSettingsOpen: context.watch<SurahDetailsProvider>().isSettingsOpen,
         onTapTitle: context.watch<SurahDetailsProvider>().changeTitleMenuState,
         isActiveSoundIcon: context.watch<PlayerProvider>().player.playing,
         onTapSound: context.read<SurahDetailsProvider>().onTapSoundIcon,
@@ -55,7 +53,7 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
       index: context.watch<SurahDetailsProvider>().isTitleMenu.getNumber,
       children: [
         FadeIndexedStack(
-          index: context.watch<SurahDetailsProvider>().isOpenSetting.getNumber,
+          index: context.watch<SurahDetailsProvider>().isSettingsOpen.getNumber,
           children: [
             Column(
               children: [

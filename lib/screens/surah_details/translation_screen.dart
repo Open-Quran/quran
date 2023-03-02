@@ -7,8 +7,6 @@ import 'package:fabrikod_quran/providers/player_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:fabrikod_quran/widgets/basmala_title.dart';
-import 'package:fabrikod_quran/widgets/buttons/verse_detail_settings_button.dart';
-import 'package:fabrikod_quran/widgets/cards/mushaf_settings_card.dart';
 import 'package:fabrikod_quran/widgets/cards/new_verse_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
@@ -64,17 +62,6 @@ class _TranslationScreenState extends State<TranslationScreen> {
     var verses = context.watch<SurahDetailsProvider>().displayedVerses;
     return Scaffold(
       backgroundColor: Colors.transparent,
-      floatingActionButton: Visibility(
-        visible:
-            context.watch<SurahDetailsProvider>().readingSettings.isReadingMode,
-        child: VerseDetailSettingsButton(
-          onPressed: () {
-            showDialog(
-                context: context,
-                builder: (BuildContext context) => MushafSettingsCard());
-          },
-        ),
-      ),
       body: InkWell(
         onTap: context.read<SurahDetailsProvider>().changeReadingMode,
         child: ScrollablePositionedList.separated(
