@@ -11,7 +11,8 @@ class QuranTranslationsScreen extends StatefulWidget {
   const QuranTranslationsScreen({super.key});
 
   @override
-  State<QuranTranslationsScreen> createState() => _QuranTranslationsScreenState();
+  State<QuranTranslationsScreen> createState() =>
+      _QuranTranslationsScreenState();
 }
 
 class _QuranTranslationsScreenState extends State<QuranTranslationsScreen> {
@@ -93,7 +94,8 @@ class _QuranTranslationsScreenState extends State<QuranTranslationsScreen> {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           Padding(
-            padding: const EdgeInsets.symmetric(horizontal: kSizeS, vertical: kSizeL),
+            padding: const EdgeInsets.symmetric(
+                horizontal: kSizeS, vertical: kSizeL),
             child: Text(
               translationCountry.name ?? "",
               style: context.theme.textTheme.headlineSmall!
@@ -105,31 +107,40 @@ class _QuranTranslationsScreenState extends State<QuranTranslationsScreen> {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              var value = translationCountry.translationsAuthor.elementAt(index);
+              var value =
+                  translationCountry.translationsAuthor.elementAt(index);
               bool control = false;
               if (isDownload) {
-                control = value.verseTranslationState != EVerseTranslationState.downloaded;
+                control = value.verseTranslationState !=
+                    EVerseTranslationState.downloaded;
               } else {
-                control = value.verseTranslationState == EVerseTranslationState.downloaded;
+                control = value.verseTranslationState ==
+                    EVerseTranslationState.downloaded;
               }
               if (control) {
                 return TranslationsSettingCard(
                   translationAuthor: value,
-                  onTap: context.read<QuranProvider>().onTapTranslationAuthorCard,
+                  onTap:
+                      context.read<QuranProvider>().onTapTranslationAuthorCard,
                 );
               } else {
                 return const SizedBox();
               }
             },
             separatorBuilder: (context, index) {
-              var value = translationCountry.translationsAuthor.elementAt(index);
+              var value =
+                  translationCountry.translationsAuthor.elementAt(index);
               bool control = false;
               if (isDownload) {
-                control = value.verseTranslationState != EVerseTranslationState.downloaded;
+                control = value.verseTranslationState !=
+                    EVerseTranslationState.downloaded;
               } else {
-                control = value.verseTranslationState == EVerseTranslationState.downloaded;
+                control = value.verseTranslationState ==
+                    EVerseTranslationState.downloaded;
               }
-              return control ? const SizedBox(height: kSizeM) : const SizedBox();
+              return control
+                  ? const SizedBox(height: kSizeM)
+                  : const SizedBox();
             },
           ),
         ],
