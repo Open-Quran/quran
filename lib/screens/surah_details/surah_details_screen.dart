@@ -1,4 +1,5 @@
 import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:fabrikod_quran/providers/player_provider.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/providers/search_provider.dart';
 import 'package:fabrikod_quran/providers/surah_details_provider.dart';
@@ -30,16 +31,11 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
     return SafeArea(
       bottom: false,
       child: Scaffold(
-        appBar:
-            context.watch<SurahDetailsProvider>().readingSettings.isReadingMode
-                ? const PreferredSize(
-                    child: const SizedBox(), preferredSize: Size.zero)
-                : buildAppBar(),
+        appBar: context.watch<SurahDetailsProvider>().readingSettings.isReadingMode
+            ? const PreferredSize(preferredSize: Size.zero, child: SizedBox())
+            : buildAppBar(),
         body: buildBody,
-        backgroundColor: context
-            .watch<QuranProvider>()
-            .surahDetailsPageThemeColor
-            .backgroundColor,
+        backgroundColor: context.watch<QuranProvider>().surahDetailsPageThemeColor.backgroundColor,
       ),
     );
   }
@@ -50,7 +46,8 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
         onTapSettings: context.read<SurahDetailsProvider>().changeOpenSetting,
         isDrawerOpen: context.watch<SurahDetailsProvider>().isTitleMenu,
         onTapTitle: context.watch<SurahDetailsProvider>().changeTitleMenuState,
-        onTapMenu: context.watch<SurahDetailsProvider>().changeTitleMenuState,
+        isActiveSoundIcon: context.watch<PlayerProvider>().player.playing,
+        onTapSound: context.read<SurahDetailsProvider>().onTapSoundIcon,
       );
 
   Widget get buildBody {
@@ -75,21 +72,13 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
             child: Column(
               children: [
                 JuzSurahSearchToggleButton(
-                  toggleSearchButtonIndex:
-                      context.read<SearchProvider>().toggleSearchOptions.index,
-                  onChanged: context
-                      .watch<SurahDetailsProvider>()
-                      .changeJuzOrSurahToggleOptionType,
-                  onTapSearchButton: context
-                      .read<SurahDetailsProvider>()
-                      .changeToggleSearchOptions,
-                  toggleListType: context
-                      .watch<SurahDetailsProvider>()
-                      .juzSurahToggleOptionType,
+                  toggleSearchButtonIndex: context.read<SearchProvider>().toggleSearchOptions.index,
+                  onChanged: context.watch<SurahDetailsProvider>().changeJuzOrSurahToggleOptionType,
+                  onTapSearchButton: context.read<SurahDetailsProvider>().changeToggleSearchOptions,
+                  toggleListType: context.watch<SurahDetailsProvider>().juzSurahToggleOptionType,
                 ),
                 FadeIndexedStack(
-                  index:
-                      context.watch<SearchProvider>().toggleSearchOptions.index,
+                  index: context.watch<SearchProvider>().toggleSearchOptions.index,
                   children: [
                     buildToggleSearchPages(context),
                     const SearchResultScreen(isHome: false),
@@ -106,14 +95,11 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
   /// Switch [translation] or [reading]
   Widget get buildTranslationOrReadingSwitch {
     return Visibility(
-      visible:
-          !context.watch<SurahDetailsProvider>().readingSettings.isReadingMode,
+      visible: !context.watch<SurahDetailsProvider>().readingSettings.isReadingMode,
       child: Padding(
-        padding:
-            const EdgeInsets.symmetric(vertical: kSizeXXL, horizontal: kSizeXL),
+        padding: const EdgeInsets.symmetric(vertical: kSizeXXL, horizontal: kSizeXL),
         child: TranslationReadingSegmentedButton(
-          initialIndex:
-              context.watch<QuranProvider>().localSetting.quranType.index,
+          initialIndex: context.watch<QuranProvider>().localSetting.quranType.index,
           onValueChanged: context.read<SurahDetailsProvider>().changeQuranType,
         ),
       ),
@@ -135,12 +121,10 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
   /// Juz/Translation and Search pages
   FadeIndexedStack buildToggleSearchPages(BuildContext context) {
     return FadeIndexedStack(
-      index:
-          context.watch<SurahDetailsProvider>().juzSurahToggleOptionType.index,
+      index: context.watch<SurahDetailsProvider>().juzSurahToggleOptionType.index,
       children: [
         JuzList(
-            changeListType:
-                context.read<SurahDetailsProvider>().changeJuzListType,
+            changeListType: context.read<SurahDetailsProvider>().changeJuzListType,
             juzListType: context.watch<SurahDetailsProvider>().juzListType,
             onTapJuzCard: (juzId) {
               context.read<SearchProvider>().goToJuz(context, juzId, false);

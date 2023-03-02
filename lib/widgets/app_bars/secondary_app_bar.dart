@@ -13,10 +13,10 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
   final Widget? leading;
   final bool isDrawerOpen;
   final bool isBookmarked;
-  final Function()? onTapMenu;
+  final bool isActiveSoundIcon;
   final Function()? onTapTitle;
   final Function()? onTapBookmark;
-  final Function()? onTapSound;
+  final Function(bool isPlaying) onTapSound;
   final Function()? onTapSettings;
   final double? bottomHeight;
   final double? elevation;
@@ -29,12 +29,12 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
     this.leading,
     this.isDrawerOpen = false,
     this.isBookmarked = false,
+    this.isActiveSoundIcon = false,
     this.bottomHeight,
     this.elevation,
-    this.onTapMenu,
     this.onTapTitle,
     this.onTapBookmark,
-    this.onTapSound,
+    required this.onTapSound,
     this.onTapSettings,
   })  : preferredSize = const Size.fromHeight(75.0),
         super(key: key);
@@ -72,9 +72,9 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
   /// Sound button
   IconButton buildSoundButton() {
     return IconButton(
-      onPressed: onTapSound,
+      onPressed: () => onTapSound(isActiveSoundIcon),
       icon: SvgPicture.asset(
-        ImageConstants.soundIcon,
+        isActiveSoundIcon ? ImageConstants.soundIcon : ImageConstants.soundInactiveIcon,
         height: 20,
       ),
     );
@@ -85,20 +85,7 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
     return IconButton(
       onPressed: onTapBookmark,
       icon: SvgPicture.asset(
-        isBookmarked
-            ? ImageConstants.bookmarkActiveIcon
-            : ImageConstants.bookmarkIcon,
-        height: 20,
-      ),
-    );
-  }
-
-  /// Menu button
-  IconButton buildMenuButton() {
-    return IconButton(
-      onPressed: onTapMenu,
-      icon: SvgPicture.asset(
-        ImageConstants.menuIcon,
+        isBookmarked ? ImageConstants.bookmarkActiveIcon : ImageConstants.bookmarkIcon,
         height: 20,
       ),
     );
@@ -109,8 +96,7 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
     return GestureDetector(
         onTap: onTapTitle,
         child: Container(
-          padding: const EdgeInsets.symmetric(
-              vertical: kSizeS + 3, horizontal: kSizeL + 10),
+          padding: const EdgeInsets.symmetric(vertical: kSizeS + 3, horizontal: kSizeL + 10),
           decoration: BoxDecoration(
               color: isDrawerOpen ? AppColors.black2 : AppColors.black,
               borderRadius: BorderRadius.circular(10)),
@@ -125,15 +111,13 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
                     title,
                     style: context.theme.textTheme.headlineLarge,
                   ),
-                  Icon(isDrawerOpen
-                      ? Icons.arrow_drop_up_rounded
-                      : Icons.arrow_drop_down_rounded)
+                  Icon(isDrawerOpen ? Icons.arrow_drop_up_rounded : Icons.arrow_drop_down_rounded)
                 ],
               ),
               Text(
                 subTitle,
-                style: context.theme.textTheme.bodySmall!.copyWith(
-                    color: AppColors.grey.withOpacity(0.58), letterSpacing: 0),
+                style: context.theme.textTheme.bodySmall!
+                    .copyWith(color: AppColors.grey.withOpacity(0.58), letterSpacing: 0),
               ),
             ],
           ),

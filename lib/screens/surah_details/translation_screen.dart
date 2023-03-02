@@ -119,10 +119,9 @@ class _TranslationScreenState extends State<TranslationScreen> {
           context.watch<PlayerProvider>().isPlayingVerse(verse.verseKey ?? ""),
       playFunction: (verse, isPlaying) {
         context.read<SurahDetailsProvider>().onTapVerseCardPlayOrPause(
-              index,
-              isPlaying,
-              verse.verseKey ?? "",
-            );
+          index,
+          isPlaying,
+        );
       },
       isFavorite: context.watch<FavoritesProvider>().isFavoriteVerse(verse),
       favoriteFunction: context.read<FavoritesProvider>().onTapFavoriteButton,
