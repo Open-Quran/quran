@@ -28,6 +28,7 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
+      bottom: false,
       child: Scaffold(
         appBar:
             context.watch<SurahDetailsProvider>().readingSettings.isReadingMode
@@ -69,31 +70,33 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
             const VerseDetailsSettings(),
           ],
         ),
-        SingleChildScrollView(
-          child: Column(
-            children: [
-              JuzSurahSearchToggleButton(
-                toggleSearchButtonIndex:
-                    context.read<SearchProvider>().toggleSearchOptions.index,
-                onChanged: context
-                    .watch<SurahDetailsProvider>()
-                    .changeJuzOrSurahToggleOptionType,
-                onTapSearchButton: context
-                    .read<SurahDetailsProvider>()
-                    .changeToggleSearchOptions,
-                toggleListType: context
-                    .watch<SurahDetailsProvider>()
-                    .juzSurahToggleOptionType,
-              ),
-              FadeIndexedStack(
-                index:
-                    context.watch<SearchProvider>().toggleSearchOptions.index,
-                children: [
-                  buildToggleSearchPages(context),
-                  const SearchResultScreen(isHome: false),
-                ],
-              ),
-            ],
+        Scaffold(
+          body: SingleChildScrollView(
+            child: Column(
+              children: [
+                JuzSurahSearchToggleButton(
+                  toggleSearchButtonIndex:
+                      context.read<SearchProvider>().toggleSearchOptions.index,
+                  onChanged: context
+                      .watch<SurahDetailsProvider>()
+                      .changeJuzOrSurahToggleOptionType,
+                  onTapSearchButton: context
+                      .read<SurahDetailsProvider>()
+                      .changeToggleSearchOptions,
+                  toggleListType: context
+                      .watch<SurahDetailsProvider>()
+                      .juzSurahToggleOptionType,
+                ),
+                FadeIndexedStack(
+                  index:
+                      context.watch<SearchProvider>().toggleSearchOptions.index,
+                  children: [
+                    buildToggleSearchPages(context),
+                    const SearchResultScreen(isHome: false),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ],

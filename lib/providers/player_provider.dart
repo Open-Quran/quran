@@ -104,7 +104,7 @@ class PlayerProvider extends ChangeNotifier {
 
   /// Is selected verse playing?
   bool isPlayingVerse(String verseKey) {
-    if (!player.playing || verseListToPlay.isEmpty) return false;
+    if (playerState == EPlayerState.stop || verseListToPlay.isEmpty) return false;
     return verseKey == verseListToPlay[playerIndex].verseKey;
   }
 
