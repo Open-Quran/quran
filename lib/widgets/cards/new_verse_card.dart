@@ -78,7 +78,8 @@ class VerseCard extends StatelessWidget {
                     color: context
                         .watch<QuranProvider>()
                         .surahDetailsPageThemeColor
-                        .titleVectorColor,
+                        .titleVectorColor
+                        .withOpacity(0.5),
                     width: 1,
                   ),
                 ),
@@ -116,7 +117,9 @@ class VerseCard extends StatelessWidget {
             textScaleFactor: textScaleFactor,
             isPlaying: isPlaying,
           ),
-          buildVerseCardDivider(context),
+          Visibility(
+              visible: readOptions == EReadOptions.surahAndTranslation,
+              child: buildVerseCardDivider(context)),
         ],
       ),
     );
@@ -125,10 +128,15 @@ class VerseCard extends StatelessWidget {
   Widget buildVerseCardTranslation(EReadOptions readOptions) {
     return Visibility(
       visible: readOptions != EReadOptions.surah,
-      child: VerseCardTranslation(
-        verseTranslations: verseTranslations,
-        textScaleFactor: textScaleFactor,
-        translationFontFamily: translationFontFamily,
+      child: Padding(
+        padding: readOptions == EReadOptions.translation
+            ? EdgeInsets.only(top: kSizeXL)
+            : EdgeInsets.zero,
+        child: VerseCardTranslation(
+          verseTranslations: verseTranslations,
+          textScaleFactor: textScaleFactor,
+          translationFontFamily: translationFontFamily,
+        ),
       ),
     );
   }
