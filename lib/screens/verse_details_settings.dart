@@ -46,11 +46,13 @@ class _VerseDetailsSettingsState extends State<VerseDetailsSettings> {
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
-              const QuranFontButton(),
+              QuranFontButton(
+                selectedFont: context.watch<QuranProvider>().localSetting.fontTypeArabic,
+                onChangeArabicFont: context.watch<QuranProvider>().changeFontTypeArabic,
+              ),
               LayoutOptionsToggleButton(
                 isPopUp: false,
-                layoutOptions:
-                    context.watch<QuranProvider>().localSetting.layoutOptions,
+                layoutOptions: context.watch<QuranProvider>().localSetting.layoutOptions,
                 onChanged: context.read<QuranProvider>().changeLayoutOptions,
               ),
             ],

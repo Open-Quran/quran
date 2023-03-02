@@ -67,7 +67,10 @@ class _MushafSettingsCardState extends State<MushafSettingsCard> {
             Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const QuranFontButton(),
+                QuranFontButton(
+                  selectedFont: context.watch<QuranProvider>().localSetting.fontTypeArabic,
+                  onChangeArabicFont: context.read<QuranProvider>().changeFontTypeArabic,
+                ),
                 LayoutOptionsToggleButton(
                   isPopUp: true,
                   layoutOptions:
