@@ -64,10 +64,14 @@ class ImageConstants {
   static const String meaningIcon = "${_iconsPath}ic_meaning.svg";
   static const String cancelIcon = "${_iconsPath}ic_cancel.svg";
   static const String ticIcon = "${_iconsPath}ic_tic.svg";
-  static const String icTranslationDownloading = "${_iconsPath}ic_translation_downloading.svg";
-  static const String icTranslationDownload = "${_iconsPath}ic_translation_download.svg";
+  static const String icTranslationDownloading =
+      "${_iconsPath}ic_translation_downloading.svg";
+  static const String icTranslationDownload =
+      "${_iconsPath}ic_translation_download.svg";
   static const String downloadIcon = "${_iconsPath}ic_download.svg";
   static const String okayBorderIcon = "${_iconsPath}ic_okay_border.svg";
   static const String launchIcon = "${_iconsPath}ic_launch.png";
   static const String appLogo = "${_basePath}img_app_logo.png";
+  static const String versNumberFrame =
+      "${_iconsPath}ic_verse_number_frame.svg";
 }

@@ -2,7 +2,9 @@ import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/translation.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/providers/quran_provider.dart';
+import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 
 import '../pop_up/verse_pop_up_menu.dart';
@@ -162,17 +164,60 @@ class VerseNumberArabicWithSymbol extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      Utils.getArabicVerseNo(verseNumber),
-      textAlign: TextAlign.start,
-      textScaleFactor: textScaleFactor,
-      style: context.theme.textTheme.displayLarge?.copyWith(
-        color:
-            context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor,
-        fontSize: 27,
-        fontFamily: arabicFontFamily,
-      ),
+    return GestureDetector(
+      onTap: () {
+        context.read<SurahDetailsProvider>().changeAyahNumberStyle();
+      },
+      child: verseNumberText(context),
     );
+  }
+
+  verseNumberText(BuildContext context) {
+    if (context.read<SurahDetailsProvider>().isLatinNumber) {
+      return Text(
+        Utils.getArabicVerseNo(verseNumber),
+        textAlign: TextAlign.start,
+        textScaleFactor: textScaleFactor,
+        style: context.theme.textTheme.displayLarge?.copyWith(
+          color: context
+              .watch<QuranProvider>()
+              .surahDetailsPageThemeColor
+              .textColor,
+          fontSize: 27,
+          fontFamily: arabicFontFamily,
+        ),
+      );
+    } else {
+      return Container(
+        margin: const EdgeInsets.only(top: kSizeL, left: kSizeS),
+        child: Stack(
+          alignment: Alignment.center,
+          children: [
+            Text(
+              verseNumber,
+              textAlign: TextAlign.start,
+              textScaleFactor: textScaleFactor,
+              style: context.theme.textTheme.displayLarge?.copyWith(
+                color: context
+                    .watch<QuranProvider>()
+                    .surahDetailsPageThemeColor
+                    .textColor,
+                fontSize: 15,
+                fontFamily: arabicFontFamily,
+              ),
+            ),
+            SvgPicture.asset(
+              ImageConstants.versNumberFrame,
+              height: 32,
+              color: context
+                  .watch<QuranProvider>()
+                  .surahDetailsPageThemeColor
+                  .textColor,
+            ),
+          ],
+        ),
+      );
+    }
   }
 }
 

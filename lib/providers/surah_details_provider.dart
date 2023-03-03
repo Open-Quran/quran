@@ -37,6 +37,9 @@ class SurahDetailsProvider extends ChangeNotifier {
   /// [bool] checking if title page is opened in [SurahDetailsScreen]
   bool isTitleMenu = false;
 
+  /// [bool] checking if latin numbers are displayed in ayah
+  bool isLatinNumber = false;
+
   /// Surah Details page - juz and surah toggle buttons
   EJuzSurahToggleOptions juzSurahToggleOptionType = EJuzSurahToggleOptions.juz;
 
@@ -71,6 +74,12 @@ class SurahDetailsProvider extends ChangeNotifier {
   /// Change Quran Screen Setting Mode
   void changeOpenSetting() {
     isSettingsOpen = !isSettingsOpen;
+    notifyListeners();
+  }
+
+  /// Change Quran Screen Setting Mode
+  void changeAyahNumberStyle() {
+    isLatinNumber = !isLatinNumber;
     notifyListeners();
   }
 
