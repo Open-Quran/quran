@@ -23,6 +23,8 @@ class VerseCard extends StatelessWidget {
     this.isFavorite = false,
     this.isBookmark = false,
     required this.readOptions,
+    required this.selectedVerseKey,
+    required this.changeSelectedVerseKey,
   }) : super(key: key);
 
   final VerseModel verseModel;
@@ -40,6 +42,8 @@ class VerseCard extends StatelessWidget {
           EBookMarkType bookMarkType, VerseModel verseModel, bool isBookmark)
       bookmarkFunction;
   final Function(VerseModel) shareFunction;
+  final String? selectedVerseKey;
+  final Function(String? selectedVerseKey) changeSelectedVerseKey;
 
   @override
   Widget build(BuildContext context) {
@@ -54,9 +58,10 @@ class VerseCard extends StatelessWidget {
       isBookmark: isBookmark,
       bookmarkFunction: bookmarkFunction,
       shareFunction: shareFunction,
+      changeSelectedVerseKey: changeSelectedVerseKey,
       child: Container(
         key: globalKey,
-        decoration: isPlaying
+        decoration: selectedVerseKey == verseModel.verseKey || isPlaying
             ? BoxDecoration(
                 color: AppColors.black9.withOpacity(0.26),
                 borderRadius: BorderRadius.circular(kSizeM),

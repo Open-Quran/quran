@@ -119,6 +119,9 @@ class _TranslationScreenState extends State<TranslationScreen> {
       shareFunction: (verseModel) {
         context.read<SurahDetailsProvider>().shareVerse(verseModel, index);
       },
+      selectedVerseKey: context.watch<SurahDetailsProvider>().selectedVerseKey,
+      changeSelectedVerseKey:
+          context.read<SurahDetailsProvider>().changeSelectedVerseKey,
     );
   }
 }
