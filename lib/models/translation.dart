@@ -45,6 +45,21 @@ class TranslationAuthor {
     translationName = json['translation_name'];
     authorName = json['author_name'];
     resourceId = json['resource_id'];
+    isTranslationSelected = json['isTranslationSelected'] ?? false;
+    verseTranslationState = json['verseTranslationState'] == null
+        ? EVerseTranslationState.download
+        : EVerseTranslationState.values[json['verseTranslationState']];
+    verseTranslations = json['verseTranslations'] == null
+        ? []
+        : (json['verseTranslations'] as List)
+            .map((e) => VerseTranslation.fromJson(e))
+            .toList()
+            .cast<VerseTranslation>();
+  }
+
+  @override
+  String toString() {
+    return 'TranslationAuthor{translationName: $translationName, authorName: $authorName, resourceId: $resourceId, isTranslationSelected: $isTranslationSelected, verseTranslationState: $verseTranslationState, verseTranslations: $verseTranslations}';
   }
 
   Map<String, dynamic> toJson() {
@@ -52,6 +67,9 @@ class TranslationAuthor {
     data['translation_name'] = translationName;
     data['author_name'] = authorName;
     data['resource_id'] = resourceId;
+    data['isTranslationSelected'] = isTranslationSelected;
+    data['verseTranslationState'] = verseTranslationState.index;
+    data['verseTranslations'] = verseTranslations.map((e) => e.toJson()).toList();
     return data;
   }
 }
@@ -68,12 +86,14 @@ class VerseTranslation {
   VerseTranslation.fromJson(Map<String, dynamic> json) {
     resourceId = json['resource_id'];
     text = Utils.parseHtmlQuranTranslation(json['text']);
+    translationName = json['translationName'];
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = <String, dynamic>{};
     data['resource_id'] = resourceId;
     data['text'] = text;
+    data['translationName'] = translationName;
     return data;
   }
 }

@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/database/local_db.dart';
+import 'package:fabrikod_quran/managers/translation_download_manager.dart';
 import 'package:fabrikod_quran/models/translation.dart';
 import 'package:fabrikod_quran/services/asset_quran_service.dart';
 import 'package:fabrikod_quran/services/network_service.dart';
@@ -30,6 +31,15 @@ class TranslationService {
     } else {
       var author = _getTranslationAuthor(131);
       if (author != null) author.isTranslationSelected = true;
+    }
+    var authors = await TranslationDownloadManager.getTranslationAuthors();
+    for (var element in authors) {
+      TranslationAuthor? author = _getTranslationAuthor(element.resourceId);
+      if(author != null){
+        author.isTranslationSelected = element.isTranslationSelected;
+        author.verseTranslations = element.verseTranslations;
+        author.verseTranslationState = EVerseTranslationState.downloaded;
+      }
     }
   }
 
@@ -111,7 +121,9 @@ class TranslationService {
         element.translationName = translationAuthor.translationName;
       }
 
-      return translationAuthor.verseTranslations.isEmpty ? false : true;
+      if (translationAuthor.verseTranslations.isEmpty) return false;
+      await TranslationDownloadManager.setTranslationAuthor(translationAuthor);
+      return true;
     } catch (e) {
       return false;
     }
