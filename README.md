@@ -114,6 +114,14 @@ May Allah reward all the awesome [Contributors and Translators](https://github.c
 * [Material Design Components](https://github.com/material-components/material-components-android)
 * [Quran.com](https://quran.api-docs.io/v4)
 
+### TODO Tasks
+- [ ] #1
+- [ ] #2
+- [ ] #3
+- [ ] #4
+- [ ] #5
+- [ ] #6
+
 
 ### License
 
