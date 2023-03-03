@@ -95,16 +95,17 @@ class VerseCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            VerseNumberArabicWithSymbol(
-              verseNumber: verseModel.verseNumber.toString(),
-              textScaleFactor: textScaleFactor,
-              arabicFontFamily: arabicFontFamily,
+            GestureDetector(
+              onTap: () {
+                context.read<SurahDetailsProvider>().changeAyahNumberStyle();
+              },
+              child: _verseNumberText(context),
             ),
             Expanded(
               child: Column(
                 children: [
-                  buildVerseCardArabic(readOptions, context),
-                  buildVerseCardTranslation(readOptions),
+                  _buildVerseCardArabic(readOptions, context),
+                  _buildVerseCardTranslation(readOptions),
                 ],
               ),
             ),
@@ -114,68 +115,11 @@ class VerseCard extends StatelessWidget {
     );
   }
 
-  Widget buildVerseCardArabic(EReadOptions readOptions, BuildContext context) {
-    return Visibility(
-      visible: readOptions != EReadOptions.translation,
-      child: Column(
-        children: [
-          VerseCardArabic(
-            verse: verseModel.text ?? "",
-            textScaleFactor: textScaleFactor,
-            isPlaying: isPlaying,
-          ),
-          Visibility(
-              visible: readOptions == EReadOptions.surahAndTranslation,
-              child: buildVerseCardDivider(context)),
-        ],
-      ),
-    );
-  }
-
-  Widget buildVerseCardTranslation(EReadOptions readOptions) {
-    return Visibility(
-      visible: readOptions != EReadOptions.surah,
-      child: Padding(
-        padding: readOptions == EReadOptions.translation
-            ? EdgeInsets.only(top: kSizeXL)
-            : EdgeInsets.zero,
-        child: VerseCardTranslation(
-          verseTranslations: verseTranslations,
-          textScaleFactor: textScaleFactor,
-          translationFontFamily: translationFontFamily,
-        ),
-      ),
-    );
-  }
-}
-
-//Arabic Verse number with symbol
-class VerseNumberArabicWithSymbol extends StatelessWidget {
-  const VerseNumberArabicWithSymbol({
-    Key? key,
-    required this.verseNumber,
-    required this.arabicFontFamily,
-    required this.textScaleFactor,
-  }) : super(key: key);
-
-  final String verseNumber;
-  final String? arabicFontFamily;
-  final double textScaleFactor;
-
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onTap: () {
-        context.read<SurahDetailsProvider>().changeAyahNumberStyle();
-      },
-      child: verseNumberText(context),
-    );
-  }
-
-  verseNumberText(BuildContext context) {
+  /// The number of ayat if arabic and latin format
+  _verseNumberText(BuildContext context) {
     if (context.read<SurahDetailsProvider>().isLatinNumber) {
       return Text(
-        Utils.getArabicVerseNo(verseNumber),
+        Utils.getArabicVerseNo(verseModel.verseNumber.toString()),
         textAlign: TextAlign.start,
         textScaleFactor: textScaleFactor,
         style: context.theme.textTheme.displayLarge?.copyWith(
@@ -183,18 +127,18 @@ class VerseNumberArabicWithSymbol extends StatelessWidget {
               .watch<QuranProvider>()
               .surahDetailsPageThemeColor
               .textColor,
-          fontSize: 27,
+          fontSize: 30,
           fontFamily: arabicFontFamily,
         ),
       );
     } else {
-      return Container(
-        margin: const EdgeInsets.only(top: kSizeL, left: kSizeS),
+      return Padding(
+        padding: const EdgeInsets.only(top: 18, left: 8),
         child: Stack(
           alignment: Alignment.center,
           children: [
             Text(
-              verseNumber,
+              verseModel.verseNumber.toString(),
               textAlign: TextAlign.start,
               textScaleFactor: textScaleFactor,
               style: context.theme.textTheme.displayLarge?.copyWith(
@@ -212,140 +156,130 @@ class VerseNumberArabicWithSymbol extends StatelessWidget {
               color: context
                   .watch<QuranProvider>()
                   .surahDetailsPageThemeColor
-                  .textColor,
+                  .textColor.withOpacity(0.6),
             ),
           ],
         ),
       );
     }
   }
-}
 
-//Arabic Verse and its number
-class VerseCardArabic extends StatelessWidget {
-  const VerseCardArabic({
-    Key? key,
-    required this.verse,
-    this.isPlaying = false,
-    required this.textScaleFactor,
-  }) : super(key: key);
-
-  final String verse;
-  final bool isPlaying;
-  final double textScaleFactor;
-
-  @override
-  Widget build(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      decoration: isPlaying
-          ? BoxDecoration(
-              gradient: LinearGradient(
-                colors: [
-                  AppColors.black10.withOpacity(0),
-                  AppColors.brandy.withOpacity(0.24),
-                ],
-              ),
-              borderRadius: BorderRadius.circular(kSizeM),
-            )
-          : null,
-      padding: const EdgeInsets.all(kSizeM),
-      child: Text(
-        verse,
-        textDirection: TextDirection.rtl,
-        textAlign: TextAlign.start,
-        textScaleFactor: textScaleFactor,
-        style: context.theme.textTheme.displayLarge?.copyWith(
-          color: context
-              .watch<QuranProvider>()
-              .surahDetailsPageThemeColor
-              .textColor,
-          fontSize: 27,
-        ),
-      ),
-    );
-  }
-}
-
-/// Divider Line between arabic verse and its translation
-Widget buildVerseCardDivider(BuildContext context) {
-  return Container(
-    width: double.infinity,
-    height: 1,
-    margin: const EdgeInsets.symmetric(vertical: kSizeM),
-    decoration: BoxDecoration(
-      gradient: LinearGradient(
-        colors: [
-          context
-              .watch<QuranProvider>()
-              .surahDetailsPageThemeColor
-              .transparentVectorColor
-              .withOpacity(0),
-          context
-              .watch<QuranProvider>()
-              .surahDetailsPageThemeColor
-              .textColor
-              .withOpacity(0.24),
-        ],
-      ),
-    ),
-  );
-}
-
-//Text of translation verse
-class VerseCardTranslation extends StatelessWidget {
-  const VerseCardTranslation({
-    Key? key,
-    required this.verseTranslations,
-    required this.textScaleFactor,
-    required this.translationFontFamily,
-  }) : super(key: key);
-
-  final List<VerseTranslation> verseTranslations;
-  final double textScaleFactor;
-  final String? translationFontFamily;
-
-  @override
-  Widget build(BuildContext context) {
-    return ListView.separated(
-      itemCount: verseTranslations.length,
-      shrinkWrap: true,
-      physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.only(bottom: kSizeM),
-      separatorBuilder: (context, index) => buildVerseCardDivider(context),
-      itemBuilder: (context, index) {
-        final verseTranslation = verseTranslations[index];
-        return Column(
-          crossAxisAlignment: CrossAxisAlignment.end,
-          children: [
-            Text(
-              verseTranslation.text ?? "",
-              textAlign: TextAlign.end,
+  /// Arabic Text
+  Widget _buildVerseCardArabic(EReadOptions readOptions, BuildContext context) {
+    return Visibility(
+      visible: readOptions != EReadOptions.translation,
+      child: Column(
+        children: [
+          Container(
+            width: double.infinity,
+            decoration: isPlaying
+                ? BoxDecoration(
+                    gradient: LinearGradient(
+                      colors: [
+                        AppColors.black10.withOpacity(0),
+                        AppColors.brandy.withOpacity(0.24),
+                      ],
+                    ),
+                    borderRadius: BorderRadius.circular(kSizeM),
+                  )
+                : null,
+            padding: const EdgeInsets.all(kSizeM),
+            child: Text(
+              verseModel.text!,
+              textDirection: TextDirection.rtl,
+              textAlign: TextAlign.start,
               textScaleFactor: textScaleFactor,
-              style: context.theme.textTheme.titleSmall?.copyWith(
-                fontFamily: translationFontFamily,
+              style: context.theme.textTheme.displayLarge?.copyWith(
                 color: context
                     .watch<QuranProvider>()
                     .surahDetailsPageThemeColor
                     .textColor,
+                fontSize: 27,
               ),
             ),
-            const SizedBox(height: kSizeM),
-            Text(
-              "- ${verseTranslation.translationName}",
-              textAlign: TextAlign.end,
-              textScaleFactor: textScaleFactor,
-              style: context.theme.textTheme.labelLarge?.copyWith(
-                fontFamily: translationFontFamily,
-                color: context
-                    .watch<QuranProvider>()
-                    .surahDetailsPageThemeColor
-                    .transparentTextColor,
-              ),
-            ),
+          ),
+          Visibility(
+              visible: readOptions == EReadOptions.surahAndTranslation,
+              child: buildVerseCardDivider(context)),
+        ],
+      ),
+    );
+  }
+
+  /// Translation Text
+  Widget _buildVerseCardTranslation(EReadOptions readOptions) {
+    return Visibility(
+      visible: readOptions != EReadOptions.surah,
+      child: Padding(
+        padding: readOptions == EReadOptions.translation
+            ? const EdgeInsets.only(top: kSizeXL)
+            : EdgeInsets.zero,
+        child: ListView.separated(
+          itemCount: verseTranslations.length,
+          shrinkWrap: true,
+          physics: const NeverScrollableScrollPhysics(),
+          padding: const EdgeInsets.only(bottom: kSizeM),
+          separatorBuilder: (context, index) => buildVerseCardDivider(context),
+          itemBuilder: (context, index) {
+            final verseTranslation = verseTranslations[index];
+            return Column(
+              crossAxisAlignment: CrossAxisAlignment.end,
+              children: [
+                Text(
+                  verseTranslation.text ?? "",
+                  textAlign: TextAlign.end,
+                  textScaleFactor: textScaleFactor,
+                  style: context.theme.textTheme.titleSmall?.copyWith(
+                    fontFamily: translationFontFamily,
+                    color: context
+                        .watch<QuranProvider>()
+                        .surahDetailsPageThemeColor
+                        .textColor,
+                  ),
+                ),
+                const SizedBox(height: kSizeM),
+                Text(
+                  "- ${verseTranslation.translationName}",
+                  textAlign: TextAlign.end,
+                  textScaleFactor: textScaleFactor,
+                  style: context.theme.textTheme.labelLarge?.copyWith(
+                    fontFamily: translationFontFamily,
+                    color: context
+                        .watch<QuranProvider>()
+                        .surahDetailsPageThemeColor
+                        .transparentTextColor,
+                  ),
+                ),
+              ],
+            );
+          },
+        ),
+      ),
+    );
+  }
+
+  /// Divider Line between arabic verse and its translation
+  Widget buildVerseCardDivider(BuildContext context) {
+    return Container(
+      width: double.infinity,
+      height: 1,
+      margin: const EdgeInsets.symmetric(vertical: kSizeM),
+      decoration: BoxDecoration(
+        gradient: LinearGradient(
+          colors: [
+            context
+                .watch<QuranProvider>()
+                .surahDetailsPageThemeColor
+                .transparentVectorColor
+                .withOpacity(0),
+            context
+                .watch<QuranProvider>()
+                .surahDetailsPageThemeColor
+                .textColor
+                .withOpacity(0.24),
           ],
-        );
-      },
+        ),
+      ),
     );
   }
 }
