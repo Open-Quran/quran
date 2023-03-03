@@ -101,7 +101,7 @@ lib/                     # Root Package
 ## Contributing
 
 If you'd like to contribute, please take a look at the [PRs Welcome](https://github.com/fabrikod/the-open-quran/issues?q=is%3Aopen+is%3Aissue+label%3A%22PRs+Welcome%22) label on the issue tracker. For new features, please open an issue to discuss it before beginning implementation.
-May Allah reward all the awesome [Contributors and Translators](https://github.com/quran/quran_android/blob/master/CONTRIBUTORS.md).
+May Allah reward all the awesome [Contributors and Translators](https://github.com/fabrikod/the-open-quran/blob/main/.CONTRIBUTORS.md).
 
 
 
