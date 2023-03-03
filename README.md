@@ -118,8 +118,7 @@ May Allah reward all the awesome [Contributors and Translators](https://github.c
 
 ## ToDo Tasks
 
-- [ ] https://github.com/fabrikod/the-open-quran/issues/87
-
+- [ ] #87
 
 
 
