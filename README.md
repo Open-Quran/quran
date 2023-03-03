@@ -1,7 +1,7 @@
 <br />
-<p align="center">
-# The Open Qur'an - Mobile App
-</p>
+<h1 align="center">
+The Open Qur'an - Mobile App
+</h1>
 <br />
 
 <br />
