@@ -1,5 +1,6 @@
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/database/local_db.dart';
+import 'package:fabrikod_quran/managers/translation_download_manager.dart';
 import 'package:fabrikod_quran/models/local_setting_model.dart';
 import 'package:fabrikod_quran/models/mushaf_backgrund_model.dart';
 import 'package:fabrikod_quran/models/surah_model.dart';
@@ -78,9 +79,13 @@ class QuranProvider extends ChangeNotifier {
         if (translationAuthor.isTranslationSelected) {
           if (translationService.selectedTranslationAuthors.length > 1) {
             translationAuthor.isTranslationSelected = false;
+            TranslationDownloadManager.changeSelectedStateOfAuthor(
+                translationAuthor.resourceId!, false);
           }
         } else {
           translationAuthor.isTranslationSelected = true;
+          TranslationDownloadManager.changeSelectedStateOfAuthor(
+              translationAuthor.resourceId!, true);
         }
         break;
     }
