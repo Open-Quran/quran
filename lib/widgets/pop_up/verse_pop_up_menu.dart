@@ -17,6 +17,7 @@ class VersePopUpMenu extends StatelessWidget {
     this.isPlaying = false,
     this.isFavorite = false,
     this.isBookmark = false,
+    required this.changeSelectedVerseKey,
   }) : super(key: key);
   final Widget child;
   final GlobalKey globalKey;
@@ -30,15 +31,17 @@ class VersePopUpMenu extends StatelessWidget {
           EBookMarkType bookMarkType, VerseModel verseModel, bool isBookmark)
       bookmarkFunction;
   final Function(VerseModel) shareFunction;
+  final Function(String? selectedVerseKey) changeSelectedVerseKey;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onLongPress: () {
+      onLongPress: () async {
+        changeSelectedVerseKey(verseModel.verseKey);
         RenderBox box =
             globalKey.currentContext?.findRenderObject() as RenderBox;
         Offset position = box.localToGlobal(Offset.zero);
-        showMenu(
+        await showMenu(
           context: context,
           color: context.theme.cardColor,
           shape: RoundedRectangleBorder(
@@ -95,6 +98,7 @@ class VersePopUpMenu extends StatelessWidget {
             ),
           ],
         );
+        changeSelectedVerseKey(null);
       },
       child: child,
     );
