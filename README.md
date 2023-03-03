@@ -1,5 +1,11 @@
 <br />
 <p align="center">
+# The Open Qur'an - Mobile App
+</p>
+<br />
+
+<br />
+<p align="center">
 <img width="215" src="https://github.com/fabrikod/the-open-quran/blob/main/assets/images/logo_pic.png?raw=true">
 </p>
 <br />
@@ -91,6 +97,30 @@ lib/                     # Root Package
    ├─ tags/              # Tags
 
 ```
+
+## Credits
+
+* text and translations [Quran.com](https://quran.api-docs.io/v4)
+* text styles downloaded from [urdunigaar.com](https://urdunigaar.com/download-quranic-font-quran-standard-font-islamic-fonts/)
+* translation, tafsir and Arabic data come from [quranenc](https://quranenc.com) and [King Saud University](https://quran.ksu.edu.sa). a small number of translations also come from [tanzil](http://tanzil.net).
+
+## Contributing
+
+If you'd like to contribute, please take a look at the [PRs Welcome](https://github.com/fabrikod/the-open-quran/issues?q=is%3Aopen+is%3Aissue+label%3A%22PRs+Welcome%22) label on the issue tracker. For new features, please open an issue to discuss it before beginning implementation.
+May Allah reward all the awesome [Contributors and Translators](https://github.com/quran/quran_android/blob/master/CONTRIBUTORS.md).
+
+
+
+## Open Source Projects Used
+
+* [Android Studio](https://developer.android.com/studio?gclid=Cj0KCQiA0oagBhDHARIsAI-BbgciR2_gugCRVcF8rsi9XOfx0ITaWZcyypUSNvJgMVfg29Jf2iPXhWUaAqiaEALw_wcB&gclsrc=aw.ds)
+* [VS Code](https://code.visualstudio.com/)
+* [Flutter](https://flutter.dev/)
+* [Figma](https://www.figma.com/)
+* [Material Design Components](https://github.com/material-components/material-components-android)
+* [Quran.com](https://quran.api-docs.io/v4)
+
+
 ### License
 
 This application is released under the [MIT license](LICENSE.md). You can use the code for any purpose, including commercial projects.
