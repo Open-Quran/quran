@@ -230,14 +230,7 @@ class SurahDetailsProvider extends ChangeNotifier {
   }
 
   onTapSoundIcon(bool isPlaying) {
-    switch (quranProvider.localSetting.quranType) {
-      case EQuranType.translation:
-        onTapVerseCardPlayOrPause(0, isPlaying);
-        break;
-      case EQuranType.reading:
-        // TODO: Handle this case.
-        break;
-    }
+    onTapVerseCardPlayOrPause(0, isPlaying);
   }
 
   /// Play or Pause The Verses
