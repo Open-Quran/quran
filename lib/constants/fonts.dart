@@ -10,6 +10,7 @@ class Fonts {
 
   /// For Verse Signs
   static const String uthmanic = "Uthmani";
+  static const String uthmanicIcon = "UthmaniIcon";
   static const String uthmanicBold = "UthmaniBold";
   static const String majeed = "Majeed";
 

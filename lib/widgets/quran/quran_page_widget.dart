@@ -87,7 +87,7 @@ class QuranPageWidget extends StatelessWidget {
                   TextSpan(
                     text: Utils.getArabicVerseNo(e.verseNumber.toString()),
                     style: context.theme.textTheme.headlineLarge?.copyWith(
-                        fontFamily: Fonts.uthmanic,
+                        fontFamily: Fonts.uthmanicIcon,
                         fontSize: 27,
                         height: 0,
                         color: context

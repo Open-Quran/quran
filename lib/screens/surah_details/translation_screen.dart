@@ -92,7 +92,7 @@ class _TranslationScreenState extends State<TranslationScreen> {
   VerseCard buildVerseCard(int index, VerseModel verse, BuildContext context) {
     return VerseCard(
       verseModel: verse,
-      arabicFontFamily: Fonts.uthmanic,
+      arabicFontFamily: Fonts.uthmanicIcon,
       verseTranslations: context
           .watch<QuranProvider>()
           .translationService

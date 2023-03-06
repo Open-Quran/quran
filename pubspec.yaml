@@ -83,9 +83,12 @@ flutter:
 
 
   fonts:
-    - family: Uthmani
+    - family: UthmaniIcon
       fonts:
         - asset: assets/fonts/Uthmanic-Regular.ttf
+    - family: Uthmani
+      fonts:
+        - asset: assets/fonts/UthmanTN_v2-0.ttf
     - family: Majeed
       fonts:
         - asset: assets/fonts/Al Majeed Quranic Font_shiped.ttf
