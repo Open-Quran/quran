@@ -6,6 +6,7 @@ import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:fabrikod_quran/widgets/basmala_title.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import '../pop_up/verse_pop_up_menu.dart';
 
 class QuranPageWidget extends StatelessWidget {
   const QuranPageWidget({
@@ -27,15 +28,12 @@ class QuranPageWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: onTap,
-      child: Column(
-        children: [
-          buildSurahCard(),
-          const SizedBox(height: kSize3XL),
-          buildBottomBorder(context, versesOfPage.last.verses.last)
-        ],
-      ),
+    return Column(
+      children: [
+        buildSurahCard(),
+        const SizedBox(height: kSize3XL),
+        buildBottomBorder(context, versesOfPage.last.verses.last)
+      ],
     );
   }
 
@@ -65,7 +63,9 @@ class QuranPageWidget extends StatelessWidget {
     ELayoutOptions layoutOptions,
     String fontTypeArabic,
   ) {
+    var globalKey = GlobalKey();
     return RichText(
+      key: globalKey,
       textDirection: TextDirection.rtl,
       textAlign: layoutOptions == ELayoutOptions.justify
           ? TextAlign.justify
@@ -80,24 +80,37 @@ class QuranPageWidget extends StatelessWidget {
                 .surahDetailsPageThemeColor
                 .textColor),
         children: verses
-            .map(
-              (e) => TextSpan(
-                children: [
-                  TextSpan(text: e.text!),
-                  TextSpan(
-                    text: Utils.getArabicVerseNo(e.verseNumber.toString()),
-                    style: context.theme.textTheme.headlineLarge?.copyWith(
-                        fontFamily: Fonts.uthmanic,
-                        fontSize: 27,
-                        height: 0,
-                        color: context
-                            .watch<QuranProvider>()
-                            .surahDetailsPageThemeColor
-                            .textColor),
+            .map((e) {
+              return [
+                WidgetSpan(
+                  child: VersePopUpMenu(
+                    globalKey: globalKey,
+                    verseModel: e,
+                    isPlaying: false,
+                    playFunction: (verse, isPlay) {},
+                    isFavorite: false,
+                    favoriteFunction: (verseModel, isFavorite) {},
+                    isBookmark: false,
+                    bookmarkFunction: (bookMarkType, verseModel, isBookmark) {},
+                    shareFunction: (p0) {},
+                    changeSelectedVerseKey: (selectedVerseKey) {},
+                    child: Text(e.text!),
                   ),
-                ],
-              ),
-            )
+                ),
+                TextSpan(
+                  text: Utils.getArabicVerseNo(e.verseNumber.toString()),
+                  style: context.theme.textTheme.headlineLarge?.copyWith(
+                      fontFamily: Fonts.uthmanic,
+                      fontSize: 27,
+                      height: 0,
+                      color: context
+                          .watch<QuranProvider>()
+                          .surahDetailsPageThemeColor
+                          .textColor),
+                ),
+              ];
+            })
+            .expand((i) => i)
             .toList(),
       ),
     );

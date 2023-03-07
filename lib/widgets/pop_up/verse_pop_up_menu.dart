@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:fabrikod_quran/widgets/cards/verse_menu_item.dart';
@@ -38,8 +40,7 @@ class VersePopUpMenu extends StatelessWidget {
     return GestureDetector(
       onLongPress: () async {
         changeSelectedVerseKey(verseModel.verseKey);
-        RenderBox box =
-            globalKey.currentContext?.findRenderObject() as RenderBox;
+        RenderBox box = context.findRenderObject() as RenderBox;
         Offset position = box.localToGlobal(Offset.zero);
         await showMenu(
           context: context,
