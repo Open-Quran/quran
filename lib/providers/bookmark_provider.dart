@@ -6,7 +6,6 @@ import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:flutter/material.dart';
 
 class BookmarkProvider extends ChangeNotifier {
-
   /// Class Constructor
   BookmarkProvider() {
     bookmarks = LocalDb.getBookmarks;
@@ -31,14 +30,14 @@ class BookmarkProvider extends ChangeNotifier {
   }
 
   /// Add bookmark
-  void addBookmark(VerseModel verse, EBookMarkType bookMarkType) async {
+  Future<void> addBookmark(VerseModel verse, EBookMarkType bookMarkType) async {
     var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
     bookmarks = await LocalDb.addBookmark(bookMark);
     notifyListeners();
   }
 
   /// Delete bookmark
-  void deleteBookmark(VerseModel verse, EBookMarkType bookMarkType) async {
+  Future<void> deleteBookmark(VerseModel verse, EBookMarkType bookMarkType) async {
     var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
     bookmarks = await LocalDb.deleteBookmark(bookMark);
     notifyListeners();
@@ -58,6 +57,13 @@ class BookmarkProvider extends ChangeNotifier {
         SurahDetailNavigationManager.goToMushaf(
           context,
           bookmark.verseModel.pageNumber!,
+        );
+        break;
+      case EBookMarkType.surah:
+        SurahDetailNavigationManager.goToSurah(
+          context,
+          bookmark.verseModel.surahId!,
+          verseId: bookmark.verseModel.verseNumber!,
         );
     }
   }
