@@ -23,7 +23,7 @@ enum EToggleButtonTextStyle { selected, disabled }
 enum ESurahDetailScreenMode { surah, juz }
 
 /// Bookmarking verse or page
-enum EBookMarkType { verse, page }
+enum EBookMarkType { verse, page, surah }
 
 /// Recent visited screen type
 /// [ReadingScreen] or [TranslationScreen]
