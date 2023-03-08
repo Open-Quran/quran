@@ -156,7 +156,8 @@ class VerseCard extends StatelessWidget {
               color: context
                   .watch<QuranProvider>()
                   .surahDetailsPageThemeColor
-                  .textColor.withOpacity(0.6),
+                  .textColor
+                  .withOpacity(0.6),
             ),
           ],
         ),

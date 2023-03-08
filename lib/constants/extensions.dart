@@ -26,6 +26,8 @@ extension ESupportedLanguageExtension on ESupportedLanguage {
         return "English";
       case ESupportedLanguage.tr:
         return "Turkish";
+      case ESupportedLanguage.ar:
+        return "Arabic";
     }
   }
 }

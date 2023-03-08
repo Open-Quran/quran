@@ -95,3 +95,10 @@ flutter:
     - family: UthmaniBold
       fonts:
         - asset: assets/fonts/Uthmanic-Bold.ttf
+    - family: IndoPak
+      fonts:
+        - asset: assets/fonts/Indo-Pak.ttf
+    - family: Naskh
+      fonts:
+        - asset: assets/fonts/Naskh.ttf
+    
