@@ -1,11 +1,11 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/bookmark_model.dart';
-import 'package:fabrikod_quran/models/local_setting_model.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 
+import '../constants/enums.dart';
+import '../models/bookmark_model.dart';
+import '../models/local_setting_model.dart';
 import '../models/recent_model.dart';
+import '../models/verse_model.dart';
 
 class LocalDb {
   LocalDb._();

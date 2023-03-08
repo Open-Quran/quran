@@ -1,12 +1,13 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/reading_settings_model.dart';
-import 'package:fabrikod_quran/providers/surah_details_provider.dart';
-import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
+import '../constants/enums.dart';
 import '../database/local_db.dart';
+import '../models/reading_settings_model.dart';
 import '../models/recent_model.dart';
+import '../providers/surah_details_provider.dart';
+import '../screens/surah_details/surah_details_screen.dart';
 
 class SurahDetailNavigationManager {
   SurahDetailNavigationManager._();

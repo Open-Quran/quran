@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-import 'package:fabrikod_quran/models/verse_model.dart';
+import 'package:the_open_quran/models/verse_model.dart';
+
 
 class SurahModel {
   int? id;

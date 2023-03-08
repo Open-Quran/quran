@@ -1,9 +1,10 @@
 import 'dart:convert';
 import 'dart:io';
 
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/translation.dart';
 import 'package:path_provider/path_provider.dart';
+
+import '../constants/enums.dart';
+import '../models/translation.dart';
 
 class TranslationDownloadManager {
   static File? _file;

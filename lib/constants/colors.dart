@@ -1,5 +1,6 @@
-import 'package:fabrikod_quran/models/mushaf_backgrund_model.dart';
 import 'package:flutter/material.dart';
+
+import '../models/mushaf_backgrund_model.dart';
 
 /// App Colors
 class AppColors {

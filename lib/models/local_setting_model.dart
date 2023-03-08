@@ -1,4 +1,4 @@
-import 'package:fabrikod_quran/constants/constants.dart';
+import '../constants/enums.dart';
 
 class LocalSettingModel {
   EQuranType quranType;

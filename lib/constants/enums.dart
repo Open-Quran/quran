@@ -1,6 +1,3 @@
-import 'package:fabrikod_quran/screens/surah_details/reading_screen.dart';
-import 'package:fabrikod_quran/screens/surah_details/translation_screen.dart';
-
 /// App Bottom Navigation Bar Items
 enum EBottomNavBarItems { home, more }
 
