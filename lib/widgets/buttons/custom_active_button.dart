@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../../constants/padding.dart';
 
 class CustomActiveButton extends StatelessWidget {
   /// Button title

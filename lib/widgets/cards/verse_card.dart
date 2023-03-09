@@ -1,17 +1,20 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/bookmark_model.dart';
-import 'package:fabrikod_quran/models/translation.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/providers/bookmark_provider.dart';
-import 'package:fabrikod_quran/providers/favorites_provider.dart';
-import 'package:fabrikod_quran/providers/player_provider.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/providers/surah_details_provider.dart';
-import 'package:fabrikod_quran/services/copy_and_share_service.dart';
-import 'package:fabrikod_quran/widgets/cards/action_card.dart';
-import 'package:fabrikod_quran/widgets/custom_space.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../../constants/enums.dart';
+import '../../constants/padding.dart';
+import '../../models/bookmark_model.dart';
+import '../../models/translation.dart';
+import '../../models/verse_model.dart';
+import '../../providers/bookmark_provider.dart';
+import '../../providers/favorites_provider.dart';
+import '../../providers/player_provider.dart';
+import '../../providers/quran_provider.dart';
+import '../../providers/surah_details_provider.dart';
+import '../../services/copy_and_share_service.dart';
+import '../custom_space.dart';
+import 'action_card.dart';
 
 class VerseCard extends StatelessWidget {
   const VerseCard({Key? key, required this.verseModel, this.isFavorite = false})

@@ -1,16 +1,14 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/reading_settings_model.dart';
-import 'package:fabrikod_quran/models/recent_model.dart';
 import 'package:flutter/material.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/padding.dart';
 
 class RecentCard extends StatelessWidget {
   final String text;
   final Function()? onTap;
 
-  const RecentCard(
-      {Key? key,
-      required this.text,
-      required this.onTap})
+  const RecentCard({Key? key, required this.text, required this.onTap})
       : super(key: key);
 
   @override

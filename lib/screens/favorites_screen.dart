@@ -1,12 +1,12 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/providers/favorites_provider.dart';
-import 'package:fabrikod_quran/widgets/cards/favorite_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
 
+import '../models/verse_model.dart';
+import '../providers/favorites_provider.dart';
 import '../widgets/app_bars/primary_app_bar.dart';
+import '../widgets/cards/favorite_card.dart';
 import '../widgets/no_item_widget.dart';
 
 class FavoritesScreen extends StatefulWidget {
@@ -55,10 +55,11 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                       vertical: kSizeL,
                     ),
                     itemBuilder: (context, item) => FavoriteCard(
-                      onTap: () => context
-                          .read<FavoritesProvider>()
-                          .onTapFavoriteCard(context,
-                              favoriteVerses.elementAt(item), ),
+                      onTap: () =>
+                          context.read<FavoritesProvider>().onTapFavoriteCard(
+                                context,
+                                favoriteVerses.elementAt(item),
+                              ),
                       verseModel: favoriteVerses.elementAt(item),
                     ),
                     separatorBuilder: (context, item) =>

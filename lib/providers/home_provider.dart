@@ -1,8 +1,8 @@
-import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 
-class HomeProvider extends ChangeNotifier {
+import '../constants/enums.dart';
 
+class HomeProvider extends ChangeNotifier {
   /// Home Screen Context
   final BuildContext _context;
 
@@ -12,14 +12,11 @@ class HomeProvider extends ChangeNotifier {
   /// Home juz and surah toggle buttons
   EJuzSurahToggleOptions juzSurahToggleOptionType = EJuzSurahToggleOptions.juz;
 
-
-
   /// Change type Juz, Surah or Search
   changeJuzOrSurahToggleOptionType(EJuzSurahToggleOptions newOptionType) {
     juzSurahToggleOptionType = newOptionType;
     notifyListeners();
   }
-
 
   /// Change type Grid or List
   changeJuzListType(EJuzListType newListType) {

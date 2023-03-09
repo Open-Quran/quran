@@ -1,7 +1,7 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:flutter/cupertino.dart';
-import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../../constants/colors.dart';
 
 class TranslationReadingSegmentedButton extends StatelessWidget {
   const TranslationReadingSegmentedButton({
@@ -28,8 +28,9 @@ class TranslationReadingSegmentedButton extends StatelessWidget {
             child: Center(
               child: Text(
                 context.translate.translation,
-                style: context.theme.textTheme.headlineSmall
-                    ?.copyWith(color: initialIndex == 0 ? AppColors.grey : AppColors.grey3),
+                style: context.theme.textTheme.headlineSmall?.copyWith(
+                    color:
+                        initialIndex == 0 ? AppColors.grey : AppColors.grey3),
               ),
             ),
           ),
@@ -38,8 +39,9 @@ class TranslationReadingSegmentedButton extends StatelessWidget {
             child: Center(
               child: Text(
                 context.translate.reading,
-                style: context.theme.textTheme.headlineSmall
-                    ?.copyWith(color: initialIndex == 1 ? AppColors.grey : AppColors.grey3),
+                style: context.theme.textTheme.headlineSmall?.copyWith(
+                    color:
+                        initialIndex == 1 ? AppColors.grey : AppColors.grey3),
               ),
             ),
           ),

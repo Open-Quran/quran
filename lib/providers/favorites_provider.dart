@@ -1,8 +1,8 @@
-import 'package:fabrikod_quran/database/local_db.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:flutter/material.dart';
 
+import '../database/local_db.dart';
 import '../managers/surah_detail_navigation_manager.dart';
+import '../models/verse_model.dart';
 
 class FavoritesProvider extends ChangeNotifier {
   /// Class Constructor

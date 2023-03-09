@@ -1,12 +1,12 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/widgets/app_bars/primary_app_bar.dart';
-import 'package:fabrikod_quran/widgets/cards/bookmark_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
 
 import '../models/bookmark_model.dart';
 import '../providers/bookmark_provider.dart';
+import '../widgets/app_bars/primary_app_bar.dart';
+import '../widgets/cards/bookmark_card.dart';
 import '../widgets/no_item_widget.dart';
 
 class BookmarkScreen extends StatefulWidget {

@@ -1,17 +1,18 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/providers/home_provider.dart';
-import 'package:fabrikod_quran/providers/search_provider.dart';
-import 'package:fabrikod_quran/screens/search_result_screen.dart';
-import 'package:fabrikod_quran/widgets/buttons/juz_surah_search_toggle_button.dart';
-import 'package:fabrikod_quran/widgets/cards/recent_card.dart';
-import 'package:fabrikod_quran/widgets/lists/juz_list.dart';
-import 'package:fabrikod_quran/widgets/lists/surah_list.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
+import 'package:the_open_quran/screens/search_result_screen.dart';
 
 import '../database/local_db.dart';
+import '../providers/home_provider.dart';
+import '../providers/search_provider.dart';
+import '../utils/utils.dart';
 import '../widgets/animation/fade_indexed_stack.dart';
 import '../widgets/app_bars/primary_app_bar.dart';
+import '../widgets/buttons/juz_surah_search_toggle_button.dart';
+import '../widgets/cards/recent_card.dart';
+import '../widgets/lists/juz_list.dart';
+import '../widgets/lists/surah_list.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
@@ -33,13 +34,19 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               JuzSurahSearchToggleButton(
-                toggleSearchButtonIndex: context.read<SearchProvider>().toggleSearchOptions.index,
-                onChanged: context.watch<HomeProvider>().changeJuzOrSurahToggleOptionType,
-                onTapSearchButton: context.read<SearchProvider>().changeToggleSearchOptions,
-                toggleListType: context.watch<HomeProvider>().juzSurahToggleOptionType,
+                toggleSearchButtonIndex:
+                    context.read<SearchProvider>().toggleSearchOptions.index,
+                onChanged: context
+                    .watch<HomeProvider>()
+                    .changeJuzOrSurahToggleOptionType,
+                onTapSearchButton:
+                    context.read<SearchProvider>().changeToggleSearchOptions,
+                toggleListType:
+                    context.watch<HomeProvider>().juzSurahToggleOptionType,
               ),
               FadeIndexedStack(
-                index: context.watch<SearchProvider>().toggleSearchOptions.index,
+                index:
+                    context.watch<SearchProvider>().toggleSearchOptions.index,
                 children: [
                   buildToggleSearchPages(context),
                   const SearchResultScreen(isHome: true),
@@ -86,7 +93,7 @@ class _HomeScreenState extends State<HomeScreen> {
 
   /// Build recent visited paged
   Widget buildRecent() {
-   var reversedList = LocalDb.getRecents.reversed.take(8).toList();
+    var reversedList = LocalDb.getRecents.reversed.take(8).toList();
     return Visibility(
       visible: LocalDb.getRecents.isNotEmpty,
       child: Padding(
@@ -98,7 +105,8 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(horizontal: kSizeL),
               child: Text(
                 context.translate.recent,
-                style: context.theme.textTheme.displayLarge?.copyWith(letterSpacing: 0.04),
+                style: context.theme.textTheme.displayLarge
+                    ?.copyWith(letterSpacing: 0.04),
               ),
             ),
             const SizedBox(height: kSizeL),

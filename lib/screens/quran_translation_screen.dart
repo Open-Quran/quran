@@ -1,11 +1,12 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/translation.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/widgets/app_bars/primary_app_bar.dart';
-import 'package:fabrikod_quran/widgets/cards/translations_setting_card.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../models/translation.dart';
+import '../providers/quran_provider.dart';
+import '../widgets/app_bars/primary_app_bar.dart';
+import '../widgets/cards/translations_setting_card.dart';
 
 class QuranTranslationsScreen extends StatefulWidget {
   const QuranTranslationsScreen({super.key});

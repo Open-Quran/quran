@@ -1,15 +1,18 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/screens/quran_translation_screen.dart';
-import 'package:fabrikod_quran/widgets/background_color_select.dart';
-import 'package:fabrikod_quran/widgets/buttons/layout_options_toggle_buttons.dart';
-import 'package:fabrikod_quran/widgets/buttons/quran_font_button.dart';
-import 'package:fabrikod_quran/widgets/buttons/read_options_toggle_buttons.dart';
-import 'package:fabrikod_quran/widgets/buttons/sound_drop_down_button.dart';
-import 'package:fabrikod_quran/widgets/buttons/translation_box.dart';
-import 'package:fabrikod_quran/widgets/surah_size_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/padding.dart';
+import '../../providers/quran_provider.dart';
+import '../../screens/quran_translation_screen.dart';
+import '../../utils/utils.dart';
+import '../background_color_select.dart';
+import '../buttons/layout_options_toggle_buttons.dart';
+import '../buttons/quran_font_button.dart';
+import '../buttons/read_options_toggle_buttons.dart';
+import '../buttons/sound_drop_down_button.dart';
+import '../buttons/translation_box.dart';
+import '../surah_size_slider.dart';
 
 class MushafSettingsCard extends StatefulWidget {
   const MushafSettingsCard({super.key});
@@ -68,8 +71,12 @@ class _MushafSettingsCardState extends State<MushafSettingsCard> {
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 QuranFontButton(
-                  selectedFont: context.watch<QuranProvider>().localSetting.fontTypeArabic,
-                  onChangeArabicFont: context.read<QuranProvider>().changeFontTypeArabic,
+                  selectedFont: context
+                      .watch<QuranProvider>()
+                      .localSetting
+                      .fontTypeArabic,
+                  onChangeArabicFont:
+                      context.read<QuranProvider>().changeFontTypeArabic,
                 ),
                 LayoutOptionsToggleButton(
                   isPopUp: true,

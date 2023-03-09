@@ -1,12 +1,15 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/providers/surah_details_provider.dart';
-import 'package:fabrikod_quran/widgets/buttons/custom_button.dart';
-import 'package:fabrikod_quran/widgets/buttons/custom_toggle_buttons.dart';
-import 'package:fabrikod_quran/widgets/cards/grid_card.dart';
-import 'package:fabrikod_quran/widgets/drawer/surah_section_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
+import 'package:the_open_quran/widgets/drawer/surah_section_drawer.dart';
+
+import '../../constants/padding.dart';
+import '../../providers/quran_provider.dart';
+import '../../providers/surah_details_provider.dart';
+import '../../utils/utils.dart';
+import '../buttons/custom_button.dart';
+import '../buttons/custom_toggle_buttons.dart';
+import '../cards/grid_card.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -50,8 +53,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
         context.translate.juz,
         context.translate.sajda,
       ],
-      selectedIndex:
-          context.watch<SurahDetailsProvider>().readingSettings.surahDetailScreenMode.index,
+      selectedIndex: context
+          .watch<SurahDetailsProvider>()
+          .readingSettings
+          .surahDetailScreenMode
+          .index,
       onTap: (index) {
         // context.read<SurahDetailsProvider>().changeSurahDetailScreenMod(index);
         // Utils.unFocus();
@@ -61,7 +67,11 @@ class _CustomDrawerState extends State<CustomDrawer> {
 
   Widget get body {
     return IndexedStack(
-      index: context.watch<SurahDetailsProvider>().readingSettings.surahDetailScreenMode.index,
+      index: context
+          .watch<SurahDetailsProvider>()
+          .readingSettings
+          .surahDetailScreenMode
+          .index,
       children: [
         buildSurah,
         buildJuz,

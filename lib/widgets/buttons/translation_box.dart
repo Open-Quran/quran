@@ -1,9 +1,9 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
 
+import '../../providers/quran_provider.dart';
 import '../title.dart';
 
 class TranslationBox extends StatelessWidget {
@@ -36,7 +36,10 @@ class TranslationBox extends StatelessWidget {
               children: [
                 Expanded(
                   child: Text(
-                    context.watch<QuranProvider>().translationService.translationButtonName ??
+                    context
+                            .watch<QuranProvider>()
+                            .translationService
+                            .translationButtonName ??
                         context.translate.translation,
                     style: context.theme.textTheme.bodyMedium,
                   ),

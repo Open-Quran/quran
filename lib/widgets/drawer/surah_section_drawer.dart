@@ -1,18 +1,18 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/surah_model.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/providers/surah_details_provider.dart';
-import 'package:fabrikod_quran/widgets/buttons/custom_button.dart';
-import 'package:fabrikod_quran/widgets/custom_space.dart';
-import 'package:fabrikod_quran/widgets/drawer/search_section_drawer.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
+import 'package:the_open_quran/widgets/drawer/search_section_drawer.dart';
+
+import '../../models/surah_model.dart';
+import '../../models/verse_model.dart';
+import '../buttons/custom_button.dart';
+import '../custom_space.dart';
 
 class SurahSectionDrawer extends StatefulWidget {
   final List<SurahModel> surahs;
   final List<VerseModel> versesOfSelectedSurah;
 
-  const SurahSectionDrawer({Key? key, required this.surahs, required this.versesOfSelectedSurah})
+  const SurahSectionDrawer(
+      {Key? key, required this.surahs, required this.versesOfSelectedSurah})
       : super(key: key);
 
   @override

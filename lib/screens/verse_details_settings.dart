@@ -1,16 +1,17 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/screens/quran_translation_screen.dart';
-import 'package:fabrikod_quran/widgets/buttons/quran_font_button.dart';
-import 'package:fabrikod_quran/widgets/buttons/sound_drop_down_button.dart';
-import 'package:fabrikod_quran/widgets/buttons/translation_box.dart';
-import 'package:fabrikod_quran/widgets/surah_size_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/screens/quran_translation_screen.dart';
 
+import '../constants/colors.dart';
+import '../constants/padding.dart';
+import '../providers/quran_provider.dart';
 import '../widgets/background_color_select.dart';
 import '../widgets/buttons/layout_options_toggle_buttons.dart';
+import '../widgets/buttons/quran_font_button.dart';
 import '../widgets/buttons/read_options_toggle_buttons.dart';
+import '../widgets/buttons/sound_drop_down_button.dart';
+import '../widgets/buttons/translation_box.dart';
+import '../widgets/surah_size_slider.dart';
 
 class VerseDetailsSettings extends StatefulWidget {
   const VerseDetailsSettings({Key? key}) : super(key: key);
@@ -29,7 +30,8 @@ class _VerseDetailsSettingsState extends State<VerseDetailsSettings> {
 
   Widget get buildBody {
     return SingleChildScrollView(
-      padding: const EdgeInsets.symmetric(horizontal: kSize3XL, vertical: kSizeXL),
+      padding:
+          const EdgeInsets.symmetric(horizontal: kSize3XL, vertical: kSizeXL),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -47,12 +49,15 @@ class _VerseDetailsSettingsState extends State<VerseDetailsSettings> {
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
             children: [
               QuranFontButton(
-                selectedFont: context.watch<QuranProvider>().localSetting.fontTypeArabic,
-                onChangeArabicFont: context.watch<QuranProvider>().changeFontTypeArabic,
+                selectedFont:
+                    context.watch<QuranProvider>().localSetting.fontTypeArabic,
+                onChangeArabicFont:
+                    context.watch<QuranProvider>().changeFontTypeArabic,
               ),
               LayoutOptionsToggleButton(
                 isPopUp: false,
-                layoutOptions: context.watch<QuranProvider>().localSetting.layoutOptions,
+                layoutOptions:
+                    context.watch<QuranProvider>().localSetting.layoutOptions,
                 onChanged: context.read<QuranProvider>().changeLayoutOptions,
               ),
             ],
@@ -75,8 +80,12 @@ class _VerseDetailsSettingsState extends State<VerseDetailsSettings> {
               AppColors.grey7,
               AppColors.pink
             ],
-            defaultIndex: context.watch<QuranProvider>().localSetting.surahDetailsPageThemeIndex,
-            onChangedColor: context.read<QuranProvider>().changeSurahDetailsPageTheme,
+            defaultIndex: context
+                .watch<QuranProvider>()
+                .localSetting
+                .surahDetailsPageThemeIndex,
+            onChangedColor:
+                context.read<QuranProvider>().changeSurahDetailsPageTheme,
           ),
         ],
       ),

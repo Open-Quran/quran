@@ -1,6 +1,5 @@
-import 'package:fabrikod_quran/constants/extensions.dart';
-import 'package:fabrikod_quran/constants/padding.dart';
 import 'package:flutter/material.dart';
+import 'package:the_open_quran/constants/constants.dart';
 
 class HelpGuideCard extends StatefulWidget {
   final String text;

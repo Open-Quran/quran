@@ -1,10 +1,12 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/surah_model.dart';
-import 'package:fabrikod_quran/widgets/animation/fade_indexed_stack.dart';
-import 'package:fabrikod_quran/widgets/buttons/juz_list_toggle_button.dart';
-import 'package:fabrikod_quran/widgets/cards/grid_card.dart';
-import 'package:fabrikod_quran/widgets/cards/surah_card.dart';
 import 'package:flutter/material.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../constants/enums.dart';
+import '../models/surah_model.dart';
+import 'animation/fade_indexed_stack.dart';
+import 'buttons/juz_list_toggle_button.dart';
+import 'cards/grid_card.dart';
+import 'cards/surah_card.dart';
 
 class JuzSurahSearchWidget extends StatefulWidget {
   final List<List<SurahModel>> juzList;
@@ -36,7 +38,8 @@ class _JuzSurahSearchWidgetState extends State<JuzSurahSearchWidget> {
           children: [
             Text(
               context.translate.juz,
-              style: context.theme.textTheme.displayLarge?.copyWith(letterSpacing: 0.4),
+              style: context.theme.textTheme.displayLarge
+                  ?.copyWith(letterSpacing: 0.4),
             ),
             JuzListToggleButton(
               listType: widget.listType,
@@ -102,7 +105,8 @@ class _JuzSurahSearchWidgetState extends State<JuzSurahSearchWidget> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "${context.translate.juz} $juzId",
-                  style: context.theme.textTheme.headlineSmall?.copyWith(color: AppColors.grey),
+                  style: context.theme.textTheme.headlineSmall
+                      ?.copyWith(color: AppColors.grey),
                 ),
               ),
             ),
@@ -117,7 +121,8 @@ class _JuzSurahSearchWidgetState extends State<JuzSurahSearchWidget> {
                   onTap: () => widget.onTapSurahCard(surah.id ?? 1),
                 );
               },
-              separatorBuilder: (context, surahIndex) => const SizedBox(height: kSizeL),
+              separatorBuilder: (context, surahIndex) =>
+                  const SizedBox(height: kSizeL),
               itemCount: widget.juzList[juzIndex].length,
             ),
             const SizedBox(height: kSizeXL)

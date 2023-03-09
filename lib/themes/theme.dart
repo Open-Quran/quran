@@ -1,5 +1,7 @@
-import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
+
+import '../constants/colors.dart';
+import '../constants/fonts.dart';
 
 /// Theme
 final ThemeData theme = ThemeData(

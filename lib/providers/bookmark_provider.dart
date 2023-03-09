@@ -1,9 +1,10 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/database/local_db.dart';
-import 'package:fabrikod_quran/managers/surah_detail_navigation_manager.dart';
-import 'package:fabrikod_quran/models/bookmark_model.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:flutter/material.dart';
+
+import '../constants/enums.dart';
+import '../database/local_db.dart';
+import '../managers/surah_detail_navigation_manager.dart';
+import '../models/bookmark_model.dart';
+import '../models/verse_model.dart';
 
 class BookmarkProvider extends ChangeNotifier {
   /// Class Constructor
@@ -21,7 +22,8 @@ class BookmarkProvider extends ChangeNotifier {
   }
 
   /// When clicked to bookmark button
-  void onTapBookMarkButton(EBookMarkType bookMarkType, VerseModel verseModel, bool isBookmark) {
+  void onTapBookMarkButton(
+      EBookMarkType bookMarkType, VerseModel verseModel, bool isBookmark) {
     if (isBookmark) {
       deleteBookmark(verseModel, bookMarkType);
     } else {
@@ -37,7 +39,8 @@ class BookmarkProvider extends ChangeNotifier {
   }
 
   /// Delete bookmark
-  Future<void> deleteBookmark(VerseModel verse, EBookMarkType bookMarkType) async {
+  Future<void> deleteBookmark(
+      VerseModel verse, EBookMarkType bookMarkType) async {
     var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
     bookmarks = await LocalDb.deleteBookmark(bookMark);
     notifyListeners();

@@ -1,6 +1,9 @@
-import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/images.dart';
+import '../../constants/padding.dart';
 
 class VerseDetailSettingsButton extends StatelessWidget {
   const VerseDetailSettingsButton({super.key, this.onPressed});
@@ -16,7 +19,7 @@ class VerseDetailSettingsButton extends StatelessWidget {
       child: Padding(
         padding: const EdgeInsets.all(8.0),
         child: Container(
-          decoration: BoxDecoration(),
+          decoration: const BoxDecoration(),
           child: SvgPicture.asset(
             ImageConstants.settingsIcon,
             color: AppColors.white,

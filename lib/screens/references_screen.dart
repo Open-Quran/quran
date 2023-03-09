@@ -1,9 +1,10 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/widgets/app_bars/primary_app_bar.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:the_open_quran/constants/constants.dart';
 import 'package:url_launcher/url_launcher.dart';
+
+import '../widgets/app_bars/primary_app_bar.dart';
 
 class ReferencesScreen extends StatefulWidget {
   const ReferencesScreen({super.key});

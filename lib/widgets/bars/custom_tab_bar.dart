@@ -1,11 +1,13 @@
 import 'package:flutter/material.dart';
-import 'package:fabrikod_quran/constants/constants.dart';
+import 'package:the_open_quran/constants/constants.dart';
 
 class CustomTabBar extends StatefulWidget {
   final List<String> tabTitles;
   final List<Widget> tabViews;
 
-  const CustomTabBar({Key? key, required this.tabTitles, required this.tabViews}) : super(key: key);
+  const CustomTabBar(
+      {Key? key, required this.tabTitles, required this.tabViews})
+      : super(key: key);
 
   @override
   State<CustomTabBar> createState() => _CustomTabBarState();

@@ -1,6 +1,6 @@
-import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/slidable_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
+import 'package:the_open_quran/widgets/cards/slidable_verse_card/slidable_player.dart';
 
 class SlidableControllerSender extends StatefulWidget {
   const SlidableControllerSender({

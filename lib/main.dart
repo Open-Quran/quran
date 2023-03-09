@@ -1,17 +1,18 @@
-import 'package:fabrikod_quran/main_builder.dart';
-import 'package:fabrikod_quran/providers/app_settings_provider.dart';
-import 'package:fabrikod_quran/providers/bookmark_provider.dart';
-import 'package:fabrikod_quran/providers/favorites_provider.dart';
-import 'package:fabrikod_quran/providers/player_provider.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/providers/search_provider.dart';
-import 'package:fabrikod_quran/screens/bottom_nav_bar_screen.dart';
-import 'package:fabrikod_quran/themes/theme.dart';
 import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:the_open_quran/providers/app_settings_provider.dart';
+import 'package:the_open_quran/providers/bookmark_provider.dart';
+import 'package:the_open_quran/providers/favorites_provider.dart';
+import 'package:the_open_quran/providers/player_provider.dart';
+import 'package:the_open_quran/providers/quran_provider.dart';
+import 'package:the_open_quran/providers/search_provider.dart';
+import 'package:the_open_quran/screens/bottom_nav_bar_screen.dart';
+import 'package:the_open_quran/themes/theme.dart';
+
+import 'main_builder.dart';
 
 Future<void> main() async {
   await GetStorage.init('FabrikodQuran');
@@ -36,7 +37,8 @@ class MyApp extends StatelessWidget {
             localizationsDelegates: AppLocalizations.localizationsDelegates,
             supportedLocales: AppLocalizations.supportedLocales,
             builder: MainBuilder.builder,
-            localeResolutionCallback: appSettingProvider.localeResolutionCallback,
+            localeResolutionCallback:
+                appSettingProvider.localeResolutionCallback,
             theme: theme,
             home: const BottomNavBarScreen(),
           );

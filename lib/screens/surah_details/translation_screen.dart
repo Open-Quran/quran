@@ -1,16 +1,19 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/bookmark_model.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/providers/bookmark_provider.dart';
-import 'package:fabrikod_quran/providers/favorites_provider.dart';
-import 'package:fabrikod_quran/providers/player_provider.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/providers/surah_details_provider.dart';
-import 'package:fabrikod_quran/widgets/basmala_title.dart';
-import 'package:fabrikod_quran/widgets/cards/new_verse_card.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+
+import '../../constants/enums.dart';
+import '../../constants/fonts.dart';
+import '../../constants/padding.dart';
+import '../../models/bookmark_model.dart';
+import '../../models/verse_model.dart';
+import '../../providers/bookmark_provider.dart';
+import '../../providers/favorites_provider.dart';
+import '../../providers/player_provider.dart';
+import '../../providers/quran_provider.dart';
+import '../../providers/surah_details_provider.dart';
+import '../../widgets/basmala_title.dart';
+import '../../widgets/cards/new_verse_card.dart';
 
 class TranslationScreen extends StatefulWidget {
   const TranslationScreen({Key? key}) : super(key: key);
@@ -106,9 +109,9 @@ class _TranslationScreenState extends State<TranslationScreen> {
           context.watch<PlayerProvider>().isPlayingVerse(verse.verseKey ?? ""),
       playFunction: (verse, isPlaying) {
         context.read<SurahDetailsProvider>().onTapVerseCardPlayOrPause(
-          index,
-          isPlaying,
-        );
+              index,
+              isPlaying,
+            );
       },
       isFavorite: context.watch<FavoritesProvider>().isFavoriteVerse(verse),
       favoriteFunction: context.read<FavoritesProvider>().onTapFavoriteButton,

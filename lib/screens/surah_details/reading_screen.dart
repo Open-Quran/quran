@@ -1,10 +1,11 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/providers/surah_details_provider.dart';
-import 'package:fabrikod_quran/widgets/quran/quran_page_widget.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
+
+import '../../constants/padding.dart';
+import '../../providers/quran_provider.dart';
+import '../../providers/surah_details_provider.dart';
+import '../../widgets/quran/quran_page_widget.dart';
 
 class ReadingScreen extends StatefulWidget {
   const ReadingScreen({Key? key}) : super(key: key);

@@ -1,6 +1,6 @@
-import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:the_open_quran/constants/constants.dart';
 
 class ActionCard extends StatelessWidget {
   const ActionCard(
@@ -55,7 +55,7 @@ class ActionCard extends StatelessWidget {
                     ),
               const SizedBox(width: 10),
               GestureDetector(
-                onTap: ()=>playButtonOnTap(isPlaying),
+                onTap: () => playButtonOnTap(isPlaying),
                 child: SvgPicture.asset(
                   isPlaying
                       ? ImageConstants.stopActiveIcon
@@ -106,14 +106,15 @@ class ActionCard extends StatelessWidget {
                     children: [
                       Icon(
                         Icons.copy_outlined,
-                        color: context.theme.toggleButtonsTheme.textStyle?.color,
+                        color:
+                            context.theme.toggleButtonsTheme.textStyle?.color,
                       ),
                       const SizedBox(width: kSizeM),
                       Text(
                         context.translate.copy,
                         style: context.theme.textTheme.titleLarge?.copyWith(
-                          color: context.theme.toggleButtonsTheme.textStyle?.color
-                        ),
+                            color: context
+                                .theme.toggleButtonsTheme.textStyle?.color),
                       ),
                     ],
                   ),
@@ -124,12 +125,15 @@ class ActionCard extends StatelessWidget {
                     children: [
                       SvgPicture.asset(
                         ImageConstants.shareAppIcon,
-                        color: context.theme.toggleButtonsTheme.textStyle?.color,
+                        color:
+                            context.theme.toggleButtonsTheme.textStyle?.color,
                       ),
                       const SizedBox(width: kSizeM),
-                      Text(context.translate.share,
-                          style: context.theme.textTheme.titleLarge?.copyWith(
-                              color: context.theme.toggleButtonsTheme.textStyle?.color),
+                      Text(
+                        context.translate.share,
+                        style: context.theme.textTheme.titleLarge?.copyWith(
+                            color: context
+                                .theme.toggleButtonsTheme.textStyle?.color),
                       ),
                     ],
                   ),

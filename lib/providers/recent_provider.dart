@@ -1,17 +1,18 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/database/local_db.dart';
-import 'package:fabrikod_quran/models/reading_settings_model.dart';
-import 'package:fabrikod_quran/models/recent_model.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/providers/quran_provider.dart';
+
+import '../constants/enums.dart';
+import '../database/local_db.dart';
+import '../models/reading_settings_model.dart';
+import '../models/recent_model.dart';
 
 class RecentProvider extends ChangeNotifier {
-
   /// Class ConstructorK
   RecentProvider(this._context) {
     recents = LocalDb.getRecents;
   }
+
   /// Build context
   final BuildContext _context;
 
@@ -34,25 +35,21 @@ class RecentProvider extends ChangeNotifier {
         switch (eRecentVisitedType) {
           case ERecentVisitedType.surah:
             recentModel = RecentModel(
-                index: index,
-                eRecentVisitedType: ERecentVisitedType.surah);
+                index: index, eRecentVisitedType: ERecentVisitedType.surah);
             break;
           case ERecentVisitedType.juz:
             recentModel = RecentModel(
-                index: index,
-                eRecentVisitedType: ERecentVisitedType.juz);
+                index: index, eRecentVisitedType: ERecentVisitedType.juz);
             break;
           case ERecentVisitedType.page:
             recentModel = RecentModel(
-                index: index,
-                eRecentVisitedType: ERecentVisitedType.page);
+                index: index, eRecentVisitedType: ERecentVisitedType.page);
             break;
         }
         break;
       case EQuranType.reading:
         recentModel = RecentModel(
-            index: index,
-            eRecentVisitedType: ERecentVisitedType.page);
+            index: index, eRecentVisitedType: ERecentVisitedType.page);
         break;
     }
     return recentModel;

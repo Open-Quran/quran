@@ -1,7 +1,7 @@
-import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/slidable_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/widgets/cards/slidable_verse_card/slidable_provider.dart';
 
 import '../../../database/local_db.dart';
 
@@ -20,7 +20,6 @@ class ActionTypeListener extends StatefulWidget {
 }
 
 class ActionTypeListenerState extends State<ActionTypeListener> {
-
   @override
   void initState() {
     super.initState();
@@ -44,12 +43,20 @@ class ActionTypeListenerState extends State<ActionTypeListener> {
     return InkWell(
       child: widget.child,
       onTap: () {
-        if (context.read<SlidableProvider>().actionPaneTypeValueNotifier?.value == ActionPaneType.end) {
+        if (context
+                .read<SlidableProvider>()
+                .actionPaneTypeValueNotifier
+                ?.value ==
+            ActionPaneType.end) {
           Slidable.of(context)!.close();
         }
       },
       onLongPress: () {
-        if (context.read<SlidableProvider>().actionPaneTypeValueNotifier?.value == ActionPaneType.none) {
+        if (context
+                .read<SlidableProvider>()
+                .actionPaneTypeValueNotifier
+                ?.value ==
+            ActionPaneType.none) {
           Slidable.of(context)!.openEndActionPane();
         }
       },

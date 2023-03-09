@@ -1,12 +1,13 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/screens/help_guide_screen.dart';
-import 'package:fabrikod_quran/screens/language_screen.dart';
-import 'package:fabrikod_quran/screens/references_screen.dart';
-import 'package:fabrikod_quran/widgets/app_bars/primary_app_bar.dart';
-import 'package:fabrikod_quran/widgets/buttons/secondary_button.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:package_info_plus/package_info_plus.dart';
+import 'package:the_open_quran/constants/constants.dart';
+import 'package:the_open_quran/screens/references_screen.dart';
+
+import '../widgets/app_bars/primary_app_bar.dart';
+import '../widgets/buttons/secondary_button.dart';
+import 'help_guide_screen.dart';
+import 'language_screen.dart';
 
 class SettingsScreen extends StatefulWidget {
   const SettingsScreen({Key? key}) : super(key: key);

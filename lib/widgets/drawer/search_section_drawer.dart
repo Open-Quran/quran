@@ -1,12 +1,13 @@
-import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:the_open_quran/constants/constants.dart';
 
 class SearchSectionDrawer extends StatelessWidget {
   final String hintText;
   final FocusNode? focusNode;
   final Function(String)? onChanged;
 
-  const SearchSectionDrawer({Key? key, required this.hintText, this.focusNode, this.onChanged})
+  const SearchSectionDrawer(
+      {Key? key, required this.hintText, this.focusNode, this.onChanged})
       : super(key: key);
 
   @override
@@ -30,8 +31,10 @@ class SearchSectionDrawer extends StatelessWidget {
               isDense: true,
               contentPadding: const EdgeInsets.all(8),
               hintStyle: context.theme.toggleButtonsTheme.textStyle,
-              focusedBorder: const OutlineInputBorder(borderSide: BorderSide.none),
-              enabledBorder: const UnderlineInputBorder(borderSide: BorderSide.none),
+              focusedBorder:
+                  const OutlineInputBorder(borderSide: BorderSide.none),
+              enabledBorder:
+                  const UnderlineInputBorder(borderSide: BorderSide.none),
               hintText: hintText,
             ),
           ),
