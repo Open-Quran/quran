@@ -1,6 +1,6 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/widgets/title.dart';
 import 'package:flutter/material.dart';
+import 'package:the_open_quran/constants/constants.dart';
+import 'package:the_open_quran/widgets/title.dart';
 
 import 'buttons/background_color_buttons.dart';
 

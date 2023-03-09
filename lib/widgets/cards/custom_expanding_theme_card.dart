@@ -1,6 +1,8 @@
-import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../../constants/enums.dart';
 
 class CustomExpandingThemeCard extends StatefulWidget {
   final EThemeModes defaultThemeMode;
@@ -11,7 +13,8 @@ class CustomExpandingThemeCard extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<CustomExpandingThemeCard> createState() => _CustomExpandingThemeCardState();
+  State<CustomExpandingThemeCard> createState() =>
+      _CustomExpandingThemeCardState();
 }
 
 class _CustomExpandingThemeCardState extends State<CustomExpandingThemeCard> {
@@ -44,20 +47,24 @@ class _CustomExpandingThemeCardState extends State<CustomExpandingThemeCard> {
             ],
           ),
           trailing: Icon(
-            isExpanded ? Icons.arrow_drop_up_rounded : Icons.arrow_drop_down_rounded,
+            isExpanded
+                ? Icons.arrow_drop_up_rounded
+                : Icons.arrow_drop_down_rounded,
             size: 40,
             color: context.theme.iconTheme.color,
           ),
           onExpansionChanged: changeExpanded,
           backgroundColor: context.theme.cardTheme.color?.withOpacity(0.1),
-          collapsedBackgroundColor: context.theme.cardTheme.color?.withOpacity(0.1),
+          collapsedBackgroundColor:
+              context.theme.cardTheme.color?.withOpacity(0.1),
           childrenPadding: const EdgeInsets.only(bottom: kSizeM),
           children: <Widget>[
             ...EThemeModes.values.map(
               (e) => ListTile(
                 onTap: () => widget.changedTheme(e),
                 visualDensity: const VisualDensity(vertical: -2),
-                contentPadding: const EdgeInsets.symmetric(horizontal: kSizeM * 3),
+                contentPadding:
+                    const EdgeInsets.symmetric(horizontal: kSizeM * 3),
                 dense: true,
                 title: Row(
                   children: [

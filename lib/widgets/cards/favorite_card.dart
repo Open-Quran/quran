@@ -1,13 +1,15 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/action_type_listener.dart';
-import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/slidable_controller_sender.dart';
-import 'package:fabrikod_quran/widgets/cards/slidable_verse_card/slidable_player.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_slidable/flutter_slidable.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
+import 'package:the_open_quran/widgets/cards/slidable_verse_card/action_type_listener.dart';
+import 'package:the_open_quran/widgets/cards/slidable_verse_card/slidable_controller_sender.dart';
+import 'package:the_open_quran/widgets/cards/slidable_verse_card/slidable_player.dart';
 
+import '../../constants/colors.dart';
+import '../../constants/padding.dart';
+import '../../models/verse_model.dart';
 import '../../providers/favorites_provider.dart';
 import '../buttons/delete_verse_button.dart';
 
@@ -84,7 +86,8 @@ class _FavoriteCardState extends State<FavoriteCard>
                 buildSurahName(widget.verseModel.surahNameSimple ?? "",
                     widget.verseModel.surahNameTranslated ?? ""),
                 const Spacer(),
-                buildAyatNumber("${context.translate.ayat} ${widget.verseModel.verseNumber!.toString()}")
+                buildAyatNumber(
+                    "${context.translate.ayat} ${widget.verseModel.verseNumber!.toString()}")
               ],
             ),
           ),

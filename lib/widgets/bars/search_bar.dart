@@ -1,11 +1,12 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/providers/search_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
-import 'package:gap/gap.dart';
-import 'package:provider/provider.dart';
 
-import '../../providers/home_provider.dart';
+import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/padding.dart';
+import '../../providers/search_provider.dart';
 
 /// Custom search bar
 class SearchBar extends StatelessWidget {
@@ -16,8 +17,8 @@ class SearchBar extends StatelessWidget {
     return Column(
       children: [
         Container(
-          margin: const EdgeInsets.only(
-        top: kSizeXL, right: kSizeL, left: kSizeL),
+          margin:
+              const EdgeInsets.only(top: kSizeXL, right: kSizeL, left: kSizeL),
           decoration: BoxDecoration(
             color: AppColors.black,
             borderRadius: BorderRadius.circular(10),
@@ -27,6 +28,7 @@ class SearchBar extends StatelessWidget {
           padding: const EdgeInsets.only(left: kSizeL, right: kSizeM),
           child: buildSearchTextField(context),
         ),
+
         /// ToDo: Can be added later
         // context.watch<HomeProvider>().toggleSearchOptions.index == 1
         //     ? context.watch<SearchProvider>().buildSearchTags
@@ -38,22 +40,22 @@ class SearchBar extends StatelessWidget {
   /// Search bar's text-field
   TextField buildSearchTextField(BuildContext context) {
     return TextField(
-          onSubmitted: context.read<SearchProvider>().handleSearchSubmitted,
-          controller: context.watch<SearchProvider>().textEditingController,
-          focusNode: context.read<SearchProvider>().searchBarFocusNode,
-          decoration: InputDecoration(
-            suffixIcon: const CancelIcon(),
-            suffixIconColor: Colors.white,
-            suffixIconConstraints:
-                const BoxConstraints(maxHeight: 45, maxWidth: 45),
-            border: InputBorder.none,
-            hintText: context.translate.searchSurahJuzOrPage,
-            hintStyle: context.theme.textTheme.titleLarge
-                ?.copyWith(color: AppColors.grey5),
-          ),
-          cursorColor: AppColors.white,
-          textAlignVertical: TextAlignVertical.center,
-        );
+      onSubmitted: context.read<SearchProvider>().handleSearchSubmitted,
+      controller: context.watch<SearchProvider>().textEditingController,
+      focusNode: context.read<SearchProvider>().searchBarFocusNode,
+      decoration: InputDecoration(
+        suffixIcon: const CancelIcon(),
+        suffixIconColor: Colors.white,
+        suffixIconConstraints:
+            const BoxConstraints(maxHeight: 45, maxWidth: 45),
+        border: InputBorder.none,
+        hintText: context.translate.searchSurahJuzOrPage,
+        hintStyle: context.theme.textTheme.titleLarge
+            ?.copyWith(color: AppColors.grey5),
+      ),
+      cursorColor: AppColors.white,
+      textAlignVertical: TextAlignVertical.center,
+    );
   }
 }
 

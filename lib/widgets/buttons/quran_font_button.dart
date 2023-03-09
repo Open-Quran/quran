@@ -1,10 +1,14 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/widgets/title.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../title.dart';
 
 class QuranFontButton extends StatelessWidget {
-  const QuranFontButton({super.key, required this.selectedFont, required this.onChangeArabicFont});
+  const QuranFontButton(
+      {super.key,
+      required this.selectedFont,
+      required this.onChangeArabicFont});
 
   final String selectedFont;
   final Function(String) onChangeArabicFont;
@@ -34,7 +38,8 @@ class QuranFontButton extends StatelessWidget {
             bottom: Utils.isSmallPhone(context) ? 10 : kSizeL,
           ),
           decoration: const BoxDecoration(
-              color: AppColors.black, borderRadius: BorderRadius.all(Radius.circular(8))),
+              color: AppColors.black,
+              borderRadius: BorderRadius.all(Radius.circular(8))),
           child: Center(
             child: DropdownButtonFormField(
               alignment: AlignmentDirectional.topStart,
@@ -44,8 +49,10 @@ class QuranFontButton extends StatelessWidget {
                 contentPadding: EdgeInsets.only(right: kSizeL, left: kSizeM),
               ),
               value: selectedFont,
-              items: Fonts.arabicFontNames.map<DropdownMenuItem<String>>((String mascot) {
-                return DropdownMenuItem<String>(value: mascot, child: Text(mascot));
+              items: Fonts.arabicFontNames
+                  .map<DropdownMenuItem<String>>((String mascot) {
+                return DropdownMenuItem<String>(
+                    value: mascot, child: Text(mascot));
               }).toList(),
               onChanged: dropdownCallback,
               style: context.theme.textTheme.bodyMedium,

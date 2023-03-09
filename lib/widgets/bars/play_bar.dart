@@ -1,12 +1,15 @@
 import 'dart:ui';
 import 'package:audio_video_progress_bar/audio_video_progress_bar.dart';
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/position_data.dart';
-import 'package:fabrikod_quran/providers/player_provider.dart';
-import 'package:fabrikod_quran/widgets/popup_menus/play_bar_more_popup_menu.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/enums.dart';
+import '../../constants/images.dart';
+import '../../models/position_data.dart';
+import '../../providers/player_provider.dart';
+import '../popup_menus/play_bar_more_popup_menu.dart';
 
 class PlayBar extends StatelessWidget {
   const PlayBar({Key? key, this.padding}) : super(key: key);
@@ -72,8 +75,9 @@ class PlayBar extends StatelessWidget {
                         onPressed: context.read<PlayerProvider>().previous,
                         icon: SvgPicture.asset(
                           ImageConstants.previousIcon,
-                          color:
-                              context.watch<PlayerProvider>().isPrevious ? null : AppColors.grey11,
+                          color: context.watch<PlayerProvider>().isPrevious
+                              ? null
+                              : AppColors.grey11,
                         ),
                       ),
                       buildPlayAndPauseIcon(context),
@@ -81,7 +85,9 @@ class PlayBar extends StatelessWidget {
                         onPressed: context.read<PlayerProvider>().next,
                         icon: SvgPicture.asset(
                           ImageConstants.nextIcon,
-                          color: context.watch<PlayerProvider>().isNext ? null : AppColors.grey11,
+                          color: context.watch<PlayerProvider>().isNext
+                              ? null
+                              : AppColors.grey11,
                         ),
                       ),
                       IconButton(
@@ -100,12 +106,16 @@ class PlayBar extends StatelessWidget {
   }
 
   IconButton buildPlayAndPauseIcon(BuildContext context) {
-    bool isPause = context.watch<PlayerProvider>().playerState == EPlayerState.pause;
+    bool isPause =
+        context.watch<PlayerProvider>().playerState == EPlayerState.pause;
     return IconButton(
       onPressed: () {
-        isPause ? context.read<PlayerProvider>().resume() : context.read<PlayerProvider>().pause();
+        isPause
+            ? context.read<PlayerProvider>().resume()
+            : context.read<PlayerProvider>().pause();
       },
-      icon: SvgPicture.asset(isPause ? ImageConstants.play : ImageConstants.pauseIcon),
+      icon: SvgPicture.asset(
+          isPause ? ImageConstants.play : ImageConstants.pauseIcon),
     );
   }
 }

@@ -1,11 +1,11 @@
 import 'dart:io';
 
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/database/local_db.dart';
-import 'package:fabrikod_quran/managers/translation_download_manager.dart';
-import 'package:fabrikod_quran/models/translation.dart';
-import 'package:fabrikod_quran/services/asset_quran_service.dart';
-import 'package:fabrikod_quran/services/network_service.dart';
+import '../constants/enums.dart';
+import '../database/local_db.dart';
+import '../managers/translation_download_manager.dart';
+import '../models/translation.dart';
+import 'asset_quran_service.dart';
+import 'network_service.dart';
 
 class TranslationService {
   /// Class constructor
@@ -35,7 +35,7 @@ class TranslationService {
     var authors = await TranslationDownloadManager.getTranslationAuthors();
     for (var element in authors) {
       TranslationAuthor? author = _getTranslationAuthor(element.resourceId);
-      if(author != null){
+      if (author != null) {
         author.isTranslationSelected = element.isTranslationSelected;
         author.verseTranslations = element.verseTranslations;
         author.verseTranslationState = EVerseTranslationState.downloaded;
@@ -81,13 +81,14 @@ class TranslationService {
 
   /// Get verse translation names
   String translationsName(int resourceId) {
-    var value =
-        selectedTranslationAuthors.firstWhere((element) => element.resourceId == resourceId);
+    var value = selectedTranslationAuthors
+        .firstWhere((element) => element.resourceId == resourceId);
     return value.translationName ?? "";
   }
 
   /// Get translations from assets
-  Future _getVerseTranslationListFromAsset(String countryCode, int resourceId) async {
+  Future _getVerseTranslationListFromAsset(
+      String countryCode, int resourceId) async {
     List<VerseTranslation> verseTranslations =
         await AssetQuranService.getVerseTranslationList(countryCode);
     TranslationAuthor? translationAuthor = _getTranslationAuthor(resourceId);
@@ -112,10 +113,12 @@ class TranslationService {
   }
 
   /// Downloading translations from Quran.com API V4
-  Future<bool> downloadTranslationFromNetwork(TranslationAuthor translationAuthor) async {
+  Future<bool> downloadTranslationFromNetwork(
+      TranslationAuthor translationAuthor) async {
     try {
       translationAuthor.verseTranslations =
-          await NetworkService.fetchVerseTranslationList(translationAuthor.resourceId!);
+          await NetworkService.fetchVerseTranslationList(
+              translationAuthor.resourceId!);
 
       for (var element in translationAuthor.verseTranslations) {
         element.translationName = translationAuthor.translationName;

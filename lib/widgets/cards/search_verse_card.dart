@@ -1,7 +1,9 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/surah_model.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
 import 'package:flutter/material.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/padding.dart';
+import '../../models/verse_model.dart';
 
 class SearchVerseCard extends StatelessWidget {
   /// [SurahModel]
@@ -70,8 +72,8 @@ class SearchVerseCard extends StatelessWidget {
       verseModel.surahNameArabic ?? "",
       overflow: TextOverflow.ellipsis,
       textDirection: TextDirection.rtl,
-      style: context.theme.textTheme.titleLarge!
-          .copyWith(color: AppColors.white5),
+      style:
+          context.theme.textTheme.titleLarge!.copyWith(color: AppColors.white5),
     );
   }
 

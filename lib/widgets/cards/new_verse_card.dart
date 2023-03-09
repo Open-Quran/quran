@@ -1,12 +1,16 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/translation.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/providers/surah_details_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
 
+import '../../constants/colors.dart';
+import '../../constants/enums.dart';
+import '../../constants/padding.dart';
+import '../../models/translation.dart';
+import '../../models/verse_model.dart';
+import '../../providers/quran_provider.dart';
+import '../../providers/surah_details_provider.dart';
+import '../../utils/utils.dart';
 import '../pop_up/verse_pop_up_menu.dart';
 
 class VerseCard extends StatelessWidget {

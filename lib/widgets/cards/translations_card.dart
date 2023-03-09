@@ -1,9 +1,12 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/widgets/custom_space.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../../constants/images.dart';
+import '../../constants/padding.dart';
+import '../../providers/quran_provider.dart';
+import '../custom_space.dart';
 
 class TranslationsCard extends StatelessWidget {
   final Function() onBack;
@@ -15,9 +18,16 @@ class TranslationsCard extends StatelessWidget {
     return ListView.builder(
       physics: const NeverScrollableScrollPhysics(),
       shrinkWrap: true,
-      itemCount: context.watch<QuranProvider>().translationService.allTranslationCountry.length,
+      itemCount: context
+          .watch<QuranProvider>()
+          .translationService
+          .allTranslationCountry
+          .length,
       itemBuilder: (context, index) {
-        var allTranslation = context.read<QuranProvider>().translationService.allTranslationCountry;
+        var allTranslation = context
+            .read<QuranProvider>()
+            .translationService
+            .allTranslationCountry;
         return Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -25,13 +35,15 @@ class TranslationsCard extends StatelessWidget {
               icon: const Icon(Icons.arrow_back_ios),
               onPressed: onBack,
             ),
-            Text(allTranslation[index].name ?? "", style: context.theme.appBarTheme.titleTextStyle),
+            Text(allTranslation[index].name ?? "",
+                style: context.theme.appBarTheme.titleTextStyle),
             CustomSpace.normal(),
             ...allTranslation[index].translationsAuthor.map(
                   (e) => ListTile(
                     // onTap: () => context.read<QuranProvider>().selectedTranslation(e.resourceId),
                     visualDensity: const VisualDensity(vertical: -2),
-                    contentPadding: const EdgeInsets.symmetric(horizontal: kSizeM * 2),
+                    contentPadding:
+                        const EdgeInsets.symmetric(horizontal: kSizeM * 2),
                     dense: true,
                     title: Row(
                       children: [

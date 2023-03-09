@@ -1,14 +1,14 @@
-import 'package:fabrikod_quran/managers/surah_detail_navigation_manager.dart';
-import 'package:fabrikod_quran/models/surah_model.dart';
-import 'package:fabrikod_quran/models/translation.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
 import '../constants/enums.dart';
+import '../managers/surah_detail_navigation_manager.dart';
+import '../models/surah_model.dart';
+import '../models/translation.dart';
+import '../models/verse_model.dart';
 import '../utils/utils.dart';
 import '../widgets/tags/custom_tag_list.dart';
+import 'quran_provider.dart';
 
 class SearchProvider extends ChangeNotifier {
   /// Class constructor
@@ -111,10 +111,15 @@ class SearchProvider extends ChangeNotifier {
     List<VerseModel> searchResult = [];
     for (var verse in searchList) {
       if (verse.text!.toLowerCase().contains(queryText) ||
-          searchListSurah[verse.surahId! - 1].nameTranslated!.toLowerCase().contains(queryText)) {
+          searchListSurah[verse.surahId! - 1]
+              .nameTranslated!
+              .toLowerCase()
+              .contains(queryText)) {
         if (searchListSurah[verse.surahId! - 1].id == (verse.surahId!)) {
-          verse.surahNameTranslated = searchListSurah[verse.surahId! - 1].nameSimple;
-          verse.surahNameArabic = searchListSurah[verse.surahId! - 1].nameArabic;
+          verse.surahNameTranslated =
+              searchListSurah[verse.surahId! - 1].nameSimple;
+          verse.surahNameArabic =
+              searchListSurah[verse.surahId! - 1].nameArabic;
         }
         searchResult.add(verse);
       }
@@ -205,19 +210,22 @@ class SearchProvider extends ChangeNotifier {
         filterJuzNumber != null;
   }
 
-  Future<void> goToSurah(BuildContext context, int surahId, bool isHome, {int verseId = 1}) async {
+  Future<void> goToSurah(BuildContext context, int surahId, bool isHome,
+      {int verseId = 1}) async {
     if (!isHome) Navigator.pop(context);
-   await SurahDetailNavigationManager.goToSurah(context, surahId, verseId: verseId);
-   notifyListeners();
+    await SurahDetailNavigationManager.goToSurah(context, surahId,
+        verseId: verseId);
+    notifyListeners();
   }
 
   Future<void> goToJuz(BuildContext context, int juzId, bool isHome) async {
     if (!isHome) Navigator.pop(context);
-   await SurahDetailNavigationManager.goToJuz(context, juzId);
+    await SurahDetailNavigationManager.goToJuz(context, juzId);
     notifyListeners();
   }
 
-  Future<void> goToMushaf(BuildContext context, int pageNumber, bool isHome) async {
+  Future<void> goToMushaf(
+      BuildContext context, int pageNumber, bool isHome) async {
     if (!isHome) Navigator.pop(context);
     await SurahDetailNavigationManager.goToMushaf(context, pageNumber);
     notifyListeners();

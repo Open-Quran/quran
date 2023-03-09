@@ -1,6 +1,7 @@
-import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/cupertino.dart';
+import 'package:the_open_quran/constants/constants.dart';
 
+import '../../constants/enums.dart';
 import '../title.dart';
 
 class ReadOptionsToggleButton extends StatelessWidget {

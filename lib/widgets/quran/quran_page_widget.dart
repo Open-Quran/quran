@@ -1,11 +1,14 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/mushaf_backgrund_model.dart';
-import 'package:fabrikod_quran/models/surah_model.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/widgets/basmala_title.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../../constants/enums.dart';
+import '../../constants/padding.dart';
+import '../../models/mushaf_backgrund_model.dart';
+import '../../models/surah_model.dart';
+import '../../models/verse_model.dart';
+import '../../providers/quran_provider.dart';
+import '../basmala_title.dart';
 
 class QuranPageWidget extends StatelessWidget {
   const QuranPageWidget({

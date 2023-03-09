@@ -1,8 +1,8 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/providers/search_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
+import 'package:the_open_quran/providers/search_provider.dart';
 
 /// Search suggestions
 const List<String> searchSuggestions = [
@@ -21,14 +21,13 @@ class CustomSearchBar extends StatelessWidget {
   final FocusNode? focusNode;
   final void Function(String) onSubmit;
 
-  const CustomSearchBar(
-      {Key? key,
-      this.textEditingController,
-      this.formKey,
-      this.focusNode,
-      required this.onSubmit,
-      })
-      : super(key: key);
+  const CustomSearchBar({
+    Key? key,
+    this.textEditingController,
+    this.formKey,
+    this.focusNode,
+    required this.onSubmit,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +50,8 @@ class CustomSearchBar extends StatelessWidget {
       margin: const EdgeInsets.only(bottom: 0),
       decoration: BoxDecoration(
           border: Border(
-              bottom: BorderSide(color: context.theme.cardTheme.color!.withOpacity(0.1)))),
+              bottom: BorderSide(
+                  color: context.theme.cardTheme.color!.withOpacity(0.1)))),
       child: Align(
         alignment: Alignment.centerLeft,
         child: Text(
@@ -98,7 +98,7 @@ class CustomSearchBar extends StatelessWidget {
       child: Container(
         margin: const EdgeInsets.only(top: 8),
         width: constraints.maxWidth,
-        decoration:  BoxDecoration(
+        decoration: BoxDecoration(
           boxShadow: [
             BoxShadow(
               color: context.theme.dividerColor,
@@ -140,7 +140,6 @@ class CustomSearchBar extends StatelessWidget {
 
   Widget _buildInput(BuildContext context, TextEditingController textController,
       FocusNode focusNode, _) {
-
     context.read<SearchProvider>().textEditingController = textController;
     context.read<SearchProvider>().searchBarFocusNode = focusNode;
 

@@ -1,14 +1,16 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/database/local_db.dart';
-import 'package:fabrikod_quran/managers/translation_download_manager.dart';
-import 'package:fabrikod_quran/models/local_setting_model.dart';
-import 'package:fabrikod_quran/models/mushaf_backgrund_model.dart';
-import 'package:fabrikod_quran/models/surah_model.dart';
-import 'package:fabrikod_quran/models/translation.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/services/asset_quran_service.dart';
-import 'package:fabrikod_quran/services/translation_service.dart';
 import 'package:flutter/cupertino.dart';
+
+import '../constants/colors.dart';
+import '../constants/enums.dart';
+import '../database/local_db.dart';
+import '../managers/translation_download_manager.dart';
+import '../models/local_setting_model.dart';
+import '../models/mushaf_backgrund_model.dart';
+import '../models/surah_model.dart';
+import '../models/translation.dart';
+import '../models/verse_model.dart';
+import '../services/asset_quran_service.dart';
+import '../services/translation_service.dart';
 
 class QuranProvider extends ChangeNotifier {
   /// Class Constructor
@@ -63,14 +65,18 @@ class QuranProvider extends ChangeNotifier {
   /// Selecting translation
   /// If translation is not downloaded - Download it
   /// If translation is downloaded then select translation
-  Future<void> onTapTranslationAuthorCard(TranslationAuthor translationAuthor) async {
+  Future<void> onTapTranslationAuthorCard(
+      TranslationAuthor translationAuthor) async {
     switch (translationAuthor.verseTranslationState) {
       case EVerseTranslationState.download:
-        translationAuthor.verseTranslationState = EVerseTranslationState.downloading;
-        notifyListeners();
-        var result = await translationService.downloadTranslationFromNetwork(translationAuthor);
         translationAuthor.verseTranslationState =
-            result ? EVerseTranslationState.downloaded : EVerseTranslationState.download;
+            EVerseTranslationState.downloading;
+        notifyListeners();
+        var result = await translationService
+            .downloadTranslationFromNetwork(translationAuthor);
+        translationAuthor.verseTranslationState = result
+            ? EVerseTranslationState.downloaded
+            : EVerseTranslationState.download;
 
         break;
       case EVerseTranslationState.downloading:

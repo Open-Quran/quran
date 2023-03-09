@@ -1,6 +1,7 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/database/local_db.dart';
 import 'package:flutter/material.dart';
+
+import '../constants/enums.dart';
+import '../database/local_db.dart';
 
 class AppSettingsProvider extends ChangeNotifier {
   /// Class constructor

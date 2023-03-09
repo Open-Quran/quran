@@ -1,6 +1,9 @@
-import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/padding.dart';
 
 class VerseMenuItem extends StatelessWidget {
   const VerseMenuItem(

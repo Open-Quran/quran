@@ -1,11 +1,15 @@
-import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/padding.dart';
 
 class GridCard extends StatelessWidget {
   final String text;
   final Function()? onTap;
 
-  const GridCard({Key? key, required this.text, required this.onTap}) : super(key: key);
+  const GridCard({Key? key, required this.text, required this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +26,8 @@ class GridCard extends StatelessWidget {
           child: Text(
             text,
             textAlign: TextAlign.center,
-            style: context.theme.textTheme.displaySmall?.copyWith(color: AppColors.grey),
+            style: context.theme.textTheme.displaySmall
+                ?.copyWith(color: AppColors.grey),
           ),
         ),
       ),

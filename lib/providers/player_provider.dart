@@ -1,11 +1,14 @@
 import 'package:audio_service/audio_service.dart';
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/handlers/audio_player_handler.dart';
-import 'package:fabrikod_quran/models/position_data.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
+
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:rxdart/rxdart.dart';
+
+import '../constants/enums.dart';
+import '../constants/restful.dart';
+import '../handlers/audio_player_handler.dart';
+import '../models/position_data.dart';
+import '../models/verse_model.dart';
 
 class PlayerProvider extends ChangeNotifier {
   /// Audio Player
@@ -35,6 +38,7 @@ class PlayerProvider extends ChangeNotifier {
   PlayerProvider() {
     player.playerStateStream.listen(checkIfCompleted);
   }
+
   /// Listens the Player's Position
   Stream<PositionData> get positionDataStream =>
       Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
@@ -104,7 +108,8 @@ class PlayerProvider extends ChangeNotifier {
 
   /// Is selected verse playing?
   bool isPlayingVerse(String verseKey) {
-    if (playerState == EPlayerState.stop || verseListToPlay.isEmpty) return false;
+    if (playerState == EPlayerState.stop || verseListToPlay.isEmpty)
+      return false;
     return verseKey == verseListToPlay[playerIndex].verseKey;
   }
 

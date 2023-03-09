@@ -1,7 +1,9 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/widgets/cards/verse_menu_item.dart';
 import 'package:flutter/material.dart';
+import 'package:the_open_quran/constants/constants.dart';
+import 'package:the_open_quran/widgets/cards/verse_menu_item.dart';
+
+import '../../constants/enums.dart';
+import '../../models/verse_model.dart';
 
 /// CustomGestureDetector takes globalKey to identify child
 class VersePopUpMenu extends StatelessWidget {

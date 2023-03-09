@@ -1,14 +1,16 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/providers/home_provider.dart';
-import 'package:fabrikod_quran/providers/surah_details_provider.dart';
-import 'package:fabrikod_quran/widgets/bars/search_bar.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
 
+import '../../constants/colors.dart';
+import '../../constants/enums.dart';
+import '../../constants/images.dart';
+import '../../constants/padding.dart';
 import '../../providers/search_provider.dart';
 import '../animation/fade_indexed_stack.dart';
+import '../bars/search_bar.dart';
 
 class JuzSurahSearchToggleButton extends StatelessWidget {
   /// Toggle options Juz or Surah
@@ -24,13 +26,13 @@ class JuzSurahSearchToggleButton extends StatelessWidget {
   /// Index of juz/surah and search toggle buttons
   final int toggleSearchButtonIndex;
 
-  const JuzSurahSearchToggleButton(
-      {super.key,
-      required this.toggleListType,
-      required this.onChanged,
-      required this.toggleSearchButtonIndex,
-      required this.onTapSearchButton,
-      });
+  const JuzSurahSearchToggleButton({
+    super.key,
+    required this.toggleListType,
+    required this.onChanged,
+    required this.toggleSearchButtonIndex,
+    required this.onTapSearchButton,
+  });
 
   @override
   Widget build(BuildContext context) {
