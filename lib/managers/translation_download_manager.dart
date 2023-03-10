@@ -32,10 +32,8 @@ class TranslationDownloadManager {
     if (!fl.existsSync()) return [];
     final content = await fl.readAsString();
     final List<dynamic> jsonData = jsonDecode(content) ?? [];
-    final List<TranslationAuthor> translationAuthors = jsonData
-        .map((e) => TranslationAuthor.fromJson(e as Map<String, dynamic>))
-        .toList()
-        .cast<TranslationAuthor>();
+    final List<TranslationAuthor> translationAuthors =
+        jsonData.map((e) => TranslationAuthor.fromJson(e as Map<String, dynamic>)).toList().cast<TranslationAuthor>();
     return translationAuthors;
   }
 
@@ -56,6 +54,18 @@ class TranslationDownloadManager {
     var index = translationAuthors.indexWhere((element) => element.resourceId == resourceId);
     if (index == -1) return;
     translationAuthors[index].isTranslationSelected = newState;
+    List<Map<String, dynamic>> list = translationAuthors.map((e) => e.toJson()).toList();
+    String jsonData = jsonEncode(list);
+    final fl = await file;
+    fl.writeAsString(jsonData);
+  }
+
+  /// Delete a Downloaded Translation
+  static Future<void> deleteTranslationAuthor(TranslationAuthor translationAuthor) async {
+    var translationAuthors = await getTranslationAuthors();
+    var index = translationAuthors.indexWhere((element) => element.resourceId == translationAuthor.resourceId);
+    if (index == -1) return;
+    translationAuthors.removeAt(index);
     List<Map<String, dynamic>> list = translationAuthors.map((e) => e.toJson()).toList();
     String jsonData = jsonEncode(list);
     final fl = await file;
