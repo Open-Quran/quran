@@ -121,7 +121,6 @@ May Allah reward all the awesome [Contributors](https://github.com/fabrikod/the-
 - [ ] https://github.com/fabrikod/the-open-quran/issues/82 Check connectivity of the internet
 - [ ] https://github.com/fabrikod/the-open-quran/issues/83 Quick navigation to the specific page
 - [ ] https://github.com/fabrikod/the-open-quran/issues/84 Add speed options to the playing bar
-- [ ] https://github.com/fabrikod/the-open-quran/issues/85 Delete translations from the downloaded list
 - [ ] https://github.com/fabrikod/the-open-quran/issues/86 Add multiple recetires auido
 - [ ] https://github.com/fabrikod/the-open-quran/issues/87 Search with the words which are in Surah
 
