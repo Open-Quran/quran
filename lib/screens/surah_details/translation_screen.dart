@@ -27,15 +27,13 @@ class _TranslationScreenState extends State<TranslationScreen> {
   final ItemScrollController itemScrollController = ItemScrollController();
 
   /// Item position listener of Verse list
-  final ItemPositionsListener itemPositionsListener =
-      ItemPositionsListener.create();
+  final ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      itemScrollController.jumpTo(
-          index: context.read<SurahDetailsProvider>().jumpToVerseIndex);
+      itemScrollController.jumpTo(index: context.read<SurahDetailsProvider>().jumpToVerseIndex);
       itemPositionsListener.itemPositions.addListener(scrollListener);
       listenToPlayer();
     });
@@ -46,8 +44,7 @@ class _TranslationScreenState extends State<TranslationScreen> {
     context.read<PlayerProvider>().addListener(() {
       if (!mounted) return;
       if (context.read<PlayerProvider>().playerState == EPlayerState.playing) {
-        itemScrollController.jumpTo(
-            index: context.read<PlayerProvider>().playerIndex);
+        itemScrollController.jumpTo(index: context.read<PlayerProvider>().playerIndex);
       }
     });
   }
@@ -96,23 +93,17 @@ class _TranslationScreenState extends State<TranslationScreen> {
     return VerseCard(
       verseModel: verse,
       arabicFontFamily: Fonts.uthmanicIcon,
-      verseTranslations: context
-          .watch<QuranProvider>()
-          .translationService
-          .translationsOfVerse(verse.id!),
+      verseTranslations: context.watch<QuranProvider>().translationService.translationsOfVerse(verse.id!),
       readOptions: context.watch<QuranProvider>().localSetting.readOptions,
-      textScaleFactor:
-          context.watch<QuranProvider>().localSetting.textScaleFactor,
-      translationFontFamily: Fonts.getTranslationFont(
-          context.watch<QuranProvider>().localSetting.fontType),
-      isPlaying:
-          context.watch<PlayerProvider>().isPlayingVerse(verse.verseKey ?? ""),
+      textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
+      translationFontFamily: Fonts.getTranslationFont(context.watch<QuranProvider>().localSetting.fontType),
+      isPlaying: context.watch<PlayerProvider>().isPlayingVerse(verse.verseKey ?? ""),
       playFunction: (verse, isPlaying) {
         context.read<SurahDetailsProvider>().onTapVerseCardPlayOrPause(
               index,
               isPlaying,
             );
-      },
+      }, //Commit
       isFavorite: context.watch<FavoritesProvider>().isFavoriteVerse(verse),
       favoriteFunction: context.read<FavoritesProvider>().onTapFavoriteButton,
       isBookmark: context.watch<BookmarkProvider>().isBookmark(
@@ -123,8 +114,7 @@ class _TranslationScreenState extends State<TranslationScreen> {
         context.read<SurahDetailsProvider>().shareVerse(verseModel, index);
       },
       selectedVerseKey: context.watch<SurahDetailsProvider>().selectedVerseKey,
-      changeSelectedVerseKey:
-          context.read<SurahDetailsProvider>().changeSelectedVerseKey,
+      changeSelectedVerseKey: context.read<SurahDetailsProvider>().changeSelectedVerseKey,
     );
   }
 }
