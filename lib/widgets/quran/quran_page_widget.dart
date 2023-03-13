@@ -16,9 +16,11 @@ class QuranPageWidget extends StatelessWidget {
     required this.versesOfPage,
     this.onTap,
     this.textScaleFactor = 1.0,
+    this.isPlaying = false,
     required this.fontTypeArabic,
     required this.layoutOptions,
     required this.surahDetailsPageTheme,
+    required this.playFunction,
   }) : super(key: key);
 
   final List<SurahModel> versesOfPage;
@@ -27,6 +29,8 @@ class QuranPageWidget extends StatelessWidget {
   final String fontTypeArabic;
   final ELayoutOptions layoutOptions;
   final SurahDetailsPageThemeModel surahDetailsPageTheme;
+  final bool isPlaying;
+  final Function(VerseModel verseModel, bool isPlaying) playFunction;
 
   @override
   Widget build(BuildContext context) {
@@ -53,8 +57,7 @@ class QuranPageWidget extends StatelessWidget {
         return Column(
           children: [
             BasmalaTitle(verseKey: verses.first.verseKey ?? ""),
-            buildVersesText(context, verses, textScaleFactor, layoutOptions,
-                fontTypeArabic),
+            buildVersesText(context, verses, textScaleFactor, layoutOptions, fontTypeArabic),
           ],
         );
       },
@@ -70,18 +73,13 @@ class QuranPageWidget extends StatelessWidget {
   ) {
     return RichText(
       textDirection: TextDirection.rtl,
-      textAlign: layoutOptions == ELayoutOptions.justify
-          ? TextAlign.justify
-          : TextAlign.right,
+      textAlign: layoutOptions == ELayoutOptions.justify ? TextAlign.justify : TextAlign.right,
       textScaleFactor: textScaleFactor,
       text: TextSpan(
         style: context.theme.textTheme.headlineLarge?.copyWith(
             height: 2.4,
             fontFamily: Fonts.getArabicFont(fontTypeArabic),
-            color: context
-                .watch<QuranProvider>()
-                .surahDetailsPageThemeColor
-                .textColor),
+            color: context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor),
         children: verses
             .map(
               (e) => TextSpan(
@@ -89,14 +87,13 @@ class QuranPageWidget extends StatelessWidget {
                   TextSpan(text: e.text!),
                   TextSpan(
                     text: Utils.getArabicVerseNo(e.verseNumber.toString()),
-                    style: context.theme.textTheme.headlineLarge?.copyWith(
-                        fontFamily: Fonts.uthmanicIcon,
-                        fontSize: 27,
-                        height: 0,
-                        color: context
-                            .watch<QuranProvider>()
-                            .surahDetailsPageThemeColor
-                            .textColor),
+                    style: isPlaying
+                        ? context.theme.textTheme.headlineLarge?.copyWith(
+                            fontFamily: Fonts.uthmanicIcon,
+                            fontSize: 27,
+                            height: 0,
+                            color: context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor)
+                        : context.theme.textTheme.displayMedium,
                   ),
                 ],
               ),
@@ -118,15 +115,13 @@ class QuranPageWidget extends StatelessWidget {
         children: [
           Text(
             "${context.translate.juz} ${verse.juzNumber} | ${context.translate.hizb} ${verse.hizbNumber} - ${context.translate.page} ${verse.pageNumber}",
-            style: context.theme.textTheme.bodySmall?.copyWith(
-                color: surahDetailsPageTheme.transparentTextColor,
-                letterSpacing: 0.15),
+            style: context.theme.textTheme.bodySmall
+                ?.copyWith(color: surahDetailsPageTheme.transparentTextColor, letterSpacing: 0.15),
           ),
           Text(
             verse.pageNumber?.quranPageNumber ?? "",
-            style: context.theme.textTheme.bodyMedium?.copyWith(
-                color: surahDetailsPageTheme.transparentVectorColor,
-                letterSpacing: 0.04),
+            style: context.theme.textTheme.bodyMedium
+                ?.copyWith(color: surahDetailsPageTheme.transparentVectorColor, letterSpacing: 0.04),
           ),
         ],
       ),

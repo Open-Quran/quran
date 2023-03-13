@@ -2,7 +2,9 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 
+import '../../constants/enums.dart';
 import '../../constants/padding.dart';
+import '../../providers/player_provider.dart';
 import '../../providers/quran_provider.dart';
 import '../../providers/surah_details_provider.dart';
 import '../../widgets/quran/quran_page_widget.dart';
@@ -19,17 +21,25 @@ class _ReadingScreenState extends State<ReadingScreen> {
   final ItemScrollController itemScrollController = ItemScrollController();
 
   /// Item position listener of Verse list
-  final ItemPositionsListener itemPositionsListener =
-      ItemPositionsListener.create();
+  final ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      itemScrollController.jumpTo(
-          index:
-              context.read<SurahDetailsProvider>().jumpToMushafPageListIndex);
+      itemScrollController.jumpTo(index: context.read<SurahDetailsProvider>().jumpToMushafPageListIndex);
       itemPositionsListener.itemPositions.addListener(scrollListener);
+      listenToPlayer();
+    });
+  }
+
+  /// Listen To Player
+  void listenToPlayer() {
+    context.read<PlayerProvider>().addListener(() {
+      if (!mounted) return;
+      if (context.read<PlayerProvider>().playerState == EPlayerState.playing) {
+        itemScrollController.jumpTo(index: context.read<PlayerProvider>().playerIndex);
+      }
     });
   }
 
@@ -52,19 +62,20 @@ class _ReadingScreenState extends State<ReadingScreen> {
         padding: const EdgeInsets.symmetric(horizontal: kSizeL),
         physics: const ClampingScrollPhysics(),
         itemBuilder: (context, index) {
-          var versesOfPage =
-              context.watch<SurahDetailsProvider>().mushafPageList[index];
+          var versesOfPage = context.watch<SurahDetailsProvider>().mushafPageList[index];
           return QuranPageWidget(
             versesOfPage: versesOfPage,
-            layoutOptions:
-                context.watch<QuranProvider>().localSetting.layoutOptions,
-            fontTypeArabic:
-                context.watch<QuranProvider>().localSetting.fontTypeArabic,
-            textScaleFactor:
-                context.watch<QuranProvider>().localSetting.textScaleFactor,
+            layoutOptions: context.watch<QuranProvider>().localSetting.layoutOptions,
+            fontTypeArabic: context.watch<QuranProvider>().localSetting.fontTypeArabic,
+            textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
             onTap: context.read<SurahDetailsProvider>().changeReadingMode,
-            surahDetailsPageTheme:
-                context.watch<QuranProvider>().surahDetailsPageThemeColor,
+            surahDetailsPageTheme: context.watch<QuranProvider>().surahDetailsPageThemeColor,
+            playFunction: (verse, isPlaying) {
+              context.read<SurahDetailsProvider>().onTapVerseCardPlayOrPause(
+                    index,
+                    isPlaying,
+                  );
+            },
           );
         },
         separatorBuilder: (context, index) => const SizedBox(height: kSizeXL),
