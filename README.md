@@ -36,7 +36,7 @@ Please get in touch with us!
 ### App Downloads
 
 To try the app you can download it from the link below:
-* [Download APK File](https://play.google.com](https://github.com/Open-Quran/quran/releases/tag/the-open-quran-v1.0.0-alpha)
+* [Download APK File](https://github.com/Open-Quran/quran/releases/tag/the-open-quran-v1.0.0-alpha)
 
 
 ### Installation
