@@ -16,7 +16,7 @@
 # The Open Qur'an - Mobile App
 
 A demonstration app for Flutter that targets iOS, Android and shows how it can give a fantastic cross-platform experience.
-The Open Qur'an App was carefully built by [fabrikod](https://fabrikod.com) to take into account user expectations, input methods, and idioms for each platform, guaranteeing it is comfortable on all of them. 
+The Open Qur'an App was carefully built by [fabrikod](https://fabrikod.com) team to take into account user expectations, input methods, and idioms for each platform, guaranteeing it is comfortable on all of them. 
 
 
 ### About Fabrikod
