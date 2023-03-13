@@ -5,33 +5,44 @@ enum EBottomNavBarItems { home, more }
 enum EThemeModes { light, dark, quran, green }
 
 /// Language Modes
-enum ESupportedLanguage { en, tr }
+enum ESupportedLanguage { en, tr, ar }
 
 /// Different types of quran
 enum EQuranType { translation, reading }
 
 /// Different types of reading
-enum EReadingType { all, arabic, translation }
+enum EReadOptions { surah, translation, surahAndTranslation }
 
 /// Toggle button text styles
 enum EToggleButtonTextStyle { selected, disabled }
 
 /// Surah Detail screen Mode
-enum ESurahDetailScreenMod { surah, juz, sajda }
+enum ESurahDetailScreenMode { surah, juz }
 
-/// Different types of BookMark
-enum EBookMarkType { verse, page }
+/// Bookmarking verse or page
+enum EBookMarkType { verse, page, surah }
+
+/// Recent visited screen type
+/// [ReadingScreen] or [TranslationScreen]
+enum ERecentVisitedType { juz, page, surah }
 
 /// Displaying Juz as list and grid
 enum EJuzListType { list, grid }
 
 /// Home switch toggle buttons
-enum EHomeToggleOptions {juz, surah}
+enum EJuzSurahToggleOptions { juz, surah }
 
-enum EToggleSearchOptions {searchField, toggles}
+/// Home switch toggle button between toggles and search bar
+enum EToggleSearchOptions { toggles, searchField }
 
-enum EReadOptions { surah, translation, surahAndTranslation }
-
+/// Show/Hide translation
 enum ETranslationOptions { hide, show }
 
-enum ELayoutOptions { alignRight, justify }
+/// Reading alignment
+enum ELayoutOptions { right, justify }
+
+/// Different types of the Player State
+enum EPlayerState { stop, playing, pause }
+
+/// Download statuses for Verse Translations
+enum EVerseTranslationState { download, downloading, downloaded }

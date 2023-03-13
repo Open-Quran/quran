@@ -1,38 +1,43 @@
-import 'package:fabrikod_quran/constants/constants.dart';
+
+import '../constants/enums.dart';
 
 class ReadingSettingsModel {
-  late ESurahDetailScreenMod surahDetailScreenMod;
+  late ESurahDetailScreenMode surahDetailScreenMode;
   bool isReadingMode = false;
-  int surahIndex = 0;
-  int surahVerseIndex = 0;
-  int juzIndex = 0;
-  int sajdaIndex = 0;
+  int surahId = 1;
+  int verseId = 1;
+  int juzId = 1;
   int mushafPageNumber = 1;
 
   ReadingSettingsModel({
-    this.surahDetailScreenMod = ESurahDetailScreenMod.surah,
+    this.surahDetailScreenMode = ESurahDetailScreenMode.surah,
     this.isReadingMode = false,
-    this.surahIndex = 0,
-    this.surahVerseIndex = 0,
-    this.juzIndex = 0,
-    this.sajdaIndex = 0,
+    this.surahId = 1,
+    this.verseId = 1,
+    this.juzId = 1,
     this.mushafPageNumber = 1,
   });
 
+  int get surahIndex => surahId - 1;
+
+  set surahIndex(int value) {
+    surahId = value + 1;
+  }
+
+  int get verseIndex => verseId - 1;
+
+  set verseIndex(int value) {
+    verseId = value + 1;
+  }
+
+  int get juzIndex => juzId - 1;
+
+  set juzIndex(int value) {
+    juzId = value + 1;
+  }
+
   @override
   String toString() {
-    return ' surahDetailScreenMod: $surahDetailScreenMod, surahIndex: $surahIndex, surahVerseIndex: $surahVerseIndex, juzIndex: $juzIndex, sajdaIndex: $sajdaIndex, mushafPageNumber: $mushafPageNumber}';
-  }
-
-  ReadingSettingsModel.fromJson(Map<String, dynamic> json) {
-    surahDetailScreenMod = json['surahDetailScreenMod'] != null
-        ? ESurahDetailScreenMod.values[json['surahDetailScreenMod']]
-        : ESurahDetailScreenMod.surah;
-  }
-
-  Map<String, dynamic> toJson() {
-    final Map<String, dynamic> data = <String, dynamic>{};
-    data['surahDetailScreenMod'] = surahDetailScreenMod.index;
-    return data;
+    return 'ReadingSettingsModel{surahDetailScreenMode: $surahDetailScreenMode, isReadingMode: $isReadingMode, surahId: $surahId, verseId: $verseId, juzId: $juzId, mushafPageNumber: $mushafPageNumber}';
   }
 }

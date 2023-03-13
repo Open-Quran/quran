@@ -1,6 +1,7 @@
 import 'dart:convert';
 
-import 'package:fabrikod_quran/models/verse_model.dart';
+import 'package:the_open_quran/models/verse_model.dart';
+
 
 class SurahModel {
   int? id;
@@ -45,20 +46,29 @@ class SurahModel {
   }
 
   /// Filters and returns juz verses
-  List<VerseModel> juzVerses(int juzIndex) {
+  List<VerseModel> juzVerses(int juzId) {
     List<VerseModel> list = [];
     for (var element in verses) {
-      if (element.juzNumber == juzIndex + 1) list.add(element);
+      if (element.juzNumber == juzId) list.add(element);
     }
     return list;
+  }
+
+  /// Filters and returns juz Surahs
+  SurahModel? juzSurahs(int juzId) {
+    var verses = juzVerses(juzId);
+    if (verses.isEmpty) return null;
+    var newSurah = clone;
+    newSurah.verses = verses;
+    return newSurah;
   }
 
   /// Filters and return juz numbers of Surah
   List<int> get juzNumbers {
     List<int> juzNumbers = [];
     for (var element in verses) {
-      if(juzNumbers.contains(element.juzNumber)) continue;
-      if(element.juzNumber == null) continue;
+      if (juzNumbers.contains(element.juzNumber)) continue;
+      if (element.juzNumber == null) continue;
       juzNumbers.add(element.juzNumber!);
     }
     return juzNumbers;
@@ -66,7 +76,8 @@ class SurahModel {
 
   /// Get surahs of the selected mushaf page
   SurahModel? surahOfMushafPage(int mushafPageNo) {
-    var newVerses = verses.where((element) => element.pageNumber == mushafPageNo).toList();
+    var newVerses =
+        verses.where((element) => element.pageNumber == mushafPageNo).toList();
     if (newVerses.isEmpty) return null;
     var newSurah = clone;
     newSurah.verses = newVerses;
@@ -90,7 +101,15 @@ class SurahModel {
     startPage = json['start_page'];
     endPage = json['end_page'];
     if (json['verses'] != null) {
-      verses = json['verses'].map((e) => VerseModel.fromJson(e)).toList().cast<VerseModel>();
+      verses = json['verses']
+          .map((e) => VerseModel.fromJson(e))
+          .toList()
+          .cast<VerseModel>();
+      for (var element in verses) {
+        element.surahNameArabic = nameArabic;
+        element.surahNameTranslated = nameTranslated;
+        element.surahNameSimple = nameSimple;
+      }
     }
   }
 
@@ -104,8 +123,10 @@ class SurahModel {
     startPage = (json['pages'] as List).first;
     endPage = (json['pages'] as List)[1];
     if (json['verses'] != null) {
-      verses =
-          json['verses'].map((e) => VerseModel.fromJsonForQuranApi(e)).toList().cast<VerseModel>();
+      verses = json['verses']
+          .map((e) => VerseModel.fromJsonForQuranApi(e))
+          .toList()
+          .cast<VerseModel>();
     }
   }
 

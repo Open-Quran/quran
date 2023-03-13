@@ -1,11 +1,15 @@
-import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
+
+import '../constants/colors.dart';
+import '../constants/fonts.dart';
 
 /// Theme
 final ThemeData theme = ThemeData(
   appBarTheme: _appBarTheme,
   bottomNavigationBarTheme: _bottomNavigationBarThemeData,
   tabBarTheme: _tabBarTheme,
+  cardColor: const Color(0xFF414141),
+  cardTheme: const CardTheme(color: Color(0xFF414141)),
   sliderTheme: _sliderThemeData,
   toggleButtonsTheme: _toggleButtonsThemeData,
   drawerTheme: _drawerThemeData,
@@ -114,7 +118,10 @@ AppBarTheme get _appBarTheme {
 SliderThemeData get _sliderThemeData {
   return const SliderThemeData(
     trackHeight: 2,
-    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 5),
+    thumbColor: AppColors.white,
+    activeTrackColor: AppColors.white,
+    inactiveTrackColor: AppColors.black6,
+    thumbShape: RoundSliderThumbShape(enabledThumbRadius: 20),
     overlayShape: RoundSliderOverlayShape(
       overlayRadius: 0,
     ),
@@ -145,12 +152,15 @@ BottomNavigationBarThemeData get _bottomNavigationBarThemeData {
 /// [TabBarTheme] Tab Bar Theme Data
 TabBarTheme get _tabBarTheme {
   return const TabBarTheme(
-    labelStyle: TextStyle(fontSize: 16, fontWeight: FontWeight.w700, color: AppColors.white),
+    labelStyle: TextStyle(
+        fontSize: 16, fontWeight: FontWeight.w700, color: AppColors.white),
   );
 }
 
 /// [DrawerThemeData] Tab Bar Theme Data
 DrawerThemeData get _drawerThemeData {
   return const DrawerThemeData(
-      backgroundColor: AppColors.black4, scrimColor: Colors.transparent, elevation: 0);
+      backgroundColor: AppColors.black4,
+      scrimColor: Colors.transparent,
+      elevation: 0);
 }

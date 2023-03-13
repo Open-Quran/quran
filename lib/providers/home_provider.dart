@@ -1,10 +1,6 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/reading_settings_model.dart';
-import 'package:fabrikod_quran/providers/surah_details_provider.dart';
-import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
-import 'package:fabrikod_quran/widgets/cards/surah_card.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
+import '../constants/enums.dart';
 
 class HomeProvider extends ChangeNotifier {
   /// Home Screen Context
@@ -13,12 +9,12 @@ class HomeProvider extends ChangeNotifier {
   /// Juz List Type [EJuzListType]
   EJuzListType juzListType = EJuzListType.list;
 
-  /// Home toggle buttons
-  EHomeToggleOptions homeToggleOptionType = EHomeToggleOptions.juz;
+  /// Home juz and surah toggle buttons
+  EJuzSurahToggleOptions juzSurahToggleOptionType = EJuzSurahToggleOptions.juz;
 
   /// Change type Juz, Surah or Search
-  changeHomeToggleOptionType(EHomeToggleOptions newOptionType) {
-    homeToggleOptionType = newOptionType;
+  changeJuzOrSurahToggleOptionType(EJuzSurahToggleOptions newOptionType) {
+    juzSurahToggleOptionType = newOptionType;
     notifyListeners();
   }
 
@@ -30,38 +26,4 @@ class HomeProvider extends ChangeNotifier {
 
   /// Class Constructor
   HomeProvider(this._context);
-
-  /// Navigation to details when user clicks on [SurahCard]
-  void onTapSurahCard(int surahId) {
-    goToSurahDetailScreen(
-      ReadingSettingsModel(surahDetailScreenMod: ESurahDetailScreenMod.surah, surahIndex: surahId),
-    );
-  }
-
-  /// Navigation to details when user clicks on [GridCard]
-  void onTapJuzCard(int juzIndex) {
-    goToSurahDetailScreen(
-      ReadingSettingsModel(surahDetailScreenMod: ESurahDetailScreenMod.juz, juzIndex: juzIndex),
-    );
-  }
-
-  /// Navigation to Sajda ayat
-  void onTapSajdaCard(int surahId) {
-    goToSurahDetailScreen(
-      ReadingSettingsModel(surahDetailScreenMod: ESurahDetailScreenMod.sajda, sajdaIndex: surahId),
-    );
-  }
-
-  /// Navigates to the details page [SurahDetailsScreen]
-  void goToSurahDetailScreen(ReadingSettingsModel model) {
-    Navigator.push(
-      _context,
-      MaterialPageRoute(
-        builder: (context) => ChangeNotifierProvider(
-          create: (context) => SurahDetailsProvider(context, model),
-          child: const SurahDetailsScreen(),
-        ),
-      ),
-    );
-  }
 }

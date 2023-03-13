@@ -1,5 +1,6 @@
-import 'package:fabrikod_quran/widgets/app_bars/custom_app_bar.dart';
 import 'package:flutter/material.dart';
+
+import '../app_bars/custom_app_bar.dart';
 
 class CustomDrawerScaffold extends StatefulWidget {
   final String? appBarTitle;

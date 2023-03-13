@@ -1,13 +1,13 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/widgets/buttons/custom_toggle_buttons.dart';
-import 'package:fabrikod_quran/widgets/cards/custom_expanding_font_card.dart';
-import 'package:fabrikod_quran/widgets/cards/font_slider_card.dart';
-import 'package:fabrikod_quran/widgets/cards/selected_tranlations_card.dart';
-import 'package:fabrikod_quran/widgets/cards/translations_card.dart';
-import 'package:fabrikod_quran/widgets/custom_space.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../../providers/quran_provider.dart';
+import '../buttons/custom_toggle_buttons.dart';
+import '../cards/custom_expanding_font_card.dart';
+import '../cards/font_slider_card.dart';
+import '../cards/translations_card.dart';
+import '../custom_space.dart';
 
 class QuranStyleBottomSheet extends StatefulWidget {
   const QuranStyleBottomSheet({super.key});
@@ -18,7 +18,8 @@ class QuranStyleBottomSheet extends StatefulWidget {
       context: context,
       builder: (_) => const QuranStyleBottomSheet(),
       backgroundColor: Colors.transparent,
-      barrierColor: context.theme.toggleButtonsTheme.disabledColor?.withOpacity(0.3),
+      barrierColor:
+          context.theme.toggleButtonsTheme.disabledColor?.withOpacity(0.3),
       elevation: 0,
     );
   }
@@ -39,10 +40,11 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: const EdgeInsets.all(kPaddingM * 3),
+      padding: const EdgeInsets.all(kSizeM * 3),
       decoration: BoxDecoration(
         color: context.theme.backgroundColor,
-        borderRadius: const BorderRadius.vertical(top: Radius.circular(kPaddingXL)),
+        borderRadius:
+            const BorderRadius.vertical(top: Radius.circular(kSizeXL)),
       ),
       child: SingleChildScrollView(
         physics: const ClampingScrollPhysics(),
@@ -76,17 +78,18 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
   /// Translations
   Widget get buildSelectedTranslations {
     return Visibility(
-      visible: context.watch<QuranProvider>().localSetting.quranType == EQuranType.translation,
+      visible: context.watch<QuranProvider>().localSetting.quranType ==
+          EQuranType.translation,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           buildTitle(context.translate.selectedTranslation),
           CustomSpace.normal(),
-          SelectedTranslationsCard(
-            onTap: changedOpenTranslations,
-            activeTranslations:
-                context.watch<QuranProvider>().translationService.activeTranslations,
-          ),
+          // SelectedTranslationsCard(
+          //   onTap: changedOpenTranslations,
+          //   activeTranslations:
+          //       context.watch<QuranProvider>().translationService.activeTranslations,
+          // ),
           CustomSpace.big(),
         ],
       ),
@@ -101,15 +104,17 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
         context.translate.arabic,
         context.translate.translation
       ],
-      onTap: context.read<QuranProvider>().changeReadingType,
-      selectedIndex: context.watch<QuranProvider>().localSetting.readingType.index,
+      onTap: (index) {},
+      selectedIndex:
+          context.watch<QuranProvider>().localSetting.readOptions.index,
     );
   }
 
   /// Getting Reading Style Bar
   Widget get buildReadingStyle {
     return Visibility(
-      visible: context.watch<QuranProvider>().localSetting.quranType == EQuranType.translation,
+      visible: context.watch<QuranProvider>().localSetting.quranType ==
+          EQuranType.translation,
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
@@ -127,7 +132,8 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        buildTitle("${context.translate.fontSize} (${context.translate.translation})"),
+        buildTitle(
+            "${context.translate.fontSize} (${context.translate.translation})"),
         CustomSpace.normal(),
         FontSliderCard(
           value: context.watch<QuranProvider>().localSetting.textScaleFactor,
@@ -143,11 +149,12 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        buildTitle("${context.translate.fontSize} (${context.translate.arabic})"),
-        const SizedBox(height: kPaddingM),
+        buildTitle(
+            "${context.translate.fontSize} (${context.translate.arabic})"),
+        const SizedBox(height: kSizeM),
         FontSliderCard(
-          value: context.watch<QuranProvider>().localSetting.textScaleFactorArabic,
-          onChange: context.read<QuranProvider>().changeFontSizeArabic,
+          value: context.watch<QuranProvider>().localSetting.textScaleFactor,
+          onChange: (value) {},
         ),
         CustomSpace.big(),
       ],
@@ -160,7 +167,8 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         CustomExpandingFontCard(
-          title: "${context.translate.fontType} (${context.translate.translation})",
+          title:
+              "${context.translate.fontType} (${context.translate.translation})",
           defaultFont: context.watch<QuranProvider>().localSetting.fontType,
           changedFont: context.read<QuranProvider>().changeFontType,
           fonts: Fonts.translationFontNames,
@@ -177,7 +185,8 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
       children: [
         CustomExpandingFontCard(
           title: "${context.translate.fontType} (${context.translate.arabic})",
-          defaultFont: context.watch<QuranProvider>().localSetting.fontTypeArabic,
+          defaultFont:
+              context.watch<QuranProvider>().localSetting.fontTypeArabic,
           changedFont: context.read<QuranProvider>().changeFontTypeArabic,
           fonts: Fonts.arabicFontNames,
         ),

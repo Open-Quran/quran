@@ -1,17 +1,22 @@
 import 'dart:io';
 import 'dart:ui';
-
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/providers/home_provider.dart';
-import 'package:fabrikod_quran/providers/more_provider.dart';
-import 'package:fabrikod_quran/providers/player_provider.dart';
-import 'package:fabrikod_quran/screens/bookmark_screen.dart';
-import 'package:fabrikod_quran/screens/favorites_screen.dart';
-import 'package:fabrikod_quran/screens/more_screen.dart';
-import 'package:fabrikod_quran/screens/new_home_screen.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/screens/settings_screen.dart';
+
+import '../constants/colors.dart';
+import '../constants/images.dart';
+import '../constants/padding.dart';
+import '../providers/home_provider.dart';
+import '../providers/more_provider.dart';
+import '../providers/player_provider.dart';
+import '../providers/search_provider.dart';
+import '../widgets/bars/play_bar.dart';
+import '../widgets/cards/slidable_verse_card/slidable_provider.dart';
+import 'bookmark_screen.dart';
+import 'favorites_screen.dart';
+import 'home_screen.dart';
 
 class BottomNavBarScreen extends StatefulWidget {
   const BottomNavBarScreen({Key? key}) : super(key: key);
@@ -42,6 +47,8 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
         ChangeNotifierProvider(
             create: (_) => HomeProvider(context), lazy: false),
         ChangeNotifierProvider(create: (_) => MoreProvider(context)),
+        ChangeNotifierProvider(create: (_) => SearchProvider(context)),
+        ChangeNotifierProvider(create: (_) => SlidableProvider(context)),
       ],
       child: Scaffold(
         body: buildBody,
@@ -58,7 +65,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
         HomeScreen(),
         BookmarkScreen(),
         FavoritesScreen(),
-        MoreScreen(),
+        SettingsScreen(),
       ],
     );
   }
@@ -99,6 +106,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
     return Column(
       mainAxisSize: MainAxisSize.min,
       children: [
+        const PlayBar(),
         Container(
           height: 1,
           width: double.infinity,
@@ -138,7 +146,7 @@ class _BottomNavBarScreenState extends State<BottomNavBarScreen> {
     required String icon,
     required String activeIcon,
   }) {
-    double padding = Platform.isIOS ? kPaddingM : 0;
+    double padding = Platform.isIOS ? kSizeM : 0;
     return BottomNavigationBarItem(
       icon: Padding(
         padding: EdgeInsets.only(top: padding),

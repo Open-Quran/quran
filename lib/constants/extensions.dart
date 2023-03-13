@@ -1,6 +1,7 @@
-import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+
+import 'enums.dart';
 
 extension EThemeModesExtension on EThemeModes {
   /// Getting [EThemeModes] names
@@ -26,6 +27,8 @@ extension ESupportedLanguageExtension on ESupportedLanguage {
         return "English";
       case ESupportedLanguage.tr:
         return "Turkish";
+      case ESupportedLanguage.ar:
+        return "Arabic";
     }
   }
 }
@@ -46,5 +49,11 @@ extension IntExtension on int {
   String get quranPageNumber {
     if (toString().length > 1) return toString();
     return "0${this}";
+  }
+}
+
+extension BoolExtension on bool {
+  int get getNumber {
+    return this ? 1 : 0;
   }
 }

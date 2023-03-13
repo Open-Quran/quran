@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../../constants/padding.dart';
 
 class CustomDisabledButton extends StatelessWidget {
   /// Button title
@@ -29,7 +31,7 @@ class CustomDisabledButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: 55,
-        padding: const EdgeInsets.all(kPaddingM),
+        padding: const EdgeInsets.all(kSizeM),
         alignment: Alignment.center,
         decoration: BoxDecoration(
           color: context.theme.primaryColor.withOpacity(0.5),

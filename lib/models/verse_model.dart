@@ -10,6 +10,9 @@ class VerseModel {
   int? pageNumber;
   String? text;
   String? audioUrl;
+  String? surahNameArabic;
+  String? surahNameTranslated;
+  String? surahNameSimple;
 
   VerseModel(
       {this.id,
@@ -22,11 +25,14 @@ class VerseModel {
       this.sajdahNumber,
       this.pageNumber,
       this.text,
-      this.audioUrl});
+      this.audioUrl,
+      this.surahNameArabic,
+      this.surahNameSimple,
+      this.surahNameTranslated});
 
   @override
   String toString() {
-    return 'VerseModel{id: $id, verseNumber: $verseNumber, surahId: $surahId, verseKey: $verseKey, juzNumber: $juzNumber, hizbNumber: $hizbNumber, rubElHizbNumber: $rubElHizbNumber, sajdahNumber: $sajdahNumber, pageNumber: $pageNumber, text: $text, audioUrl: $audioUrl}';
+    return 'VerseModel{id: $id, verseNumber: $verseNumber, surahId: $surahId, verseKey: $verseKey, juzNumber: $juzNumber, hizbNumber: $hizbNumber, rubElHizbNumber: $rubElHizbNumber, sajdahNumber: $sajdahNumber, pageNumber: $pageNumber, text: $text, audioUrl: $audioUrl, surahNameArabic: $surahNameArabic, surahNameTranslated: $surahNameTranslated, surahNameSimple: $surahNameSimple}';
   }
 
   VerseModel.fromJson(Map<String, dynamic> json) {
@@ -41,6 +47,9 @@ class VerseModel {
     pageNumber = json['page_number'];
     text = json['text'];
     audioUrl = json['audio_url'];
+    surahNameTranslated = json['surah_name_translated'];
+    surahNameArabic = json['surah_name_arabic'];
+    surahNameSimple = json['surah_name_simple'];
   }
 
   VerseModel.fromJsonForQuranApi(Map<String, dynamic> json) {
@@ -70,6 +79,9 @@ class VerseModel {
     data['page_number'] = pageNumber;
     data['text'] = text;
     data['audio_url'] = audioUrl;
+    data['surah_name_translated'] = surahNameTranslated;
+    data['surah_name_arabic'] = surahNameArabic;
+    data['surah_name_simple'] = surahNameSimple;
     return data;
   }
 }

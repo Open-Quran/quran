@@ -1,6 +1,6 @@
-import 'package:fabrikod_quran/constants/extensions.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
+import 'package:the_open_quran/constants/constants.dart';
 
 class NoItemWidget extends StatelessWidget {
   const NoItemWidget({Key? key, required this.text, required this.icon})
@@ -20,11 +20,14 @@ class NoItemWidget extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
           icon,
-          const Gap(20),
-          Text(
-            text,
-            style: context.theme.textTheme.headlineLarge,
-            textAlign: TextAlign.center,
+          const Gap(24),
+          Opacity(
+            opacity: 0.8,
+            child: Text(
+              text,
+              style: context.theme.textTheme.displayLarge,
+              textAlign: TextAlign.center,
+            ),
           )
         ],
       ),

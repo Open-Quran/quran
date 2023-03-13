@@ -1,6 +1,7 @@
-import 'package:fabrikod_quran/constants/extensions.dart';
-import 'package:fabrikod_quran/widgets/buttons/custom_button.dart';
 import 'package:flutter/material.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import 'custom_button.dart';
 
 class CustomToggleButtons extends StatelessWidget {
   /// Button labels

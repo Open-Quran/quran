@@ -1,12 +1,15 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/providers/surah_details_provider.dart';
-import 'package:fabrikod_quran/widgets/buttons/custom_button.dart';
-import 'package:fabrikod_quran/widgets/buttons/custom_toggle_buttons.dart';
-import 'package:fabrikod_quran/widgets/cards/grid_card.dart';
-import 'package:fabrikod_quran/widgets/drawer/surah_section_drawer.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
+import 'package:the_open_quran/widgets/drawer/surah_section_drawer.dart';
+
+import '../../constants/padding.dart';
+import '../../providers/quran_provider.dart';
+import '../../providers/surah_details_provider.dart';
+import '../../utils/utils.dart';
+import '../buttons/custom_button.dart';
+import '../buttons/custom_toggle_buttons.dart';
+import '../cards/grid_card.dart';
 
 class CustomDrawer extends StatefulWidget {
   const CustomDrawer({Key? key}) : super(key: key);
@@ -23,8 +26,8 @@ class _CustomDrawerState extends State<CustomDrawer> {
       child: Drawer(
         child: Container(
           padding: const EdgeInsets.symmetric(
-            vertical: kPaddingXXL,
-            horizontal: kPaddingXL,
+            vertical: kSizeXXL,
+            horizontal: kSizeXL,
           ),
           decoration: BoxDecoration(
             border: Border(
@@ -34,7 +37,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
           child: Column(
             children: [
               buildToggleButton,
-              const SizedBox(height: kPaddingXL),
+              const SizedBox(height: kSizeXL),
               Expanded(child: body)
             ],
           ),
@@ -50,18 +53,25 @@ class _CustomDrawerState extends State<CustomDrawer> {
         context.translate.juz,
         context.translate.sajda,
       ],
-      selectedIndex:
-          context.watch<SurahDetailsProvider>().readingSettings.surahDetailScreenMod.index,
+      selectedIndex: context
+          .watch<SurahDetailsProvider>()
+          .readingSettings
+          .surahDetailScreenMode
+          .index,
       onTap: (index) {
-        context.read<SurahDetailsProvider>().changeSurahDetailScreenMod(index);
-        Utils.unFocus();
+        // context.read<SurahDetailsProvider>().changeSurahDetailScreenMod(index);
+        // Utils.unFocus();
       },
     );
   }
 
   Widget get body {
     return IndexedStack(
-      index: context.watch<SurahDetailsProvider>().readingSettings.surahDetailScreenMod.index,
+      index: context
+          .watch<SurahDetailsProvider>()
+          .readingSettings
+          .surahDetailScreenMode
+          .index,
       children: [
         buildSurah,
         buildJuz,
@@ -73,7 +83,7 @@ class _CustomDrawerState extends State<CustomDrawer> {
   Widget get buildSurah {
     return SurahSectionDrawer(
       surahs: context.watch<QuranProvider>().surahs,
-      versesOfSelectedSurah: context.watch<SurahDetailsProvider>().versesOfSelectedSurah,
+      versesOfSelectedSurah: [],
     );
   }
 
@@ -82,13 +92,13 @@ class _CustomDrawerState extends State<CustomDrawer> {
       itemCount: 30,
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 3,
-        mainAxisSpacing: kPaddingM * 2,
-        crossAxisSpacing: kPaddingM * 2,
+        mainAxisSpacing: kSizeM * 2,
+        crossAxisSpacing: kSizeM * 2,
       ),
       itemBuilder: (context, index) => GridCard(
           text: "${index + 1}",
           onTap: () {
-            context.read<SurahDetailsProvider>().selectJuz(index);
+            // context.read<SurahDetailsProvider>().selectJuz(index);
           }),
     );
   }
@@ -104,17 +114,17 @@ class _CustomDrawerState extends State<CustomDrawer> {
               var surah = context.watch<QuranProvider>().sajdaSurahs[index];
               return CustomButton(
                 title: "${surah.id}  ${surah.nameComplex}",
-                state: context.watch<SurahDetailsProvider>().readingSettings.sajdaIndex == index,
+                state: false,
                 centerTitle: false,
                 height: 45,
-                onTap: () => context.read<SurahDetailsProvider>().changeSajdaIndex(index),
+                // onTap: () => context.read<SurahDetailsProvider>().changeSajdaIndex(index),
               );
             },
           ),
         ),
         VerticalDivider(
           color: context.theme.dividerColor,
-          width: kPaddingXL * 2,
+          width: kSizeXL * 2,
           thickness: 2,
         ),
         Expanded(

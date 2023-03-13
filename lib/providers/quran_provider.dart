@@ -1,11 +1,16 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/database/local_db.dart';
-import 'package:fabrikod_quran/models/local_setting_model.dart';
-import 'package:fabrikod_quran/models/surah_model.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/services/asset_quran_service.dart';
-import 'package:fabrikod_quran/services/translation_service.dart';
 import 'package:flutter/cupertino.dart';
+
+import '../constants/colors.dart';
+import '../constants/enums.dart';
+import '../database/local_db.dart';
+import '../managers/translation_download_manager.dart';
+import '../models/local_setting_model.dart';
+import '../models/mushaf_backgrund_model.dart';
+import '../models/surah_model.dart';
+import '../models/translation.dart';
+import '../models/verse_model.dart';
+import '../services/asset_quran_service.dart';
+import '../services/translation_service.dart';
 
 class QuranProvider extends ChangeNotifier {
   /// Class Constructor
@@ -48,8 +53,42 @@ class QuranProvider extends ChangeNotifier {
     return verseList;
   }
 
-  Future<void> selectedTranslation(int? index) async {
-    await translationService.selectedTranslation(index);
+  /// Get all surah verses
+  List<VerseModel> get getAllVerseTranslations {
+    List<VerseModel> verseList = [];
+    for (var verse in surahs) {
+      verseList.addAll(verse.verses);
+    }
+    return verseList;
+  }
+
+  /// Selecting translation
+  /// If translation is not downloaded - Download it
+  /// If translation is downloaded then select translation
+  Future<void> onTapTranslationAuthorCard(TranslationAuthor translationAuthor) async {
+    switch (translationAuthor.verseTranslationState) {
+      case EVerseTranslationState.download:
+        translationAuthor.verseTranslationState = EVerseTranslationState.downloading;
+        notifyListeners();
+        var result = await translationService.downloadTranslationFromNetwork(translationAuthor);
+        translationAuthor.verseTranslationState =
+            result ? EVerseTranslationState.downloaded : EVerseTranslationState.download;
+
+        break;
+      case EVerseTranslationState.downloading:
+        break;
+      case EVerseTranslationState.downloaded:
+        if (translationAuthor.isTranslationSelected) {
+          if (translationService.selectedTranslationAuthors.length > 1) {
+            translationAuthor.isTranslationSelected = false;
+            TranslationDownloadManager.changeSelectedStateOfAuthor(translationAuthor.resourceId!, false);
+          }
+        } else {
+          translationAuthor.isTranslationSelected = true;
+          TranslationDownloadManager.changeSelectedStateOfAuthor(translationAuthor.resourceId!, true);
+        }
+        break;
+    }
     notifyListeners();
   }
 
@@ -78,8 +117,14 @@ class QuranProvider extends ChangeNotifier {
   }
 
   /// Changing Reading Type
-  changeReadingType(int index) {
-    localSetting.readingType = EReadingType.values[index];
+  changeReadingType(EReadOptions readOptions) {
+    localSetting.readOptions = readOptions;
+    setLocalSettingOfQuran();
+  }
+
+  /// Changing Layout Options
+  changeLayoutOptions(ELayoutOptions layoutOptions) {
+    localSetting.layoutOptions = layoutOptions;
     setLocalSettingOfQuran();
   }
 
@@ -89,21 +134,31 @@ class QuranProvider extends ChangeNotifier {
     setLocalSettingOfQuran();
   }
 
-  /// Changing Arabic Font Size
-  changeFontSizeArabic(dynamic value) {
-    localSetting.textScaleFactorArabic = value;
-    setLocalSettingOfQuran();
-  }
-
   /// Changing Font Type
   changeFontType(String value) {
     localSetting.fontType = value;
     setLocalSettingOfQuran();
   }
 
-  /// Changing Arabic Font Type
+  /// Changing arabic font type
   changeFontTypeArabic(String value) {
     localSetting.fontTypeArabic = value;
     setLocalSettingOfQuran();
+  }
+
+  /// Getting surah details theme
+  SurahDetailsPageThemeModel get surahDetailsPageThemeColor =>
+      AppColors.mushafColors.elementAt(localSetting.surahDetailsPageThemeIndex);
+
+  /// Changing surah details background color
+  changeSurahDetailsPageTheme(int index) {
+    localSetting.surahDetailsPageThemeIndex = index;
+    setLocalSettingOfQuran();
+  }
+
+  /// Delete a Downloaded Translation
+  deleteTranslationAuthor(TranslationAuthor translationAuthor) async {
+    await translationService.deleteTranslationAuthor(translationAuthor);
+    notifyListeners();
   }
 }

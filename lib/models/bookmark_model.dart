@@ -1,7 +1,7 @@
 import 'package:equatable/equatable.dart';
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
+import 'package:the_open_quran/models/verse_model.dart';
 
+import '../constants/enums.dart';
 class BookMarkModel extends Equatable {
   final EBookMarkType bookmarkType;
   final VerseModel verseModel;

@@ -1,8 +1,11 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../constants/images.dart';
+import '../constants/padding.dart';
+import '../providers/quran_provider.dart';
 
 class BasmalaTitle extends StatelessWidget {
   final String verseKey;
@@ -20,12 +23,16 @@ class BasmalaTitle extends StatelessWidget {
             visible: isBasmalaVisible,
             child: Column(
               children: [
-                const SizedBox(height: kPaddingL),
-                SvgPicture.asset(ImageConstants.basmalaIcon),
+                const SizedBox(height: kSizeL),
+                SvgPicture.asset(ImageConstants.basmalaIcon,
+                    color: context
+                        .watch<QuranProvider>()
+                        .surahDetailsPageThemeColor
+                        .textColor),
               ],
             ),
           ),
-          const SizedBox(height: kPadding3XL),
+          const SizedBox(height: kSize3XL),
         ],
       ),
     );
@@ -35,11 +42,18 @@ class BasmalaTitle extends StatelessWidget {
     return Stack(
       alignment: AlignmentDirectional.center,
       children: [
-        SvgPicture.asset(ImageConstants.titleFrame),
+        SvgPicture.asset(ImageConstants.titleFrame,
+            color: context
+                .watch<QuranProvider>()
+                .surahDetailsPageThemeColor
+                .titleVectorColor),
         Text(
           surahName(context),
           style: context.theme.textTheme.headlineLarge?.copyWith(
-            color: AppColors.grey,
+            color: context
+                .watch<QuranProvider>()
+                .surahDetailsPageThemeColor
+                .textColor,
             letterSpacing: 0.04,
           ),
         ),

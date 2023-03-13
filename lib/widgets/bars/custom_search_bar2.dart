@@ -1,8 +1,9 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/providers/search_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../../providers/search_provider.dart';
 
 class CustomSearchBar2 extends StatelessWidget {
   final TextEditingController? textEditingController;
@@ -10,14 +11,13 @@ class CustomSearchBar2 extends StatelessWidget {
   final FocusNode? focusNode;
   final void Function(String) onSubmit;
 
-  const CustomSearchBar2(
-      {Key? key,
-      this.textEditingController,
-      this.formKey,
-      this.focusNode,
-      required this.onSubmit,
-      })
-      : super(key: key);
+  const CustomSearchBar2({
+    Key? key,
+    this.textEditingController,
+    this.formKey,
+    this.focusNode,
+    required this.onSubmit,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -25,13 +25,14 @@ class CustomSearchBar2 extends StatelessWidget {
   }
 
   Widget buildInput(BuildContext context) {
-    TextEditingController textController =  context.read<SearchProvider>().textEditingController;
+    TextEditingController textController =
+        context.read<SearchProvider>().textEditingController;
 
     return Container(
       height: 60,
       decoration: BoxDecoration(
         color: context.theme.cardTheme.color?.withOpacity(0.1),
-        borderRadius: const BorderRadius.all(Radius.circular(kPaddingM)),
+        borderRadius: const BorderRadius.all(Radius.circular(kSizeM)),
       ),
       child: Row(children: [
         const Gap(8 * 1.5),
@@ -95,7 +96,7 @@ class CustomSearchBar2 extends StatelessWidget {
           fillColor: context.theme.cardTheme.color?.withOpacity(0.1),
           filled: true,
           isDense: true,
-          contentPadding: const EdgeInsets.all(kPaddingXL),
+          contentPadding: const EdgeInsets.all(kSizeXL),
           border: getBorder,
           errorBorder: getBorder,
           disabledBorder: getBorder,
@@ -115,7 +116,7 @@ class CustomSearchBar2 extends StatelessWidget {
   /// Border
   OutlineInputBorder get getBorder {
     return const OutlineInputBorder(
-      borderRadius: BorderRadius.all(Radius.circular(kPaddingM)),
+      borderRadius: BorderRadius.all(Radius.circular(kSizeM)),
       borderSide: BorderSide.none,
     );
   }

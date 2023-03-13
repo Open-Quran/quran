@@ -1,6 +1,7 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/database/local_db.dart';
 import 'package:flutter/material.dart';
+
+import '../constants/enums.dart';
+import '../database/local_db.dart';
 
 class AppSettingsProvider extends ChangeNotifier {
   /// Class constructor
@@ -28,7 +29,8 @@ class AppSettingsProvider extends ChangeNotifier {
   }
 
   /// Get language from device if [null] default to [en]
-  Locale? localeResolutionCallback(Locale? deviceLocale, Iterable<Locale> supportedLocales) {
+  Locale? localeResolutionCallback(
+      Locale? deviceLocale, Iterable<Locale> supportedLocales) {
     if (appLocale != null) return appLocale;
 
     for (var locale in supportedLocales) {

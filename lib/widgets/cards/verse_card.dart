@@ -1,20 +1,24 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/bookmark_model.dart';
-import 'package:fabrikod_quran/models/translation.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/providers/bookmark_provider.dart';
-import 'package:fabrikod_quran/providers/favorites_provider.dart';
-import 'package:fabrikod_quran/providers/player_provider.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/providers/surah_details_provider.dart';
-import 'package:fabrikod_quran/services/copy_and_share_service.dart';
-import 'package:fabrikod_quran/widgets/cards/action_card.dart';
-import 'package:fabrikod_quran/widgets/custom_space.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../../constants/enums.dart';
+import '../../constants/padding.dart';
+import '../../models/bookmark_model.dart';
+import '../../models/translation.dart';
+import '../../models/verse_model.dart';
+import '../../providers/bookmark_provider.dart';
+import '../../providers/favorites_provider.dart';
+import '../../providers/player_provider.dart';
+import '../../providers/quran_provider.dart';
+import '../../providers/surah_details_provider.dart';
+import '../../services/copy_and_share_service.dart';
+import '../custom_space.dart';
+import 'action_card.dart';
 
 class VerseCard extends StatelessWidget {
-  const VerseCard({Key? key, required this.verseModel, this.isFavorite = false}) : super(key: key);
+  const VerseCard({Key? key, required this.verseModel, this.isFavorite = false})
+      : super(key: key);
 
   /// Verse model
   final VerseModel verseModel;
@@ -32,10 +36,14 @@ class VerseCard extends StatelessWidget {
 
   /// The header of the action card
   Widget buildVerseActionCart(BuildContext context) {
-    bool isPlaying = context.watch<PlayerProvider>().isPlayingVerse(verseModel.verseKey ?? "");
-    bool isFavorite = context.watch<FavoritesProvider>().isFavoriteVerse(verseModel);
+    bool isPlaying = context
+        .watch<PlayerProvider>()
+        .isPlayingVerse(verseModel.verseKey ?? "");
+    bool isFavorite =
+        context.watch<FavoritesProvider>().isFavoriteVerse(verseModel);
     bool isBookmarked = context.watch<BookmarkProvider>().isBookmark(
-          BookMarkModel(verseModel: verseModel, bookmarkType: EBookMarkType.verse),
+          BookMarkModel(
+              verseModel: verseModel, bookmarkType: EBookMarkType.verse),
         );
     return ActionCard(
       shareButtonOnTap: () {
@@ -51,27 +59,25 @@ class VerseCard extends StatelessWidget {
       },
       verseKey: verseModel.verseKey,
       isPlaying: isPlaying,
-      playButtonOnTap: (isPlaying) =>
-          context.read<SurahDetailsProvider>().playTheVerses(isPlaying, verseModel.verseKey!),
+      playButtonOnTap: (isPlaying) => context
+          .read<SurahDetailsProvider>()
+          .onTapVerseCardPlayOrPause(0, isPlaying),
       isFavorite: isFavorite,
       favoriteButtonOnTap: () => isFavorite
-          ? context.read<FavoritesProvider>().deleteVerseFromFavorites(verseModel)
+          ? context
+              .read<FavoritesProvider>()
+              .deleteVerseFromFavorites(verseModel)
           : context.read<FavoritesProvider>().addVerseToFavorite(verseModel),
       isBookmark: isBookmarked,
-      bookmarkButtonOnTap: () => context.read<BookmarkProvider>().bookmarkIconOnTap(
-            isBookmarked,
-            verseModel,
-            EBookMarkType.verse,
-          ),
     );
   }
 
   Widget buildVerse(BuildContext context) {
     return Column(
       children: [
-        const SizedBox(height: kPaddingXL),
+        const SizedBox(height: kSizeXL),
         buildVerseText(context),
-        const SizedBox(height: kPaddingXL),
+        const SizedBox(height: kSizeXL),
         buildVerseTranslationText(context),
         Divider(thickness: 1, color: context.theme.dividerColor)
       ],
@@ -82,7 +88,8 @@ class VerseCard extends StatelessWidget {
   Widget buildVerseText(BuildContext context) {
     return Visibility(
       visible: isFavorite ||
-          context.watch<QuranProvider>().localSetting.readingType != EReadingType.translation,
+          context.watch<QuranProvider>().localSetting.readOptions !=
+              EReadOptions.translation,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.end,
         children: [
@@ -90,11 +97,12 @@ class VerseCard extends StatelessWidget {
             child: Text(
               verseModel.text ?? "",
               textDirection: TextDirection.rtl,
-              textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactorArabic,
+              textScaleFactor:
+                  context.watch<QuranProvider>().localSetting.textScaleFactor,
               style: context.theme.textTheme.headlineLarge?.copyWith(
                 fontSize: 22,
-                fontFamily:
-                    Fonts.getArabicFont(context.watch<QuranProvider>().localSetting.fontTypeArabic),
+                fontFamily: Fonts.getArabicFont(
+                    context.watch<QuranProvider>().localSetting.fontTypeArabic),
               ),
             ),
           ),
@@ -105,11 +113,14 @@ class VerseCard extends StatelessWidget {
 
   /// Verse Translation Text
   Widget buildVerseTranslationText(BuildContext context) {
-    List<VerseTranslation> translationList =
-        context.watch<QuranProvider>().translationService.translationsOfVerse(verseModel.id!);
+    List<VerseTranslation> translationList = context
+        .watch<QuranProvider>()
+        .translationService
+        .translationsOfVerse(verseModel.id!);
     return Visibility(
       visible: isFavorite ||
-          context.watch<QuranProvider>().localSetting.readingType != EReadingType.arabic,
+          context.watch<QuranProvider>().localSetting.readOptions !=
+              EReadOptions.surah,
       child: Row(
         mainAxisAlignment: MainAxisAlignment.start,
         children: [
@@ -123,21 +134,30 @@ class VerseCard extends StatelessWidget {
                       children: [
                         Text(
                           e.text ?? "",
-                          textScaleFactor:
-                              context.watch<QuranProvider>().localSetting.textScaleFactor,
+                          textScaleFactor: context
+                              .watch<QuranProvider>()
+                              .localSetting
+                              .textScaleFactor,
                           style: context.theme.textTheme.titleSmall?.copyWith(
-                            fontFamily: Fonts.getTranslationFont(
-                                context.watch<QuranProvider>().localSetting.fontType),
+                            fontFamily: Fonts.getTranslationFont(context
+                                .watch<QuranProvider>()
+                                .localSetting
+                                .fontType),
                           ),
                         ),
                         CustomSpace.normal(),
                         Text(
                           "- ${context.read<QuranProvider>().translationService.translationsName(e.resourceId!)}",
-                          textScaleFactor:
-                              context.watch<QuranProvider>().localSetting.textScaleFactor,
-                          style: context.theme.textTheme.headlineLarge?.copyWith(
-                            fontFamily: Fonts.getTranslationFont(
-                                context.watch<QuranProvider>().localSetting.fontType),
+                          textScaleFactor: context
+                              .watch<QuranProvider>()
+                              .localSetting
+                              .textScaleFactor,
+                          style:
+                              context.theme.textTheme.headlineLarge?.copyWith(
+                            fontFamily: Fonts.getTranslationFont(context
+                                .watch<QuranProvider>()
+                                .localSetting
+                                .fontType),
                             fontSize: 12,
                           ),
                         ),

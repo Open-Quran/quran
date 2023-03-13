@@ -1,6 +1,5 @@
-import 'package:fabrikod_quran/constants/extensions.dart';
-import 'package:fabrikod_quran/constants/padding.dart';
 import 'package:flutter/material.dart';
+import 'package:the_open_quran/constants/constants.dart';
 
 class HelpGuideCard extends StatefulWidget {
   final String text;
@@ -25,13 +24,15 @@ class _HelpGuideCardState extends State<HelpGuideCard> {
     return Theme(
       data: context.theme.copyWith(dividerColor: Colors.transparent),
       child: ClipRRect(
-        borderRadius: BorderRadius.circular(kPaddingM),
+        borderRadius: BorderRadius.circular(kSizeM),
         child: ExpansionTile(
           title: Row(
             children: [
-              Text(
-                widget.text,
-                style: context.theme.textTheme.headlineSmall,
+              Flexible(
+                child: Text(
+                  widget.text,
+                  style: context.theme.textTheme.headlineSmall,
+                ),
               ),
             ],
           ),
@@ -46,11 +47,11 @@ class _HelpGuideCardState extends State<HelpGuideCard> {
           backgroundColor: context.theme.cardTheme.color?.withOpacity(0.1),
           collapsedBackgroundColor:
               context.theme.cardTheme.color?.withOpacity(0.1),
-          childrenPadding: const EdgeInsets.only(bottom: kPaddingM),
+          childrenPadding: const EdgeInsets.only(bottom: kSizeM),
           children: [
             Padding(
-              padding: const EdgeInsets.symmetric(
-                  vertical: 0, horizontal: kPaddingXL),
+              padding:
+                  const EdgeInsets.symmetric(vertical: 0, horizontal: kSizeXL),
               child: Text(
                 widget.description,
                 style: context.theme.textTheme.bodySmall,

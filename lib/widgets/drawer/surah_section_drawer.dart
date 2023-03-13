@@ -1,18 +1,18 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/surah_model.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/providers/surah_details_provider.dart';
-import 'package:fabrikod_quran/widgets/buttons/custom_button.dart';
-import 'package:fabrikod_quran/widgets/custom_space.dart';
-import 'package:fabrikod_quran/widgets/drawer/search_section_drawer.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+import 'package:the_open_quran/constants/constants.dart';
+import 'package:the_open_quran/widgets/drawer/search_section_drawer.dart';
+
+import '../../models/surah_model.dart';
+import '../../models/verse_model.dart';
+import '../buttons/custom_button.dart';
+import '../custom_space.dart';
 
 class SurahSectionDrawer extends StatefulWidget {
   final List<SurahModel> surahs;
   final List<VerseModel> versesOfSelectedSurah;
 
-  const SurahSectionDrawer({Key? key, required this.surahs, required this.versesOfSelectedSurah})
+  const SurahSectionDrawer(
+      {Key? key, required this.surahs, required this.versesOfSelectedSurah})
       : super(key: key);
 
   @override
@@ -95,11 +95,10 @@ class _SurahSectionDrawerState extends State<SurahSectionDrawer> {
         var surah = surahs[index];
         return CustomButton(
           title: "${surah.id}  ${surah.nameComplex}",
-          state: context.watch<SurahDetailsProvider>().readingSettings.surahIndex == index,
           centerTitle: false,
           height: 45,
           onTap: () {
-            context.read<SurahDetailsProvider>().changeSurahIndex(surah.id! - 1);
+            // context.read<SurahDetailsProvider>().changeSurahIndex(surah.id! - 1);
             Utils.unFocus();
           },
         );
@@ -110,7 +109,7 @@ class _SurahSectionDrawerState extends State<SurahSectionDrawer> {
   Widget get buildVerticalDivider {
     return VerticalDivider(
       color: context.theme.dividerColor,
-      width: kPaddingXL * 2,
+      width: kSizeXL * 2,
       thickness: 2,
     );
   }
@@ -132,12 +131,11 @@ class _SurahSectionDrawerState extends State<SurahSectionDrawer> {
         var number = verses[index].verseNumber;
         return CustomButton(
           title: "$number",
-          state: context.watch<SurahDetailsProvider>().readingSettings.surahVerseIndex == index,
           centerTitle: false,
           height: 45,
           onTap: () {
-            context.read<SurahDetailsProvider>().changeSurahVerseIndex(number! - 1);
-            Utils.unFocus();
+            // context.read<SurahDetailsProvider>().changeSurahVerseIndex(number! - 1);
+            // Utils.unFocus();
           },
         );
       },

@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
-import 'package:fabrikod_quran/constants/constants.dart';
 import 'package:flutter/material.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../../constants/padding.dart';
 
 class CustomButton extends StatelessWidget {
   /// Button title
@@ -41,10 +43,12 @@ class CustomButton extends StatelessWidget {
       onTap: onTap,
       child: Container(
         height: height,
-        padding: const EdgeInsets.all(kPaddingM),
+        padding: const EdgeInsets.all(kSizeM),
         alignment: centerTitle ? Alignment.center : Alignment.centerLeft,
         decoration: BoxDecoration(
-          color: state ? context.theme.toggleButtonsTheme.selectedColor : Colors.transparent,
+          color: state
+              ? context.theme.toggleButtonsTheme.selectedColor
+              : Colors.transparent,
           borderRadius: BorderRadius.circular(radius ?? 10),
         ),
         child: Opacity(

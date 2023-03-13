@@ -1,13 +1,10 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/database/local_db.dart';
-import 'package:fabrikod_quran/models/bookmark_model.dart';
-import 'package:fabrikod_quran/models/reading_settings_model.dart';
-import 'package:fabrikod_quran/models/verse_model.dart';
-import 'package:fabrikod_quran/providers/quran_provider.dart';
-import 'package:fabrikod_quran/providers/surah_details_provider.dart';
-import 'package:fabrikod_quran/screens/surah_details/surah_details_screen.dart';
 import 'package:flutter/material.dart';
-import 'package:provider/provider.dart';
+
+import '../constants/enums.dart';
+import '../database/local_db.dart';
+import '../managers/surah_detail_navigation_manager.dart';
+import '../models/bookmark_model.dart';
+import '../models/verse_model.dart';
 
 class BookmarkProvider extends ChangeNotifier {
   /// Class Constructor
@@ -20,50 +17,57 @@ class BookmarkProvider extends ChangeNotifier {
 
   /// Checking if the verse bookmarked
   bool isBookmark(BookMarkModel bookMark) {
-    return bookmarks.indexWhere((element) => element == bookMark) == -1 ? false : true;
+    var result = bookmarks.indexWhere((element) => element == bookMark);
+    return result == -1 ? false : true;
   }
 
-  /// Adding bookmarks
-  void _addBookmarked(BookMarkModel bookMark) async {
-    bookmarks = await LocalDb.addBookmarked(bookMark);
-    notifyListeners();
+  /// When clicked to bookmark button
+  void onTapBookMarkButton(
+      EBookMarkType bookMarkType, VerseModel verseModel, bool isBookmark) {
+    if (isBookmark) {
+      deleteBookmark(verseModel, bookMarkType);
+    } else {
+      addBookmark(verseModel, bookMarkType);
+    }
   }
 
-  /// Delete bookmarks
-  void _deleteBookmarked(BookMarkModel bookMark) async {
-    bookmarks = await LocalDb.deleteBookmarked(bookMark);
-    notifyListeners();
-  }
-
-  /// onTap bookmark icon for pages
-  void bookmarkIconOnTap(bool isBookmarked, VerseModel verse, EBookMarkType bookMarkType) {
+  /// Add bookmark
+  Future<void> addBookmark(VerseModel verse, EBookMarkType bookMarkType) async {
     var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
-    isBookmarked ? _deleteBookmarked(bookMark) : _addBookmarked(bookMark);
+    bookmarks = await LocalDb.addBookmark(bookMark);
+    notifyListeners();
+  }
+
+  /// Delete bookmark
+  Future<void> deleteBookmark(
+      VerseModel verse, EBookMarkType bookMarkType) async {
+    var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
+    bookmarks = await LocalDb.deleteBookmark(bookMark);
+    notifyListeners();
   }
 
   /// onTap bookmark card
   void bookmarkOnTap(BuildContext context, BookMarkModel bookmark) {
-    ReadingSettingsModel model;
     switch (bookmark.bookmarkType) {
       case EBookMarkType.verse:
-        model = ReadingSettingsModel(
-          surahIndex: bookmark.verseModel.surahId! - 1,
-          surahVerseIndex: bookmark.verseModel.verseNumber! - 1,
+        SurahDetailNavigationManager.goToSurah(
+          context,
+          bookmark.verseModel.surahId!,
+          verseId: bookmark.verseModel.verseNumber!,
         );
         break;
       case EBookMarkType.page:
-        context.read<QuranProvider>().changeQuranType(1);
-        model = ReadingSettingsModel(mushafPageNumber: bookmark.verseModel.pageNumber!);
+        SurahDetailNavigationManager.goToMushaf(
+          context,
+          bookmark.verseModel.pageNumber!,
+        );
+        break;
+      case EBookMarkType.surah:
+        SurahDetailNavigationManager.goToSurah(
+          context,
+          bookmark.verseModel.surahId!,
+          verseId: bookmark.verseModel.verseNumber!,
+        );
     }
-
-    Navigator.push(
-      context,
-      MaterialPageRoute(
-        builder: (context) => ChangeNotifierProvider(
-          create: (context) => SurahDetailsProvider(context, model),
-          child: const SurahDetailsScreen(),
-        ),
-      ),
-    );
   }
 }

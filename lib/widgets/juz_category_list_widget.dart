@@ -1,10 +1,12 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/surah_model.dart';
-import 'package:fabrikod_quran/widgets/animation/fade_indexed_stack.dart';
-import 'package:fabrikod_quran/widgets/buttons/juz_list_toggle_button.dart';
-import 'package:fabrikod_quran/widgets/cards/grid_card.dart';
-import 'package:fabrikod_quran/widgets/cards/surah_card.dart';
 import 'package:flutter/material.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../constants/enums.dart';
+import '../models/surah_model.dart';
+import 'animation/fade_indexed_stack.dart';
+import 'buttons/juz_list_toggle_button.dart';
+import 'cards/grid_card.dart';
+import 'cards/surah_card.dart';
 
 class JuzCategoryListWidget extends StatefulWidget {
   final List<List<SurahModel>> juzList;
@@ -36,7 +38,8 @@ class _JuzCategoryListWidgetState extends State<JuzCategoryListWidget> {
           children: [
             Text(
               context.translate.juz,
-              style: context.theme.textTheme.displayLarge?.copyWith(letterSpacing: 0.4),
+              style: context.theme.textTheme.displayLarge
+                  ?.copyWith(letterSpacing: 0.4),
             ),
             JuzListToggleButton(
               listType: widget.listType,
@@ -44,7 +47,6 @@ class _JuzCategoryListWidgetState extends State<JuzCategoryListWidget> {
             )
           ],
         ),
-        // list
         FadeIndexedStack(
           index: widget.listType.index,
           children: [
@@ -62,11 +64,11 @@ class _JuzCategoryListWidgetState extends State<JuzCategoryListWidget> {
       itemCount: widget.juzList.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.symmetric(vertical: kPaddingL),
+      padding: const EdgeInsets.symmetric(vertical: kSizeL),
       gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
         crossAxisCount: 4,
-        mainAxisSpacing: kPaddingM,
-        crossAxisSpacing: kPaddingM,
+        mainAxisSpacing: kSizeM,
+        crossAxisSpacing: kSizeM,
       ),
       itemBuilder: (context, index) {
         int juzId = index + 1;
@@ -84,7 +86,7 @@ class _JuzCategoryListWidgetState extends State<JuzCategoryListWidget> {
       itemCount: widget.juzList.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
-      padding: const EdgeInsets.symmetric(vertical: kPaddingL),
+      padding: const EdgeInsets.symmetric(vertical: kSizeL),
       itemBuilder: (context, juzIndex) {
         int juzId = juzIndex + 1;
         return Column(
@@ -93,20 +95,21 @@ class _JuzCategoryListWidgetState extends State<JuzCategoryListWidget> {
             Container(
               width: double.infinity,
               height: 44,
-              padding: const EdgeInsets.symmetric(horizontal: kPaddingL),
+              padding: const EdgeInsets.symmetric(horizontal: kSizeL),
               decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(kPaddingM),
+                borderRadius: BorderRadius.circular(kSizeM),
                 color: AppColors.black3,
               ),
               child: Align(
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "${context.translate.juz} $juzId",
-                  style: context.theme.textTheme.headlineSmall?.copyWith(color: AppColors.grey),
+                  style: context.theme.textTheme.headlineSmall
+                      ?.copyWith(color: AppColors.grey),
                 ),
               ),
             ),
-            const SizedBox(height: kPaddingM),
+            const SizedBox(height: kSizeM),
             ListView.separated(
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
@@ -117,10 +120,11 @@ class _JuzCategoryListWidgetState extends State<JuzCategoryListWidget> {
                   onTap: () => widget.onTapSurahCard(surah.id ?? 1),
                 );
               },
-              separatorBuilder: (context, surahIndex) => const SizedBox(height: kPaddingL),
+              separatorBuilder: (context, surahIndex) =>
+                  const SizedBox(height: kSizeL),
               itemCount: widget.juzList[juzIndex].length,
             ),
-            const SizedBox(height: kPaddingXL)
+            const SizedBox(height: kSizeXL)
           ],
         );
       },

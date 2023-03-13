@@ -1,56 +1,67 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/widgets/title.dart';
-import 'package:flutter/cupertino.dart';
+import 'package:flutter/material.dart';
+import 'package:the_open_quran/constants/constants.dart';
+import 'package:the_open_quran/widgets/title.dart';
 
-class SurahSizeSlider extends StatefulWidget {
-  const SurahSizeSlider({Key? key}) : super(key: key);
+class SurahSizeSlider extends StatelessWidget {
+  const SurahSizeSlider(
+      {Key? key,
+      required this.size,
+      required this.onChanged,
+      this.isPopUp = false})
+      : super(key: key);
 
-  @override
-  State<SurahSizeSlider> createState() => _SurahSizeSliderState();
-}
+  final double size;
+  final Function(double newSize) onChanged;
+  final bool isPopUp;
 
-class _SurahSizeSliderState extends State<SurahSizeSlider> {
-  int surahSize = 16;
   @override
   Widget build(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        CustomTitle(
-          titleText: context.translate.surahSize,
-        ),
+        CustomTitle(titleText: context.translate.fontSize),
         Container(
-          margin: const EdgeInsets.only(top: kPaddingM, bottom: kPaddingXXL),
+          margin: EdgeInsets.only(
+            top: Utils.isSmallPhone(context) ? 10 : kSizeM,
+            bottom: Utils.isSmallPhone(context) ? 10 : kSizeL,
+          ),
           decoration: BoxDecoration(
             color: AppColors.black,
             borderRadius: BorderRadius.circular(8),
           ),
           width: double.infinity,
-          height: 50,
+          height: isPopUp && Utils.isSmallPhone(context)
+              ? 40
+              : Utils.isMediumPhone(context) && isPopUp
+                  ? 45
+                  : 50,
           child: Padding(
-            padding: const EdgeInsets.all(kPaddingL),
+            padding: const EdgeInsets.all(kSizeL),
             child: Row(
               children: [
                 Expanded(
                   flex: 10,
-                  child: CupertinoSlider(
-                      activeColor: AppColors.white,
-                      value: surahSize.toDouble(),
-                      min: 8,
-                      max: 32,
-                      onChanged: (newRating) {
-                        setState(() {
-                          surahSize = newRating.round();
-                        });
-                      }),
+                  child: SliderTheme(
+                    data: context.theme.sliderTheme.copyWith(
+                      thumbShape: RoundSliderThumbShape(
+                          enabledThumbRadius:
+                              Utils.isSmallPhone(context) ? 10 : 10),
+                    ),
+                    child: Slider(
+                      value: size.toDouble(),
+                      min: 1.0,
+                      max: 2.0,
+                      onChanged: onChanged,
+                    ),
+                  ),
                 ),
-                const SizedBox(
-                  width: 6,
-                ),
+                const SizedBox(width: 5),
                 Text(
-                  surahSize.toInt().toString(),
-                  style: context.theme.textTheme.labelSmall
-                      ?.copyWith(color: AppColors.grey3, fontSize: 12),
+                  size.toString().substring(0, 3),
+                  style: context.theme.textTheme.labelSmall?.copyWith(
+                    color: AppColors.grey3,
+                    fontSize: Utils.isSmallPhone(context) ? 10 : 12,
+                  ),
                 )
               ],
             ),

@@ -1,9 +1,10 @@
 import 'dart:io';
 import 'package:audio_service/audio_service.dart';
-import 'package:fabrikod_quran/providers/player_provider.dart';
 import 'package:flutter/material.dart';
 import 'package:just_audio/just_audio.dart';
 import 'package:provider/provider.dart';
+
+import '../providers/player_provider.dart';
 
 class MyAudioHandler extends BaseAudioHandler with QueueHandler, SeekHandler {
   final BuildContext _context;

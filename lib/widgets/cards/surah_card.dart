@@ -1,31 +1,35 @@
-import 'package:fabrikod_quran/constants/constants.dart';
-import 'package:fabrikod_quran/models/surah_model.dart';
 import 'package:flutter/material.dart';
+import 'package:the_open_quran/constants/constants.dart';
+
+import '../../constants/colors.dart';
+import '../../constants/padding.dart';
+import '../../models/surah_model.dart';
 
 class SurahCard extends StatelessWidget {
   final SurahModel surahModel;
   final Function() onTap;
 
-  const SurahCard({Key? key, required this.surahModel, required this.onTap}) : super(key: key);
+  const SurahCard({Key? key, required this.surahModel, required this.onTap})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
-      borderRadius: BorderRadius.circular(kPaddingM),
+      borderRadius: BorderRadius.circular(kSizeM),
       child: Container(
         height: 70,
         decoration: BoxDecoration(
           color: AppColors.black2,
-          borderRadius: BorderRadius.circular(kPaddingM),
+          borderRadius: BorderRadius.circular(kSizeM),
         ),
-        padding: const EdgeInsets.symmetric(horizontal: kPaddingXXL),
+        padding: const EdgeInsets.symmetric(horizontal: kSizeXXL),
         child: Row(
           children: [
             buildSurahNumber(context),
-            const SizedBox(width: kPaddingXXL),
+            const SizedBox(width: kSizeXXL),
             Expanded(child: buildSurahNames(context)),
-            const SizedBox(width: kPaddingXXL),
+            const SizedBox(width: kSizeXXL),
             buildVersesCount(context),
           ],
         ),
@@ -55,7 +59,7 @@ class SurahCard extends StatelessWidget {
             color: AppColors.grey,
           ),
         ),
-        const SizedBox(height: kPaddingS),
+        const SizedBox(height: kSizeS),
         Text(
           surahModel.nameTranslated.toString(),
           style: context.theme.textTheme.labelMedium?.copyWith(
