@@ -28,7 +28,7 @@ The Open Qur'an App was carefully built by [fabrikod](https://fabrikod.com) team
 <br />
 
 We are a company that creates cutting-edge digital experiences for savvy customers, and we like how simple Flutter simplifies that process.
-Please [visit our website](https://fabrikod.com) team to discover more about what we do.
+Please [visit our website](https://fabrikod.com) to discover more about what we do.
 Please get in touch with us! 
 
 <p align="center"><img src="https://flutter.gskinner.com/folio/assets/images/git_dashes.png?" width="800px"></p>
