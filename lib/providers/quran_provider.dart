@@ -65,18 +65,14 @@ class QuranProvider extends ChangeNotifier {
   /// Selecting translation
   /// If translation is not downloaded - Download it
   /// If translation is downloaded then select translation
-  Future<void> onTapTranslationAuthorCard(
-      TranslationAuthor translationAuthor) async {
+  Future<void> onTapTranslationAuthorCard(TranslationAuthor translationAuthor) async {
     switch (translationAuthor.verseTranslationState) {
       case EVerseTranslationState.download:
-        translationAuthor.verseTranslationState =
-            EVerseTranslationState.downloading;
+        translationAuthor.verseTranslationState = EVerseTranslationState.downloading;
         notifyListeners();
-        var result = await translationService
-            .downloadTranslationFromNetwork(translationAuthor);
-        translationAuthor.verseTranslationState = result
-            ? EVerseTranslationState.downloaded
-            : EVerseTranslationState.download;
+        var result = await translationService.downloadTranslationFromNetwork(translationAuthor);
+        translationAuthor.verseTranslationState =
+            result ? EVerseTranslationState.downloaded : EVerseTranslationState.download;
 
         break;
       case EVerseTranslationState.downloading:
@@ -85,13 +81,11 @@ class QuranProvider extends ChangeNotifier {
         if (translationAuthor.isTranslationSelected) {
           if (translationService.selectedTranslationAuthors.length > 1) {
             translationAuthor.isTranslationSelected = false;
-            TranslationDownloadManager.changeSelectedStateOfAuthor(
-                translationAuthor.resourceId!, false);
+            TranslationDownloadManager.changeSelectedStateOfAuthor(translationAuthor.resourceId!, false);
           }
         } else {
           translationAuthor.isTranslationSelected = true;
-          TranslationDownloadManager.changeSelectedStateOfAuthor(
-              translationAuthor.resourceId!, true);
+          TranslationDownloadManager.changeSelectedStateOfAuthor(translationAuthor.resourceId!, true);
         }
         break;
     }
@@ -160,5 +154,11 @@ class QuranProvider extends ChangeNotifier {
   changeSurahDetailsPageTheme(int index) {
     localSetting.surahDetailsPageThemeIndex = index;
     setLocalSettingOfQuran();
+  }
+
+  /// Delete a Downloaded Translation
+  deleteTranslationAuthor(TranslationAuthor translationAuthor) async {
+    await translationService.deleteTranslationAuthor(translationAuthor);
+    notifyListeners();
   }
 }

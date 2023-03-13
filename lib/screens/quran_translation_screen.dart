@@ -12,8 +12,7 @@ class QuranTranslationsScreen extends StatefulWidget {
   const QuranTranslationsScreen({super.key});
 
   @override
-  State<QuranTranslationsScreen> createState() =>
-      _QuranTranslationsScreenState();
+  State<QuranTranslationsScreen> createState() => _QuranTranslationsScreenState();
 }
 
 class _QuranTranslationsScreenState extends State<QuranTranslationsScreen> {
@@ -32,8 +31,7 @@ class _QuranTranslationsScreenState extends State<QuranTranslationsScreen> {
   }
 
   Widget get buildBody {
-    var translationCountries =
-        context.watch<QuranProvider>().translationService.allTranslationCountry;
+    var translationCountries = context.watch<QuranProvider>().translationService.allTranslationCountry;
     return SingleChildScrollView(
       child: Column(
         children: [
@@ -71,7 +69,7 @@ class _QuranTranslationsScreenState extends State<QuranTranslationsScreen> {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        return buildList(translationCountries.elementAt(index), false);
+        return buildList(translationCountries.elementAt(index), true);
       },
     );
   }
@@ -83,24 +81,25 @@ class _QuranTranslationsScreenState extends State<QuranTranslationsScreen> {
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       itemBuilder: (context, index) {
-        return buildList(translationCountries.elementAt(index), true);
+        return buildList(translationCountries.elementAt(index), false);
       },
     );
   }
 
-  Widget buildList(TranslationCountry translationCountry, bool isDownload) {
+  Widget buildList(TranslationCountry translationCountry, bool isDownloaded) {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: kSizeL),
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Padding(
-            padding: const EdgeInsets.symmetric(
-                horizontal: kSizeS, vertical: kSizeL),
-            child: Text(
-              translationCountry.name ?? "",
-              style: context.theme.textTheme.headlineSmall!
-                  .copyWith(color: AppColors.white.withOpacity(0.5)),
+          Visibility(
+            visible: translationCountry.downloadedList.isNotEmpty || !isDownloaded,
+            child: Padding(
+              padding: const EdgeInsets.symmetric(horizontal: kSizeS, vertical: kSizeL),
+              child: Text(
+                translationCountry.name ?? "",
+                style: context.theme.textTheme.headlineSmall!.copyWith(color: AppColors.white.withOpacity(0.5)),
+              ),
             ),
           ),
           ListView.separated(
@@ -108,40 +107,32 @@ class _QuranTranslationsScreenState extends State<QuranTranslationsScreen> {
             shrinkWrap: true,
             physics: const NeverScrollableScrollPhysics(),
             itemBuilder: (context, index) {
-              var value =
-                  translationCountry.translationsAuthor.elementAt(index);
+              var value = translationCountry.translationsAuthor.elementAt(index);
               bool control = false;
-              if (isDownload) {
-                control = value.verseTranslationState !=
-                    EVerseTranslationState.downloaded;
+              if (isDownloaded) {
+                control = value.verseTranslationState == EVerseTranslationState.downloaded;
               } else {
-                control = value.verseTranslationState ==
-                    EVerseTranslationState.downloaded;
+                control = value.verseTranslationState != EVerseTranslationState.downloaded;
               }
               if (control) {
                 return TranslationsSettingCard(
                   translationAuthor: value,
-                  onTap:
-                      context.read<QuranProvider>().onTapTranslationAuthorCard,
+                  onTap: context.read<QuranProvider>().onTapTranslationAuthorCard,
+                  isDownloaded: isDownloaded,
                 );
               } else {
                 return const SizedBox();
               }
             },
             separatorBuilder: (context, index) {
-              var value =
-                  translationCountry.translationsAuthor.elementAt(index);
+              var value = translationCountry.translationsAuthor.elementAt(index);
               bool control = false;
-              if (isDownload) {
-                control = value.verseTranslationState !=
-                    EVerseTranslationState.downloaded;
+              if (isDownloaded) {
+                control = value.verseTranslationState == EVerseTranslationState.downloaded;
               } else {
-                control = value.verseTranslationState ==
-                    EVerseTranslationState.downloaded;
+                control = value.verseTranslationState != EVerseTranslationState.downloaded;
               }
-              return control
-                  ? const SizedBox(height: kSizeM)
-                  : const SizedBox();
+              return control ? const SizedBox(height: kSizeM) : const SizedBox();
             },
           ),
         ],

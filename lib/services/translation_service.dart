@@ -23,8 +23,7 @@ class TranslationService {
     await _getVerseTranslationListFromAsset("en", 131);
     await _getVerseTranslationListFromAsset("tr", 77);
 
-    String localCountryCode =
-        LocalDb.getLocale?.countryCode ?? Platform.localeName.split("_").first;
+    String localCountryCode = LocalDb.getLocale?.countryCode ?? Platform.localeName.split("_").first;
     if (localCountryCode == "tr") {
       var author = _getTranslationAuthor(77);
       if (author != null) author.isTranslationSelected = true;
@@ -81,16 +80,13 @@ class TranslationService {
 
   /// Get verse translation names
   String translationsName(int resourceId) {
-    var value = selectedTranslationAuthors
-        .firstWhere((element) => element.resourceId == resourceId);
+    var value = selectedTranslationAuthors.firstWhere((element) => element.resourceId == resourceId);
     return value.translationName ?? "";
   }
 
   /// Get translations from assets
-  Future _getVerseTranslationListFromAsset(
-      String countryCode, int resourceId) async {
-    List<VerseTranslation> verseTranslations =
-        await AssetQuranService.getVerseTranslationList(countryCode);
+  Future _getVerseTranslationListFromAsset(String countryCode, int resourceId) async {
+    List<VerseTranslation> verseTranslations = await AssetQuranService.getVerseTranslationList(countryCode);
     TranslationAuthor? translationAuthor = _getTranslationAuthor(resourceId);
     if (translationAuthor == null) return;
     translationAuthor.verseTranslations = verseTranslations;
@@ -113,12 +109,10 @@ class TranslationService {
   }
 
   /// Downloading translations from Quran.com API V4
-  Future<bool> downloadTranslationFromNetwork(
-      TranslationAuthor translationAuthor) async {
+  Future<bool> downloadTranslationFromNetwork(TranslationAuthor translationAuthor) async {
     try {
       translationAuthor.verseTranslations =
-          await NetworkService.fetchVerseTranslationList(
-              translationAuthor.resourceId!);
+          await NetworkService.fetchVerseTranslationList(translationAuthor.resourceId!);
 
       for (var element in translationAuthor.verseTranslations) {
         element.translationName = translationAuthor.translationName;
@@ -130,5 +124,16 @@ class TranslationService {
     } catch (e) {
       return false;
     }
+  }
+
+  /// Delete a Downloaded Translation
+  Future<void> deleteTranslationAuthor(TranslationAuthor translationAuthor) async {
+    if (selectedTranslationAuthors.length < 2 && translationAuthor.isTranslationSelected) {
+      return;
+    }
+    translationAuthor.isTranslationSelected = false;
+    translationAuthor.verseTranslationState = EVerseTranslationState.download;
+    translationAuthor.verseTranslations = [];
+    await TranslationDownloadManager.deleteTranslationAuthor(translationAuthor);
   }
 }

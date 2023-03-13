@@ -5,23 +5,19 @@ import '../../constants/colors.dart';
 import '../../constants/images.dart';
 import '../../constants/padding.dart';
 
-class DeleteVerseButton extends StatelessWidget {
-  const DeleteVerseButton({
-    Key? key,
-    required this.onTap,
-  }) : super(key: key);
+class DeleteDownloadedTranslationsButton extends StatelessWidget {
+  const DeleteDownloadedTranslationsButton({Key? key, required this.onTap}) : super(key: key);
 
   /// On Tap for removing item
   final Function() onTap;
 
-  /// Custom button
   @override
   Widget build(BuildContext context) {
     return InkWell(
       onTap: onTap,
       child: Container(
-        height: 70,
-        width: 100,
+        height: 40,
+        width: 75,
         margin: const EdgeInsets.only(left: kSizeM),
         decoration: BoxDecoration(
           borderRadius: BorderRadius.circular(kSizeM),
