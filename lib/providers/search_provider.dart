@@ -76,8 +76,8 @@ class SearchProvider extends ChangeNotifier {
       isFieldEmpty = false;
       filterSurahSearchResults(query);
       filterByPageAndJuzNumber(query);
-      // filterSurahVerse(query);
-      // filterSurahVerseTranslation(query);
+      filterSurahVerse(query);
+      filterSurahVerseTranslation(query);
       isSearchButtonTapped = true;
     } else {
       isFieldEmpty = true;
@@ -85,22 +85,22 @@ class SearchProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  // /// Getting search result by surah name, id etc.
-  // /// [VerseModel]
-  // filterSurahVerseTranslation(String queryText) {
-  //   queryText = queryText.toLowerCase();
-  //   List<VerseTranslation> searchList =
-  //       _context.read<QuranProvider>().translationService.getAllVerseTranslations;
-  //   List<VerseTranslation> searchResult = [];
-  //   for (var verse in searchList) {
-  //     if (verse.text!.toLowerCase().contains(queryText)) {
-  //       searchResult.add(verse);
-  //     }
-  //   }
-  //   filteredVerseTranslationSearch.clear();
-  //   filteredVerseTranslationSearch.addAll(searchResult);
-  //   notifyListeners();
-  // }
+  /// Getting search result by surah name, id etc.
+  /// [VerseModel]
+  filterSurahVerseTranslation(String queryText) {
+    queryText = queryText.toLowerCase();
+    List<VerseTranslation> searchList =
+        _context.read<QuranProvider>().translationService.selectedTranslationAuthors[0].verseTranslations;
+    List<VerseTranslation> searchResult = [];
+    for (var verse in searchList) {
+      if (verse.text!.toLowerCase().contains(queryText)) {
+        searchResult.add(verse);
+      }
+    }
+    filteredVerseTranslationSearch = [];
+    filteredVerseTranslationSearch.addAll(searchResult);
+    notifyListeners();
+  }
 
   /// Getting search result by surah name, id etc.
   /// [VerseModel]
@@ -111,15 +111,10 @@ class SearchProvider extends ChangeNotifier {
     List<VerseModel> searchResult = [];
     for (var verse in searchList) {
       if (verse.text!.toLowerCase().contains(queryText) ||
-          searchListSurah[verse.surahId! - 1]
-              .nameTranslated!
-              .toLowerCase()
-              .contains(queryText)) {
+          searchListSurah[verse.surahId! - 1].nameTranslated!.toLowerCase().contains(queryText)) {
         if (searchListSurah[verse.surahId! - 1].id == (verse.surahId!)) {
-          verse.surahNameTranslated =
-              searchListSurah[verse.surahId! - 1].nameSimple;
-          verse.surahNameArabic =
-              searchListSurah[verse.surahId! - 1].nameArabic;
+          verse.surahNameTranslated = searchListSurah[verse.surahId! - 1].nameSimple;
+          verse.surahNameArabic = searchListSurah[verse.surahId! - 1].nameArabic;
         }
         searchResult.add(verse);
       }
@@ -178,6 +173,7 @@ class SearchProvider extends ChangeNotifier {
       filterJuzNumber = null;
       filteredSurahSearch = [];
       filteredVerseSearch = [];
+      filteredVerseTranslationSearch = [];
       searchBarFocusNode.requestFocus();
       isSearchButtonTapped = false;
       notifyListeners();
@@ -197,6 +193,7 @@ class SearchProvider extends ChangeNotifier {
   get isSearchResultEmpty {
     return (filteredVerseSearch.isEmpty &&
             filteredSurahSearch.isEmpty &&
+            filteredVerseTranslationSearch.isEmpty &&
             filterPageNumber == null &&
             filterJuzNumber == null) &&
         isSearchButtonTapped;
@@ -206,15 +203,14 @@ class SearchProvider extends ChangeNotifier {
   get isSearchResultDisplayed {
     return filteredVerseSearch.isNotEmpty ||
         filteredSurahSearch.isNotEmpty ||
+        filteredVerseTranslationSearch.isNotEmpty ||
         filterPageNumber != null ||
         filterJuzNumber != null;
   }
 
-  Future<void> goToSurah(BuildContext context, int surahId, bool isHome,
-      {int verseId = 1}) async {
+  Future<void> goToSurah(BuildContext context, int surahId, bool isHome, {int verseId = 1}) async {
     if (!isHome) Navigator.pop(context);
-    await SurahDetailNavigationManager.goToSurah(context, surahId,
-        verseId: verseId);
+    await SurahDetailNavigationManager.goToSurah(context, surahId, verseId: verseId);
     notifyListeners();
   }
 
@@ -224,8 +220,7 @@ class SearchProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> goToMushaf(
-      BuildContext context, int pageNumber, bool isHome) async {
+  Future<void> goToMushaf(BuildContext context, int pageNumber, bool isHome) async {
     if (!isHome) Navigator.pop(context);
     await SurahDetailNavigationManager.goToMushaf(context, pageNumber);
     notifyListeners();
