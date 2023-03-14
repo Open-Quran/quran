@@ -96,5 +96,7 @@
     "referencesDescription2": " As explained in our Privacy Policy we do not collect any personal information.",
     "referencesDescription3": "The API and all Qur'an sources are used from ",
     "contactUs" : "Contact us at merhaba@fabrikod.com for assistance.",
-    "privacyPolicy": "Privacy policy"
+    "privacyPolicy": "Privacy policy",
+    "next": "Next",
+    "previous": "Previous"
 }
