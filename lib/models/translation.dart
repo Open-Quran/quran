@@ -1,4 +1,3 @@
-
 import '../constants/enums.dart';
 import '../utils/utils.dart';
 
@@ -78,10 +77,15 @@ class TranslationAuthor {
 
 class VerseTranslation {
   int? resourceId;
+  int? verseNumber;
+
   String? text;
 
   /// Expired Data
   String? translationName;
+
+  String? surahNameArabic;
+  String? surahNameTranslated;
 
   VerseTranslation({this.resourceId, this.text});
 
@@ -89,6 +93,9 @@ class VerseTranslation {
     resourceId = json['resource_id'];
     text = Utils.parseHtmlQuranTranslation(json['text']);
     translationName = json['translationName'];
+    verseNumber = json['verse_number'];
+    surahNameTranslated = json['surah_name_translated'];
+    surahNameArabic = json['surah_name_arabic'];
   }
 
   Map<String, dynamic> toJson() {
@@ -96,6 +103,9 @@ class VerseTranslation {
     data['resource_id'] = resourceId;
     data['text'] = text;
     data['translationName'] = translationName;
+    data['verse_number'] = verseNumber;
+    data['surah_name_translated'] = surahNameTranslated;
+    data['surah_name_arabic'] = surahNameArabic;
     return data;
   }
 }

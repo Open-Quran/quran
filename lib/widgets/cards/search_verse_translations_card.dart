@@ -24,23 +24,23 @@ class SearchVerseTranslationCard extends StatelessWidget {
         decoration: BoxDecoration(borderRadius: BorderRadius.circular(kSizeM), color: AppColors.black2),
         child: Column(
           children: [
-            // Row(
-            //   mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            //   children: [
-            //     Row(
-            //       children: [
-            //         verseSurahNameTranslated(context),
-            //         verseNumber(context),
-            //       ],
-            //     ),
-            //     verseSurahNameArabic(context),
-            //   ],
-            // ),
-            // Divider(
-            //   thickness: 1,
-            //   height: kSize3XL,
-            //   color: context.theme.cardTheme.color,
-            // ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Row(
+                  children: [
+                    //verseSurahNameTranslated(context),
+                    verseNumber(context),
+                  ],
+                ),
+                //verseSurahNameArabic(context),
+              ],
+            ),
+            Divider(
+              thickness: 1,
+              height: kSize3XL,
+              color: context.theme.cardTheme.color,
+            ),
             Row(
               children: [
                 Visibility(child: Expanded(child: verseText(context))),
@@ -64,7 +64,7 @@ class SearchVerseTranslationCard extends StatelessWidget {
   /// Verse surah name in Arabic
   Widget verseSurahNameArabic(BuildContext context) {
     return Text(
-      "verseTranslationModel.surahNameArabic ?? " "",
+      "${verseTranslationModel.surahNameArabic}",
       overflow: TextOverflow.ellipsis,
       textDirection: TextDirection.rtl,
       style: context.theme.textTheme.titleLarge!.copyWith(color: AppColors.white5),
@@ -74,7 +74,7 @@ class SearchVerseTranslationCard extends StatelessWidget {
   /// Verse surah name in english
   Widget verseSurahNameTranslated(BuildContext context) {
     return Text(
-      "{verseTranslationModel.surahNameTranslated}",
+      "${verseTranslationModel.surahNameTranslated}",
       overflow: TextOverflow.ellipsis,
       style: context.theme.textTheme.titleMedium!.copyWith(color: AppColors.white5),
     );
@@ -83,7 +83,7 @@ class SearchVerseTranslationCard extends StatelessWidget {
   /// Verse number
   Widget verseNumber(BuildContext context) {
     return Text(
-      "{context.translate.ayat} {verseTranslationModel.verseNumber }",
+      "${context.translate.ayat} ${verseTranslationModel.verseNumber}",
       overflow: TextOverflow.ellipsis,
       style: context.theme.textTheme.titleMedium!.copyWith(color: AppColors.white5),
     );
