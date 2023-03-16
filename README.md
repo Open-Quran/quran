@@ -1,8 +1,10 @@
 <br />
 <p align="center">
-<img width="215" src="https://github.com/fabrikod/the-open-quran/blob/main/assets/images/logo_pic.png?raw=true">
+<img width="190" src="https://github.com/fabrikod/the-open-quran/blob/main/assets/images/logo_pic.png?raw=true">
+<img width="205" src="https://user-images.githubusercontent.com/24706805/225657810-68bfeaae-625f-4723-9a37-8d6034830700.png">
 </p>
 <br />
+
 
 <br />
 <p align="center">
@@ -28,6 +30,9 @@ https://user-images.githubusercontent.com/24706805/225648849-cceabcea-8254-49bd-
 To try the app you can download it from the link below:
 * [Download APK File](https://github.com/Open-Quran/quran/releases/tag/the-open-quran-v1.0.0-alpha)
 
+
+
+<p align="center"><img src="https://flutter.gskinner.com/folio/assets/images/git_dashes.png?" width="800px"></p>
 
 ### Installation
 
@@ -124,15 +129,7 @@ This application is released under the [MIT license](LICENSE.md). You can use th
 
 ### About Fabrikod
 
-<br />
-<p align="center">
-<img width="215" src="https://www.fabrikod.com/logo.jpg">
-</p>
-<br />
-
 We are a company that creates cutting-edge digital experiences for savvy customers, and we like how simple Flutter simplifies that process.
 Please [visit our website](https://fabrikod.com) to discover more about what we do.
 Please get in touch with us! 
-
-<p align="center"><img src="https://flutter.gskinner.com/folio/assets/images/git_dashes.png?" width="800px"></p>
 
