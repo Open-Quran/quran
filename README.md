@@ -6,11 +6,10 @@
 
 <br />
 <p align="center">
-<img width="215" src="https://github.com/Open-Quran/quran/blob/main/assets/images/1.png?raw=true">
-<img width="215" src="https://github.com/Open-Quran/quran/blob/main/assets/images/3.png?raw=true">
-<img width="215" src="https://github.com/Open-Quran/quran/blob/main/assets/images/4.png?raw=true">
-<img width="215" src="https://github.com/Open-Quran/quran/blob/main/assets/images/5.png?raw=true">
-<img width="215" src="https://github.com/Open-Quran/quran/blob/main/assets/images/7.png?raw=true">
+<img width="300" src="https://github.com/Open-Quran/quran/blob/main/assets/images/1.png?raw=true">
+<img width="300" src="https://github.com/Open-Quran/quran/blob/main/assets/images/3.png?raw=true">
+<img width="300" src="https://github.com/Open-Quran/quran/blob/main/assets/images/4.png?raw=true">
+<img width="300" src="https://github.com/Open-Quran/quran/blob/main/assets/images/5.png?raw=true">
 </p>
 <br />
 
