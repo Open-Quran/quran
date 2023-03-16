@@ -6,8 +6,7 @@
 
 <br />
 <p align="center">
-<video src='https://github.com/Open-Quran/quran/blob/main/assets/images/4k.mp4?raw=true' width=180/>
-<img width="215" src="https://github.com/Open-Quran/quran/blob/main/assets/images/1.png?raw=true">
+<img src="https://github.com/Open-Quran/quran/blob/main/assets/images/1.png?raw=true">
 <img width="215" src="https://github.com/Open-Quran/quran/blob/main/assets/images/3.png?raw=true">
 <img width="215" src="https://github.com/Open-Quran/quran/blob/main/assets/images/4.png?raw=true">
 <img width="215" src="https://github.com/Open-Quran/quran/blob/main/assets/images/5.png?raw=true">
