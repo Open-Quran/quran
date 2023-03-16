@@ -106,6 +106,18 @@ class SurahDetailsProvider extends ChangeNotifier {
     return value == -1 ? 0 : value;
   }
 
+  /// Close the settings page and turn back surah detail screen when users tap back icon
+  closeSettings() {
+    isSettingsOpen = false;
+    notifyListeners();
+  }
+
+  ///  Close the title drawer and turn back surah detail screen when users tap back icon
+  closeDrawer() {
+    isTitleMenu = false;
+    notifyListeners();
+  }
+
   /// Navigation to the specific page
   int get jumpToMushafPageListIndex {
     int value = mushafPageList.indexWhere((element) {
