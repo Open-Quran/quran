@@ -6,9 +6,12 @@
 
 <br />
 <p align="center">
-<img width="215" src="https://github.com/fabrikod/the-open-quran/blob/develop/assets/images/Juz%20Grid.png?raw=true">
-<img width="215" src="https://github.com/fabrikod/the-open-quran/blob/develop/assets/images/Translation%20-%20Audio%20Player.png?raw=true">
-<img width="215" src="https://github.com/fabrikod/the-open-quran/blob/develop/assets/images/Juz%20List.png?raw=true">
+<video src='https://github.com/Open-Quran/quran/blob/main/assets/images/4k.mp4?raw=true' width=180/>
+<img width="215" src="https://github.com/Open-Quran/quran/blob/main/assets/images/1.png?raw=true">
+<img width="215" src="https://github.com/Open-Quran/quran/blob/main/assets/images/3.png?raw=true">
+<img width="215" src="https://github.com/Open-Quran/quran/blob/main/assets/images/4.png?raw=true">
+<img width="215" src="https://github.com/Open-Quran/quran/blob/main/assets/images/5.png?raw=true">
+<img width="215" src="https://github.com/Open-Quran/quran/blob/main/assets/images/7.png?raw=true">
 </p>
 <br />
 
