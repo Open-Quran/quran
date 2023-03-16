@@ -6,37 +6,22 @@
 
 <br />
 <p align="center">
-<img width="350" src="https://github.com/Open-Quran/quran/blob/main/assets/images/1.png?raw=true">
-<img width="350" src="https://github.com/Open-Quran/quran/blob/main/assets/images/5.png?raw=true">
-<img width="350" src="https://github.com/Open-Quran/quran/blob/main/assets/images/4.png?raw=true">
-<img width="350" src="https://github.com/Open-Quran/quran/blob/main/assets/images/7.png?raw=true">
+<img width="400" src="https://github.com/Open-Quran/quran/blob/main/assets/images/1.png?raw=true">
+<img width="400" src="https://github.com/Open-Quran/quran/blob/main/assets/images/4.png?raw=true">
+<img width="400" src="https://github.com/Open-Quran/quran/blob/main/assets/images/7.png?raw=true">
 <img width="500" src="https://github.com/Open-Quran/quran/blob/main/assets/images/3.png?raw=true">
-
 </p>
 <br />
-
-
-https://github.com/Open-Quran/quran/blob/main/assets/images/4k.mp4?raw=true
+   
 
 # The Open Qur'an - Mobile App
 
 A demonstration app for Flutter that targets iOS, Android and shows how it can give a fantastic cross-platform experience.
 The Open Qur'an App was carefully built by [fabrikod](https://fabrikod.com) team to take into account user expectations, input methods, and idioms for each platform, guaranteeing it is comfortable on all of them. 
 
+   
+https://user-images.githubusercontent.com/24706805/225648849-cceabcea-8254-49bd-9735-0177701639a6.mp4
 
-### About Fabrikod
-
-<br />
-<p align="center">
-<img width="215" src="https://www.fabrikod.com/logo.jpg">
-</p>
-<br />
-
-We are a company that creates cutting-edge digital experiences for savvy customers, and we like how simple Flutter simplifies that process.
-Please [visit our website](https://fabrikod.com) to discover more about what we do.
-Please get in touch with us! 
-
-<p align="center"><img src="https://flutter.gskinner.com/folio/assets/images/git_dashes.png?" width="800px"></p>
 
 ### App Downloads
 
@@ -129,9 +114,25 @@ May Allah reward all the awesome [Contributors](https://github.com/fabrikod/the-
 - [ ] https://github.com/fabrikod/the-open-quran/issues/86 Add multiple recetires auido
 - [ ] https://github.com/fabrikod/the-open-quran/issues/87 Search with the words which are in Surah
 
+
 ### License
 
 This application is released under the [MIT license](LICENSE.md). You can use the code for any purpose, including commercial projects.
 
 [![license](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+
+
+### About Fabrikod
+
+<br />
+<p align="center">
+<img width="215" src="https://www.fabrikod.com/logo.jpg">
+</p>
+<br />
+
+We are a company that creates cutting-edge digital experiences for savvy customers, and we like how simple Flutter simplifies that process.
+Please [visit our website](https://fabrikod.com) to discover more about what we do.
+Please get in touch with us! 
+
+<p align="center"><img src="https://flutter.gskinner.com/folio/assets/images/git_dashes.png?" width="800px"></p>
 
