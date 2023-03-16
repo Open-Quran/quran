@@ -71,7 +71,12 @@ class SurahDetailsProvider extends ChangeNotifier {
 
   /// Change Quran Screen Setting Mode
   void changeOpenSetting() {
-    isSettingsOpen = !isSettingsOpen;
+    if (isSettingsOpen) {
+      isSettingsOpen = false;
+    } else {
+      isTitleMenu = false;
+      isSettingsOpen = true;
+    }
     notifyListeners();
   }
 
@@ -83,7 +88,12 @@ class SurahDetailsProvider extends ChangeNotifier {
 
   /// Change Quran Screen Setting Mode
   void changeTitleMenuState() {
-    isTitleMenu = !isTitleMenu;
+    if (isTitleMenu) {
+      isTitleMenu = false;
+    } else {
+      isSettingsOpen = false;
+      isTitleMenu = true;
+    }
     notifyListeners();
     changeToggleSearchOptions(EToggleSearchOptions.toggles);
   }
