@@ -5,7 +5,6 @@
 </p>
 <br />
 
-
 <br />
 <p align="center">
 <img width="400" src="https://github.com/Open-Quran/quran/blob/main/assets/images/1.png?raw=true">
