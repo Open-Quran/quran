@@ -8,9 +8,9 @@ import 'package:the_open_quran/providers/quran_provider.dart';
 import 'package:the_open_quran/providers/search_provider.dart';
 
 import '../database/local_db.dart';
+import '../managers/surah_detail_navigation_manager.dart';
 import '../models/reading_settings_model.dart';
 import '../models/surah_model.dart';
-import '../models/translation.dart';
 import '../models/verse_model.dart';
 import 'app_settings_provider.dart';
 import 'bookmark_provider.dart';
@@ -332,5 +332,30 @@ class SurahDetailsProvider extends ChangeNotifier {
           "${verseModel.text!}\n${_context.read<QuranProvider>().translationService.translationsOfVerse(verseModel.id!)[index].text!}";
     }
     await Share.share(verseText);
+  }
+
+  /// Bottom bar previous function
+  void previousButtonOnTap() {
+    if (readingSettings.surahId > 1) {
+      Navigator.pop(_context);
+      SurahDetailNavigationManager.goToSurah(_context, readingSettings.surahId - 1);
+    }
+    notifyListeners();
+  }
+
+  /// Bottom bar up arrow function
+  void beggingOfSurahButtonOnTap() {
+    Navigator.pop(_context);
+    SurahDetailNavigationManager.goToSurah(_context, readingSettings.surahId);
+    notifyListeners();
+  }
+
+  /// Bottom bar next function
+  void nextButtonOnTap() {
+    if (readingSettings.surahId < 114) {
+      Navigator.pop(_context);
+      SurahDetailNavigationManager.goToSurah(_context, readingSettings.surahId + 1);
+    }
+    notifyListeners();
   }
 }

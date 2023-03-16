@@ -97,6 +97,7 @@
     "referencesDescription3": "API ve tüm Kuran kaynakları",
     "contactUs" : "Yardım için merhaba@fabrikod.com adresinden bize ulaşın.",
     "privacyPolicy": "Gizlilik politikası",
-    "next": "Sonraki",
-    "previous": "Önceki"
+    "nextSurah": "Sonraki Sure",
+    "previousSurah": "Önceki Sure",
+    "beggingOfSurah": "Sure Başlangıcı"
 }

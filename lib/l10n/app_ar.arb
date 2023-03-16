@@ -97,6 +97,7 @@
     "referencesDescription3": "يتم استخدام API وجميع مصادر القرآن من",
     "contactUs" : "اتصل بنا على merhaba@fabrikod.com للحصول على المساعدة.",
     "privacyPolicy": "سياسة الخصوصية",
-    "next": "",
-    "previous": ""
+    "nextSurah": "",
+    "previousSurah": "",
+    "beggingOfSurah": ""
 }

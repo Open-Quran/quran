@@ -97,6 +97,8 @@
     "referencesDescription3": "The API and all Qur'an sources are used from ",
     "contactUs" : "Contact us at merhaba@fabrikod.com for assistance.",
     "privacyPolicy": "Privacy policy",
-    "next": "Next",
-    "previous": "Previous"
+    "nextSurah": "Next Surah",
+    "previousSurah": "Previous Surah",
+    "beggingOfSurah": "Begging Of Surah"
+
 }
