@@ -14,9 +14,6 @@
 </p>
 <br />
 
-<video src='https://github.com/Open-Quran/quran/blob/main/assets/images/4k.mp4?raw=true' width=180/>
-
-
 # The Open Qur'an - Mobile App
 
 A demonstration app for Flutter that targets iOS, Android and shows how it can give a fantastic cross-platform experience.
