@@ -10,7 +10,6 @@ import 'package:the_open_quran/providers/search_provider.dart';
 import '../database/local_db.dart';
 import '../models/reading_settings_model.dart';
 import '../models/surah_model.dart';
-import '../models/translation.dart';
 import '../models/verse_model.dart';
 import 'app_settings_provider.dart';
 import 'bookmark_provider.dart';
