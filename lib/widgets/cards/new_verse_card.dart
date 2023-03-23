@@ -92,24 +92,27 @@ class VerseCard extends StatelessWidget {
         padding: const EdgeInsets.all(kSizeS),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
-          mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            GestureDetector(
-              onTap: () {
-                context.read<SurahDetailsProvider>().changeAyahNumberStyle();
-              },
-              child: _verseNumberText(context),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    context.read<SurahDetailsProvider>().changeAyahNumberStyle();
+                  },
+                  child: _verseNumberText(context),
+                ),
+                isBookmark
+                    ? Padding(
+                        padding: const EdgeInsets.only(left: kSizeM, top: kSizeM),
+                        child: SvgPicture.asset(
+                          ImageConstants.bookmarkIconCard,
+                          color: context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor,
+                        ),
+                      )
+                    : Container(),
+              ],
             ),
-            const SizedBox(width: kSizeL),
-            isBookmark
-                ? Padding(
-                    padding: const EdgeInsets.only(top: kSizeXL),
-                    child: SvgPicture.asset(
-                      ImageConstants.bookmarkActiveIcon,
-                      color: context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor,
-                    ),
-                  )
-                : Container(),
             Expanded(
               child: Column(
                 children: [
