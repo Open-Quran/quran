@@ -80,13 +80,13 @@ class SurahDetailsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Change Quran Screen Setting Mode
+  /// Change ayat number from latin to arabic
   void changeAyahNumberStyle() {
     isLatinNumber = !isLatinNumber;
     notifyListeners();
   }
 
-  /// Change Quran Screen Setting Mode
+  /// Close menu when back button is clicked
   void changeTitleMenuState() {
     if (isTitleMenu) {
       isTitleMenu = false;
