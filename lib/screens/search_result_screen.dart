@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:the_open_quran/constants/constants.dart';
 
-import '../constants/padding.dart';
 import '../models/surah_model.dart';
 import '../models/translation.dart';
 import '../models/verse_model.dart';
@@ -50,10 +49,7 @@ class SearchResultScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  buildJuzAndPageSearchResult(
-                      context,
-                      searchProvider.filterPageNumber,
-                      searchProvider.filterJuzNumber),
+                  buildJuzAndPageSearchResult(context, searchProvider.filterPageNumber, searchProvider.filterJuzNumber),
                   buildSurahSearchResult(searchProvider.filteredSurahSearch),
 
                   /// Can be used later on
@@ -67,16 +63,14 @@ class SearchResultScreen extends StatelessWidget {
   }
 
   /// [VerseTranslation] search results
-  ListView buildVerseTranslationSearchResult(
-      List<VerseTranslation> searchVerseTranslationResult) {
+  ListView buildVerseTranslationSearchResult(List<VerseTranslation> searchVerseTranslationResult) {
     return ListView.separated(
       itemCount: searchVerseTranslationResult.length,
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
       padding: const EdgeInsets.symmetric(vertical: 0),
-      itemBuilder: (context, index) => SearchVerseTranslationCard(
-          verseTranslationModel: searchVerseTranslationResult[index],
-          onTap: () {}),
+      itemBuilder: (context, index) =>
+          SearchVerseTranslationCard(verseTranslationModel: searchVerseTranslationResult[index], onTap: () {}),
       separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
     );
   }
@@ -92,9 +86,7 @@ class SearchResultScreen extends StatelessWidget {
         verseModel: searchVerseResult[index],
         onTap: () {
           var verse = searchVerseResult[index];
-          context.read<SearchProvider>().goToSurah(
-              context, verse.surahId!, isHome,
-              verseId: verse.verseNumber!);
+          context.read<SearchProvider>().goToSurah(context, verse.surahId!, isHome, verseId: verse.verseNumber!);
         },
       ),
       separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
@@ -111,9 +103,7 @@ class SearchResultScreen extends StatelessWidget {
       itemBuilder: (context, index) => SearchSurahCard(
         surahModel: searchSurahResult[index],
         onTap: () {
-          context
-              .read<SearchProvider>()
-              .goToSurah(context, searchSurahResult[index].id!, isHome);
+          context.read<SearchProvider>().goToSurah(context, searchSurahResult[index].id!, isHome);
         },
       ),
       separatorBuilder: (context, index) => const SizedBox(height: kSizeL),
@@ -121,8 +111,7 @@ class SearchResultScreen extends StatelessWidget {
   }
 
   /// [Juz] and [Page] search results
-  ListView buildJuzAndPageSearchResult(
-      BuildContext context, int? pageNumber, int? juzNumber) {
+  ListView buildJuzAndPageSearchResult(BuildContext context, int? pageNumber, int? juzNumber) {
     return ListView(
       shrinkWrap: true,
       physics: const NeverScrollableScrollPhysics(),
@@ -133,9 +122,7 @@ class SearchResultScreen extends StatelessWidget {
             title: context.translate.juz,
             titleNumber: "${context.translate.juz} $pageNumber",
             onTap: () {
-              context
-                  .read<SearchProvider>()
-                  .goToJuz(context, juzNumber ?? 1, isHome);
+              context.read<SearchProvider>().goToJuz(context, juzNumber ?? 1, isHome);
             },
           ),
         ),
@@ -145,9 +132,7 @@ class SearchResultScreen extends StatelessWidget {
             title: context.translate.page,
             titleNumber: "${context.translate.page} $pageNumber",
             onTap: () {
-              context
-                  .read<SearchProvider>()
-                  .goToMushaf(context, pageNumber ?? 1, isHome);
+              context.read<SearchProvider>().goToMushaf(context, pageNumber ?? 1, isHome);
             },
           ),
         ),
