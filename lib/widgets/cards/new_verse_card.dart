@@ -89,11 +89,25 @@ class VerseCard extends StatelessWidget {
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            GestureDetector(
-              onTap: () {
-                context.read<SurahDetailsProvider>().changeAyahNumberStyle();
-              },
-              child: _verseNumberText(context),
+            Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                GestureDetector(
+                  onTap: () {
+                    context.read<SurahDetailsProvider>().changeAyahNumberStyle();
+                  },
+                  child: _verseNumberText(context),
+                ),
+                isBookmark
+                    ? Padding(
+                        padding: const EdgeInsets.only(left: kSizeM, top: kSizeM),
+                        child: SvgPicture.asset(
+                          ImageConstants.bookmarkIconCard,
+                          color: context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor,
+                        ),
+                      )
+                    : Container(),
+              ],
             ),
             Expanded(
               child: Column(
@@ -134,7 +148,7 @@ class VerseCard extends StatelessWidget {
               textScaleFactor: textScaleFactor,
               style: context.theme.textTheme.displayLarge?.copyWith(
                 color: context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor,
-                fontSize: 11,
+                fontSize: 15,
                 fontFamily: arabicFontFamily,
               ),
             ),
