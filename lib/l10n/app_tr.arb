@@ -96,5 +96,8 @@
     "referencesDescription2": " Gizlilik politikamızda açıklandığı gibi, herhangi bir kişisel bilgi toplamıyoruz.",
     "referencesDescription3": "API ve tüm Kuran kaynakları",
     "contactUs" : "Yardım için merhaba@fabrikod.com adresinden bize ulaşın.",
-    "privacyPolicy": "Gizlilik politikası"
+    "privacyPolicy": "Gizlilik politikası",
+    "nextSurah": "Sonraki Sure",
+    "previousSurah": "Önceki Sure",
+    "beggingOfSurah": "Sure Başlangıcı"
 }

@@ -2,8 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:the_open_quran/constants/constants.dart';
 
-import '../../constants/enums.dart';
-import '../../constants/padding.dart';
 import '../../models/mushaf_backgrund_model.dart';
 import '../../models/surah_model.dart';
 import '../../models/verse_model.dart';
@@ -53,8 +51,7 @@ class QuranPageWidget extends StatelessWidget {
         return Column(
           children: [
             BasmalaTitle(verseKey: verses.first.verseKey ?? ""),
-            buildVersesText(context, verses, textScaleFactor, layoutOptions,
-                fontTypeArabic),
+            buildVersesText(context, verses, textScaleFactor, layoutOptions, fontTypeArabic),
           ],
         );
       },
@@ -70,18 +67,13 @@ class QuranPageWidget extends StatelessWidget {
   ) {
     return RichText(
       textDirection: TextDirection.rtl,
-      textAlign: layoutOptions == ELayoutOptions.justify
-          ? TextAlign.justify
-          : TextAlign.right,
+      textAlign: layoutOptions == ELayoutOptions.justify ? TextAlign.justify : TextAlign.right,
       textScaleFactor: textScaleFactor,
       text: TextSpan(
         style: context.theme.textTheme.headlineLarge?.copyWith(
             height: 2.4,
             fontFamily: Fonts.getArabicFont(fontTypeArabic),
-            color: context
-                .watch<QuranProvider>()
-                .surahDetailsPageThemeColor
-                .textColor),
+            color: context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor),
         children: verses
             .map(
               (e) => TextSpan(
@@ -91,12 +83,9 @@ class QuranPageWidget extends StatelessWidget {
                     text: Utils.getArabicVerseNo(e.verseNumber.toString()),
                     style: context.theme.textTheme.headlineLarge?.copyWith(
                         fontFamily: Fonts.uthmanicIcon,
-                        fontSize: 27,
+                        fontSize: 20,
                         height: 0,
-                        color: context
-                            .watch<QuranProvider>()
-                            .surahDetailsPageThemeColor
-                            .textColor),
+                        color: context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor),
                   ),
                 ],
               ),
@@ -118,15 +107,13 @@ class QuranPageWidget extends StatelessWidget {
         children: [
           Text(
             "${context.translate.juz} ${verse.juzNumber} | ${context.translate.hizb} ${verse.hizbNumber} - ${context.translate.page} ${verse.pageNumber}",
-            style: context.theme.textTheme.bodySmall?.copyWith(
-                color: surahDetailsPageTheme.transparentTextColor,
-                letterSpacing: 0.15),
+            style: context.theme.textTheme.bodySmall
+                ?.copyWith(color: surahDetailsPageTheme.transparentTextColor, letterSpacing: 0.15),
           ),
           Text(
             verse.pageNumber?.quranPageNumber ?? "",
-            style: context.theme.textTheme.bodyMedium?.copyWith(
-                color: surahDetailsPageTheme.transparentVectorColor,
-                letterSpacing: 0.04),
+            style: context.theme.textTheme.bodyMedium
+                ?.copyWith(color: surahDetailsPageTheme.transparentVectorColor, letterSpacing: 0.04),
           ),
         ],
       ),

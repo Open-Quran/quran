@@ -12,6 +12,7 @@ import '../../providers/favorites_provider.dart';
 import '../../providers/player_provider.dart';
 import '../../providers/quran_provider.dart';
 import '../../providers/surah_details_provider.dart';
+import '../../widgets/bars/reading_page_bottom_bar.dart';
 import '../../widgets/basmala_title.dart';
 import '../../widgets/cards/new_verse_card.dart';
 
@@ -27,15 +28,13 @@ class _TranslationScreenState extends State<TranslationScreen> {
   final ItemScrollController itemScrollController = ItemScrollController();
 
   /// Item position listener of Verse list
-  final ItemPositionsListener itemPositionsListener =
-      ItemPositionsListener.create();
+  final ItemPositionsListener itemPositionsListener = ItemPositionsListener.create();
 
   @override
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      itemScrollController.jumpTo(
-          index: context.read<SurahDetailsProvider>().jumpToVerseIndex);
+      itemScrollController.jumpTo(index: context.read<SurahDetailsProvider>().jumpToVerseIndex);
       itemPositionsListener.itemPositions.addListener(scrollListener);
       listenToPlayer();
     });
@@ -46,8 +45,7 @@ class _TranslationScreenState extends State<TranslationScreen> {
     context.read<PlayerProvider>().addListener(() {
       if (!mounted) return;
       if (context.read<PlayerProvider>().playerState == EPlayerState.playing) {
-        itemScrollController.jumpTo(
-            index: context.read<PlayerProvider>().playerIndex);
+        itemScrollController.jumpTo(index: context.read<PlayerProvider>().playerIndex);
       }
     });
   }
@@ -83,6 +81,10 @@ class _TranslationScreenState extends State<TranslationScreen> {
               children: [
                 BasmalaTitle(verseKey: verse.verseKey ?? ""),
                 buildVerseCard(index, verse, context),
+                Visibility(
+                  visible: index == verses.length - 1,
+                  child: const ReadingPageBottomBar(),
+                ),
               ],
             );
           },
@@ -96,17 +98,11 @@ class _TranslationScreenState extends State<TranslationScreen> {
     return VerseCard(
       verseModel: verse,
       arabicFontFamily: Fonts.uthmanicIcon,
-      verseTranslations: context
-          .watch<QuranProvider>()
-          .translationService
-          .translationsOfVerse(verse.id!),
+      verseTranslations: context.watch<QuranProvider>().translationService.translationsOfVerse(verse.id!),
       readOptions: context.watch<QuranProvider>().localSetting.readOptions,
-      textScaleFactor:
-          context.watch<QuranProvider>().localSetting.textScaleFactor,
-      translationFontFamily: Fonts.getTranslationFont(
-          context.watch<QuranProvider>().localSetting.fontType),
-      isPlaying:
-          context.watch<PlayerProvider>().isPlayingVerse(verse.verseKey ?? ""),
+      textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
+      translationFontFamily: Fonts.getTranslationFont(context.watch<QuranProvider>().localSetting.fontType),
+      isPlaying: context.watch<PlayerProvider>().isPlayingVerse(verse.verseKey ?? ""),
       playFunction: (verse, isPlaying) {
         context.read<SurahDetailsProvider>().onTapVerseCardPlayOrPause(
               index,
@@ -123,8 +119,7 @@ class _TranslationScreenState extends State<TranslationScreen> {
         context.read<SurahDetailsProvider>().shareVerse(verseModel, index);
       },
       selectedVerseKey: context.watch<SurahDetailsProvider>().selectedVerseKey,
-      changeSelectedVerseKey:
-          context.read<SurahDetailsProvider>().changeSelectedVerseKey,
+      changeSelectedVerseKey: context.read<SurahDetailsProvider>().changeSelectedVerseKey,
     );
   }
 }
