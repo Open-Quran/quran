@@ -5,7 +5,7 @@
 </p>
 <br />
 <p align="center">
-<video src="https://user-images.githubusercontent.com/24706805/225648849-cceabcea-8254-49bd-9735-0177701639a6.mp4"></video>
+<video controls autoplay src="https://user-images.githubusercontent.com/24706805/225648849-cceabcea-8254-49bd-9735-0177701639a6.mp4"></video>
 </p>
 <br />
 <p align="center">
