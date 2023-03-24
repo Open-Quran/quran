@@ -29,6 +29,9 @@ class PlayerProvider extends ChangeNotifier {
   /// Player Speed title
   String playerSpeedTitle = "Normal";
 
+  /// Reciter Title
+  String reciterTitle = "Mohmoud Al Husary";
+
   /// EPlayerState [EPlayerState]
   EPlayerState playerState = EPlayerState.stop;
 
@@ -40,8 +43,7 @@ class PlayerProvider extends ChangeNotifier {
   }
 
   /// Listens the Player's Position
-  Stream<PositionData> get positionDataStream =>
-      Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
+  Stream<PositionData> get positionDataStream => Rx.combineLatest3<Duration, Duration, Duration?, PositionData>(
         player.positionStream,
         player.bufferedPositionStream,
         player.durationStream,
@@ -86,6 +88,13 @@ class PlayerProvider extends ChangeNotifier {
     notifyListeners();
   }
 
+  /// Change Reciter
+  Future<void> setReciter(String value) async {
+    reciterTitle = value;
+    if (value == "Mohmoud Al Husary") value = "Mohmoud Al Husary";
+    notifyListeners();
+  }
+
   /// Checking if previous ayat exists
   bool get isPrevious => playerIndex > 0;
 
@@ -108,16 +117,14 @@ class PlayerProvider extends ChangeNotifier {
 
   /// Is selected verse playing?
   bool isPlayingVerse(String verseKey) {
-    if (playerState == EPlayerState.stop || verseListToPlay.isEmpty)
-      return false;
+    if (playerState == EPlayerState.stop || verseListToPlay.isEmpty) return false;
     return verseKey == verseListToPlay[playerIndex].verseKey;
   }
 
   /// Is the chosen mushaf page playing?
   bool isPlayingMushaf({int? pageNumber, int? surahId}) {
     if (!player.playing || verseListToPlay.isEmpty) return false;
-    return verseListToPlay.first.surahId == surahId &&
-        verseListToPlay.first.pageNumber == pageNumber;
+    return verseListToPlay.first.surahId == surahId && verseListToPlay.first.pageNumber == pageNumber;
   }
 
   /// OnTap to play or pause

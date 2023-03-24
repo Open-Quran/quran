@@ -6,7 +6,6 @@ import 'package:the_open_quran/screens/search_result_screen.dart';
 import '../database/local_db.dart';
 import '../providers/home_provider.dart';
 import '../providers/search_provider.dart';
-import '../utils/utils.dart';
 import '../widgets/animation/fade_indexed_stack.dart';
 import '../widgets/app_bars/primary_app_bar.dart';
 import '../widgets/buttons/juz_surah_search_toggle_button.dart';
@@ -34,19 +33,13 @@ class _HomeScreenState extends State<HomeScreen> {
           child: Column(
             children: [
               JuzSurahSearchToggleButton(
-                toggleSearchButtonIndex:
-                    context.read<SearchProvider>().toggleSearchOptions.index,
-                onChanged: context
-                    .watch<HomeProvider>()
-                    .changeJuzOrSurahToggleOptionType,
-                onTapSearchButton:
-                    context.read<SearchProvider>().changeToggleSearchOptions,
-                toggleListType:
-                    context.watch<HomeProvider>().juzSurahToggleOptionType,
+                toggleSearchButtonIndex: context.read<SearchProvider>().toggleSearchOptions.index,
+                onChanged: context.watch<HomeProvider>().changeJuzOrSurahToggleOptionType,
+                onTapSearchButton: context.read<SearchProvider>().changeToggleSearchOptions,
+                toggleListType: context.watch<HomeProvider>().juzSurahToggleOptionType,
               ),
               FadeIndexedStack(
-                index:
-                    context.watch<SearchProvider>().toggleSearchOptions.index,
+                index: context.watch<SearchProvider>().toggleSearchOptions.index,
                 children: [
                   buildToggleSearchPages(context),
                   const SearchResultScreen(isHome: true),
@@ -105,8 +98,7 @@ class _HomeScreenState extends State<HomeScreen> {
               padding: const EdgeInsets.symmetric(horizontal: kSizeL),
               child: Text(
                 context.translate.recent,
-                style: context.theme.textTheme.displayLarge
-                    ?.copyWith(letterSpacing: 0.04),
+                style: context.theme.textTheme.displayLarge?.copyWith(letterSpacing: 0.04),
               ),
             ),
             const SizedBox(height: kSizeL),
