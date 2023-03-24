@@ -71,19 +71,29 @@ class SurahDetailsProvider extends ChangeNotifier {
 
   /// Change Quran Screen Setting Mode
   void changeOpenSetting() {
-    isSettingsOpen = !isSettingsOpen;
+    if (isSettingsOpen) {
+      isSettingsOpen = false;
+    } else {
+      isTitleMenu = false;
+      isSettingsOpen = true;
+    }
     notifyListeners();
   }
 
-  /// Change Quran Screen Setting Mode
+  /// Change ayat number from latin to arabic
   void changeAyahNumberStyle() {
     isLatinNumber = !isLatinNumber;
     notifyListeners();
   }
 
-  /// Change Quran Screen Setting Mode
+  /// Close menu when back button is clicked
   void changeTitleMenuState() {
-    isTitleMenu = !isTitleMenu;
+    if (isTitleMenu) {
+      isTitleMenu = false;
+    } else {
+      isSettingsOpen = false;
+      isTitleMenu = true;
+    }
     notifyListeners();
     changeToggleSearchOptions(EToggleSearchOptions.toggles);
   }
@@ -94,6 +104,18 @@ class SurahDetailsProvider extends ChangeNotifier {
       return element.surahId == readingSettings.surahId && element.verseNumber == readingSettings.verseId;
     });
     return value == -1 ? 0 : value;
+  }
+
+  /// Close the settings page and turn back surah detail screen when users tap back icon
+  closeSettings() {
+    isSettingsOpen = false;
+    notifyListeners();
+  }
+
+  ///  Close the title drawer and turn back surah detail screen when users tap back icon
+  closeDrawer() {
+    isTitleMenu = false;
+    notifyListeners();
   }
 
   /// Navigation to the specific page
