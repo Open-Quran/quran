@@ -4,7 +4,9 @@
 <img width="205" src="https://user-images.githubusercontent.com/24706805/225657810-68bfeaae-625f-4723-9a37-8d6034830700.png">
 </p>
 <br />
+<p align="center">
 <video src="https://user-images.githubusercontent.com/24706805/225648849-cceabcea-8254-49bd-9735-0177701639a6.mp4"></video>
+</p>
 <br />
 <p align="center">
 <img width="400" src="https://github.com/Open-Quran/quran/blob/main/assets/images/1.png?raw=true">
