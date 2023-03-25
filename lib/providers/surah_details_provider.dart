@@ -8,9 +8,9 @@ import 'package:the_open_quran/providers/quran_provider.dart';
 import 'package:the_open_quran/providers/search_provider.dart';
 
 import '../database/local_db.dart';
+import '../managers/surah_detail_navigation_manager.dart';
 import '../models/reading_settings_model.dart';
 import '../models/surah_model.dart';
-import '../models/translation.dart';
 import '../models/verse_model.dart';
 import 'app_settings_provider.dart';
 import 'bookmark_provider.dart';
@@ -71,19 +71,29 @@ class SurahDetailsProvider extends ChangeNotifier {
 
   /// Change Quran Screen Setting Mode
   void changeOpenSetting() {
-    isSettingsOpen = !isSettingsOpen;
+    if (isSettingsOpen) {
+      isSettingsOpen = false;
+    } else {
+      isTitleMenu = false;
+      isSettingsOpen = true;
+    }
     notifyListeners();
   }
 
-  /// Change Quran Screen Setting Mode
+  /// Change ayat number from latin to arabic
   void changeAyahNumberStyle() {
     isLatinNumber = !isLatinNumber;
     notifyListeners();
   }
 
-  /// Change Quran Screen Setting Mode
+  /// Close menu when back button is clicked
   void changeTitleMenuState() {
-    isTitleMenu = !isTitleMenu;
+    if (isTitleMenu) {
+      isTitleMenu = false;
+    } else {
+      isSettingsOpen = false;
+      isTitleMenu = true;
+    }
     notifyListeners();
     changeToggleSearchOptions(EToggleSearchOptions.toggles);
   }
@@ -94,6 +104,18 @@ class SurahDetailsProvider extends ChangeNotifier {
       return element.surahId == readingSettings.surahId && element.verseNumber == readingSettings.verseId;
     });
     return value == -1 ? 0 : value;
+  }
+
+  /// Close the settings page and turn back surah detail screen when users tap back icon
+  closeSettings() {
+    isSettingsOpen = false;
+    notifyListeners();
+  }
+
+  ///  Close the title drawer and turn back surah detail screen when users tap back icon
+  closeDrawer() {
+    isTitleMenu = false;
+    notifyListeners();
   }
 
   /// Navigation to the specific page
@@ -332,5 +354,30 @@ class SurahDetailsProvider extends ChangeNotifier {
           "${verseModel.text!}\n${_context.read<QuranProvider>().translationService.translationsOfVerse(verseModel.id!)[index].text!}";
     }
     await Share.share(verseText);
+  }
+
+  /// Bottom bar previous function
+  void previousButtonOnTap() {
+    if (readingSettings.surahId > 1) {
+      Navigator.pop(_context);
+      SurahDetailNavigationManager.goToSurah(_context, readingSettings.surahId - 1);
+    }
+    notifyListeners();
+  }
+
+  /// Bottom bar up arrow function
+  void beggingOfSurahButtonOnTap() {
+    Navigator.pop(_context);
+    SurahDetailNavigationManager.goToSurah(_context, readingSettings.surahId);
+    notifyListeners();
+  }
+
+  /// Bottom bar next function
+  void nextButtonOnTap() {
+    if (readingSettings.surahId < 114) {
+      Navigator.pop(_context);
+      SurahDetailNavigationManager.goToSurah(_context, readingSettings.surahId + 1);
+    }
+    notifyListeners();
   }
 }

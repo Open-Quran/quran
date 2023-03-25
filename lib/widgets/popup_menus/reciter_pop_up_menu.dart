@@ -1,13 +1,18 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:the_open_quran/constants/constants.dart';
 
 import '../../providers/player_provider.dart';
 
-class SpeedPopupMenu extends StatelessWidget {
-  const SpeedPopupMenu({Key? key}) : super(key: key);
+class ReciterPopUpMenu extends StatefulWidget {
+  const ReciterPopUpMenu({super.key});
 
+  @override
+  State<ReciterPopUpMenu> createState() => _ReciterPopUpMenuState();
+}
+
+class _ReciterPopUpMenuState extends State<ReciterPopUpMenu> {
   @override
   Widget build(BuildContext context) {
     return PopupMenuButton(
@@ -25,50 +30,38 @@ class SpeedPopupMenu extends StatelessWidget {
       padding: EdgeInsets.zero,
       itemBuilder: (context) {
         return [
-          ..._backItem(
+          _popupMenuItem(
             context: context,
-            onTap: () {},
+            itemTitle: "Mohmoud Al Husary",
           ),
           _popupMenuItem(
             context: context,
-            itemTitle: "0.5",
+            itemTitle: "Mahir il-Muaykili",
           ),
           _popupMenuItem(
             context: context,
-            itemTitle: "0.75",
+            itemTitle: "Suud eş-Şureym",
           ),
           _popupMenuItem(
             context: context,
-            itemTitle: "Normal",
+            itemTitle: "Abdurrahman es-Sudais",
           ),
           _popupMenuItem(
             context: context,
-            itemTitle: "1.25",
-          ),
-          _popupMenuItem(
-            context: context,
-            itemTitle: "1.5",
-          ),
-          _popupMenuItem(
-            context: context,
-            itemTitle: "1.75",
-          ),
-          _popupMenuItem(
-            context: context,
-            itemTitle: "2",
-          ),
+            itemTitle: "Mahir Bin Hamad Al-Muaiqly",
+          )
         ];
       },
       child: Row(
         children: [
           SvgPicture.asset(
-            ImageConstants.play,
+            ImageConstants.favoriteInactiveIcon,
             width: 20,
             color: const Color(0xFFB9B9B9),
           ),
           const SizedBox(width: 10),
           Text(
-            context.translate.speed,
+            context.translate.reciter,
             style: context.theme.textTheme.titleLarge?.copyWith(color: const Color(0xFFB9B9B9)),
           ),
           const Expanded(
@@ -94,9 +87,9 @@ class SpeedPopupMenu extends StatelessWidget {
       height: 45,
       padding: const EdgeInsets.only(left: 10, right: 10),
       child: StatefulBuilder(builder: (BuildContext context, StateSetter setState) {
-        var isActive = context.watch<PlayerProvider>().playerSpeedTitle == itemTitle;
+        var isActive = context.watch<PlayerProvider>().reciterTitle == itemTitle;
         return InkWell(
-          onTap: () => context.read<PlayerProvider>().setPlaybackRate(itemTitle),
+          onTap: () => context.read<PlayerProvider>().setReciter(itemTitle),
           child: Container(
             decoration: isActive
                 ? BoxDecoration(
@@ -126,46 +119,5 @@ class SpeedPopupMenu extends StatelessWidget {
         );
       }),
     );
-  }
-
-  List<PopupMenuItem> _backItem({
-    required BuildContext context,
-    required Function() onTap,
-  }) {
-    return [
-      PopupMenuItem(
-        height: 45,
-        onTap: onTap,
-        padding: const EdgeInsets.only(left: 10, right: 10),
-        child: Container(
-          padding: const EdgeInsets.all(9),
-          decoration: const BoxDecoration(
-            border: Border(
-              bottom: BorderSide(
-                color: Color(0xFF333333),
-              ),
-            ),
-          ),
-          child: Row(
-            children: [
-              const SizedBox(
-                width: 20,
-                child: Icon(
-                  Icons.arrow_left_rounded,
-                  color: Color(0xFFB9B9B9),
-                ),
-              ),
-              const SizedBox(width: 10),
-              Text(
-                context.translate.speed,
-                style: context.theme.textTheme.titleLarge?.copyWith(
-                  color: const Color(0xFFB9B9B9),
-                ),
-              ),
-            ],
-          ),
-        ),
-      ),
-    ];
   }
 }

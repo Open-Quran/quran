@@ -69,15 +69,12 @@ class PlayBar extends StatelessWidget {
                     children: [
                       PlayBarMorePopupMenu(
                         onTapDownload: () {},
-                        onTapReciter: () {},
                       ),
                       IconButton(
                         onPressed: context.read<PlayerProvider>().previous,
                         icon: SvgPicture.asset(
                           ImageConstants.previousIcon,
-                          color: context.watch<PlayerProvider>().isPrevious
-                              ? null
-                              : AppColors.grey11,
+                          color: context.watch<PlayerProvider>().isPrevious ? null : AppColors.grey11,
                         ),
                       ),
                       buildPlayAndPauseIcon(context),
@@ -85,9 +82,7 @@ class PlayBar extends StatelessWidget {
                         onPressed: context.read<PlayerProvider>().next,
                         icon: SvgPicture.asset(
                           ImageConstants.nextIcon,
-                          color: context.watch<PlayerProvider>().isNext
-                              ? null
-                              : AppColors.grey11,
+                          color: context.watch<PlayerProvider>().isNext ? null : AppColors.grey11,
                         ),
                       ),
                       IconButton(
@@ -106,16 +101,12 @@ class PlayBar extends StatelessWidget {
   }
 
   IconButton buildPlayAndPauseIcon(BuildContext context) {
-    bool isPause =
-        context.watch<PlayerProvider>().playerState == EPlayerState.pause;
+    bool isPause = context.watch<PlayerProvider>().playerState == EPlayerState.pause;
     return IconButton(
       onPressed: () {
-        isPause
-            ? context.read<PlayerProvider>().resume()
-            : context.read<PlayerProvider>().pause();
+        isPause ? context.read<PlayerProvider>().resume() : context.read<PlayerProvider>().pause();
       },
-      icon: SvgPicture.asset(
-          isPause ? ImageConstants.play : ImageConstants.pauseIcon),
+      icon: SvgPicture.asset(isPause ? ImageConstants.play : ImageConstants.pauseIcon),
     );
   }
 }
