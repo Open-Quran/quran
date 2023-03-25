@@ -5,8 +5,7 @@
 </p>
 <br />
 <p align="center">
-<video controls autoplay src="https://user-images.githubusercontent.com/24706805/225648849-cceabcea-8254-49bd-9735-0177701639a6.mp4"></video>
-</p>
+<img width="500" src="https://user-images.githubusercontent.com/24706805/227739351-1693c660-e0da-44aa-a223-ed9ece1d9b57.gif">
 <br />
 <p align="center">
 <img width="400" src="https://github.com/Open-Quran/quran/blob/main/assets/images/1.png?raw=true">
