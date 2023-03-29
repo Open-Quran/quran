@@ -17,7 +17,6 @@ import '../../widgets/buttons/translation_reading_segmented_button.dart';
 import '../../widgets/lists/juz_list.dart';
 import '../../widgets/lists/surah_list.dart';
 import '../search_result_screen.dart';
-import '../verse_details_settings.dart';
 
 class SurahDetailsScreen extends StatefulWidget {
   const SurahDetailsScreen({Key? key}) : super(key: key);
@@ -81,7 +80,6 @@ class _SurahDetailsScreenState extends State<SurahDetailsScreen> {
                   const PlayBar(padding: EdgeInsets.only(bottom: kSizeXL)),
                 ],
               ),
-              const VerseDetailsSettings(),
             ],
           ),
           Scaffold(

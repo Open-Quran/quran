@@ -10,6 +10,7 @@ class SurahModel {
   String? nameComplex;
   String? nameArabic;
   String? nameTranslated;
+  String? nameTurkish;
   int? startPage;
   int? endPage;
   List<VerseModel> verses = [];
@@ -22,12 +23,13 @@ class SurahModel {
       this.nameComplex,
       this.nameArabic,
       this.nameTranslated,
+      this.nameTurkish,
       this.startPage,
       this.endPage});
 
   @override
   String toString() {
-    return 'Surah{id: $id, revelationPlace: $revelationPlace, nameSimple: $nameSimple, nameComplex: $nameComplex, nameArabic: $nameArabic, nameTranslated: $nameTranslated, startPage: $startPage, endPage: $endPage}';
+    return 'SurahModel{id: $id, revelationPlace: $revelationPlace, nameSimple: $nameSimple, nameComplex: $nameComplex, nameArabic: $nameArabic, nameTranslated: $nameTranslated, nameTurkish: $nameTurkish, startPage: $startPage, endPage: $endPage, verses: $verses, searchSuggestions: $searchSuggestions}';
   }
 
   /// Checking is sajda verse
@@ -98,6 +100,7 @@ class SurahModel {
     nameComplex = json['name_complex'];
     nameArabic = json['name_arabic'];
     nameTranslated = json['name_translated'];
+    nameTurkish = json['name_turkish'];
     startPage = json['start_page'];
     endPage = json['end_page'];
     if (json['verses'] != null) {
@@ -138,6 +141,7 @@ class SurahModel {
     data['name_complex'] = nameComplex;
     data['name_arabic'] = nameArabic;
     data['name_translated'] = nameTranslated;
+    data['name_turkish'] = nameTurkish;
     data['start_page'] = startPage;
     data['end_page'] = endPage;
     data['verses'] = verses.map((v) => v.toJson()).toList();

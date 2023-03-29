@@ -6,6 +6,7 @@
     "name_complex": "Al-Fātiĥah",
     "name_arabic": "الفاتحة",
     "name_translated": "The Opener",
+    "name_turkish": "Fatiha",
     "start_page": 1,
     "end_page": 1,
     "verses": [
@@ -109,6 +110,7 @@
     "name_complex": "Al-Baqarah",
     "name_arabic": "البقرة",
     "name_translated": "The Cow",
+    "name_turkish": "Bakara",
     "start_page": 2,
     "end_page": 49,
     "verses": [
@@ -3839,6 +3841,7 @@
     "name_complex": "Āli `Imrān",
     "name_arabic": "آل عمران",
     "name_translated": "Family of Imran",
+    "name_turkish": "Âl-i İmrân",
     "start_page": 50,
     "end_page": 76,
     "verses": [
@@ -6451,6 +6454,7 @@
     "name_complex": "An-Nisā",
     "name_arabic": "النساء",
     "name_translated": "The Women",
+    "name_turkish": "Nisa",
     "start_page": 77,
     "end_page": 106,
     "verses": [
@@ -8751,6 +8755,7 @@
     "name_complex": "Al-Mā'idah",
     "name_arabic": "المائدة",
     "name_translated": "The Table Spread",
+    "name_turkish": "Mâide",
     "start_page": 106,
     "end_page": 127,
     "verses": [
@@ -10323,6 +10328,7 @@
     "name_complex": "Al-'An`ām",
     "name_arabic": "الأنعام",
     "name_translated": "The Cattle",
+    "name_turkish": "En'âm",
     "start_page": 128,
     "end_page": 150,
     "verses": [
@@ -12480,6 +12486,7 @@
     "name_complex": "Al-'A`rāf",
     "name_arabic": "الأعراف",
     "name_translated": "The Heights",
+    "name_turkish": "A'râf",
     "start_page": 151,
     "end_page": 176,
     "verses": [
@@ -15170,6 +15177,7 @@
     "name_complex": "Al-'Anfāl",
     "name_arabic": "الأنفال",
     "name_translated": "The Spoils of War",
+    "name_turkish": "Enfal",
     "start_page": 177,
     "end_page": 186,
     "verses": [
@@ -16157,6 +16165,7 @@
     "name_complex": "At-Tawbah",
     "name_arabic": "التوبة",
     "name_translated": "The Repentance",
+    "name_turkish": "Tevbe",
     "start_page": 187,
     "end_page": 207,
     "verses": [
@@ -17846,6 +17855,7 @@
     "name_complex": "Yūnus",
     "name_arabic": "يونس",
     "name_translated": "Jonah",
+    "name_turkish": "Yûnus",
     "start_page": 208,
     "end_page": 221,
     "verses": [
@@ -19275,6 +19285,7 @@
     "name_complex": "Hūd",
     "name_arabic": "هود",
     "name_translated": "Hud",
+    "name_turkish": "Hûd",
     "start_page": 221,
     "end_page": 235,
     "verses": [
@@ -20886,6 +20897,7 @@
     "name_complex": "Yūsuf",
     "name_arabic": "يوسف",
     "name_translated": "Joseph",
+    "name_turkish": "Yûsuf",
     "start_page": 235,
     "end_page": 248,
     "verses": [
@@ -22341,6 +22353,7 @@
     "name_complex": "Ar-Ra`d",
     "name_arabic": "الرعد",
     "name_translated": "The Thunder",
+    "name_turkish": "Ra'd",
     "start_page": 249,
     "end_page": 255,
     "verses": [
@@ -22912,6 +22925,7 @@
     "name_complex": "Ibrāhīm",
     "name_arabic": "ابراهيم",
     "name_translated": "Abraham",
+    "name_turkish": "Ibrahim",
     "start_page": 255,
     "end_page": 261,
     "verses": [
@@ -23600,6 +23614,7 @@
     "name_complex": "Al-Ĥijr",
     "name_arabic": "الحجر",
     "name_translated": "The Rocky Tract",
+    "name_turkish": "Hicr",
     "start_page": 262,
     "end_page": 267,
     "verses": [
@@ -24899,6 +24914,7 @@
     "name_complex": "An-Naĥl",
     "name_arabic": "النحل",
     "name_translated": "The Bee",
+    "name_turkish": "Nahl",
     "start_page": 267,
     "end_page": 281,
     "verses": [
@@ -26575,6 +26591,7 @@
     "name_complex": "Al-'Isrā",
     "name_arabic": "الإسراء",
     "name_translated": "The Night Journey",
+    "name_turkish": "İsrâ",
     "start_page": 282,
     "end_page": 293,
     "verses": [
@@ -28030,6 +28047,7 @@
     "name_complex": "Al-Kahf",
     "name_arabic": "الكهف",
     "name_translated": "The Cave",
+    "name_turkish": "Kehf",
     "start_page": 293,
     "end_page": 304,
     "verses": [
@@ -29472,6 +29490,7 @@
     "name_complex": "Maryam",
     "name_arabic": "مريم",
     "name_translated": "Mary",
+    "name_turkish": "Meryem",
     "start_page": 305,
     "end_page": 312,
     "verses": [
@@ -30758,6 +30777,7 @@
     "name_complex": "Ţāhā",
     "name_arabic": "طه",
     "name_translated": "Ta-Ha",
+    "name_turkish": "Taha",
     "start_page": 312,
     "end_page": 321,
     "verses": [
@@ -32525,6 +32545,7 @@
     "name_complex": "Al-'Anbyā",
     "name_arabic": "الأنبياء",
     "name_translated": "The Prophets",
+    "name_turkish": "Enbiyâ",
     "start_page": 322,
     "end_page": 331,
     "verses": [
@@ -33993,6 +34014,7 @@
     "name_complex": "Al-Ĥajj",
     "name_arabic": "الحج",
     "name_translated": "The Pilgrimage",
+    "name_turkish": "Hac",
     "start_page": 332,
     "end_page": 341,
     "verses": [
@@ -35019,6 +35041,7 @@
     "name_complex": "Al-Mu'minūn",
     "name_arabic": "المؤمنون",
     "name_translated": "The Believers",
+    "name_turkish": "Mü'minûn",
     "start_page": 342,
     "end_page": 349,
     "verses": [
@@ -36565,6 +36588,7 @@
     "name_complex": "An-Nūr",
     "name_arabic": "النور",
     "name_translated": "The Light",
+    "name_turkish": "Nûr",
     "start_page": 350,
     "end_page": 359,
     "verses": [
@@ -37409,6 +37433,7 @@
     "name_complex": "Al-Furqān",
     "name_arabic": "الفرقان",
     "name_translated": "The Criterion",
+    "name_turkish": "Furkân",
     "start_page": 359,
     "end_page": 366,
     "verses": [
@@ -38422,6 +38447,7 @@
     "name_complex": "Ash-Shu`arā",
     "name_arabic": "الشعراء",
     "name_translated": "The Poets",
+    "name_turkish": "Şuarâ",
     "start_page": 367,
     "end_page": 376,
     "verses": [
@@ -41385,6 +41411,7 @@
     "name_complex": "An-Naml",
     "name_arabic": "النمل",
     "name_translated": "The Ant",
+    "name_turkish": "Neml",
     "start_page": 377,
     "end_page": 385,
     "verses": [
@@ -42606,6 +42633,7 @@
     "name_complex": "Al-Qaşaş",
     "name_arabic": "القصص",
     "name_translated": "The Stories",
+    "name_turkish": "Kasas",
     "start_page": 385,
     "end_page": 396,
     "verses": [
@@ -43762,6 +43790,7 @@
     "name_complex": "Al-`Ankabūt",
     "name_arabic": "العنكبوت",
     "name_translated": "The Spider",
+    "name_turkish": "Ankebut",
     "start_page": 396,
     "end_page": 404,
     "verses": [
@@ -44671,6 +44700,7 @@
     "name_complex": "Ar-Rūm",
     "name_arabic": "الروم",
     "name_translated": "The Romans",
+    "name_turkish": "Rûm",
     "start_page": 404,
     "end_page": 410,
     "verses": [
@@ -45463,6 +45493,7 @@
     "name_complex": "Luqmān",
     "name_arabic": "لقمان",
     "name_translated": "Luqman",
+    "name_turkish": "Lokman",
     "start_page": 411,
     "end_page": 414,
     "verses": [
@@ -45917,6 +45948,7 @@
     "name_complex": "As-Sajdah",
     "name_arabic": "السجدة",
     "name_translated": "The Prostration",
+    "name_turkish": "Secde",
     "start_page": 415,
     "end_page": 417,
     "verses": [
@@ -46319,6 +46351,7 @@
     "name_complex": "Al-'Aĥzāb",
     "name_arabic": "الأحزاب",
     "name_translated": "The Combined Forces",
+    "name_turkish": "Ahzâp",
     "start_page": 418,
     "end_page": 427,
     "verses": [
@@ -47280,6 +47313,7 @@
     "name_complex": "Saba",
     "name_arabic": "سبإ",
     "name_translated": "Sheba",
+    "name_turkish": "Sebe'",
     "start_page": 428,
     "end_page": 434,
     "verses": [
@@ -47994,6 +48028,7 @@
     "name_complex": "Fāţir",
     "name_arabic": "فاطر",
     "name_translated": "Originator",
+    "name_turkish": "Fâtr",
     "start_page": 434,
     "end_page": 440,
     "verses": [
@@ -48591,6 +48626,7 @@
     "name_complex": "Yā-Sīn",
     "name_arabic": "يس",
     "name_translated": "Yasin",
+    "name_turkish": "Yasin",
     "start_page": 440,
     "end_page": 445,
     "verses": [
@@ -49682,6 +49718,7 @@
     "name_complex": "Aş-Şāffāt",
     "name_arabic": "الصافات",
     "name_translated": "Those who set the Ranks",
+    "name_turkish": "Sâffât",
     "start_page": 446,
     "end_page": 452,
     "verses": [
@@ -52060,6 +52097,7 @@
     "name_complex": "Şād",
     "name_arabic": "ص",
     "name_translated": "The Letter \"Saad\"",
+    "name_turkish": "Sâd",
     "start_page": 453,
     "end_page": 458,
     "verses": [
@@ -53216,6 +53254,7 @@
     "name_complex": "Az-Zumar",
     "name_arabic": "الزمر",
     "name_translated": "The Troops",
+    "name_turkish": "Zümer",
     "start_page": 458,
     "end_page": 467,
     "verses": [
@@ -54203,6 +54242,7 @@
     "name_complex": "Ghāfir",
     "name_arabic": "غافر",
     "name_translated": "The Forgiver",
+    "name_turkish": "Mü'min",
     "start_page": 467,
     "end_page": 476,
     "verses": [
@@ -55320,6 +55360,7 @@
     "name_complex": "Fuşşilat",
     "name_arabic": "فصلت",
     "name_translated": "Explained in Detail",
+    "name_turkish": "Fussilet",
     "start_page": 477,
     "end_page": 482,
     "verses": [
@@ -56034,6 +56075,7 @@
     "name_complex": "Ash-Shūraá",
     "name_arabic": "الشورى",
     "name_translated": "The Consultation",
+    "name_turkish": "Şûra",
     "start_page": 483,
     "end_page": 489,
     "verses": [
@@ -56735,6 +56777,7 @@
     "name_complex": "Az-Zukhruf",
     "name_arabic": "الزخرف",
     "name_translated": "The Ornaments of Gold",
+    "name_turkish": "Zuhruf",
     "start_page": 489,
     "end_page": 495,
     "verses": [
@@ -57904,6 +57947,7 @@
     "name_complex": "Ad-Dukhān",
     "name_arabic": "الدخان",
     "name_translated": "The Smoke",
+    "name_turkish": "Duhân",
     "start_page": 496,
     "end_page": 498,
     "verses": [
@@ -58683,6 +58727,7 @@
     "name_complex": "Al-Jāthiyah",
     "name_arabic": "الجاثية",
     "name_translated": "The Crouching",
+    "name_turkish": "Câsiye",
     "start_page": 499,
     "end_page": 502,
     "verses": [
@@ -59176,6 +59221,7 @@
     "name_complex": "Al-'Aĥqāf",
     "name_arabic": "الأحقاف",
     "name_translated": "The Wind-Curved Sandhills",
+    "name_turkish": "Ahkâf",
     "start_page": 502,
     "end_page": 506,
     "verses": [
@@ -59643,6 +59689,7 @@
     "name_complex": "Muĥammad",
     "name_arabic": "محمد",
     "name_translated": "Muhammad",
+    "name_turkish": "Muhammed",
     "start_page": 507,
     "end_page": 510,
     "verses": [
@@ -60149,6 +60196,7 @@
     "name_complex": "Al-Fatĥ",
     "name_arabic": "الفتح",
     "name_translated": "The Victory",
+    "name_turkish": "Fetih",
     "start_page": 511,
     "end_page": 515,
     "verses": [
@@ -60538,6 +60586,7 @@
     "name_complex": "Al-Ĥujurāt",
     "name_arabic": "الحجرات",
     "name_translated": "The Rooms",
+    "name_turkish": "Hucurât",
     "start_page": 515,
     "end_page": 517,
     "verses": [
@@ -60784,6 +60833,7 @@
     "name_complex": "Qāf",
     "name_arabic": "ق",
     "name_translated": "The Letter \"Qaf\"",
+    "name_turkish": "Kâf",
     "start_page": 518,
     "end_page": 520,
     "verses": [
@@ -61381,6 +61431,7 @@
     "name_complex": "Adh-Dhāriyāt",
     "name_arabic": "الذاريات",
     "name_translated": "The Winnowing Winds",
+    "name_turkish": "Zâriyât",
     "start_page": 520,
     "end_page": 523,
     "verses": [
@@ -62173,6 +62224,7 @@
     "name_complex": "Aţ-Ţūr",
     "name_arabic": "الطور",
     "name_translated": "The Mount",
+    "name_turkish": "Tûr",
     "start_page": 523,
     "end_page": 525,
     "verses": [
@@ -62822,6 +62874,7 @@
     "name_complex": "An-Najm",
     "name_arabic": "النجم",
     "name_translated": "The Star",
+    "name_turkish": "Necm",
     "start_page": 526,
     "end_page": 528,
     "verses": [
@@ -63640,6 +63693,7 @@
     "name_complex": "Al-Qamar",
     "name_arabic": "القمر",
     "name_translated": "The Moon",
+    "name_turkish": "Kamer",
     "start_page": 528,
     "end_page": 531,
     "verses": [
@@ -64367,6 +64421,7 @@
     "name_complex": "Ar-Raĥmān",
     "name_arabic": "الرحمن",
     "name_translated": "The Beneficent",
+    "name_turkish": "Rahman",
     "start_page": 531,
     "end_page": 534,
     "verses": [
@@ -65393,6 +65448,7 @@
     "name_complex": "Al-Wāqi`ah",
     "name_arabic": "الواقعة",
     "name_translated": "The Inevitable",
+    "name_turkish": "Vakıa",
     "start_page": 534,
     "end_page": 537,
     "verses": [
@@ -66653,6 +66709,7 @@
     "name_complex": "Al-Ĥadīd",
     "name_arabic": "الحديد",
     "name_translated": "The Iron",
+    "name_turkish": "Hadid",
     "start_page": 537,
     "end_page": 541,
     "verses": [
@@ -67042,6 +67099,7 @@
     "name_complex": "Al-Mujādila",
     "name_arabic": "المجادلة",
     "name_translated": "The Pleading Woman",
+    "name_turkish": "Mücâdele",
     "start_page": 542,
     "end_page": 545,
     "verses": [
@@ -67340,6 +67398,7 @@
     "name_complex": "Al-Ĥashr",
     "name_arabic": "الحشر",
     "name_translated": "The Exile",
+    "name_turkish": "Haşr",
     "start_page": 545,
     "end_page": 548,
     "verses": [
@@ -67664,6 +67723,7 @@
     "name_complex": "Al-Mumtaĥanah",
     "name_arabic": "الممتحنة",
     "name_translated": "She that is to be examined",
+    "name_turkish": "Mümtehine",
     "start_page": 549,
     "end_page": 551,
     "verses": [
@@ -67845,6 +67905,7 @@
     "name_complex": "Aş-Şaf",
     "name_arabic": "الصف",
     "name_translated": "The Ranks",
+    "name_turkish": "Saf",
     "start_page": 551,
     "end_page": 552,
     "verses": [
@@ -68039,6 +68100,7 @@
     "name_complex": "Al-Jumu`ah",
     "name_arabic": "الجمعة",
     "name_translated": "The Congregation, Friday",
+    "name_turkish": "Cumua",
     "start_page": 553,
     "end_page": 554,
     "verses": [
@@ -68194,6 +68256,7 @@
     "name_complex": "Al-Munāfiqūn",
     "name_arabic": "المنافقون",
     "name_translated": "The Hypocrites",
+    "name_turkish": "Münafikûn",
     "start_page": 554,
     "end_page": 555,
     "verses": [
@@ -68349,6 +68412,7 @@
     "name_complex": "At-Taghābun",
     "name_arabic": "التغابن",
     "name_translated": "The Mutual Disillusion",
+    "name_turkish": "Tegâbün",
     "start_page": 556,
     "end_page": 557,
     "verses": [
@@ -68595,6 +68659,7 @@
     "name_complex": "Aţ-Ţalāq",
     "name_arabic": "الطلاق",
     "name_translated": "The Divorce",
+    "name_turkish": "Talâk",
     "start_page": 558,
     "end_page": 559,
     "verses": [
@@ -68763,6 +68828,7 @@
     "name_complex": "At-Taĥrīm",
     "name_arabic": "التحريم",
     "name_translated": "The Prohibition",
+    "name_turkish": "Tahrim",
     "start_page": 560,
     "end_page": 561,
     "verses": [
@@ -68931,6 +68997,7 @@
     "name_complex": "Al-Mulk",
     "name_arabic": "الملك",
     "name_translated": "The Sovereignty",
+    "name_turkish": "Mülk",
     "start_page": 562,
     "end_page": 564,
     "verses": [
@@ -69333,6 +69400,7 @@
     "name_complex": "Al-Qalam",
     "name_arabic": "القلم",
     "name_translated": "The Pen",
+    "name_turkish": "Kalem",
     "start_page": 564,
     "end_page": 566,
     "verses": [
@@ -70021,6 +70089,7 @@
     "name_complex": "Al-Ĥāqqah",
     "name_arabic": "الحاقة",
     "name_translated": "The Reality",
+    "name_turkish": "Hâkkah",
     "start_page": 566,
     "end_page": 568,
     "verses": [
@@ -70709,6 +70778,7 @@
     "name_complex": "Al-Ma`ārij",
     "name_arabic": "المعارج",
     "name_translated": "The Ascending Stairways",
+    "name_turkish": "Meâric",
     "start_page": 568,
     "end_page": 570,
     "verses": [
@@ -71293,6 +71363,7 @@
     "name_complex": "Nūĥ",
     "name_arabic": "نوح",
     "name_translated": "Noah",
+    "name_turkish": "Nuh",
     "start_page": 570,
     "end_page": 571,
     "verses": [
@@ -71669,6 +71740,7 @@
     "name_complex": "Al-Jinn",
     "name_arabic": "الجن",
     "name_translated": "The Jinn",
+    "name_turkish": "Cin",
     "start_page": 572,
     "end_page": 573,
     "verses": [
@@ -72045,6 +72117,7 @@
     "name_complex": "Al-Muzzammil",
     "name_arabic": "المزمل",
     "name_translated": "The Enshrouded One",
+    "name_turkish": "Müzzemmil",
     "start_page": 574,
     "end_page": 575,
     "verses": [
@@ -72317,6 +72390,7 @@
     "name_complex": "Al-Muddaththir",
     "name_arabic": "المدثر",
     "name_translated": "The Cloaked One",
+    "name_turkish": "Müddesir",
     "start_page": 575,
     "end_page": 577,
     "verses": [
@@ -73057,6 +73131,7 @@
     "name_complex": "Al-Qiyāmah",
     "name_arabic": "القيامة",
     "name_translated": "The Resurrection",
+    "name_turkish": "Kıyamet",
     "start_page": 577,
     "end_page": 578,
     "verses": [
@@ -73589,6 +73664,7 @@
     "name_complex": "Al-'Insān",
     "name_arabic": "الانسان",
     "name_translated": "The Man",
+    "name_turkish": "İnsan",
     "start_page": 578,
     "end_page": 580,
     "verses": [
@@ -74004,6 +74080,7 @@
     "name_complex": "Al-Mursalāt",
     "name_arabic": "المرسلات",
     "name_translated": "The Emissaries",
+    "name_turkish": "Mürselât",
     "start_page": 580,
     "end_page": 581,
     "verses": [
@@ -74666,6 +74743,7 @@
     "name_complex": "An-Naba",
     "name_arabic": "النبإ",
     "name_translated": "The Tidings",
+    "name_turkish": "Nebe'",
     "start_page": 582,
     "end_page": 583,
     "verses": [
@@ -75198,6 +75276,7 @@
     "name_complex": "An-Nāzi`āt",
     "name_arabic": "النازعات",
     "name_translated": "Those who drag forth",
+    "name_turkish": "Nâziât",
     "start_page": 583,
     "end_page": 584,
     "verses": [
@@ -75808,6 +75887,7 @@
     "name_complex": "`Abasa",
     "name_arabic": "عبس",
     "name_translated": "He Frowned",
+    "name_turkish": "Abese",
     "start_page": 585,
     "end_page": 585,
     "verses": [
@@ -76366,6 +76446,7 @@
     "name_complex": "At-Takwīr",
     "name_arabic": "التكوير",
     "name_translated": "The Overthrowing",
+    "name_turkish": "Tekvir",
     "start_page": 586,
     "end_page": 586,
     "verses": [
@@ -76755,6 +76836,7 @@
     "name_complex": "Al-'Infiţār",
     "name_arabic": "الإنفطار",
     "name_translated": "The Cleaving",
+    "name_turkish": "İnfitar",
     "start_page": 587,
     "end_page": 587,
     "verses": [
@@ -77014,6 +77096,7 @@
     "name_complex": "Al-Muţaffifīn",
     "name_arabic": "المطففين",
     "name_translated": "The Defrauding",
+    "name_turkish": "Mutaffifin",
     "start_page": 587,
     "end_page": 589,
     "verses": [
@@ -77494,6 +77577,7 @@
     "name_complex": "Al-'Inshiqāq",
     "name_arabic": "الإنشقاق",
     "name_translated": "The Sundering",
+    "name_turkish": "insikâk",
     "start_page": 589,
     "end_page": 589,
     "verses": [
@@ -77831,6 +77915,7 @@
     "name_complex": "Al-Burūj",
     "name_arabic": "البروج",
     "name_translated": "The Mansions of the Stars",
+    "name_turkish": "Bürûc",
     "start_page": 590,
     "end_page": 590,
     "verses": [
@@ -78129,6 +78214,7 @@
     "name_complex": "Aţ-Ţāriq",
     "name_arabic": "الطارق",
     "name_translated": "The Nightcommer",
+    "name_turkish": "Târik",
     "start_page": 591,
     "end_page": 591,
     "verses": [
@@ -78362,6 +78448,7 @@
     "name_complex": "Al-'A`lá",
     "name_arabic": "الأعلى",
     "name_translated": "The Most High",
+    "name_turkish": "A'lâ",
     "start_page": 591,
     "end_page": 592,
     "verses": [
@@ -78621,6 +78708,7 @@
     "name_complex": "Al-Ghāshiyah",
     "name_arabic": "الغاشية",
     "name_translated": "The Overwhelming",
+    "name_turkish": "Gâsiye",
     "start_page": 592,
     "end_page": 592,
     "verses": [
@@ -78971,6 +79059,7 @@
     "name_complex": "Al-Fajr",
     "name_arabic": "الفجر",
     "name_translated": "The Dawn",
+    "name_turkish": "Fecr",
     "start_page": 593,
     "end_page": 594,
     "verses": [
@@ -79373,6 +79462,7 @@
     "name_complex": "Al-Balad",
     "name_arabic": "البلد",
     "name_translated": "The City",
+    "name_turkish": "Beled",
     "start_page": 594,
     "end_page": 594,
     "verses": [
@@ -79645,6 +79735,7 @@
     "name_complex": "Ash-Shams",
     "name_arabic": "الشمس",
     "name_translated": "The Sun",
+    "name_turkish": "Şems",
     "start_page": 595,
     "end_page": 595,
     "verses": [
@@ -79852,6 +79943,7 @@
     "name_complex": "Al-Layl",
     "name_arabic": "الليل",
     "name_translated": "The Night",
+    "name_turkish": "Leyl",
     "start_page": 595,
     "end_page": 596,
     "verses": [
@@ -80137,6 +80229,7 @@
     "name_complex": "Ađ-Đuĥaá",
     "name_arabic": "الضحى",
     "name_translated": "The Morning Hours",
+    "name_turkish": "Duha",
     "start_page": 596,
     "end_page": 596,
     "verses": [
@@ -80292,6 +80385,7 @@
     "name_complex": "Ash-Sharĥ",
     "name_arabic": "الشرح",
     "name_translated": "The Relief",
+    "name_turkish": "İnşirah",
     "start_page": 596,
     "end_page": 596,
     "verses": [
@@ -80408,6 +80502,7 @@
     "name_complex": "At-Tīn",
     "name_arabic": "التين",
     "name_translated": "The Fig",
+    "name_turkish": "Tin",
     "start_page": 597,
     "end_page": 597,
     "verses": [
@@ -80524,6 +80619,7 @@
     "name_complex": "Al-`Alaq",
     "name_arabic": "العلق",
     "name_translated": "The Clot",
+    "name_turkish": "Alak",
     "start_page": 597,
     "end_page": 597,
     "verses": [
@@ -80783,6 +80879,7 @@
     "name_complex": "Al-Qadr",
     "name_arabic": "القدر",
     "name_translated": "The Power",
+    "name_turkish": "Kadir",
     "start_page": 598,
     "end_page": 598,
     "verses": [
@@ -80860,6 +80957,7 @@
     "name_complex": "Al-Bayyinah",
     "name_arabic": "البينة",
     "name_translated": "The Clear Proof",
+    "name_turkish": "Beyyine",
     "start_page": 598,
     "end_page": 599,
     "verses": [
@@ -80976,6 +81074,7 @@
     "name_complex": "Az-Zalzalah",
     "name_arabic": "الزلزلة",
     "name_translated": "The Earthquake",
+    "name_turkish": "Zelzele",
     "start_page": 599,
     "end_page": 599,
     "verses": [
@@ -81092,6 +81191,7 @@
     "name_complex": "Al-`Ādiyāt",
     "name_arabic": "العاديات",
     "name_translated": "The Courser",
+    "name_turkish": "Âdiyât",
     "start_page": 599,
     "end_page": 600,
     "verses": [
@@ -81247,6 +81347,7 @@
     "name_complex": "Al-Qāri`ah",
     "name_arabic": "القارعة",
     "name_translated": "The Calamity",
+    "name_turkish": "Kâria",
     "start_page": 600,
     "end_page": 600,
     "verses": [
@@ -81402,6 +81503,7 @@
     "name_complex": "At-Takāthur",
     "name_arabic": "التكاثر",
     "name_translated": "The Rivalry in world increase",
+    "name_turkish": "Tekâsür",
     "start_page": 600,
     "end_page": 600,
     "verses": [
@@ -81518,6 +81620,7 @@
     "name_complex": "Al-`Aşr",
     "name_arabic": "العصر",
     "name_translated": "The Declining Day",
+    "name_turkish": "Asr",
     "start_page": 601,
     "end_page": 601,
     "verses": [
@@ -81569,6 +81672,7 @@
     "name_complex": "Al-Humazah",
     "name_arabic": "الهمزة",
     "name_translated": "The Traducer",
+    "name_turkish": "Hümeze",
     "start_page": 601,
     "end_page": 601,
     "verses": [
@@ -81698,6 +81802,7 @@
     "name_complex": "Al-Fīl",
     "name_arabic": "الفيل",
     "name_translated": "The Elephant",
+    "name_turkish": "Fil",
     "start_page": 601,
     "end_page": 601,
     "verses": [
@@ -81775,6 +81880,7 @@
     "name_complex": "Quraysh",
     "name_arabic": "قريش",
     "name_translated": "Quraysh",
+    "name_turkish": "Kureys",
     "start_page": 602,
     "end_page": 602,
     "verses": [
@@ -81839,6 +81945,7 @@
     "name_complex": "Al-Mā`ūn",
     "name_arabic": "الماعون",
     "name_translated": "The Small kindnesses",
+    "name_turkish": "Mâûn",
     "start_page": 602,
     "end_page": 602,
     "verses": [
@@ -81942,6 +82049,7 @@
     "name_complex": "Al-Kawthar",
     "name_arabic": "الكوثر",
     "name_translated": "The Abundance",
+    "name_turkish": "Kevser",
     "start_page": 602,
     "end_page": 602,
     "verses": [
@@ -81993,6 +82101,7 @@
     "name_complex": "Al-Kāfirūn",
     "name_arabic": "الكافرون",
     "name_translated": "The Disbelievers",
+    "name_turkish": "Kâfirûn",
     "start_page": 603,
     "end_page": 603,
     "verses": [
@@ -82083,6 +82192,7 @@
     "name_complex": "An-Naşr",
     "name_arabic": "النصر",
     "name_translated": "The Divine Support",
+    "name_turkish": "Nasr",
     "start_page": 603,
     "end_page": 603,
     "verses": [
@@ -82134,6 +82244,7 @@
     "name_complex": "Al-Masad",
     "name_arabic": "المسد",
     "name_translated": "The Palm Fiber",
+    "name_turkish": "Tebbet",
     "start_page": 603,
     "end_page": 603,
     "verses": [
@@ -82211,6 +82322,7 @@
     "name_complex": "Al-'Ikhlāş",
     "name_arabic": "الإخلاص",
     "name_translated": "The Sincerity",
+    "name_turkish": "İhlâs",
     "start_page": 604,
     "end_page": 604,
     "verses": [
@@ -82275,6 +82387,7 @@
     "name_complex": "Al-Falaq",
     "name_arabic": "الفلق",
     "name_translated": "The Daybreak",
+    "name_turkish": "Felak",
     "start_page": 604,
     "end_page": 604,
     "verses": [
@@ -82352,6 +82465,7 @@
     "name_complex": "An-Nās",
     "name_arabic": "الناس",
     "name_translated": "Mankind",
+    "name_turkish": "Nâs",
     "start_page": 604,
     "end_page": 604,
     "verses": [
