@@ -47,7 +47,7 @@ class _ReadingScreenState extends State<ReadingScreen> {
         itemCount: context.watch<SurahDetailsProvider>().mushafPageList.length,
         itemScrollController: itemScrollController,
         itemPositionsListener: itemPositionsListener,
-        padding: const EdgeInsets.symmetric(horizontal: kSizeL),
+        padding: const EdgeInsets.symmetric(horizontal: kSizeXXL),
         physics: const ClampingScrollPhysics(),
         itemBuilder: (context, index) {
           var versesOfPage = context.watch<SurahDetailsProvider>().mushafPageList[index];

@@ -20,31 +20,51 @@ class ReadingPageBottomBar extends StatelessWidget {
         children: [
           buildBottomBarButtons(
               Text(
-                context.translate.previousSurah,
+                context.watch<SurahDetailsProvider>().readingSettings.surahId >
+                        1
+                    ? context.translate.previousSurah
+                    : "",
                 textAlign: TextAlign.center,
-                style: context.theme.textTheme.headlineSmall,
+                style: context.theme.textTheme.bodySmall,
               ),
-              context.read<SurahDetailsProvider>().previousButtonOnTap),
+              context.read<SurahDetailsProvider>().previousButtonOnTap,
+              context.watch<SurahDetailsProvider>().readingSettings.surahId > 1
+                  ? BoxDecoration(
+                      color: AppColors.black3,
+                      borderRadius: BorderRadius.circular(10))
+                  : const BoxDecoration()),
           buildBottomBarButtons(
               Text(
                 context.translate.beggingOfSurah,
                 textAlign: TextAlign.center,
-                style: context.theme.textTheme.headlineSmall,
+                style: context.theme.textTheme.bodySmall,
               ),
-              context.read<SurahDetailsProvider>().beggingOfSurahButtonOnTap),
+              context.read<SurahDetailsProvider>().beggingOfSurahButtonOnTap,
+              BoxDecoration(
+                  color: AppColors.black3,
+                  borderRadius: BorderRadius.circular(10))),
           buildBottomBarButtons(
               Text(
-                context.translate.nextSurah,
+                context.watch<SurahDetailsProvider>().readingSettings.surahId <
+                        114
+                    ? context.translate.nextSurah
+                    : "",
                 textAlign: TextAlign.center,
-                style: context.theme.textTheme.headlineSmall,
+                style: context.theme.textTheme.bodySmall,
               ),
-              context.read<SurahDetailsProvider>().nextButtonOnTap)
+              context.read<SurahDetailsProvider>().nextButtonOnTap,
+              context.watch<SurahDetailsProvider>().readingSettings.surahId < 114
+                  ? BoxDecoration(
+                      color: AppColors.black3,
+                      borderRadius: BorderRadius.circular(10))
+                  : const BoxDecoration()),
         ],
       ),
     );
   }
 
-  Widget buildBottomBarButtons(Widget child, Function() onTap) {
+  Widget buildBottomBarButtons(
+      Widget child, Function() onTap, BoxDecoration decoration) {
     return GestureDetector(
       onTap: onTap,
       child: Container(
@@ -52,7 +72,7 @@ class ReadingPageBottomBar extends StatelessWidget {
         alignment: Alignment.center,
         width: 90,
         height: double.infinity,
-        decoration: BoxDecoration(color: AppColors.black3, borderRadius: BorderRadius.circular(10)),
+        decoration: decoration,
         child: child,
       ),
     );
