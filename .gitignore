@@ -125,3 +125,4 @@ app.*.symbols
 android/app/local.properties
 /ios/Podfile
 /macos/Podfile
+/android/app/google-services.json
