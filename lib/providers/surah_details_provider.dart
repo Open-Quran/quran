@@ -30,12 +30,6 @@ class SurahDetailsProvider extends ChangeNotifier {
   /// Reading settings model
   late ReadingSettingsModel readingSettings;
 
-  /// [bool] checking if settings is opened in [SurahDetailsScreen]
-  bool isSettingsOpen = false;
-
-  /// [bool] checking if title page is opened in [SurahDetailsScreen]
-  bool isTitleMenu = false;
-
   /// [bool] checking if latin numbers are displayed in ayah
   bool isLatinNumber = false;
 
@@ -69,33 +63,10 @@ class SurahDetailsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Change Quran Screen Setting Mode
-  void changeOpenSetting() {
-    if (isSettingsOpen) {
-      isSettingsOpen = false;
-    } else {
-      isTitleMenu = false;
-      isSettingsOpen = true;
-    }
-    notifyListeners();
-  }
-
   /// Change ayat number from latin to arabic
   void changeAyahNumberStyle() {
     isLatinNumber = !isLatinNumber;
     notifyListeners();
-  }
-
-  /// Close menu when back button is clicked
-  void changeTitleMenuState() {
-    if (isTitleMenu) {
-      isTitleMenu = false;
-    } else {
-      isSettingsOpen = false;
-      isTitleMenu = true;
-    }
-    notifyListeners();
-    changeToggleSearchOptions(EToggleSearchOptions.toggles);
   }
 
   /// Navigation to the specific verse
@@ -104,18 +75,6 @@ class SurahDetailsProvider extends ChangeNotifier {
       return element.surahId == readingSettings.surahId && element.verseNumber == readingSettings.verseId;
     });
     return value == -1 ? 0 : value;
-  }
-
-  /// Close the settings page and turn back surah detail screen when users tap back icon
-  closeSettings() {
-    isSettingsOpen = false;
-    notifyListeners();
-  }
-
-  ///  Close the title drawer and turn back surah detail screen when users tap back icon
-  closeDrawer() {
-    isTitleMenu = false;
-    notifyListeners();
   }
 
   /// Navigation to the specific page

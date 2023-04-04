@@ -50,6 +50,12 @@ class SearchProvider extends ChangeNotifier {
   /// Enum toggle search options
   EToggleSearchOptions toggleSearchOptions = EToggleSearchOptions.toggles;
 
+  /// Juz List Type [EJuzListType]
+  EJuzListType juzListType = EJuzListType.list;
+
+  /// Surah Details page - juz and surah toggle buttons
+  EJuzSurahToggleOptions juzSurahToggleOptionType = EJuzSurahToggleOptions.juz;
+
   /// OnTap search
   void handleSearchSubmitted(String query) {
     this.query = query;
@@ -111,15 +117,10 @@ class SearchProvider extends ChangeNotifier {
     List<VerseModel> searchResult = [];
     for (var verse in searchList) {
       if (verse.text!.toLowerCase().contains(queryText) ||
-          searchListSurah[verse.surahId! - 1]
-              .nameTranslated!
-              .toLowerCase()
-              .contains(queryText)) {
+          searchListSurah[verse.surahId! - 1].nameTranslated!.toLowerCase().contains(queryText)) {
         if (searchListSurah[verse.surahId! - 1].id == (verse.surahId!)) {
-          verse.surahNameTranslated =
-              searchListSurah[verse.surahId! - 1].nameSimple;
-          verse.surahNameArabic =
-              searchListSurah[verse.surahId! - 1].nameArabic;
+          verse.surahNameTranslated = searchListSurah[verse.surahId! - 1].nameSimple;
+          verse.surahNameArabic = searchListSurah[verse.surahId! - 1].nameArabic;
         }
         searchResult.add(verse);
       }
@@ -210,11 +211,9 @@ class SearchProvider extends ChangeNotifier {
         filterJuzNumber != null;
   }
 
-  Future<void> goToSurah(BuildContext context, int surahId, bool isHome,
-      {int verseId = 1}) async {
+  Future<void> goToSurah(BuildContext context, int surahId, bool isHome, {int verseId = 1}) async {
     if (!isHome) Navigator.pop(context);
-    await SurahDetailNavigationManager.goToSurah(context, surahId,
-        verseId: verseId);
+    await SurahDetailNavigationManager.goToSurah(context, surahId, verseId: verseId);
     notifyListeners();
   }
 
@@ -224,10 +223,22 @@ class SearchProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  Future<void> goToMushaf(
-      BuildContext context, int pageNumber, bool isHome) async {
+  Future<void> goToMushaf(BuildContext context, int pageNumber, bool isHome) async {
     if (!isHome) Navigator.pop(context);
     await SurahDetailNavigationManager.goToMushaf(context, pageNumber);
+    notifyListeners();
+  }
+
+  /// Change list type in [HomeScreen]
+  /// Grid view or list view
+  changeJuzListType(EJuzListType newListType) {
+    juzListType = newListType;
+    notifyListeners();
+  }
+
+  /// Change type juz, surah or search
+  changeJuzOrSurahToggleOptionType(EJuzSurahToggleOptions newOptionType) {
+    juzSurahToggleOptionType = newOptionType;
     notifyListeners();
   }
 }
