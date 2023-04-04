@@ -358,7 +358,7 @@ class SurahDetailsProvider extends ChangeNotifier {
 
   /// Bottom bar previous function
   void previousButtonOnTap() {
-    if (readingSettings.surahId > 1) {
+    if (readingSettings.surahId > 1 ) {
       Navigator.pop(_context);
       SurahDetailNavigationManager.goToSurah(_context, readingSettings.surahId - 1);
     }

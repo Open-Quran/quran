@@ -85,7 +85,6 @@ class VerseCard extends StatelessWidget {
                   ),
                 ),
               ),
-        padding: const EdgeInsets.all(kSizeS),
         child: Row(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
@@ -138,7 +137,7 @@ class VerseCard extends StatelessWidget {
       );
     } else {
       return Padding(
-        padding: const EdgeInsets.only(top: 18, left: 8),
+        padding: const EdgeInsets.only(top: kSizeXXL, left: kSizeM),
         child: Stack(
           alignment: Alignment.center,
           children: [
@@ -226,7 +225,6 @@ class VerseCard extends StatelessWidget {
                     color: context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor,
                   ),
                 ),
-                const SizedBox(height: kSizeM),
                 Text(
                   "- ${verseTranslation.translationName}",
                   textAlign: TextAlign.end,
@@ -249,7 +247,7 @@ class VerseCard extends StatelessWidget {
     return Container(
       width: double.infinity,
       height: 1,
-      margin: const EdgeInsets.symmetric(vertical: kSizeM),
+      margin: const EdgeInsets.symmetric(vertical: kSizeS),
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
