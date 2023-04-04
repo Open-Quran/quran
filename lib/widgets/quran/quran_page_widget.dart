@@ -76,7 +76,7 @@ class QuranPageWidget extends StatelessWidget {
       text: TextSpan(
         style: context.theme.textTheme.headlineLarge?.copyWith(
             height: 1.7,
-            //letterSpacing: -1,
+            fontSize: 20,
             fontFamily: Fonts.getArabicFont(fontTypeArabic),
             color: context
                 .watch<QuranProvider>()
