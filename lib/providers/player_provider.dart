@@ -60,7 +60,7 @@ class PlayerProvider extends ChangeNotifier {
     _audioHandler = await AudioService.init(
       builder: () => MyAudioHandler(_context),
       config: const AudioServiceConfig(
-        androidNotificationChannelId: 'com.fabrikod.fabrikod_quran',
+        androidNotificationChannelId: 'com.open.quran',
         androidNotificationChannelName: 'Fabrikod Quran',
       ),
     );
