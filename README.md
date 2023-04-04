@@ -56,11 +56,11 @@ If you re-start your IDE, you should also see a new launch option for your curre
 ##### 2. Open the project in Android Studio or Visual Studio Code
 ##### 3. Install the required dependencies by running:
 * `flutter pub get`
-##### 4. Add following lines to the local.properties file in the Android folder. You need to specify sdk versions in order to run in Android:
+##### 4. Add below lines to the <b>local.properties</b> file in the Android folder. You need to specify sdk versions in order to run in Android:
 * `flutter.minSdkVersion = 21`
 * `flutter.compileSdkVersion = 31`
 * `flutter.compileSdkVersion = 31`
-##### 5. Download google-service.json file from the firebase [Firebase Doc](https://support.google.com/firebase/answer/7015592?hl=en#zippy=%2Cin-this-article)
+##### 5. Download <b>google-service.json</b> file from the firebase [Firebase Doc](https://support.google.com/firebase/answer/7015592?hl=en#zippy=%2Cin-this-article)
 ##### 6. Finally run the project with:
 * `flutter run`
 
