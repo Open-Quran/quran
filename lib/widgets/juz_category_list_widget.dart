@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_open_quran/constants/constants.dart';
 
-import '../constants/enums.dart';
 import '../models/surah_model.dart';
 import 'animation/fade_indexed_stack.dart';
 import 'buttons/juz_list_toggle_button.dart';
@@ -38,8 +37,7 @@ class _JuzCategoryListWidgetState extends State<JuzCategoryListWidget> {
           children: [
             Text(
               context.translate.juz,
-              style: context.theme.textTheme.displayLarge
-                  ?.copyWith(letterSpacing: 0.4),
+              style: context.theme.textTheme.displayLarge?.copyWith(letterSpacing: 0.4),
             ),
             JuzListToggleButton(
               listType: widget.listType,
@@ -104,8 +102,7 @@ class _JuzCategoryListWidgetState extends State<JuzCategoryListWidget> {
                 alignment: Alignment.centerLeft,
                 child: Text(
                   "${context.translate.juz} $juzId",
-                  style: context.theme.textTheme.headlineSmall
-                      ?.copyWith(color: AppColors.grey),
+                  style: context.theme.textTheme.headlineSmall?.copyWith(color: AppColors.grey),
                 ),
               ),
             ),
@@ -120,8 +117,7 @@ class _JuzCategoryListWidgetState extends State<JuzCategoryListWidget> {
                   onTap: () => widget.onTapSurahCard(surah.id ?? 1),
                 );
               },
-              separatorBuilder: (context, surahIndex) =>
-                  const SizedBox(height: kSizeL),
+              separatorBuilder: (context, surahIndex) => const SizedBox(height: kSizeL),
               itemCount: widget.juzList[juzIndex].length,
             ),
             const SizedBox(height: kSizeXL)

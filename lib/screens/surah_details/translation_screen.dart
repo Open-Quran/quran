@@ -60,7 +60,7 @@ class _TranslationScreenState extends State<TranslationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    var verses = context.watch<SurahDetailsProvider>().displayedVerses;
+    var verses = context.watch<QuranProvider>().getAllVerses;
     return Scaffold(
       backgroundColor: Colors.transparent,
       body: InkWell(
