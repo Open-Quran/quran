@@ -108,6 +108,7 @@ class _JuzCategoryListWidgetState extends State<JuzCategoryListWidget> {
             ),
             const SizedBox(height: kSizeM),
             ListView.separated(
+              padding: EdgeInsets.zero,
               shrinkWrap: true,
               physics: const NeverScrollableScrollPhysics(),
               itemBuilder: (context, surahIndex) {
