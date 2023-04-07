@@ -5,8 +5,8 @@ import 'package:the_open_quran/constants/constants.dart';
 
 import '../../models/translation.dart';
 import '../../models/verse_model.dart';
+import '../../providers/new_surah_details_provider.dart';
 import '../../providers/quran_provider.dart';
-import '../../providers/surah_details_provider.dart';
 import '../pop_up/verse_pop_up_menu.dart';
 
 class VerseCard extends StatelessWidget {
@@ -93,7 +93,7 @@ class VerseCard extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    context.read<SurahDetailsProvider>().changeAyahNumberStyle();
+                    context.read<NewSurahDetailsProvider>().changeAyahNumberStyle();
                   },
                   child: _verseNumberText(context),
                 ),
@@ -124,7 +124,7 @@ class VerseCard extends StatelessWidget {
 
   /// The number of ayat if arabic and latin format
   _verseNumberText(BuildContext context) {
-    if (context.read<SurahDetailsProvider>().isLatinNumber) {
+    if (context.read<NewSurahDetailsProvider>().isLatinNumber) {
       return Text(
         Utils.getArabicVerseNo(verseModel.verseNumber.toString()),
         textAlign: TextAlign.start,

@@ -70,7 +70,6 @@ class _HomeScreenState extends State<HomeScreen> {
     return Column(
       children: [
         buildRecent(),
-        FloatingActionButton(onPressed: () {}),
         JuzList(
           changeListType: context.read<HomeProvider>().changeJuzListType,
           juzListType: context.watch<HomeProvider>().juzListType,
