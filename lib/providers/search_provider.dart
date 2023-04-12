@@ -56,9 +56,6 @@ class SearchProvider extends ChangeNotifier {
   /// Surah Details page - juz and surah toggle buttons
   EJuzSurahToggleOptions juzSurahToggleOptionType = EJuzSurahToggleOptions.juz;
 
-  /// Check juz navigation
-  bool isNavigatedJuz = false;
-
   /// OnTap search
   void handleSearchSubmitted(String query) {
     this.query = query;

@@ -6,6 +6,7 @@ import 'package:gap/gap.dart';
 import 'package:modal_bottom_sheet/modal_bottom_sheet.dart';
 import 'package:provider/provider.dart';
 import 'package:the_open_quran/constants/constants.dart';
+import 'package:the_open_quran/providers/quran_provider.dart';
 import 'package:the_open_quran/widgets/bottom_sheets/surah_detail_settings_bottom_sheet.dart';
 
 import '../../providers/search_provider.dart';
@@ -192,13 +193,15 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
             changeListType: context.read<SearchProvider>().changeJuzListType,
             juzListType: context.watch<SearchProvider>().juzListType,
             onTapJuzCard: (juzId) {
-              context.read<SearchProvider>().isNavigatedJuz = true;
+              context.read<QuranProvider>().isNavigatedJuz = true;
               context.read<SearchProvider>().goToJuz(context, juzId, false);
             },
             onTapSurahCard: (surahId) {
+              context.read<QuranProvider>().isNavigatedJuz = false;
               context.read<SearchProvider>().goToSurah(context, surahId, false);
             }),
         SurahList(onTap: (surahId) {
+          context.read<QuranProvider>().isNavigatedJuz = false;
           context.read<SearchProvider>().goToSurah(context, surahId, false);
         }),
       ],

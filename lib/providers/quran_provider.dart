@@ -28,6 +28,9 @@ class QuranProvider extends ChangeNotifier {
   /// Local Setting of Quran
   LocalSettingModel localSetting = LocalSettingModel();
 
+  /// Check juz navigation
+  bool isNavigatedJuz = false;
+
   /// Get surah which has sajda verses
   List<SurahModel> get sajdaSurahs {
     return surahs.where((element) => element.isSajdaVerse).toList();

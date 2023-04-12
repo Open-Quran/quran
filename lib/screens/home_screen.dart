@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:the_open_quran/constants/constants.dart';
+import 'package:the_open_quran/providers/quran_provider.dart';
 import 'package:the_open_quran/screens/search_result_screen.dart';
 
 import '../database/local_db.dart';
@@ -59,6 +60,7 @@ class _HomeScreenState extends State<HomeScreen> {
       children: [
         buildRecentAndJuzCategoryList(),
         SurahList(onTap: (surahId) {
+          context.read<QuranProvider>().isNavigatedJuz = false;
           context.read<SearchProvider>().goToSurah(context, surahId, true);
         }),
       ],
@@ -74,10 +76,11 @@ class _HomeScreenState extends State<HomeScreen> {
           changeListType: context.read<HomeProvider>().changeJuzListType,
           juzListType: context.watch<HomeProvider>().juzListType,
           onTapJuzCard: (juzId) {
-            context.read<SearchProvider>().isNavigatedJuz = true;
+            context.read<QuranProvider>().isNavigatedJuz = true;
             context.read<SearchProvider>().goToJuz(context, juzId, true);
           },
           onTapSurahCard: (surahId) {
+            context.read<QuranProvider>().isNavigatedJuz = false;
             context.read<SearchProvider>().goToSurah(context, surahId, true);
           },
         )

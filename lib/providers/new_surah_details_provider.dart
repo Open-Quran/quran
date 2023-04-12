@@ -65,7 +65,7 @@ class NewSurahDetailsProvider extends ChangeNotifier {
 
   /// Check navigation to specific juz or surah
   int get navigationToJuzOrSurah {
-    if (_context.read<SearchProvider>().isNavigatedJuz) {
+    if (_context.read<QuranProvider>().isNavigatedJuz) {
       return jumpToJuzId;
     } else {
       return jumpToVerseIndex;

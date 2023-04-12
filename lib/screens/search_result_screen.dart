@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:provider/provider.dart';
 import 'package:the_open_quran/constants/constants.dart';
+import 'package:the_open_quran/providers/quran_provider.dart';
 
 import '../models/surah_model.dart';
 import '../models/translation.dart';
@@ -86,6 +87,7 @@ class SearchResultScreen extends StatelessWidget {
         verseModel: searchVerseResult[index],
         onTap: () {
           var verse = searchVerseResult[index];
+          context.read<QuranProvider>().isNavigatedJuz = false;
           context.read<SearchProvider>().goToSurah(context, verse.surahId!, isHome, verseId: verse.verseNumber!);
         },
       ),
@@ -103,6 +105,7 @@ class SearchResultScreen extends StatelessWidget {
       itemBuilder: (context, index) => SearchSurahCard(
         surahModel: searchSurahResult[index],
         onTap: () {
+          context.read<QuranProvider>().isNavigatedJuz = false;
           context.read<SearchProvider>().goToSurah(context, searchSurahResult[index].id!, isHome);
         },
       ),
@@ -122,7 +125,7 @@ class SearchResultScreen extends StatelessWidget {
             title: context.translate.juz,
             titleNumber: "${context.translate.juz} $pageNumber",
             onTap: () {
-              context.read<SearchProvider>().isNavigatedJuz = true;
+              context.read<QuranProvider>().isNavigatedJuz = true;
               context.read<SearchProvider>().goToJuz(context, juzNumber ?? 1, isHome);
             },
           ),

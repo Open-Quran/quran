@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:the_open_quran/constants/constants.dart';
+import 'package:the_open_quran/providers/quran_provider.dart';
 
 import '../models/surah_model.dart';
 import '../providers/search_provider.dart';
@@ -94,7 +95,7 @@ class _JuzCategoryListWidgetState extends State<JuzCategoryListWidget> {
           children: [
             InkWell(
               onTap: () {
-                context.read<SearchProvider>().isNavigatedJuz = true;
+                context.read<QuranProvider>().isNavigatedJuz = true;
                 context.read<SearchProvider>().goToJuz(context, juzId, true);
               },
               child: Container(
