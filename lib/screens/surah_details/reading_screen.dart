@@ -5,7 +5,6 @@ import 'package:scrollable_positioned_list/scrollable_positioned_list.dart';
 import '../../constants/padding.dart';
 import '../../providers/quran_provider.dart';
 import '../../providers/surah_details_provider.dart';
-import '../../widgets/bars/reading_page_bottom_bar.dart';
 import '../../widgets/quran/quran_page_widget.dart';
 
 class ReadingScreen extends StatefulWidget {
@@ -60,10 +59,6 @@ class _ReadingScreenState extends State<ReadingScreen> {
                 textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
                 onTap: context.read<SurahDetailsProvider>().changeReadingMode,
                 surahDetailsPageTheme: context.watch<QuranProvider>().surahDetailsPageThemeColor,
-              ),
-              Visibility(
-                visible: index == context.read<SurahDetailsProvider>().mushafPageList.length - 1,
-                child: const ReadingPageBottomBar(),
               ),
             ],
           );

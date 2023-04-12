@@ -39,7 +39,7 @@ class _NewSurahDetailsScreenState extends State<NewSurahDetailsScreen> {
         subTitle: context.watch<NewSurahDetailsProvider>().appBarDescription,
         isActiveSoundIcon: context.watch<PlayerProvider>().player.playing,
         onTapSound: context.read<NewSurahDetailsProvider>().onTapSoundIcon,
-        isBookmarked: false,
+        isBookmarked: context.watch<NewSurahDetailsProvider>().appBarBookmarkActive,
         onTapBookmark: context.read<NewSurahDetailsProvider>().onTapAppBarBookmarkIcon,
       );
 

@@ -10,7 +10,6 @@ import '../../providers/favorites_provider.dart';
 import '../../providers/new_surah_details_provider.dart';
 import '../../providers/player_provider.dart';
 import '../../providers/quran_provider.dart';
-import '../../widgets/bars/reading_page_bottom_bar.dart';
 import '../../widgets/basmala_title.dart';
 import '../../widgets/cards/new_verse_card.dart';
 
@@ -32,7 +31,7 @@ class _NewTranslationScreenState extends State<NewTranslationScreen> {
   void initState() {
     super.initState();
     WidgetsBinding.instance.addPostFrameCallback((timeStamp) {
-      itemScrollController.jumpTo(index: context.read<NewSurahDetailsProvider>().jumpToVerseIndex);
+      itemScrollController.jumpTo(index: context.read<NewSurahDetailsProvider>().navigationToJuzOrSurah);
       itemPositionsListener.itemPositions.addListener(scrollListener);
       listenToPlayer();
     });
@@ -79,10 +78,6 @@ class _NewTranslationScreenState extends State<NewTranslationScreen> {
               children: [
                 BasmalaTitle(verseKey: verse.verseKey ?? ""),
                 buildVerseCard(index, verse, context),
-                Visibility(
-                  visible: index == verses.length - 1,
-                  child: const ReadingPageBottomBar(),
-                ),
               ],
             );
           },

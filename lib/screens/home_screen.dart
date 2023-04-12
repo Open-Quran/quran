@@ -74,6 +74,7 @@ class _HomeScreenState extends State<HomeScreen> {
           changeListType: context.read<HomeProvider>().changeJuzListType,
           juzListType: context.watch<HomeProvider>().juzListType,
           onTapJuzCard: (juzId) {
+            context.read<SearchProvider>().isNavigatedJuz = true;
             context.read<SearchProvider>().goToJuz(context, juzId, true);
           },
           onTapSurahCard: (surahId) {

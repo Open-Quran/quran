@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:the_open_quran/constants/constants.dart';
 
 import '../models/surah_model.dart';
+import '../providers/search_provider.dart';
 import 'animation/fade_indexed_stack.dart';
 import 'buttons/juz_list_toggle_button.dart';
 import 'cards/grid_card.dart';
@@ -90,19 +92,25 @@ class _JuzCategoryListWidgetState extends State<JuzCategoryListWidget> {
         return Column(
           mainAxisSize: MainAxisSize.min,
           children: [
-            Container(
-              width: double.infinity,
-              height: 44,
-              padding: const EdgeInsets.symmetric(horizontal: kSizeL),
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(kSizeM),
-                color: AppColors.black3,
-              ),
-              child: Align(
-                alignment: Alignment.centerLeft,
-                child: Text(
-                  "${context.translate.juz} $juzId",
-                  style: context.theme.textTheme.headlineSmall?.copyWith(color: AppColors.grey),
+            InkWell(
+              onTap: () {
+                context.read<SearchProvider>().isNavigatedJuz = true;
+                context.read<SearchProvider>().goToJuz(context, juzId, true);
+              },
+              child: Container(
+                width: double.infinity,
+                height: 44,
+                padding: const EdgeInsets.symmetric(horizontal: kSizeL),
+                decoration: BoxDecoration(
+                  borderRadius: BorderRadius.circular(kSizeM),
+                  color: AppColors.black3,
+                ),
+                child: Align(
+                  alignment: Alignment.centerLeft,
+                  child: Text(
+                    "${context.translate.juz} $juzId",
+                    style: context.theme.textTheme.headlineSmall?.copyWith(color: AppColors.grey),
+                  ),
                 ),
               ),
             ),

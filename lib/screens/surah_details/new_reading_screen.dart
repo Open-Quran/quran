@@ -5,7 +5,6 @@ import 'package:the_open_quran/constants/constants.dart';
 
 import '../../providers/new_surah_details_provider.dart';
 import '../../providers/quran_provider.dart';
-import '../../widgets/bars/reading_page_bottom_bar.dart';
 import '../../widgets/quran/quran_page_widget.dart';
 
 class NewReadingScreen extends StatefulWidget {
@@ -59,10 +58,6 @@ class _NewReadingScreenState extends State<NewReadingScreen> {
                 textScaleFactor: context.watch<QuranProvider>().localSetting.textScaleFactor,
                 onTap: context.read<NewSurahDetailsProvider>().changeReadingMode,
                 surahDetailsPageTheme: context.watch<QuranProvider>().surahDetailsPageThemeColor,
-              ),
-              Visibility(
-                visible: index == context.read<NewSurahDetailsProvider>().mushafPageList.length - 1,
-                child: const ReadingPageBottomBar(),
               ),
             ],
           );

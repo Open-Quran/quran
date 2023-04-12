@@ -12,7 +12,6 @@ import '../../providers/favorites_provider.dart';
 import '../../providers/player_provider.dart';
 import '../../providers/quran_provider.dart';
 import '../../providers/surah_details_provider.dart';
-import '../../widgets/bars/reading_page_bottom_bar.dart';
 import '../../widgets/basmala_title.dart';
 import '../../widgets/cards/new_verse_card.dart';
 
@@ -81,10 +80,6 @@ class _TranslationScreenState extends State<TranslationScreen> {
               children: [
                 BasmalaTitle(verseKey: verse.verseKey ?? ""),
                 buildVerseCard(index, verse, context),
-                Visibility(
-                  visible: index == verses.length - 1,
-                  child: const ReadingPageBottomBar(),
-                ),
               ],
             );
           },

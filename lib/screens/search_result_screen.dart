@@ -122,6 +122,7 @@ class SearchResultScreen extends StatelessWidget {
             title: context.translate.juz,
             titleNumber: "${context.translate.juz} $pageNumber",
             onTap: () {
+              context.read<SearchProvider>().isNavigatedJuz = true;
               context.read<SearchProvider>().goToJuz(context, juzNumber ?? 1, isHome);
             },
           ),

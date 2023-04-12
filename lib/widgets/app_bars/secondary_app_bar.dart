@@ -192,6 +192,7 @@ class SecondaryAppBar extends StatelessWidget implements PreferredSizeWidget {
             changeListType: context.read<SearchProvider>().changeJuzListType,
             juzListType: context.watch<SearchProvider>().juzListType,
             onTapJuzCard: (juzId) {
+              context.read<SearchProvider>().isNavigatedJuz = true;
               context.read<SearchProvider>().goToJuz(context, juzId, false);
             },
             onTapSurahCard: (surahId) {

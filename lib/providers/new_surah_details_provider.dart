@@ -18,19 +18,23 @@ class NewSurahDetailsProvider extends ChangeNotifier {
   /// Class Constructor
   NewSurahDetailsProvider(this._context, this.readingSettings, EQuranType quranType) {
     quranProvider.changeQuranType(quranType.index);
-    // getNewDisplayedSurahs();
-    // getNewDisplayedVerses();
-    // getMushafPageList();
+    getMushafPageList();
   }
 
-  /// List of surahs and verses
-  List<SurahModel> surahs = [];
+  /// Detail Screen Context
+  final BuildContext _context;
 
   /// Reading settings model
   late ReadingSettingsModel readingSettings;
 
-  /// Detail Screen Context
-  final BuildContext _context;
+  /// [bool] checking if latin numbers are displayed in ayah
+  bool isLatinNumber = false;
+
+  /// Surah Details page - juz and surah toggle buttons
+  EJuzSurahToggleOptions juzSurahToggleOptionType = EJuzSurahToggleOptions.juz;
+
+  /// Juz List Type [EJuzListType]
+  EJuzListType juzListType = EJuzListType.list;
 
   /// Get [QuranProvider]
   QuranProvider get quranProvider => _context.read<QuranProvider>();
@@ -41,27 +45,101 @@ class NewSurahDetailsProvider extends ChangeNotifier {
   /// List of verses which are displayed in the [SurahDetailsScreen] in [ReadingScreen]
   List<List<SurahModel>> mushafPageList = [];
 
-  /// Surah Details page - juz and surah toggle buttons
-  EJuzSurahToggleOptions juzSurahToggleOptionType = EJuzSurahToggleOptions.juz;
-
-  /// Juz List Type [EJuzListType]
-  EJuzListType juzListType = EJuzListType.list;
-
   /// [bool] checking if settings is opened in [SurahDetailsScreen]
   bool isSettingsOpen = false;
 
   /// Key of selected verse which long pressed for showMenu
   String? selectedVerseKey;
 
-  /// [bool] checking if latin numbers are displayed in ayah
-  bool isLatinNumber = false;
-
-  /// List of surahs which are displayed in the [SurahDetailsScreen] in [TranslationScreen]
-  List<SurahModel> displayedSurahs = [];
-
   /// Change selectedVerseKey with another selected verse key or null
   void changeSelectedVerseKey(String? selectedVerseKey) {
     this.selectedVerseKey = selectedVerseKey;
+    notifyListeners();
+  }
+
+  /// Change ayat number from latin to arabic
+  void changeAyahNumberStyle() {
+    isLatinNumber = !isLatinNumber;
+    notifyListeners();
+  }
+
+  /// Check navigation to specific juz or surah
+  int get navigationToJuzOrSurah {
+    if (_context.read<SearchProvider>().isNavigatedJuz) {
+      return jumpToJuzId;
+    } else {
+      return jumpToVerseIndex;
+    }
+  }
+
+  /// Navigation to the specific verse
+  int get jumpToVerseIndex {
+    int value = getAllVerses.indexWhere((element) {
+      return element.surahId == readingSettings.surahId && element.verseNumber == readingSettings.verseId;
+    });
+    return value == -1 ? 0 : value;
+  }
+
+  /// Navigation to the specific juz
+  int get jumpToJuzId {
+    int value = getAllVerses.indexWhere((element) {
+      return element.juzNumber == readingSettings.juzId;
+    });
+    return value == -1 ? 0 : value;
+  }
+
+  /// Navigation to the specific page
+  int get jumpToMushafPageListIndex {
+    int value = mushafPageList.indexWhere((element) {
+      return element.first.verses.first.pageNumber == readingSettings.mushafPageNumber;
+    });
+    return value == -1 ? 0 : value;
+  }
+
+  /// Filters verses which are going to be displayed in the mushaf page
+  void getMushafPageList() {
+    List<List<SurahModel>> list = [];
+    int pageNo = quranProvider.surahs.first.startPage!;
+    list.add(getSurahOfMushafPage(pageNo));
+    for (var verse in getAllVerses) {
+      if (verse.pageNumber != pageNo) {
+        pageNo = verse.pageNumber!;
+        list.add(getSurahOfMushafPage(pageNo));
+      }
+    }
+    mushafPageList = list;
+  }
+
+  /// Filters surahs which are going to be displayed in mushaf page
+  List<SurahModel> getSurahOfMushafPage(int pageNo) {
+    List<SurahModel> list = [];
+    for (var surah in quranProvider.surahs) {
+      var newSurah = surah.surahOfMushafPage(pageNo);
+      if (newSurah != null) list.add(newSurah);
+    }
+    return list;
+  }
+
+  /// Listens for the scroll list of the surah details screen
+  /// Declares scroll position when it stops on specific surah and ayat
+  listenToTranslationScreenList(int index) {
+    var verse = getAllVerses[index];
+    if (verse.verseNumber == readingSettings.verseId && verse.surahId == readingSettings.surahId) {
+      return;
+    }
+    readingSettings.surahId = verse.surahId ?? 1;
+    readingSettings.verseId = verse.verseNumber ?? 1;
+    notifyListeners();
+  }
+
+  /// Listens for the scroll position of the surah details screen mushaf page
+  /// Declares scroll position when it stops on specific surah and ayat
+  listenToReadingScreenList(int index) {
+    var pageNumber = mushafPageList[index].first.verses.first.pageNumber;
+    if (pageNumber == readingSettings.mushafPageNumber) {
+      return;
+    }
+    readingSettings.mushafPageNumber = pageNumber ?? 1;
     notifyListeners();
   }
 
@@ -77,12 +155,6 @@ class NewSurahDetailsProvider extends ChangeNotifier {
     }
   }
 
-  /// Change ayat number from latin to arabic
-  void changeAyahNumberStyle() {
-    isLatinNumber = !isLatinNumber;
-    notifyListeners();
-  }
-
   /// [SurahDetailsScreen] app bar description
   String get appBarDescription {
     VerseModel verse;
@@ -96,15 +168,6 @@ class NewSurahDetailsProvider extends ChangeNotifier {
         verse = getAllVerses[index];
     }
     return "${_context.translate.juz} ${verse.juzNumber} | ${_context.translate.hizb} ${verse.hizbNumber} - ${_context.translate.page} ${verse.pageNumber}";
-  }
-
-  onTapSoundIcon(bool isPlaying) {
-    onTapVerseCardPlayOrPause(0, isPlaying);
-  }
-
-  /// Play or Pause The Verses
-  void onTapVerseCardPlayOrPause(int index, bool isPlaying) {
-    _context.read<PlayerProvider>().onTapPlayOrPause(index, isPlaying, getAllVerses);
   }
 
   /// [SurahDetailsScreen] app Bar Bookmark is Active
@@ -147,39 +210,38 @@ class NewSurahDetailsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Get all surah verses
-  List<VerseModel> get getAllVerses {
-    List<VerseModel> verseList = [];
-    for (var verse in surahs) {
-      verseList.addAll(verse.verses);
+  onTapSoundIcon(bool isPlaying) {
+    onTapVerseCardPlayOrPause(0, isPlaying);
+  }
+
+  /// Play or Pause The Verses
+  void onTapVerseCardPlayOrPause(int index, bool isPlaying) {
+    _context.read<PlayerProvider>().onTapPlayOrPause(index, isPlaying, getAllVerses);
+  }
+
+  /// Play The Mushaf Page
+  void playTheMushafPage(bool isPlaying, int surahId) {
+    var index = quranProvider.surahs.indexWhere((element) => element.id == surahId);
+    List<VerseModel> selectedVerses = index == -1 ? [] : quranProvider.surahs[index].verses;
+    _context.read<PlayerProvider>().onTapPlayOrPause(0, isPlaying, selectedVerses);
+  }
+
+  /// Changing reading style in the home page
+  /// EX: [Translation] or [Reading]
+  void changeQuranType(int index) {
+    quranProvider.localSetting.quranType = EQuranType.values.elementAt(index);
+    switch (quranProvider.localSetting.quranType) {
+      case EQuranType.translation:
+        int index = getAllVerses.indexWhere((element) => element.pageNumber == readingSettings.mushafPageNumber);
+        if (index != -1) {
+          readingSettings.surahId = getAllVerses[index].surahId ?? 1;
+          readingSettings.verseId = getAllVerses[index].verseNumber ?? 1;
+        }
+        break;
+      case EQuranType.reading:
+        readingSettings.mushafPageNumber =
+            quranProvider.surahs[readingSettings.surahIndex].verses[readingSettings.verseIndex].pageNumber!;
     }
-    return verseList;
-  }
-
-  /// Navigation to the specific verse
-  int get jumpToVerseIndex {
-    int value = getAllVerses.indexWhere((element) {
-      return element.surahId == readingSettings.surahId && element.verseNumber == readingSettings.verseId;
-    });
-    return value == -1 ? 0 : value;
-  }
-
-  /// Navigation to the specific page
-  int get jumpToMushafPageListIndex {
-    int value = mushafPageList.indexWhere((element) {
-      return element.first.verses.first.pageNumber == readingSettings.mushafPageNumber;
-    });
-    return value == -1 ? 0 : value;
-  }
-
-  /// Listens for the scroll position of the surah details screen mushaf page
-  /// Declares scroll position when it stops on specific surah and ayat
-  listenToReadingScreenList(int index) {
-    var pageNumber = mushafPageList[index].first.verses.first.pageNumber;
-    if (pageNumber == readingSettings.mushafPageNumber) {
-      return;
-    }
-    readingSettings.mushafPageNumber = pageNumber ?? 1;
     notifyListeners();
   }
 
@@ -207,40 +269,9 @@ class NewSurahDetailsProvider extends ChangeNotifier {
     notifyListeners();
   }
 
-  /// Changing reading style in the home page
-  /// EX: [Translation] or [Reading]
-  void changeQuranType(int index) {
-    quranProvider.localSetting.quranType = EQuranType.values.elementAt(index);
-    switch (quranProvider.localSetting.quranType) {
-      case EQuranType.translation:
-        int index = getAllVerses.indexWhere((element) => element.pageNumber == readingSettings.mushafPageNumber);
-        if (index != -1) {
-          readingSettings.surahId = getAllVerses[index].surahId ?? 1;
-          readingSettings.verseId = getAllVerses[index].verseNumber ?? 1;
-        }
-        break;
-      case EQuranType.reading:
-        readingSettings.mushafPageNumber =
-            quranProvider.surahs[readingSettings.surahIndex].verses[readingSettings.verseIndex].pageNumber!;
-    }
-    notifyListeners();
-  }
-
   /// Changing between toggle buttons and search bar
   changeToggleSearchOptions(EToggleSearchOptions newOptionType) {
     _context.read<SearchProvider>().toggleSearchOptions = newOptionType;
-    notifyListeners();
-  }
-
-  /// Listens for the scroll list of the surah details screen
-  /// Declares scroll position when it stops on specific surah and ayat
-  listenToTranslationScreenList(int index) {
-    var verse = getAllVerses[index];
-    if (verse.verseNumber == readingSettings.verseId && verse.surahId == readingSettings.surahId) {
-      return;
-    }
-    readingSettings.surahId = verse.surahId ?? 1;
-    readingSettings.verseId = verse.verseNumber ?? 1;
     notifyListeners();
   }
 
@@ -256,57 +287,12 @@ class NewSurahDetailsProvider extends ChangeNotifier {
     await Share.share(verseText);
   }
 
-  /// Filters surahs which are going to be displayed in the page
-  void getDisplayedSurahs() {
-    displayedSurahs = [];
-    switch (quranProvider.localSetting.quranType) {
-      case EQuranType.translation:
-        switch (readingSettings.surahDetailScreenMode) {
-          case ESurahDetailScreenMode.surah:
-            displayedSurahs.add(quranProvider.surahs[readingSettings.surahIndex]);
-            break;
-          case ESurahDetailScreenMode.juz:
-            List<SurahModel> list = [];
-            for (var element in quranProvider.surahs) {
-              var surah = element.juzSurahs(readingSettings.juzId);
-              if (surah != null) list.add(surah);
-            }
-            displayedSurahs = list;
-        }
-        break;
-      case EQuranType.reading:
-        for (var surah in quranProvider.surahs) {
-          for (var verse in surah.verses) {
-            if (verse.pageNumber == readingSettings.mushafPageNumber) {
-              displayedSurahs.add(quranProvider.surahs[verse.surahId! - 1]);
-              return;
-            }
-          }
-        }
+  /// Get all surah verses
+  List<VerseModel> get getAllVerses {
+    List<VerseModel> verseList = [];
+    for (var verse in quranProvider.surahs) {
+      verseList.addAll(verse.verses);
     }
-  }
-
-  /// Filters verses which are going to be displayed in the mushaf page
-  void getMushafPageList() {
-    List<List<SurahModel>> list = [];
-    int pageNo = displayedSurahs.first.startPage!;
-    list.add(getSurahOfMushafPage(pageNo));
-    for (var verse in getAllVerses) {
-      if (verse.pageNumber != pageNo) {
-        pageNo = verse.pageNumber!;
-        list.add(getSurahOfMushafPage(pageNo));
-      }
-    }
-    mushafPageList = list;
-  }
-
-  /// Filters surahs which are going to be displayed in mushaf page
-  List<SurahModel> getSurahOfMushafPage(int pageNo) {
-    List<SurahModel> list = [];
-    for (var surah in displayedSurahs) {
-      var newSurah = surah.surahOfMushafPage(pageNo);
-      if (newSurah != null) list.add(newSurah);
-    }
-    return list;
+    return verseList;
   }
 }
