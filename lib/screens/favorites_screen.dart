@@ -5,6 +5,7 @@ import 'package:the_open_quran/constants/constants.dart';
 
 import '../models/verse_model.dart';
 import '../providers/favorites_provider.dart';
+import '../providers/quran_provider.dart';
 import '../widgets/app_bars/primary_app_bar.dart';
 import '../widgets/cards/favorite_card.dart';
 import '../widgets/no_item_widget.dart';
@@ -26,18 +27,15 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
   }
 
   Widget get buildBody {
-    List<VerseModel> favoriteVerses =
-        context.watch<FavoritesProvider>().favoriteVerses;
+    List<VerseModel> favoriteVerses = context.watch<FavoritesProvider>().favoriteVerses;
     return favoriteVerses.isEmpty
         ? NoItemWidget(
             text: context.translate.noFavoritesAdded,
-            icon: SvgPicture.asset(ImageConstants.favoriteInactiveIcon,
-                width: 55, height: 50),
+            icon: SvgPicture.asset(ImageConstants.favoriteInactiveIcon, width: 55, height: 50),
           )
         : SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: kSizeXL, vertical: kSizeL),
+              padding: const EdgeInsets.symmetric(horizontal: kSizeXL, vertical: kSizeL),
               child: Column(
                 children: [
                   Align(
@@ -55,15 +53,16 @@ class _FavoritesScreenState extends State<FavoritesScreen> {
                       vertical: kSizeL,
                     ),
                     itemBuilder: (context, item) => FavoriteCard(
-                      onTap: () =>
-                          context.read<FavoritesProvider>().onTapFavoriteCard(
-                                context,
-                                favoriteVerses.elementAt(item),
-                              ),
+                      onTap: () {
+                        context.read<QuranProvider>().isNavigatedJuz = false;
+                        context.read<FavoritesProvider>().onTapFavoriteCard(
+                              context,
+                              favoriteVerses.elementAt(item),
+                            );
+                      },
                       verseModel: favoriteVerses.elementAt(item),
                     ),
-                    separatorBuilder: (context, item) =>
-                        const SizedBox(height: kSizeXL),
+                    separatorBuilder: (context, item) => const SizedBox(height: kSizeXL),
                   ),
                 ],
               ),

@@ -144,16 +144,15 @@ class VerseCard extends StatelessWidget {
             Text(
               verseModel.verseNumber.toString(),
               textAlign: TextAlign.start,
-              textScaleFactor: textScaleFactor,
               style: context.theme.textTheme.displayLarge?.copyWith(
                 color: context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor,
-                fontSize: 15,
+                fontSize: 16,
                 fontFamily: arabicFontFamily,
               ),
             ),
             SvgPicture.asset(
               ImageConstants.versNumberFrame,
-              height: 32,
+              height: 36,
               color: context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor.withOpacity(0.6),
             ),
           ],

@@ -5,6 +5,7 @@ import 'package:the_open_quran/constants/constants.dart';
 
 import '../models/bookmark_model.dart';
 import '../providers/bookmark_provider.dart';
+import '../providers/quran_provider.dart';
 import '../widgets/app_bars/primary_app_bar.dart';
 import '../widgets/cards/bookmark_card.dart';
 import '../widgets/no_item_widget.dart';
@@ -38,8 +39,7 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
           )
         : SingleChildScrollView(
             child: Padding(
-              padding: const EdgeInsets.symmetric(
-                  horizontal: kSizeXL, vertical: kSizeL),
+              padding: const EdgeInsets.symmetric(horizontal: kSizeXL, vertical: kSizeL),
               child: Column(
                 children: [
                   Align(
@@ -57,13 +57,13 @@ class _BookmarkScreenState extends State<BookmarkScreen> {
                       vertical: kSizeL,
                     ),
                     itemBuilder: (context, item) => BookmarkCard(
-                      onTap: () => context
-                          .read<BookmarkProvider>()
-                          .bookmarkOnTap(context, bookmarks.elementAt(item)),
+                      onTap: () {
+                        context.read<QuranProvider>().isNavigatedJuz = false;
+                        context.read<BookmarkProvider>().bookmarkOnTap(context, bookmarks.elementAt(item));
+                      },
                       verseModel: bookmarks.elementAt(item).verseModel,
                     ),
-                    separatorBuilder: (context, item) =>
-                        const SizedBox(height: kSizeXL),
+                    separatorBuilder: (context, item) => const SizedBox(height: kSizeXL),
                   ),
                 ],
               ),
