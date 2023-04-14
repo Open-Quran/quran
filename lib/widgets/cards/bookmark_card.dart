@@ -117,14 +117,11 @@ class _BookmarkCardState extends State<BookmarkCard> with SingleTickerProviderSt
 
   /// Surah ayat number
   buildAyatNo(String ayatNo) {
-    return Visibility(
-      visible: getBookmarkType() == EBookMarkType.verse,
-      child: Padding(
-        padding: const EdgeInsets.all(kSize3XL),
-        child: Text(
-          ayatNo,
-          style: context.theme.textTheme.headlineSmall?.copyWith(color: AppColors.grey6, fontSize: 10),
-        ),
+    return Padding(
+      padding: const EdgeInsets.all(kSize3XL),
+      child: Text(
+        getBookmarkType() == EBookMarkType.verse ? ayatNo : context.translate.surah,
+        style: context.theme.textTheme.headlineSmall?.copyWith(color: AppColors.grey6, fontSize: 10),
       ),
     );
   }
