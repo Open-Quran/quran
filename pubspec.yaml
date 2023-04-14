@@ -103,4 +103,7 @@ flutter:
     - family: Naskh
       fonts:
         - asset: assets/fonts/Naskh.ttf
+    - family: Diyanet
+      fonts:
+        - asset: assets/fonts/diyanet.ttf
     
