@@ -8,9 +8,6 @@ import 'package:the_open_quran/widgets/cards/slidable_verse_card/action_type_lis
 import 'package:the_open_quran/widgets/cards/slidable_verse_card/slidable_controller_sender.dart';
 import 'package:the_open_quran/widgets/cards/slidable_verse_card/slidable_player.dart';
 
-import '../../constants/enums.dart';
-import '../../constants/images.dart';
-import '../../constants/padding.dart';
 import '../../models/verse_model.dart';
 import '../../providers/bookmark_provider.dart';
 import '../buttons/delete_verse_button.dart';
@@ -31,18 +28,15 @@ class BookmarkCard extends StatefulWidget {
   State<BookmarkCard> createState() => _BookmarkCardState();
 }
 
-class _BookmarkCardState extends State<BookmarkCard>
-    with SingleTickerProviderStateMixin {
+class _BookmarkCardState extends State<BookmarkCard> with SingleTickerProviderStateMixin {
   /// Animation controller for the [SlidablePlayer]
   AnimationController? animationController;
 
   @override
   void initState() {
     /// Animate delete button
-    animationController = AnimationController(
-        vsync: this,
-        upperBound: 0.5,
-        duration: const Duration(microseconds: 2000));
+    animationController =
+        AnimationController(vsync: this, upperBound: 0.5, duration: const Duration(microseconds: 2000));
     super.initState();
   }
 
@@ -57,9 +51,7 @@ class _BookmarkCardState extends State<BookmarkCard>
           motion: const ScrollMotion(),
           children: [
             DeleteVerseButton(
-              onTap: () => context
-                  .read<BookmarkProvider>()
-                  .deleteBookmark(widget.verseModel, EBookMarkType.verse),
+              onTap: () => context.read<BookmarkProvider>().deleteBookmark(widget.verseModel, getBookmarkType()),
             )
           ],
         ),
@@ -78,17 +70,13 @@ class _BookmarkCardState extends State<BookmarkCard>
           child: Container(
             width: double.infinity,
             height: 72,
-            decoration: BoxDecoration(
-                color: AppColors.oil,
-                borderRadius: BorderRadius.circular(kSizeM)),
+            decoration: BoxDecoration(color: AppColors.oil, borderRadius: BorderRadius.circular(kSizeM)),
             child: Row(
               children: [
                 buildIcon(),
-                buildSurahName(widget.verseModel.surahNameSimple ?? "",
-                    widget.verseModel.surahNameTranslated ?? ""),
+                buildSurahName(widget.verseModel.surahNameSimple ?? "", widget.verseModel.surahNameTranslated ?? ""),
                 const Spacer(),
-                buildAyatNo(
-                    "${context.translate.ayat} ${widget.verseModel.verseNumber}")
+                buildAyatNo("${context.translate.ayat} ${widget.verseModel.verseNumber}")
               ],
             ),
           ),
@@ -116,14 +104,12 @@ class _BookmarkCardState extends State<BookmarkCard>
       children: [
         Text(
           surahName,
-          style: context.theme.textTheme.headlineSmall
-              ?.copyWith(color: AppColors.grey),
+          style: context.theme.textTheme.headlineSmall?.copyWith(color: AppColors.grey),
         ),
         const Gap(3),
         Text(
           surahNameTranslation,
-          style: context.theme.textTheme.headlineSmall
-              ?.copyWith(color: AppColors.grey6, fontSize: 10),
+          style: context.theme.textTheme.headlineSmall?.copyWith(color: AppColors.grey6, fontSize: 10),
         )
       ],
     );
@@ -131,13 +117,25 @@ class _BookmarkCardState extends State<BookmarkCard>
 
   /// Surah ayat number
   buildAyatNo(String ayatNo) {
-    return Padding(
-      padding: const EdgeInsets.all(kSize3XL),
-      child: Text(
-        ayatNo,
-        style: context.theme.textTheme.headlineSmall
-            ?.copyWith(color: AppColors.grey6, fontSize: 10),
+    return Visibility(
+      visible: getBookmarkType() == EBookMarkType.verse,
+      child: Padding(
+        padding: const EdgeInsets.all(kSize3XL),
+        child: Text(
+          ayatNo,
+          style: context.theme.textTheme.headlineSmall?.copyWith(color: AppColors.grey6, fontSize: 10),
+        ),
       ),
     );
+  }
+
+  EBookMarkType getBookmarkType() {
+    EBookMarkType bookMarkType = EBookMarkType.verse;
+    context.read<BookmarkProvider>().bookmarks.forEach((element) {
+      if (element.verseModel == widget.verseModel) {
+        bookMarkType = element.bookmarkType;
+      }
+    });
+    return bookMarkType;
   }
 }

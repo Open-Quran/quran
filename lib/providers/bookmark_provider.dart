@@ -22,8 +22,7 @@ class BookmarkProvider extends ChangeNotifier {
   }
 
   /// When clicked to bookmark button
-  void onTapBookMarkButton(
-      EBookMarkType bookMarkType, VerseModel verseModel, bool isBookmark) {
+  void onTapBookMarkButton(EBookMarkType bookMarkType, VerseModel verseModel, bool isBookmark) {
     if (isBookmark) {
       deleteBookmark(verseModel, bookMarkType);
     } else {
@@ -39,8 +38,7 @@ class BookmarkProvider extends ChangeNotifier {
   }
 
   /// Delete bookmark
-  Future<void> deleteBookmark(
-      VerseModel verse, EBookMarkType bookMarkType) async {
+  Future<void> deleteBookmark(VerseModel verse, EBookMarkType bookMarkType) async {
     var bookMark = BookMarkModel(bookmarkType: bookMarkType, verseModel: verse);
     bookmarks = await LocalDb.deleteBookmark(bookMark);
     notifyListeners();
@@ -48,26 +46,10 @@ class BookmarkProvider extends ChangeNotifier {
 
   /// onTap bookmark card
   void bookmarkOnTap(BuildContext context, BookMarkModel bookmark) {
-    switch (bookmark.bookmarkType) {
-      case EBookMarkType.verse:
-        SurahDetailNavigationManager.goToSurah(
-          context,
-          bookmark.verseModel.surahId!,
-          verseId: bookmark.verseModel.verseNumber!,
-        );
-        break;
-      case EBookMarkType.page:
-        SurahDetailNavigationManager.goToMushaf(
-          context,
-          bookmark.verseModel.pageNumber!,
-        );
-        break;
-      case EBookMarkType.surah:
-        SurahDetailNavigationManager.goToSurah(
-          context,
-          bookmark.verseModel.surahId!,
-          verseId: bookmark.verseModel.verseNumber!,
-        );
-    }
+    SurahDetailNavigationManager.goToSurah(
+      context,
+      bookmark.verseModel.surahId!,
+      verseId: bookmark.verseModel.verseNumber!,
+    );
   }
 }

@@ -191,17 +191,7 @@ class NewSurahDetailsProvider extends ChangeNotifier {
 
   /// Change App Bar BookMark Icon State
   Future<void> onTapAppBarBookmarkIcon(bool isActive) async {
-    VerseModel? verse;
-    switch (quranProvider.localSetting.quranType) {
-      case EQuranType.translation:
-        verse = quranProvider.surahs[readingSettings.surahIndex].verses[readingSettings.verseIndex];
-        break;
-      case EQuranType.reading:
-        var index = getAllVerses.indexWhere((element) => element.pageNumber == readingSettings.mushafPageNumber);
-        if (index != -1) verse = getAllVerses[index];
-        break;
-    }
-    if (verse == null) return;
+    VerseModel? verse = quranProvider.surahs[readingSettings.surahIndex].verses[0];
     if (isActive) {
       await _context.read<BookmarkProvider>().deleteBookmark(verse, EBookMarkType.surah);
     } else {
