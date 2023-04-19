@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:the_open_quran/constants/constants.dart';
+import 'package:the_open_quran/widgets/popup_menus/reciter_expansion_tile.dart';
 import 'package:the_open_quran/widgets/popup_menus/reciter_pop_up_menu.dart';
-import 'package:the_open_quran/widgets/popup_menus/speed_popup_menu.dart';
+import 'package:the_open_quran/widgets/popup_menus/speed_expansion_tile.dart';
 
 class PlayBarMorePopupMenu extends StatelessWidget {
   const PlayBarMorePopupMenu({
@@ -41,12 +42,12 @@ class PlayBarMorePopupMenu extends StatelessWidget {
           const PopupMenuItem(
             height: 45,
             padding: EdgeInsets.only(left: 15, right: 10),
-            child: SpeedPopupMenu(),
+            child: SpeedExpansionTile() /* SpeedPopupMenu(), */
           ),
           const PopupMenuItem(
             height: 45,
             padding: EdgeInsets.only(left: 15, right: 10),
-            child: ReciterPopUpMenu(),
+            child: ReciterExpansionTile() /* ReciterPopUpMenu() */,
           ),
         ];
       },
@@ -74,7 +75,8 @@ class PlayBarMorePopupMenu extends StatelessWidget {
           const SizedBox(width: 10),
           Text(
             itemTitle,
-            style: context.theme.textTheme.titleLarge?.copyWith(color: const Color(0xFFB9B9B9)),
+            style: context.theme.textTheme.titleLarge
+                ?.copyWith(color: const Color(0xFFB9B9B9)),
           ),
           Visibility(
             visible: isArrowRight,

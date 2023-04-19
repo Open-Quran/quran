@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_open_quran/constants/constants.dart';
 
-import '../../constants/colors.dart';
-import '../../constants/padding.dart';
 import '../../models/verse_model.dart';
 
 class SearchVerseCard extends StatelessWidget {

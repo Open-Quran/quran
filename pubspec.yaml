@@ -87,20 +87,32 @@ flutter:
   fonts:
     - family: UthmaniIcon
       fonts:
-        - asset: assets/fonts/Uthmanic-Regular.ttf
+        - asset: assets/fonts/UthmanicRegular.ttf
     - family: Uthmani
       fonts:
         - asset: assets/fonts/UthmanTN_v2-0.ttf
+    - family: Uthmanic Bold
+      fonts:
+        - asset: assets/fonts/UthmanicBold.ttf
     - family: Majeed
       fonts:
-        - asset: assets/fonts/Al Majeed Quranic Font_shiped.ttf
-    - family: UthmaniBold
+        - asset: assets/fonts/AlMajeed.ttf
+    - family: Me
       fonts:
-        - asset: assets/fonts/Uthmanic-Bold.ttf
-    - family: IndoPak
+        - asset: assets/fonts/Me.ttf
+    - family: Jameel
       fonts:
-        - asset: assets/fonts/Indo-Pak.ttf
+        - asset: assets/fonts/Jameel.ttf
+    - family: Kufam Regular
+      fonts:
+        - asset: assets/fonts/KufamRegular.ttf
+    - family: Noore
+      fonts:
+        - asset: assets/fonts/Noore.ttf
     - family: Naskh
       fonts:
         - asset: assets/fonts/Naskh.ttf
+    - family: Quran Font
+      fonts:
+        - asset: assets/fonts/QuranFont.ttf
     

@@ -40,7 +40,9 @@ class VerseCard extends StatelessWidget {
   final bool isBookmark;
   final Function(VerseModel verseModel, bool isPlaying) playFunction;
   final Function(VerseModel verseModel, bool isFavorite) favoriteFunction;
-  final Function(EBookMarkType bookMarkType, VerseModel verseModel, bool isBookmark) bookmarkFunction;
+  final Function(
+          EBookMarkType bookMarkType, VerseModel verseModel, bool isBookmark)
+      bookmarkFunction;
   final Function(VerseModel) shareFunction;
   final String? selectedVerseKey;
   final Function(String? selectedVerseKey) changeSelectedVerseKey;
@@ -80,7 +82,11 @@ class VerseCard extends StatelessWidget {
             : BoxDecoration(
                 border: Border(
                   top: BorderSide(
-                    color: context.watch<QuranProvider>().surahDetailsPageThemeColor.titleVectorColor.withOpacity(0.5),
+                    color: context
+                        .watch<QuranProvider>()
+                        .surahDetailsPageThemeColor
+                        .titleVectorColor
+                        .withOpacity(0.5),
                     width: 1,
                   ),
                 ),
@@ -93,16 +99,22 @@ class VerseCard extends StatelessWidget {
               children: [
                 GestureDetector(
                   onTap: () {
-                    context.read<SurahDetailsProvider>().changeAyahNumberStyle();
+                    context
+                        .read<SurahDetailsProvider>()
+                        .changeAyahNumberStyle();
                   },
                   child: _verseNumberText(context),
                 ),
                 isBookmark
                     ? Padding(
-                        padding: const EdgeInsets.only(left: kSizeM, top: kSizeM),
+                        padding:
+                            const EdgeInsets.only(left: kSizeM, top: kSizeM),
                         child: SvgPicture.asset(
                           ImageConstants.bookmarkIconCard,
-                          color: context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor,
+                          color: context
+                              .watch<QuranProvider>()
+                              .surahDetailsPageThemeColor
+                              .textColor,
                         ),
                       )
                     : Container(),
@@ -130,7 +142,10 @@ class VerseCard extends StatelessWidget {
         textAlign: TextAlign.start,
         textScaleFactor: textScaleFactor,
         style: context.theme.textTheme.displayLarge?.copyWith(
-          color: context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor,
+          color: context
+              .watch<QuranProvider>()
+              .surahDetailsPageThemeColor
+              .textColor,
           fontSize: 30,
           fontFamily: arabicFontFamily,
         ),
@@ -146,7 +161,10 @@ class VerseCard extends StatelessWidget {
               textAlign: TextAlign.start,
               textScaleFactor: textScaleFactor,
               style: context.theme.textTheme.displayLarge?.copyWith(
-                color: context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor,
+                color: context
+                    .watch<QuranProvider>()
+                    .surahDetailsPageThemeColor
+                    .textColor,
                 fontSize: 15,
                 fontFamily: arabicFontFamily,
               ),
@@ -154,7 +172,11 @@ class VerseCard extends StatelessWidget {
             SvgPicture.asset(
               ImageConstants.versNumberFrame,
               height: 32,
-              color: context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor.withOpacity(0.6),
+              color: context
+                  .watch<QuranProvider>()
+                  .surahDetailsPageThemeColor
+                  .textColor
+                  .withOpacity(0.6),
             ),
           ],
         ),
@@ -182,18 +204,31 @@ class VerseCard extends StatelessWidget {
                   )
                 : null,
             padding: const EdgeInsets.all(kSizeM),
-            child: Text(
-              verseModel.text!,
+            child: RichText(
+              text: TextSpan(
+                text: verseModel.text!,
+                style: context.theme.textTheme.headlineLarge?.copyWith(
+                    height: 1.7,
+                    fontSize: 20,
+                    fontFamily: context.watch<QuranProvider>().localSetting.fontTypeArabic,
+                    color: context
+                        .watch<QuranProvider>()
+                        .surahDetailsPageThemeColor
+                        .textColor),
+              ),
               textDirection: TextDirection.rtl,
               textAlign: TextAlign.start,
               textScaleFactor: textScaleFactor,
-              style: context.theme.textTheme.displayLarge?.copyWith(
+              /* style: context.theme.textTheme.displayLarge?.copyWith(
                 color: context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor,
                 fontSize: 27,
-              ),
+                fontFamily: context.watch<QuranProvider>().localSetting.fontTypeArabic,
+              ), */
             ),
           ),
-          Visibility(visible: readOptions == EReadOptions.surahAndTranslation, child: buildVerseCardDivider(context)),
+          Visibility(
+              visible: readOptions == EReadOptions.surahAndTranslation,
+              child: buildVerseCardDivider(context)),
         ],
       ),
     );
@@ -204,7 +239,9 @@ class VerseCard extends StatelessWidget {
     return Visibility(
       visible: readOptions != EReadOptions.surah,
       child: Padding(
-        padding: readOptions == EReadOptions.translation ? const EdgeInsets.only(top: kSizeXL) : EdgeInsets.zero,
+        padding: readOptions == EReadOptions.translation
+            ? const EdgeInsets.only(top: kSizeXL)
+            : EdgeInsets.zero,
         child: ListView.separated(
           itemCount: verseTranslations.length,
           shrinkWrap: true,
@@ -222,7 +259,10 @@ class VerseCard extends StatelessWidget {
                   textScaleFactor: textScaleFactor,
                   style: context.theme.textTheme.titleSmall?.copyWith(
                     fontFamily: translationFontFamily,
-                    color: context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor,
+                    color: context
+                        .watch<QuranProvider>()
+                        .surahDetailsPageThemeColor
+                        .textColor,
                   ),
                 ),
                 Text(
@@ -231,7 +271,10 @@ class VerseCard extends StatelessWidget {
                   textScaleFactor: textScaleFactor,
                   style: context.theme.textTheme.labelLarge?.copyWith(
                     fontFamily: translationFontFamily,
-                    color: context.watch<QuranProvider>().surahDetailsPageThemeColor.transparentTextColor,
+                    color: context
+                        .watch<QuranProvider>()
+                        .surahDetailsPageThemeColor
+                        .transparentTextColor,
                   ),
                 ),
               ],
@@ -251,8 +294,16 @@ class VerseCard extends StatelessWidget {
       decoration: BoxDecoration(
         gradient: LinearGradient(
           colors: [
-            context.watch<QuranProvider>().surahDetailsPageThemeColor.transparentVectorColor.withOpacity(0),
-            context.watch<QuranProvider>().surahDetailsPageThemeColor.textColor.withOpacity(0.24),
+            context
+                .watch<QuranProvider>()
+                .surahDetailsPageThemeColor
+                .transparentVectorColor
+                .withOpacity(0),
+            context
+                .watch<QuranProvider>()
+                .surahDetailsPageThemeColor
+                .textColor
+                .withOpacity(0.24),
           ],
         ),
       ),
