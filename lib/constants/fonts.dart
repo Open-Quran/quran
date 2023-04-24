@@ -61,7 +61,6 @@ class Fonts {
     if (fontName == arabicFontNames[6]) return noore;
     if (fontName == arabicFontNames[7]) return naskh;
     if (fontName == arabicFontNames[8]) return quranFont;
-
     return uthmanic;
   }
 }
