@@ -115,7 +115,3 @@ flutter:
     - family: Quran Font
       fonts:
         - asset: assets/fonts/QuranFont.ttf
-    - family: Diyanet
-      fonts:
-        - asset: assets/fonts/diyanet.ttf
-    
