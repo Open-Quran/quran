@@ -38,7 +38,7 @@ class JuzSurahSearchToggleButton extends StatelessWidget {
       index: toggleSearchButtonIndex,
       children: [
         buildJuzSurahSearchToggles(controlWidth, context),
-        const SearchBar(),
+        const CustomSearchBar(),
       ],
     );
   }
