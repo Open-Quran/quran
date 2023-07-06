@@ -15,29 +15,29 @@ dependencies:
   #Localications
   flutter_localizations:
     sdk: flutter
-  intl: ^0.17.0
+  intl: ^0.18.0
 
   #State Managements
   provider: ^6.0.3                                        # Provide state management
   rxdart: ^0.27.7
 
   #Network
-  http: ^0.13.5
+  http: ^1.1.0
   html: ^0.15.1
 
 
   # Google
-  google_fonts: ^3.0.1                                    # Text fonts
+  google_fonts: ^5.1.0                                    # Text fonts
 
   # Widgets
   cupertino_icons: ^1.0.2                                 # Cupertino icons
-  flutter_svg: ^1.1.5                                     # Reading SVG images
+  flutter_svg: ^2.0.7                                     # Reading SVG images
   auto_size_text: ^3.0.0
   custom_sliding_segmented_control: ^1.7.2
-  syncfusion_flutter_sliders: ^20.3.52
+  syncfusion_flutter_sliders: ^22.1.37
   scrollable_positioned_list: ^0.3.5
-  gap: ^2.0.0                                             # Adding gaps between widgets
-  flutter_slidable: ^2.0.0                                # Slidable list item
+  gap: ^3.0.1                                             # Adding gaps between widgets
+  flutter_slidable: ^3.0.0                                # Slidable list item
   audio_video_progress_bar: ^1.0.0
 
   # Local Database
@@ -45,13 +45,13 @@ dependencies:
 
   #Helpers
   flutter_native_splash: ^2.2.10+1                        # Native Splash
-  package_info_plus: ^2.0.0
+  package_info_plus: ^4.0.2
   path_provider: ^2.0.11
   equatable: ^2.0.5
   html_character_entities: ^1.0.0+1
-  share_plus: ^6.3.0
+  share_plus: ^7.0.2
   in_app_review: ^2.0.6
-  flutter_launcher_icons: ^0.11.0
+  flutter_launcher_icons: ^0.13.1
   url_launcher: ^6.1.10
   modal_bottom_sheet: ^3.0.0-pre
   dartarabic: ^0.1.2

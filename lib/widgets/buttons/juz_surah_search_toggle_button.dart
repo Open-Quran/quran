@@ -4,13 +4,9 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:the_open_quran/constants/constants.dart';
 
-import '../../constants/colors.dart';
-import '../../constants/enums.dart';
-import '../../constants/images.dart';
-import '../../constants/padding.dart';
 import '../../providers/search_provider.dart';
 import '../animation/fade_indexed_stack.dart';
-import '../bars/search_bar.dart';
+import '../bars/custom_search_bar.dart';
 
 class JuzSurahSearchToggleButton extends StatelessWidget {
   /// Toggle options Juz or Surah
