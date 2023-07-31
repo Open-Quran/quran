@@ -47,7 +47,6 @@ class JuzSurahSearchToggleButton extends StatelessWidget {
   Widget buildJuzSurahSearchToggles(double controlWidth, BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.center,
-      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         buildJuzAndSurahToggles(controlWidth, context),
         buildSearchButton(context)
