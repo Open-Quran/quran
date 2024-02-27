@@ -119,7 +119,7 @@ May Allah reward all the awesome [Contributors](https://github.com/fabrikod/the-
 * [Flutter](https://flutter.dev/)
 * [Figma](https://www.figma.com/)
 * [Material Design Components](https://github.com/material-components/material-components-android)
-* [Quran.com](https://quran.api-docs.io/v4)
+* [Quran.com API](https://api-docs.quran.com)
 
 
 
