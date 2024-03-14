@@ -129,10 +129,10 @@ class _ReferencesScreenState extends State<ReferencesScreen> {
                 TextSpan(
                   style: context.theme.textTheme.headlineMedium!
                       .copyWith(color: AppColors.redOrange),
-                  text: " :  www.fabrikod.com/privacy-policy",
+                  text: " :  www.fabrikod.com/open-quran-privacy-policy",
                   recognizer: TapGestureRecognizer()
                     ..onTap = () async {
-                      const url = 'https://www.fabrikod.com/privacy-policy';
+                      const url = 'https://www.fabrikod.com/open-quran-privacy-policy';
                       if (await canLaunchUrl(Uri.parse(url))) {
                         await launchUrl(
                           Uri.parse(url),
