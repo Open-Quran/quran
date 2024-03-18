@@ -3,6 +3,7 @@ import 'package:flutter_svg/svg.dart';
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:the_open_quran/constants/constants.dart';
 import 'package:the_open_quran/screens/references_screen.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../widgets/app_bars/primary_app_bar.dart';
 import '../widgets/buttons/secondary_button.dart';
@@ -70,7 +71,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             },
             icon: SvgPicture.asset(
               ImageConstants.languageIcon,
-              color: AppColors.white,
+              colorFilter: const ColorFilter.mode(AppColors.white, BlendMode.srcIn)
             ),
           ),
           SecondaryButton(
@@ -84,7 +85,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
               },
               icon: SvgPicture.asset(
                 ImageConstants.helpGuideIcon,
-                color: AppColors.white,
+                colorFilter: const ColorFilter.mode(AppColors.white, BlendMode.srcIn)
               )),
 
           /// ToDo: Uncomment for release
@@ -118,9 +119,23 @@ class _SettingsScreenState extends State<SettingsScreen> {
               },
               icon: SvgPicture.asset(
                 ImageConstants.referencesIcon,
-                color: AppColors.white,
+                colorFilter: const ColorFilter.mode(AppColors.white, BlendMode.srcIn)
               )),
-
+            SecondaryButton(
+              text: context.translate.privacyPolicy,
+              // Navigate to privacy policy url
+              onPressed: () async {
+                const url = 'https://www.fabrikod.com/open-quran-privacy-policy';
+                if (await canLaunchUrl(Uri.parse(url))) {
+                  await launchUrl(
+                    Uri.parse(url),
+                  );
+                }
+              },
+              icon: SvgPicture.asset(
+                ImageConstants.introductionIcon,
+                colorFilter: const ColorFilter.mode(AppColors.white, BlendMode.srcIn)
+              )),
           /// ToDo: Uncomment for release
           // Container(
           //   padding: const EdgeInsets.only(top: kSizeXXL),
