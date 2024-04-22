@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:the_open_quran/constants/constants.dart';
 import 'package:the_open_quran/widgets/popup_menus/reciter_expansion_tile.dart';
-import 'package:the_open_quran/widgets/popup_menus/reciter_pop_up_menu.dart';
 import 'package:the_open_quran/widgets/popup_menus/speed_expansion_tile.dart';
 
 class PlayBarMorePopupMenu extends StatelessWidget {
@@ -70,7 +69,10 @@ class PlayBarMorePopupMenu extends StatelessWidget {
           SvgPicture.asset(
             itemIconPath,
             width: 20,
-            color: const Color(0xFFB9B9B9),
+            colorFilter: const ColorFilter.mode(
+              Color(0xFFB9B9B9),
+              BlendMode.srcIn,
+            ),
           ),
           const SizedBox(width: 10),
           Text(

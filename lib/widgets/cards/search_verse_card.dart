@@ -78,7 +78,7 @@ class SearchVerseCard extends StatelessWidget {
   /// Verse surah name in english
   Widget verseSurahNameTranslated(BuildContext context) {
     return Text(
-      "${verseModel.surahNameTranslated},  " ?? "",
+      "${verseModel.surahNameTranslated},  ",
       overflow: TextOverflow.ellipsis,
       style: context.theme.textTheme.titleMedium!
           .copyWith(color: AppColors.white5),

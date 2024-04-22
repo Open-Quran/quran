@@ -1,4 +1,3 @@
-import 'package:dartarabic/dartarabic.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:the_open_quran/constants/constants.dart';

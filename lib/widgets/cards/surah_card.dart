@@ -1,5 +1,8 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:the_open_quran/constants/constants.dart';
+import 'package:the_open_quran/database/local_db.dart';
 
 import '../../constants/colors.dart';
 import '../../constants/padding.dart';
@@ -48,12 +51,15 @@ class SurahCard extends StatelessWidget {
   }
 
   Widget buildSurahNames(BuildContext context) {
+    String localCountryCode = LocalDb.getLocale?.languageCode ?? Platform.localeName.split("_").first;
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         Text(
-          surahModel.nameSimple.toString(),
+          localCountryCode == "tr"
+              ? surahModel.nameTurkish.toString()
+              : surahModel.nameSimple.toString(),
           style: context.theme.textTheme.headlineSmall?.copyWith(
             letterSpacing: 0.04,
             color: AppColors.grey,
@@ -61,7 +67,9 @@ class SurahCard extends StatelessWidget {
         ),
         const SizedBox(height: kSizeS),
         Text(
-          surahModel.nameTranslated.toString(),
+          localCountryCode == "tr"
+              ? surahModel.nameTurkish.toString()
+              : surahModel.nameTranslated.toString(),
           style: context.theme.textTheme.labelMedium?.copyWith(
             letterSpacing: 0.04,
             color: AppColors.grey,
