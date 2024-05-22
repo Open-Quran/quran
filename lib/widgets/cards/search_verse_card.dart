@@ -60,7 +60,7 @@ class SearchVerseCard extends StatelessWidget {
     return Text(
       verseModel.text ?? "",
       textDirection: TextDirection.rtl,
-      style: context.theme.textTheme.headline1!.copyWith(height: 2),
+      style: context.theme.textTheme.headlineMedium!.copyWith(height: 2),
     );
   }
 

@@ -36,7 +36,7 @@ class NumberIcon extends StatelessWidget {
                 maxLines: 1,
                 textAlign: TextAlign.center,
                 style: context.theme.textTheme.bodySmall?.copyWith(
-                  color: context.theme.backgroundColor,
+                  color: context.theme.primaryColor,
                 ),
               ),
             ),

@@ -14,7 +14,6 @@ final ThemeData theme = ThemeData(
   toggleButtonsTheme: _toggleButtonsThemeData,
   drawerTheme: _drawerThemeData,
   primaryColor: AppColors.black1,
-  backgroundColor: AppColors.black1,
   splashColor: Colors.transparent,
   highlightColor: Colors.transparent,
   scaffoldBackgroundColor: AppColors.black1,

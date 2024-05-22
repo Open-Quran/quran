@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:the_open_quran/constants/constants.dart';
 
-import '../../constants/colors.dart';
-import '../../constants/padding.dart';
 import '../../models/translation.dart';
 
 class SearchVerseTranslationCard extends StatelessWidget {
@@ -62,7 +60,7 @@ class SearchVerseTranslationCard extends StatelessWidget {
     return Text(
       verseTranslationModel.text ?? "",
       textDirection: TextDirection.rtl,
-      style: context.theme.textTheme.headline1!.copyWith(height: 2),
+      style: context.theme.textTheme.headlineMedium!.copyWith(height: 2),
     );
   }
 
