@@ -15,7 +15,7 @@ dependencies:
   #Localications
   flutter_localizations:
     sdk: flutter
-  intl: ^0.18.0
+  intl: ^0.19.0
 
   #State Managements
   provider: ^6.0.3                                        # Provide state management
@@ -34,7 +34,7 @@ dependencies:
   flutter_svg: ^2.0.7                                     # Reading SVG images
   auto_size_text: ^3.0.0
   custom_sliding_segmented_control: ^1.7.2
-  syncfusion_flutter_sliders: ^22.1.37
+  syncfusion_flutter_sliders: ^25.2.5
   scrollable_positioned_list: ^0.3.5
   gap: ^3.0.1                                             # Adding gaps between widgets
   flutter_slidable: ^3.0.0                                # Slidable list item
@@ -115,3 +115,6 @@ flutter:
     - family: Quran Font
       fonts:
         - asset: assets/fonts/QuranFont.ttf
+    - family: Tinos
+      fonts:
+        - asset: assets/fonts/Tinos.ttf

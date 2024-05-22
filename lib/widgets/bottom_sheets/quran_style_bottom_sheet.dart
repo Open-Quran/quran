@@ -42,7 +42,7 @@ class _QuranStyleBottomSheetState extends State<QuranStyleBottomSheet> {
     return Container(
       padding: const EdgeInsets.all(kSizeM * 3),
       decoration: BoxDecoration(
-        color: context.theme.backgroundColor,
+        color: context.theme.primaryColor,
         borderRadius:
             const BorderRadius.vertical(top: Radius.circular(kSizeXL)),
       ),
