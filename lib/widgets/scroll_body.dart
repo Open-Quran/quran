@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 
 /// [SingleChildScrollView] body
 /// default padding `EdgeInsets.symmetric(horizontal: 20.0)`.
+// ignore: must_be_immutable
 class ScrollBody extends StatelessWidget {
 
   ScrollBody({

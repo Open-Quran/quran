@@ -3,6 +3,7 @@ import 'package:in_app_review/in_app_review.dart';
 
 class MoreProvider extends ChangeNotifier {
   /// More Provider Context
+  // ignore: unused_field
   final BuildContext _context;
 
   /// Class Constructor

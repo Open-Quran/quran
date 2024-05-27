@@ -265,7 +265,7 @@ class VerseCard extends StatelessWidget {
                         .textColor,
                   ),
                 ),
-                Text(
+                /* Text(
                   "- ${verseTranslation.translationName}",
                   textAlign: TextAlign.end,
                   textScaleFactor: textScaleFactor,
@@ -276,7 +276,7 @@ class VerseCard extends StatelessWidget {
                         .surahDetailsPageThemeColor
                         .transparentTextColor,
                   ),
-                ),
+                ), */
               ],
             );
           },

@@ -170,7 +170,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           child: Padding(
             padding: const EdgeInsets.only(bottom: 20.0),
             child: Text(
-              "${context.translate.madeByFabrikod} ${context.translate.version} ${snapshot.data?.version ?? ""}",
+              "${context.translate.openSourceDevelopedByFabrikod} ${context.translate.version} ${snapshot.data?.version ?? ""}",
               style: context.theme.textTheme.headlineSmall,
             ),
           ),

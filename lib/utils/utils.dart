@@ -39,6 +39,7 @@ class Utils {
 
   /// Returning true if string has number
   static bool isNumeric(String s) {
+    // ignore: unnecessary_null_comparison
     if (s == null) {
       return false;
     }

@@ -4,6 +4,7 @@ import '../constants/enums.dart';
 
 class HomeProvider extends ChangeNotifier {
   /// Home Screen Context
+  // ignore: unused_field
   final BuildContext _context;
 
   /// Juz List Type [EJuzListType]
