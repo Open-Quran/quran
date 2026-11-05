@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get_storage/get_storage.dart';
 import 'package:provider/provider.dart';
 import 'package:provider/single_child_widget.dart';
-import 'package:flutter_gen/gen_l10n/app_localizations.dart';
+import 'package:the_open_quran/l10n/app_localizations.dart';
 import 'package:the_open_quran/providers/app_settings_provider.dart';
 import 'package:the_open_quran/providers/bookmark_provider.dart';
 import 'package:the_open_quran/providers/favorites_provider.dart';
