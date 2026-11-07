@@ -9,7 +9,7 @@ final ThemeData theme = ThemeData(
   bottomNavigationBarTheme: _bottomNavigationBarThemeData,
   tabBarTheme: _tabBarTheme,
   cardColor: const Color(0xFF414141),
-  cardTheme: const CardTheme(color: Color(0xFF414141)),
+  cardTheme: const CardThemeData(color: Color(0xFF414141)),
   sliderTheme: _sliderThemeData,
   toggleButtonsTheme: _toggleButtonsThemeData,
   drawerTheme: _drawerThemeData,
@@ -149,8 +149,8 @@ BottomNavigationBarThemeData get _bottomNavigationBarThemeData {
 }
 
 /// [TabBarTheme] Tab Bar Theme Data
-TabBarTheme get _tabBarTheme {
-  return const TabBarTheme(
+TabBarThemeData get _tabBarTheme {
+  return const TabBarThemeData(
     labelStyle: TextStyle(
         fontSize: 16, fontWeight: FontWeight.w700, color: AppColors.white),
   );

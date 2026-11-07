@@ -15,7 +15,7 @@ dependencies:
   #Localications
   flutter_localizations:
     sdk: flutter
-  intl: ^0.19.0
+  intl: ^0.20.2
 
   #State Managements
   provider: ^6.0.3                                        # Provide state management
@@ -27,14 +27,14 @@ dependencies:
 
 
   # Google
-  google_fonts: ^5.1.0                                    # Text fonts
+  google_fonts: ^6.3.2                                    # Text fonts
 
   # Widgets
   cupertino_icons: ^1.0.2                                 # Cupertino icons
   flutter_svg: ^2.0.7                                     # Reading SVG images
   auto_size_text: ^3.0.0
   custom_sliding_segmented_control: ^1.7.2
-  syncfusion_flutter_sliders: ^25.2.5
+  syncfusion_flutter_sliders: ^28.1.38
   scrollable_positioned_list: ^0.3.5
   gap: ^3.0.1                                             # Adding gaps between widgets
   flutter_slidable: ^3.0.0                                # Slidable list item
@@ -45,11 +45,11 @@ dependencies:
 
   #Helpers
   flutter_native_splash: ^2.2.10+1                        # Native Splash
-  package_info_plus: ^4.0.2
+  package_info_plus: ^6.0.0
   path_provider: ^2.0.11
   equatable: ^2.0.5
   html_character_entities: ^1.0.0+1
-  share_plus: ^7.0.2
+  share_plus: ^8.0.2
   in_app_review: ^2.0.6
   flutter_launcher_icons: ^0.13.1
   url_launcher: ^6.1.10
