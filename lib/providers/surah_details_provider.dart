@@ -306,11 +306,12 @@ class SurahDetailsProvider extends ChangeNotifier {
   /// Share verse
   Future shareVerse(VerseModel verseModel, int index) async {
     String verseText = verseModel.text!;
-    if (_context.read<QuranProvider>().localSetting.readOptions == EReadOptions.translation) {
-      verseText = _context.read<QuranProvider>().translationService.translationsOfVerse(verseModel.id!)[index].text!;
-    } else if (_context.read<QuranProvider>().localSetting.readOptions == EReadOptions.surahAndTranslation) {
+    final translationText = _context.read<QuranProvider>().translationService.translationsOfVerse(verseModel.id!).map((e) => e.text ?? "").join("\n");
+    if (_context.read<QuranProvider>().localSetting.readOptions == EReadOptions.translation && translationText.isNotEmpty) {
+      verseText = translationText;
+    } else if (_context.read<QuranProvider>().localSetting.readOptions == EReadOptions.surahAndTranslation && translationText.isNotEmpty) {
       verseText =
-          "${verseModel.text!}\n${_context.read<QuranProvider>().translationService.translationsOfVerse(verseModel.id!)[index].text!}";
+          "${verseModel.text!}\n$translationText";
     }
     await Share.share(verseText);
   }
