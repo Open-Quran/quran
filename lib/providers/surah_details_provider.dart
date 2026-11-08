@@ -306,7 +306,7 @@ class SurahDetailsProvider extends ChangeNotifier {
   /// Share verse
   Future shareVerse(VerseModel verseModel, int index) async {
     String verseText = verseModel.text!;
-    final translationText = _context.read<QuranProvider>().translationService.translationsOfVerse(verseModel.id!).map((e) => e.text ?? "").join("\n");
+    final translationText = _context.read<QuranProvider>().translationService.translationsOfVerse(verseModel.id!).map((e) => e.text ?? "").where((text) => text.trim().isNotEmpty).join("\n");
     if (_context.read<QuranProvider>().localSetting.readOptions == EReadOptions.translation && translationText.isNotEmpty) {
       verseText = translationText;
     } else if (_context.read<QuranProvider>().localSetting.readOptions == EReadOptions.surahAndTranslation && translationText.isNotEmpty) {
